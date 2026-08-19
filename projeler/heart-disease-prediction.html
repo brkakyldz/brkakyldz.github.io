@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kalp Hastalığı Risk Tahmini — Berke Akyıldız</title>
+<meta name="description" content="UCI Kalp Hastalığı veri setiyle uçtan uca bir makine öğrenmesi çalışması: yinelenen satırların temizlenmesi, dört model karşılaştırması, recall odaklı optimizasyon ve canlı Streamlit demosu.">
+<meta name="color-scheme" content="dark">
+<script>document.documentElement.classList.add('js')</script>
+<link rel="stylesheet" href="../assets/css/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%230B0D11'/><text x='16' y='22' font-family='monospace' font-size='16' fill='%239B8CFF' text-anchor='middle'>B</text></svg>">
+</head>
+<body>
+
+<a class="skip-link" href="#icerik">İçeriğe geç</a>
+
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a class="brand" href="../index.html">Berke Akyıldız</a>
+    <nav class="nav" aria-label="Gezinme">
+      <a href="../index.html#projeler">Projeler</a>
+      <a href="https://github.com/brkakyldz/heart-disease-prediction" target="_blank" rel="noopener">Depo ↗</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="container">
+    <p class="breadcrumb"><a href="../index.html#projeler">← Projeler</a></p>
+
+    <div class="project-head">
+      <div class="project-head__meta">
+        <span>04 / 04</span><span class="dot">·</span>
+        <span>Solo geliştirici</span><span class="dot">·</span>
+        <span>Haziran 2026</span><span class="dot">·</span>
+        <span class="badge badge--done">Tamamlandı · canlı demo</span>
+      </div>
+      <h1>Kalp Hastalığı Risk Tahmini</h1>
+      <p class="project-head__lead">
+        13 klinik özellikten kalp hastalığı riskini tahmin eden, veri sızıntısını baştan temizleyen
+        ve doğruluk yerine bilinçli olarak recall'a göre optimize edilen uçtan uca bir makine
+        öğrenmesi portfolyo projesi.
+      </p>
+      <div class="project-head__links">
+        <a class="btn btn--primary" href="https://heart-disease-prediction-brkakyldz.streamlit.app" target="_blank" rel="noopener">Canlı Demo ↗</a>
+        <a class="btn btn--ghost" href="https://github.com/brkakyldz/heart-disease-prediction" target="_blank" rel="noopener">Kaynak Kod ↗</a>
+      </div>
+    </div>
+
+    <hr class="rule">
+
+    <div class="project-layout">
+
+      <aside class="project-rail">
+        <div class="project-rail__inner">
+          <div class="rail-group"><h4>Rol</h4><p>Solo geliştirici</p></div>
+          <div class="rail-group"><h4>Durum</h4><p>Tamamlandı · öğrenme/portfolyo projesi</p></div>
+          <div class="rail-group"><h4>Dil</h4><p>Python (Jupyter Notebook)</p></div>
+          <div class="rail-group"><h4>Lisans</h4><p>Belirtilmemiş</p></div>
+          <div class="rail-group"><h4>Öne çıkan</h4><p>Recall odaklı metrik seçimi</p></div>
+          <div class="rail-group rail-toc" data-spy>
+            <h4>Bu sayfada</h4>
+            <a href="#problem">Problem</a>
+            <a href="#rolum">Rolüm</a>
+            <a href="#yigin">Teknoloji yığını</a>
+            <a href="#mimari">Mimari</a>
+            <a href="#kararlar">Kritik kararlar</a>
+            <a href="#sonuclar">Sonuçlar</a>
+            <a href="#degerlendirme">Değerlendirme</a>
+            <a href="#gorseller">Ekran görüntüleri</a>
+            <a href="#ogrendiklerim">Öğrendiklerim</a>
+          </div>
+        </div>
+      </aside>
+
+      <article class="prose" id="icerik">
+
+        <h2 id="problem">Problem / Bağlam</h2>
+        <p>
+          Bu, klasik bir tabular veri seti üzerinde eksiksiz bir makine öğrenmesi akışını baştan sona
+          yürütmek için yaptığım bir öğrenme projesi: keşifçi analiz, model karşılaştırması,
+          hiperparametre optimizasyonu ve gerçekten kullanılabilir bir demoya kadar. Seçtiğim veri
+          seti — UCI Kalp Hastalığı, Cleveland alt kümesi — iyi bilinen bir tuzak barındırıyor: ham
+          dosyadaki 1.025 satırın büyük kısmı yinelenen kayıt ve bunlar temizlenmeden bölünürse test
+          skorları yapay olarak şişiyor. Projenin ilk işi bu tuzağı kapatmak oldu; ikinci işi ise
+          sağlık taraması bağlamında hangi metriğin gerçekten önemli olduğuna karar vermekti. Klinik
+          bir araç değil, klinik doğrulaması yok — 302 kayıtlık bir veri setinde çalışan, iyi
+          yürütülmüş bir portfolyo çalışması.
+        </p>
+
+        <h2 id="rolum">Rolüm</h2>
+        <p>
+          Veri hazırlığından canlıya almaya kadar tüm adımlar bana ait: keşifçi analiz ve model
+          karşılaştırma notebook'u, yeniden kullanılabilir ön işleme ve eğitim modülleri, ve Streamlit
+          Community Cloud üzerinde yayınlanan üç sekmeli arayüz.
+        </p>
+
+        <h2 id="yigin">Teknoloji Yığını</h2>
+        <div class="stack-groups">
+          <div class="stack-group">
+            <h4>Dil &amp; Ortam</h4>
+            <ul class="chips"><li class="chip">Python 3</li><li class="chip">Jupyter Notebook</li></ul>
+          </div>
+          <div class="stack-group">
+            <h4>Makine Öğrenmesi</h4>
+            <ul class="chips"><li class="chip">LightGBM</li><li class="chip">scikit-learn (Pipeline, ColumnTransformer, RandomizedSearchCV)</li><li class="chip">XGBoost</li><li class="chip">Random Forest</li><li class="chip">Logistic Regression</li></ul>
+          </div>
+          <div class="stack-group">
+            <h4>Veri &amp; Görselleştirme</h4>
+            <ul class="chips"><li class="chip">pandas</li><li class="chip">NumPy</li><li class="chip">matplotlib</li><li class="chip">seaborn</li></ul>
+          </div>
+          <div class="stack-group">
+            <h4>Arayüz &amp; Dağıtım</h4>
+            <ul class="chips"><li class="chip">Streamlit</li><li class="chip">Streamlit Community Cloud</li><li class="chip">joblib</li></ul>
+          </div>
+        </div>
+
+        <h2 id="mimari">Mimari</h2>
+        <p>
+          Akış tek yönlü ve bilinçli olarak sade. Ham CSV önce yinelenen satırlardan temizleniyor;
+          ardından ön işleme adımı sayısal beş sütuna <code>StandardScaler</code> uygularken
+          kategorik/ordinal sekiz sütunu olduğu gibi geçiriyor — LightGBM ağaç tabanlı olduğu için bu
+          sütunların one-hot'a çevrilmesi gerekmiyor. Ön işleme ve model tek bir scikit-learn
+          <code>Pipeline</code> nesnesinde birleşiyor; bu, dağıtımda ölçekleyici ile modelin
+          birbiriyle uyumsuz hale gelmesini yapısal olarak imkânsız kılıyor. Model, %80/%20 bölünmüş
+          veride eğitilip test kümesinde ölçülüyor, metrikler diske yazılıyor; sonra aynı pipeline
+          veri setinin tamamıyla yeniden eğitilip dağıtılacak model olarak kaydediliyor. Streamlit
+          uygulaması bu iki dosyayı yüklüyor: modeli tahmin için, metrikleri ise değiştirmeden
+          göstermek için — performans sayıları arayüzde asla yeniden hesaplanmıyor.
+        </p>
+
+        <figure>
+          <div class="diagram">
+            <svg viewBox="0 0 760 620" role="img"
+                 aria-label="Makine öğrenmesi akışı: ham veriden yinelenen satırların temizlenmesi, ön işleme, yüzde seksen yirmi bölme ve LightGBM eğitimi. Eğitimden sonra akış ikiye ayrılıyor: test kümesinden metrikler, tam veriyle yeniden eğitilen model; ikisi de Streamlit uygulamasında birleşiyor.">
+              <defs>
+                <marker id="ah4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                  <path d="M0 0 L10 5 L0 10 z" fill="#6F7986"/>
+                </marker>
+              </defs>
+              <g font-family="ui-monospace, Consolas, monospace">
+
+                <rect x="260" y="24" width="240" height="52" rx="10" fill="#1A1F27" stroke="#38414F"/>
+                <text x="380" y="56" fill="#E7EAF0" font-size="14" text-anchor="middle">Ham veri (1.025)</text>
+
+                <rect x="260" y="100" width="240" height="60" rx="10" fill="#1D1B33" stroke="#9B8CFF"/>
+                <text x="380" y="126" fill="#9B8CFF" font-size="14" text-anchor="middle">Yinelenenleri temizle</text>
+                <text x="380" y="146" fill="#9B8CFF" font-size="10.5" text-anchor="middle" opacity=".8">302 kayıt</text>
+
+                <rect x="260" y="184" width="240" height="60" rx="10" fill="#1A1F27" stroke="#38414F"/>
+                <text x="380" y="210" fill="#E7EAF0" font-size="14" text-anchor="middle">Ön işleme</text>
+                <text x="380" y="230" fill="#6F7986" font-size="10.5" text-anchor="middle">StandardScaler + passthrough</text>
+
+                <rect x="260" y="268" width="240" height="52" rx="10" fill="#1A1F27" stroke="#38414F"/>
+                <text x="380" y="300" fill="#E7EAF0" font-size="14" text-anchor="middle">%80 / %20 bölme</text>
+
+                <rect x="260" y="344" width="240" height="52" rx="10" fill="#1A1F27" stroke="#38414F"/>
+                <text x="380" y="376" fill="#E7EAF0" font-size="14" text-anchor="middle">LightGBM eğitimi</text>
+
+                <rect x="530" y="440" width="210" height="52" rx="10" fill="#1A1F27" stroke="#38414F"/>
+                <text x="635" y="472" fill="#E7EAF0" font-size="14" text-anchor="middle">Test metrikleri</text>
+
+                <rect x="20" y="440" width="220" height="52" rx="10" fill="#1A1F27" stroke="#38414F"/>
+                <text x="130" y="465" fill="#E7EAF0" font-size="13" text-anchor="middle">Tam veriyle</text>
+                <text x="130" y="482" fill="#E7EAF0" font-size="13" text-anchor="middle">yeniden eğitim</text>
+
+                <rect x="260" y="540" width="240" height="52" rx="10" fill="#1A1F27" stroke="#38414F"/>
+                <text x="380" y="572" fill="#E7EAF0" font-size="14" text-anchor="middle">Streamlit uygulaması</text>
+
+                <g stroke="#6F7986" stroke-width="1.5" fill="none" marker-end="url(#ah4)">
+                  <path d="M380 76  L380 96"/>
+                  <path d="M380 160 L380 180"/>
+                  <path d="M380 244 L380 264"/>
+                  <path d="M380 320 L380 340"/>
+                  <path d="M500 370 L635 370 L635 436"/>
+                  <path d="M260 370 L130 370 L130 436"/>
+                  <path d="M635 492 L635 566 L504 566"/>
+                  <path d="M130 492 L130 566 L256 566"/>
+                </g>
+
+                <g fill="#6F7986" font-size="11.5">
+                  <text x="390" y="336">eğitim %80</text>
+                  <text x="645" y="404">test %20</text>
+                  <text x="120" y="404" text-anchor="end">tam veri</text>
+                  <text x="645" y="556">metrikler</text>
+                  <text x="120" y="556" text-anchor="end">model</text>
+                </g>
+              </g>
+            </svg>
+          </div>
+          <figcaption>
+            Vurgulanan kutu projenin en önemli teknik kararını taşıyor. Akışın sonunda iki okun tek
+            kutuda birleşmesi de bilinçli: arayüzde gösterilen metrikler ile tahmin üreten model,
+            birbirinden biraz farklı eğitim kümelerinden geliyor.
+          </figcaption>
+        </figure>
+
+        <h2 id="kararlar">Kritik Kararlar</h2>
+
+        <div class="decision">
+          <h3>Veriyi bölmeden önce yinelenen satırları temizlemek.</h3>
+          <dl>
+            <div><dt>Neden</dt><dd>Ham dosyada 1.025 satır var ama bunların yalnızca 302'si benzersiz. Temizlemeden bölünürse aynı kayıt hem eğitim hem test kümesine düşüyor ve model ezberlediği satırı "tahmin ediyor" — sonuç, gerçekte olmayan yüksek bir skor.</dd></div>
+            <div><dt>Ödünleşim</dt><dd>Veri seti yaklaşık üçte birine, eğitim kümesi ~240 satıra iniyor. Skorlar düşüyor ama artık gerçek; küçük test kümesi nedeniyle metriklerin belirsizlik payının yüksek olduğunu da not ediyorum.</dd></div>
+          </dl>
+        </div>
+
+        <div class="decision">
+          <h3>Hiperparametre aramasını doğruluğa değil recall'a göre yapmak (<code>scoring='recall'</code>).</h3>
+          <dl>
+            <div><dt>Neden</dt><dd>Tarama bağlamında iki hata türünün maliyeti eşit değil. Gerçek bir hastalık vakasını kaçırmak (yanlış negatif), sağlıklı birini gereksiz tetkike yollamaktan (yanlış pozitif) çok daha ağır bir sonuç.</dd></div>
+            <div><dt>Ödünleşim</dt><dd>Doğruluk ve kesinlik bilinçli olarak feda edildi: model 0.754 doğruluk ve 0.675 kesinlikte kaldı. Yani pozitif tahminlerin yaklaşık üçte biri yanlış alarm — bu, kaçırılan vakaları azaltmak için ödenen bedel ve projede açıkça böyle sunuluyor.</dd></div>
+          </dl>
+        </div>
+
+        <div class="decision">
+          <h3>Ön işleme ile modeli tek bir <code>Pipeline</code> nesnesinde birlikte serileştirmek.</h3>
+          <dl>
+            <div><dt>Neden</dt><dd>Ölçekleyiciyi ayrı kaydetmek, dağıtımda en kolay yapılan hatalardan birine kapı açıyor: modelle uyuşmayan bir ölçekleyici durumuyla tahmin üretmek. Tek nesne bu ihtimali ortadan kaldırıyor.</dd></div>
+            <div><dt>Ödünleşim</dt><dd>Pickle dosyası kütüphane sürümlerine bağımlı hale geliyor; scikit-learn veya LightGBM sürümü değiştiğinde modelin yeniden eğitilmesi gerekebiliyor.</dd></div>
+          </dl>
+        </div>
+
+        <div class="decision">
+          <h3>Metrikleri test kümesinde ölçtükten sonra, dağıtılacak modeli veri setinin tamamıyla yeniden eğitmek.</h3>
+          <dl>
+            <div><dt>Neden</dt><dd>302 satırlık bir veri setinde %20'yi kalıcı olarak bir kenara ayırmak, dağıtılan modelin öğrenebileceğinin beşte birini boşa harcamak demek. Yaygın ve savunulabilir bir pratik: dürüst metrikleri ayrılmış kümede raporla, en iyi modeli tüm veriyle eğit.</dd></div>
+            <div><dt>Ödünleşim</dt><dd>Gösterilen sayılar, tahmin üreten modelin birebir kendisine ait değil; biraz daha az veriyle eğitilmiş bir eşine ait. Bu ayrımı proje sayfasında ve uygulamada saklamak yerine yazmayı tercih ettim.</dd></div>
+          </dl>
+        </div>
+
+        <h2 id="sonuclar">Sonuçlar &amp; Rakamlar</h2>
+        <div class="metrics">
+          <div class="metric"><b>0.931</b><span>Recall (test kümesi)</span></div>
+          <div class="metric"><b>0.783</b><span>F1 skoru</span></div>
+          <div class="metric"><b>302</b><span>Temizlenmiş benzersiz kayıt</span></div>
+        </div>
+        <ul>
+          <li>Ham veri setindeki 1.025 satırın 700'den fazlası yinelenen kayıttı; bunlar bölme işleminden önce temizlendiği için raporlanan skorlar sızıntısız bir test kümesinden geliyor.</li>
+          <li>Dört model ailesi (Logistic Regression, XGBoost, LightGBM, Random Forest) tamamen aynı ön işleme hattı ve aynı bölme üzerinde karşılaştırıldıktan sonra LightGBM üzerinde karar kılındı.</li>
+        </ul>
+
+        <h2 id="degerlendirme">Değerlendirme</h2>
+        <p>
+          Aşağıdaki tüm sayılar, yinelenen satırlar temizlendikten sonra ayrılan %20'lik test
+          kümesinde ölçüldü (80/20 bölme, <code>random_state=42</code>). Aynı değerler notebook
+          çıktısında, diske yazılan metrik dosyasında ve canlı uygulamanın "Model Performance"
+          sekmesinde birebir aynı görünüyor.
+        </p>
+
+        <h3>Temel model karşılaştırması (aynı ön işleme, aynı bölme)</h3>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Model</th><th>Doğruluk</th><th>Kesinlik</th><th>Recall</th><th>F1</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Logistic Regression</td><td class="num">0.787</td><td class="num">0.722</td><td class="num">0.897</td><td class="num">0.800</td></tr>
+              <tr><td>XGBoost</td><td class="num">0.803</td><td class="num">0.758</td><td class="num">0.862</td><td class="num">0.806</td></tr>
+              <tr><td>LightGBM (varsayılan)</td><td class="num">0.803</td><td class="num">0.758</td><td class="num">0.862</td><td class="num">0.806</td></tr>
+              <tr><td>Random Forest</td><td class="num">0.836</td><td class="num">0.788</td><td class="num">0.897</td><td class="num">0.839</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Seçilen model — LightGBM, RandomizedSearchCV ile recall'a göre optimize edilmiş</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Metrik</th><th>Skor</th></tr></thead>
+            <tbody>
+              <tr><td>Doğruluk</td><td class="num">0.754</td></tr>
+              <tr><td>Kesinlik</td><td class="num">0.675</td></tr>
+              <tr class="is-highlight"><td><strong>Recall</strong></td><td class="num">0.931</td></tr>
+              <tr><td>F1</td><td class="num">0.783</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>
+          <strong>Aramanın seçtiği hiperparametreler</strong> (5 katlı çapraz doğrulamada en iyi
+          recall: 0.9185):
+        </p>
+        <p>
+          <code>num_leaves=63</code> · <code>max_depth=3</code> · <code>min_child_samples=30</code> ·
+          <code>n_estimators=50</code> · <code>learning_rate=0.01</code> · <code>reg_alpha=1.0</code> ·
+          <code>reg_lambda=1.0</code> · <code>subsample=0.8</code> · <code>colsample_bytree=0.8</code>
+        </p>
+
+        <div class="callout">
+          <h4>Dürüstlük notu</h4>
+          <p>
+            Ağaç tabanlı modellerin tamamı eğitim kümesinde 1.0 doğruluğa ulaşıyor, yani aşırı öğrenme
+            var — ~240 satırlık bir eğitim kümesinde bu beklenen bir sonuç. Test kümesi de yalnızca
+            ~60 satır olduğu için yukarıdaki metriklerin belirsizlik payı geniş. ROC-AUC
+            hesaplanmadı; bu yüzden burada da yer almıyor.
+          </p>
+        </div>
+
+        <h2 id="gorseller">Ekran Görüntüleri</h2>
+        <div class="gallery" data-gallery>
+
+          <figure class="shot" data-shot data-caption="Tahmin sekmesi: 13 klinik özelliğin tamamı demografi, semptomlar, vital bulgular ve klinik testler olarak gruplanmış; form tamamlanınca tek satırlık girdi doğrudan pipeline'a veriliyor.">
+            <button type="button" aria-label="Büyüt: tahmin formu">
+              <div class="frame frame--browser">
+                <div class="frame__bar"><i></i><i></i><i></i><span class="frame__url">heart-disease-prediction-brkakyldz.streamlit.app</span></div>
+                <img src="../assets/img/heart-disease/form.webp" width="1920" height="1080" loading="lazy" decoding="async"
+                     alt="Kalp hastalığı risk tahmini uygulamasının hasta bilgisi giriş formu ve altındaki tahmin başlatma butonu.">
+              </div>
+            </button>
+            <figcaption>Tahmin sekmesi: 13 klinik özelliğin tamamı gruplanmış halde; form tamamlanınca tek satırlık girdi doğrudan pipeline'a veriliyor.</figcaption>
+          </figure>
+
+          <figure class="shot" data-shot data-caption="Veri kâşifi sekmesi: temizlik sonrası 302 kayıt, %54,3 hastalık oranı ve yaşa göre dağılım grafikleri.">
+            <button type="button" aria-label="Büyüt: veri kâşifi">
+              <div class="frame frame--browser">
+                <div class="frame__bar"><i></i><i></i><i></i><span class="frame__url">… /Data Explorer</span></div>
+                <img src="../assets/img/heart-disease/data-explorer.webp" width="1920" height="1080" loading="lazy" decoding="async"
+                     alt="Veri seti özeti kutucukları ve hedef değişken ile yaş dağılımını gösteren grafikler.">
+              </div>
+            </button>
+            <figcaption>Veri kâşifi sekmesi: temizlik sonrası 302 kayıt, %54,3 hastalık oranı ve yaşa göre dağılım grafikleri.</figcaption>
+          </figure>
+
+          <figure class="shot" data-shot data-caption="Model performansı sekmesi test kümesi metriklerini olduğu gibi gösteriyor: 0.931 recall, yani gerçek vakaların %6,9'u kaçırılıyor.">
+            <button type="button" aria-label="Büyüt: model performansı">
+              <div class="frame frame--browser">
+                <div class="frame__bar"><i></i><i></i><i></i><span class="frame__url">… /Model Performance</span></div>
+                <img src="../assets/img/heart-disease/model-performance.webp" width="1920" height="1080" loading="lazy" decoding="async"
+                     alt="Doğruluk, kesinlik, recall ve F1 skorlarını ve model özet tablosunu gösteren performans sekmesi.">
+              </div>
+            </button>
+            <figcaption>Model performansı sekmesi test kümesi metriklerini olduğu gibi gösteriyor: 0.931 recall, yani gerçek vakaların %6,9'u kaçırılıyor.</figcaption>
+          </figure>
+
+        </div>
+
+        <h2 id="ogrendiklerim">Zorluklar &amp; Öğrendiklerim</h2>
+        <p>
+          Bu projede beni en çok düşündüren şey, ilk aldığım yüksek skorların neden gerçek olamayacağını
+          anlamaktı; yinelenen satırları fark ettiğimde skorların düşmesi kötü bir haber gibi görünse
+          de asıl kazanç oydu. İkinci öğrendiğim şey, "iyi model" tanımının metrik seçimine ne kadar
+          bağlı olduğu: tarama bağlamında en yüksek doğruluğa sahip modeli değil, gerçek vakayı
+          kaçırma olasılığı en düşük olanı seçmek gerekiyordu ve bu tercihin bedelini kesinlikte
+          ödediğimi açıkça göstermek istedim. Son olarak, bir modeli notebook'ta bırakmakla insanların
+          gerçekten tıklayabileceği bir arayüze taşımak arasında ciddi bir fark olduğunu gördüm.
+        </p>
+
+      </article>
+    </div>
+
+    <nav class="pager" aria-label="Proje gezinmesi">
+      <a href="terminal-organizer.html"><small>Önceki proje</small><b>← Terminal Organizer</b></a>
+      <a class="pager__next" href="../index.html#projeler"><small>Başa dön</small><b>Tüm projeler →</b></a>
+    </nav>
+  </div>
+</main>
+
+<dialog class="lightbox" id="lightbox" aria-label="Ekran görüntüsü büyütülmüş görünüm">
+  <div class="lightbox__inner">
+    <img data-lightbox-img alt="">
+    <div class="lightbox__bar">
+      <p class="lightbox__caption" data-lightbox-caption></p>
+      <div class="lightbox__nav">
+        <span class="lightbox__caption" data-lightbox-counter></span>
+        <button type="button" data-lightbox-prev aria-label="Önceki görsel">←</button>
+        <button type="button" data-lightbox-next aria-label="Sonraki görsel">→</button>
+        <button type="button" class="lightbox__close" data-lightbox-close aria-label="Kapat">✕</button>
+      </div>
+    </div>
+  </div>
+</dialog>
+
+<footer class="site-footer">
+  <div class="container site-footer__inner">
+    <span>Berke Akyıldız · Agentic AI Engineer</span>
+    <span><a href="../index.html">Tüm projeler</a></span>
+  </div>
+</footer>
+
+<script src="../assets/js/site.js"></script>
+</body>
+</html>

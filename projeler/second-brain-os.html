@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Second Brain OS — Berke Akyıldız</title>
+<meta name="description" content="Claude Code'a kalıcı hafıza kazandıran bir şablon depo: veritabanı yok, sunucu yok, npm bağımlılığı yok. Tek kalıcılık katmanı git; hafıza yönetimi dört hook ve iki skill ile yürüyor.">
+<meta name="color-scheme" content="dark">
+<script>document.documentElement.classList.add('js')</script>
+<link rel="stylesheet" href="../assets/css/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%230B0D11'/><text x='16' y='22' font-family='monospace' font-size='16' fill='%239B8CFF' text-anchor='middle'>B</text></svg>">
+</head>
+<body>
+
+<a class="skip-link" href="#icerik">İçeriğe geç</a>
+
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a class="brand" href="../index.html">Berke Akyıldız</a>
+    <nav class="nav" aria-label="Gezinme">
+      <a href="../index.html#projeler">Projeler</a>
+      <a href="https://github.com/brkakyldz/second-brain-os" target="_blank" rel="noopener">Depo ↗</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="container">
+    <p class="breadcrumb"><a href="../index.html#projeler">← Projeler</a></p>
+
+    <div class="project-head">
+      <div class="project-head__meta">
+        <span>01 / 04</span><span class="dot">·</span>
+        <span>Solo geliştirici</span><span class="dot">·</span>
+        <span>Ağustos 2026</span><span class="dot">·</span>
+        <span class="badge badge--active">Aktif geliştirme</span>
+      </div>
+      <h1>Second Brain OS</h1>
+      <p class="project-head__lead">
+        Her oturumda kendini yeniden anlatmak zorunda kalmadan çalışabilmek için, Claude Code'un
+        hafızasını düz Markdown dosyalarına ve git geçmişine taşıyan sıfır bağımlılıklı bir şablon depo.
+      </p>
+      <div class="project-head__links">
+        <a class="btn btn--primary" href="https://github.com/brkakyldz/second-brain-os" target="_blank" rel="noopener">Kaynak Kod ↗</a>
+      </div>
+    </div>
+
+    <hr class="rule">
+
+    <div class="project-layout">
+
+      <!-- ============ SAĞ RAY ============ -->
+      <aside class="project-rail">
+        <div class="project-rail__inner">
+          <div class="rail-group">
+            <h4>Rol</h4><p>Solo geliştirici</p>
+          </div>
+          <div class="rail-group">
+            <h4>Durum</h4><p>Aktif geliştirme · şablon depo</p>
+          </div>
+          <div class="rail-group">
+            <h4>Dil</h4><p>JavaScript (Node.js, ESM) + PowerShell</p>
+          </div>
+          <div class="rail-group">
+            <h4>Lisans</h4><p>MIT</p>
+          </div>
+          <div class="rail-group">
+            <h4>Öne çıkan</h4><p>Sıfır çalışma zamanı bağımlılığı</p>
+          </div>
+          <div class="rail-group rail-toc" data-spy>
+            <h4>Bu sayfada</h4>
+            <a href="#problem">Problem</a>
+            <a href="#rolum">Rolüm</a>
+            <a href="#yigin">Teknoloji yığını</a>
+            <a href="#mimari">Mimari</a>
+            <a href="#kararlar">Kritik kararlar</a>
+            <a href="#sonuclar">Sonuçlar</a>
+            <a href="#ogrendiklerim">Öğrendiklerim</a>
+          </div>
+        </div>
+      </aside>
+
+      <!-- ============ İÇERİK ============ -->
+      <article class="prose" id="icerik">
+
+        <h2 id="problem">Problem / Bağlam</h2>
+        <p>
+          Claude Code gibi ajan tabanlı asistanlarla düzenli çalışan herkesin karşılaştığı somut bir
+          sorun var: bağlam her oturumda sıfırlanıyor. Kim olduğunuzu, hangi projede ne yaptığınızı
+          ve geçen sefer neye karar verdiğinizi tekrar tekrar anlatmanız gerekiyor. Piyasadaki
+          çözümlerin çoğu bunun için bir vektör veritabanı, bir embedding pipeline'ı ve ayakta
+          tutulması gereken bir hafıza sunucusu istiyor — tek kişilik bir kullanım için orantısız bir
+          altyapı. Second Brain OS bu ihtiyacı, zaten her geliştiricide kurulu olan iki araçla
+          karşılıyor: düz Markdown dosyaları ve git.
+        </p>
+
+        <h2 id="rolum">Rolüm</h2>
+        <p>
+          Projenin tamamı bana ait: hafıza taksonomisinin tasarımı, dört <strong>hook</strong>'un
+          (Claude Code'un oturum yaşam döngüsüne bağlanan otomatik betikler) yazımı, kurulum betiği,
+          iki özel skill ve mimari kararların dokümantasyonu. Kişisel bir proje; henüz dışarıdan
+          kullanıcısı yok.
+        </p>
+
+        <h2 id="yigin">Teknoloji Yığını</h2>
+        <div class="stack-groups">
+          <div class="stack-group">
+            <h4>Dil &amp; Runtime</h4>
+            <ul class="chips"><li class="chip">Node.js</li><li class="chip">ES Modules (.mjs)</li><li class="chip">PowerShell</li></ul>
+          </div>
+          <div class="stack-group">
+            <h4>Ajan Entegrasyonu</h4>
+            <ul class="chips"><li class="chip">Claude Code Hooks</li><li class="chip">Claude Code Skills</li><li class="chip">SessionStart / Stop / PreCompact / SessionEnd</li></ul>
+          </div>
+          <div class="stack-group">
+            <h4>Veri &amp; Kalıcılık</h4>
+            <ul class="chips"><li class="chip">Git</li><li class="chip">Markdown</li><li class="chip">Obsidian vault yapısı</li><li class="chip">git bundle</li></ul>
+          </div>
+          <div class="stack-group">
+            <h4>Güvenlik</h4>
+            <ul class="chips"><li class="chip">Özel secret tarayıcı</li><li class="chip">gitleaks v8.18.4</li><li class="chip">pre-commit</li></ul>
+          </div>
+          <div class="stack-group">
+            <h4>Otomasyon</h4>
+            <ul class="chips"><li class="chip">Windows Task Scheduler</li><li class="chip">bağımsız bakım betikleri</li></ul>
+          </div>
+        </div>
+
+        <h2 id="mimari">Mimari</h2>
+        <p>
+          Oturum açıldığında SessionStart hook'u önce depoyu güncelliyor
+          (<code>git pull --rebase --autostash</code>), ardından "Tier 0" adını verdiğim çekirdek
+          bağlamı enjekte ediyor: kimlik dosyası, kullanıcı dosyası, kalıcı gerçeklerin indeksi ve son
+          oturum kaydının kuyruğu. Bu paket bilinçli olarak birkaç bin token ile sınırlı; ajan daha
+          derin bilgiye ihtiyaç duyduğunda Tier 1'i (konu dosyaları, proje notları) talep üzerine
+          okuyor, gerektiğinde de Tier 2'de yani tüm depoda ve git geçmişinde arama yapıyor. Her turun
+          sonunda checkpoint hook'u devreye giriyor: ağaçta değişiklik varsa commit atıyor, uzak
+          depoya göndermeyi deniyor ve staged dosyaları kendi secret tarayıcısından geçiriyor. Curator
+          ve triage skill'leri ise elle çalıştırılıyor — çelişen bilgileri sürümleyerek çözüyor,
+          eskimiş kayıtları arşivliyor ve satır bütçelerini yeniden denetliyor. Yedek doğrulama, kırık
+          bağlantı taraması ve off-site bundle gibi deterministik işler LLM döngüsünün tamamen
+          dışında, zamanlanmış betiklerde duruyor.
+        </p>
+
+        <figure>
+          <div class="diagram">
+            <svg viewBox="0 0 760 480" role="img"
+                 aria-label="Second Brain OS oturum döngüsü: oturum başlangıcı, git pull, Tier 0 bağlam, ajan çalışması ve checkpoint commit dikey bir akış oluşturuyor; checkpoint sağa doğru secret tarayıcıya bağlanıyor, soldan yukarı dönen ok bir sonraki oturumu besliyor ve sağ altta LLM döngüsünün dışında zamanlanmış bakım kutusu duruyor.">
+              <defs>
+                <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                  <path d="M0 0 L10 5 L0 10 z" fill="#6F7986"/>
+                </marker>
+              </defs>
+              <g font-family="ui-monospace, Consolas, monospace" font-size="14">
+
+                <rect x="190" y="24"  width="240" height="46" rx="10" fill="#1A1F27" stroke="#38414F"/>
+                <text x="310" y="53"  fill="#E7EAF0" text-anchor="middle">Oturum başlangıcı</text>
+
+                <rect x="190" y="96"  width="240" height="46" rx="10" fill="#1A1F27" stroke="#38414F"/>
+                <text x="310" y="125" fill="#E7EAF0" text-anchor="middle">git pull</text>
+
+                <rect x="190" y="168" width="240" height="46" rx="10" fill="#1D1B33" stroke="#9B8CFF"/>
+                <text x="310" y="197" fill="#9B8CFF" text-anchor="middle">Tier 0 bağlam</text>
+
+                <rect x="190" y="240" width="240" height="46" rx="10" fill="#1A1F27" stroke="#38414F"/>
+                <text x="310" y="269" fill="#E7EAF0" text-anchor="middle">Ajan çalışması</text>
+
+                <rect x="190" y="312" width="240" height="46" rx="10" fill="#1A1F27" stroke="#38414F"/>
+                <text x="310" y="341" fill="#E7EAF0" text-anchor="middle">Checkpoint commit</text>
+
+                <rect x="500" y="312" width="230" height="46" rx="10" fill="#1A1F27" stroke="#38414F"/>
+                <text x="615" y="341" fill="#E7EAF0" text-anchor="middle">Secret tarayıcı</text>
+
+                <rect x="500" y="404" width="230" height="46" rx="10" fill="#12151B" stroke="#38414F" stroke-dasharray="5 4"/>
+                <text x="615" y="433" fill="#A0A9B8" text-anchor="middle">Zamanlanmış bakım</text>
+
+                <g stroke="#6F7986" stroke-width="1.5" fill="none" marker-end="url(#ah)">
+                  <path d="M310 70  L310 92"/>
+                  <path d="M310 142 L310 164"/>
+                  <path d="M310 214 L310 236"/>
+                  <path d="M310 286 L310 308"/>
+                  <path d="M430 335 L496 335"/>
+                  <path d="M190 335 L120 335 L120 47 L186 47"/>
+                </g>
+                <g stroke="#6F7986" stroke-width="1.5" fill="none" stroke-dasharray="5 4" marker-end="url(#ah)">
+                  <path d="M500 427 L310 427 L310 362"/>
+                </g>
+
+                <g fill="#6F7986" font-size="11.5">
+                  <text x="332" y="304">her tur sonu</text>
+                  <text x="463" y="326" text-anchor="middle">staged</text>
+                  <text x="332" y="402">LLM dışı</text>
+                  <text x="112" y="191" text-anchor="middle" transform="rotate(-90 112 191)">sonraki oturum</text>
+                </g>
+              </g>
+            </svg>
+          </div>
+          <figcaption>
+            Diyagram, bir oturumun tam yaşam döngüsünü gösteriyor. Üstte oturumun açılışı ve deponun
+            güncellenmesi var; hemen ardından, boyutu bilinçli olarak sınırlanmış çekirdek bağlam
+            ajanın penceresine yükleniyor. Ajan çalışırken üretilen her değişiklik, turun sonunda
+            otomatik bir commit'e dönüşüyor ve bu commit'e giren dosyalar gönderilmeden önce secret
+            taramasından geçiyor — bu yüzden tarayıcı kutusu ana akıştan sağa ayrılmış durumda.
+            Soldaki geri besleme oku sistemin asıl fikrini anlatıyor: bir oturumun çıktısı, bir
+            sonraki oturumun başlangıç bağlamı oluyor. Sağ alttaki kesikli kutu ise yedek doğrulama
+            ve bağlantı taraması gibi deterministik bakım işlerini temsil ediyor; bunlar bilerek
+            LLM'in karar bütçesinin dışında, zamanlanmış betikler olarak çalışıyor.
+          </figcaption>
+        </figure>
+
+        <h2 id="kararlar">Kritik Kararlar</h2>
+
+        <div class="decision">
+          <h3>Tek veritabanı olarak git kullanmak; SQLite veya vektör deposu eklememek.</h3>
+          <dl>
+            <div><dt>Neden</dt><dd>İncelediğim benzer sistemlerin hemen hepsi bir veritabanı ekliyordu ve en çok istenen özellikleri geri alma ile kurtarma oluyordu. Git bu ikisini zaten ücretsiz veriyor; üstüne diff, geçmiş ve senkronizasyon da geliyor.</dd></div>
+            <div><dt>Ödünleşim</dt><dd>Anlamsal arama yok. Bilgi bulma işi dosya adlarına, wikilink'lere ve metin aramasına dayanıyor; vault çok büyürse bu yaklaşımın sınırına gelinecek.</dd></div>
+          </dl>
+        </div>
+
+        <div class="decision">
+          <h3>Tüm hook'lar fail-open çalışıyor — hiçbir hook sıfırdan farklı bir kodla çıkmıyor.</h3>
+          <dl>
+            <div><dt>Neden</dt><dd>Bir hafıza sisteminin en kötü davranışı, kendi hatası yüzünden kullanıcının çalışmasını durdurmasıdır. Başarısız bir pull veya push, oturumu asla bloke etmemeli.</dd></div>
+            <div><dt>Ödünleşim</dt><dd>Sessiz başarısızlık riski. Bunu dengelemek için her hook <code>_brain/logs/.automation.log</code> dosyasına yapılandırılmış log yazıyor; ayrıca iki oturumun aynı anda başlaması gibi nadir bir yarış durumu belgelenmiş halde duruyor.</dd></div>
+          </dl>
+        </div>
+
+        <div class="decision">
+          <h3>Sert satır bütçeleri koymak ve aşıldığında sessizce kırpmak yerine yüksek sesle uyarmak.</h3>
+          <dl>
+            <div><dt>Neden</dt><dd>Her oturumda yüklenen bağlamın maliyeti sabittir; sınırsız büyüyen bir hafıza dosyası zamanla hem pahalı hem işe yaramaz hale gelir. Bütçe (<code>MEMORY.md</code> ≤ 100 satır, <code>USER.md</code> ve <code>IDENTITY.md</code> ≤ 40 satır) hafızayı düzenli tutmayı zorunlu kılıyor.</dd></div>
+            <div><dt>Ödünleşim</dt><dd>Kullanıcı ara ara curator skill'ini çalıştırıp konsolidasyon yapmak zorunda; sistem kendi kendini sonsuza kadar temiz tutmuyor.</dd></div>
+          </dl>
+        </div>
+
+        <div class="decision">
+          <h3>Çelişkileri üzerine yazarak değil, iki zamanlı (bi-temporal) sürümleyerek çözmek.</h3>
+          <dl>
+            <div><dt>Neden</dt><dd>"Neye, ne zaman inanıyorduk" sorusunun cevaplanabilir kalması gerekiyor. Ayrıca bir bilgi ancak ikinci bağımsız oturumda doğrulanırsa kalıcı hafızaya terfi ediyor; bu doğrulama kapısı, modelin bir kez ürettiği hatalı bir çıkarımın kalıcı hafızaya yerleşmesini engelliyor.</dd></div>
+            <div><dt>Ödünleşim</dt><dd>Hafıza daha yavaş büyüyor ve dosyalar süresi kapanmış kayıtlarla biraz daha kalabalık; buna karşılık geriye dönük izlenebilirlik korunuyor.</dd></div>
+          </dl>
+        </div>
+
+        <h2 id="sonuclar">Sonuçlar &amp; Rakamlar</h2>
+        <div class="metrics">
+          <div class="metric"><b>0</b><span>npm bağımlılığı</span></div>
+          <div class="metric"><b>4</b><span>Oturum yaşam döngüsü hook'u</span></div>
+          <div class="metric"><b>~1.750</b><span>Satır hook &amp; otomasyon kodu</span></div>
+        </div>
+        <ul>
+          <li>Çekirdek döngü Node standart kütüphanesi ve git komutları dışında hiçbir şey kullanmıyor: kurulum için <code>npm install</code> adımı yok.</li>
+          <li>Her commit'te iki bağımsız secret savunması çalışıyor — hook'un içine gömülü kendi tarayıcım ve pre-commit üzerinden sabitlenmiş gitleaks v8.18.4.</li>
+        </ul>
+
+        <h2 id="ogrendiklerim">Zorluklar &amp; Öğrendiklerim</h2>
+        <p>
+          En zorlandığım kısım kod değil, sınır çizmekti: bir hafıza sisteminin nelere karar vermesine
+          izin verilmeli? Sonunda silme yetkisini otomasyondan tamamen aldım ve "arşivle, asla silme"
+          kuralını sistemin merkezine koydum — geri alınamaz işlemleri bir ajanın eline vermenin
+          bedeli, kazandırdığı kolaylıktan çok daha yüksek. İkinci öğrendiğim şey, hafızanın en pahalı
+          kısmının depolama değil, her oturumda ödenen bağlam maliyeti olduğu; bu yüzden sistemi "her
+          şeyi hatırla" yerine "az ve doğru olanı her zaman hatırla" ilkesi üzerine kurdum.
+        </p>
+
+      </article>
+    </div>
+
+    <nav class="pager" aria-label="Proje gezinmesi">
+      <span></span>
+      <a class="pager__next" href="tech-inves.html">
+        <small>Sonraki proje</small>
+        <b>TechInves →</b>
+      </a>
+    </nav>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container site-footer__inner">
+    <span>Berke Akyıldız · Agentic AI Engineer</span>
+    <span><a href="../index.html">Tüm projeler</a></span>
+  </div>
+</footer>
+
+<script src="../assets/js/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Berke Akyıldız — Agentic AI Engineer</title>
+<meta name="description" content="Agentic AI mühendisi Berke Akyıldız'ın proje arşivi: LangGraph tabanlı araştırma pipeline'ı, Claude Code hafıza sistemi, Electron terminal yöneticisi ve uçtan uca bir makine öğrenmesi projesi.">
+<meta name="color-scheme" content="dark">
+<script>document.documentElement.classList.add('js')</script>
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%230B0D11'/><text x='16' y='22' font-family='monospace' font-size='16' fill='%239B8CFF' text-anchor='middle'>B</text></svg>">
+</head>
+<body>
+
+<a class="skip-link" href="#projeler">İçeriğe geç</a>
+
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a class="brand" href="index.html">Berke Akyıldız</a>
+    <nav class="nav" data-spy aria-label="Sayfa içi gezinme">
+      <a href="#projeler">Projeler</a>
+      <a href="#yaklasim">Yaklaşım</a>
+      <a href="https://github.com/brkakyldz" target="_blank" rel="noopener">GitHub ↗</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <div class="container">
+      <p class="eyebrow">Agentic AI Engineer · Antalya</p>
+      <h1 class="hero__title">Ajan sistemleri kuruyorum: pipeline, hafıza ve değerlendirme.</h1>
+      <p class="hero__lead">
+        LLM'lerin etrafına, çalışmayı gerçekten güvenilir kılan katmanları inşa ediyorum: paralel
+        araştırma grafikleri, deterministik doğrulayıcılar, kalıcı hafıza ve ölçülebilir
+        değerlendirme. Aşağıdaki dört proje kişisel çalışmalarımdır; hepsinin kaynak kodu açık,
+        hepsindeki sayılar koddan doğrulanmıştır.
+      </p>
+      <div class="hero__actions">
+        <a class="btn btn--primary" href="#projeler">Projelere bak</a>
+        <a class="btn btn--ghost" href="https://github.com/brkakyldz" target="_blank" rel="noopener">GitHub profili ↗</a>
+      </div>
+      <div class="hero__stats">
+        <div class="hero__stat"><b>4</b><span>Açık kaynak proje</span></div>
+        <div class="hero__stat"><b>2026</b><span>Haziran → Ağustos</span></div>
+        <div class="hero__stat"><b>4 / 4</b><span>Kaynak kodu herkese açık</span></div>
+        <div class="hero__stat"><b>Solo</b><span>Tek geliştirici</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROJELER ============ -->
+  <section class="section" id="projeler">
+    <div class="container">
+      <div class="section__head">
+        <p class="eyebrow">Projeler</p>
+        <h2>En güncelden eskiye</h2>
+        <p class="lead">
+          Her proje sayfasında aynı yapı var: çözülen problem, mimari, kritik kararlar ve
+          ödünleşimleri, doğrulanmış rakamlar ve ekran görüntüleri.
+        </p>
+      </div>
+
+      <div class="project-grid">
+
+        <!-- 01 — Second Brain OS (öne çıkan) -->
+        <article class="card card--featured reveal">
+          <div class="card__visual">
+            <div class="frame frame--terminal">
+              <div class="frame__bar"><i></i><i></i><i></i><span class="frame__url">~/second-brain · git</span></div>
+              <svg viewBox="0 0 480 300" role="img" aria-label="Oturum döngüsü şeması: oturum başlangıcı, bağlam yüklemesi, ajan çalışması ve otomatik commit birbirini besliyor." style="width:100%;height:auto;background:var(--surface)">
+                <defs>
+                  <marker id="ah-card" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                    <path d="M0 0 L10 5 L0 10 z" fill="#6F7986"/>
+                  </marker>
+                </defs>
+                <g font-family="ui-monospace, Consolas, monospace" font-size="13">
+                  <rect x="140" y="26"  width="200" height="42" rx="8" fill="#1A1F27" stroke="#38414F"/>
+                  <text x="240" y="52"  fill="#E7EAF0" text-anchor="middle">Oturum başlangıcı</text>
+
+                  <rect x="140" y="98"  width="200" height="42" rx="8" fill="#1D1B33" stroke="#9B8CFF"/>
+                  <text x="240" y="124" fill="#9B8CFF" text-anchor="middle">Tier 0 bağlam</text>
+
+                  <rect x="140" y="170" width="200" height="42" rx="8" fill="#1A1F27" stroke="#38414F"/>
+                  <text x="240" y="196" fill="#E7EAF0" text-anchor="middle">Ajan çalışması</text>
+
+                  <rect x="140" y="242" width="200" height="42" rx="8" fill="#1A1F27" stroke="#38414F"/>
+                  <text x="240" y="268" fill="#E7EAF0" text-anchor="middle">Checkpoint commit</text>
+
+                  <g stroke="#6F7986" stroke-width="1.4" fill="none" marker-end="url(#ah-card)">
+                    <path d="M240 68 L240 94"/>
+                    <path d="M240 140 L240 166"/>
+                    <path d="M240 212 L240 238"/>
+                    <path d="M140 263 L96 263 L96 47 L136 47"/>
+                  </g>
+                  <text x="88" y="160" fill="#6F7986" font-size="11" text-anchor="middle" transform="rotate(-90 88 160)">sonraki oturum</text>
+                </g>
+              </svg>
+            </div>
+          </div>
+          <div class="card__body">
+            <div class="card__meta">
+              <span class="card__index">01</span>
+              <span class="badge badge--active">Aktif geliştirme</span>
+            </div>
+            <h3 class="card__title"><a href="projeler/second-brain-os.html">Second Brain OS</a></h3>
+            <p class="card__outcome">
+              Claude Code'a kalıcı hafıza kazandıran, sıfır npm bağımlılığı olan ve tek veritabanı
+              olarak git kullanan bir şablon depo.
+            </p>
+            <ul class="chips">
+              <li class="chip">Node.js</li>
+              <li class="chip">Claude Code Hooks</li>
+              <li class="chip">Git</li>
+              <li class="chip">Markdown</li>
+              <li class="chip">PowerShell</li>
+            </ul>
+            <span class="card__cta" aria-hidden="true">Detay →</span>
+          </div>
+        </article>
+
+        <!-- 02 — TechInves -->
+        <article class="card reveal">
+          <div class="frame frame--browser">
+            <div class="frame__bar"><i></i><i></i><i></i><span class="frame__url">techinves.local</span></div>
+            <img src="assets/img/tech-inves/screener.webp" width="1920" height="1200" loading="lazy" decoding="async"
+                 alt="TechInves tarama tablosu: teknoloji şirketlerinin bileşik puanları sıralanabilir bir tabloda.">
+          </div>
+          <div class="card__meta">
+            <span class="card__index">02</span>
+            <span class="badge badge--active">Demo modu çalışıyor</span>
+          </div>
+          <h3 class="card__title"><a href="projeler/tech-inves.html">TechInves</a></h3>
+          <p class="card__outcome">
+            40 teknoloji şirketini SEC verisiyle deterministik olarak puanlayan ve LangGraph
+            ajanlarıyla kaynaklı araştırma raporu üreten kendi kendine barındırılan uygulama.
+          </p>
+          <ul class="chips">
+            <li class="chip">Python</li>
+            <li class="chip">LangGraph</li>
+            <li class="chip">FastAPI</li>
+            <li class="chip">Next.js</li>
+            <li class="chip">SEC EDGAR</li>
+          </ul>
+          <span class="card__cta" aria-hidden="true">Detay →</span>
+        </article>
+
+        <!-- 03 — Terminal Organizer -->
+        <article class="card reveal">
+          <div class="frame frame--terminal">
+            <div class="frame__bar"><i></i><i></i><i></i><span class="frame__url">terminal-organizer · v0.1.0</span></div>
+            <img src="assets/img/terminal-organizer/split-panes.webp" width="1920" height="1020" loading="lazy" decoding="async"
+                 alt="Dört terminal panelinin her birinde ayrı bir CLI oturumu çalışan proje çalışma alanı.">
+          </div>
+          <div class="card__meta">
+            <span class="card__index">03</span>
+            <span class="badge badge--live">v0.1.0 yayında</span>
+          </div>
+          <h3 class="card__title"><a href="projeler/terminal-organizer.html">Terminal Organizer</a></h3>
+          <p class="card__outcome">
+            Her projeye kendi çok panelli terminal alanını veren, projeler arası geçişte oturumları
+            arka planda canlı tutan Windows masaüstü uygulaması.
+          </p>
+          <ul class="chips">
+            <li class="chip">Electron</li>
+            <li class="chip">TypeScript</li>
+            <li class="chip">React</li>
+            <li class="chip">node-pty</li>
+            <li class="chip">xterm.js</li>
+          </ul>
+          <span class="card__cta" aria-hidden="true">Detay →</span>
+        </article>
+
+        <!-- 04 — Kalp Hastalığı Risk Tahmini -->
+        <article class="card reveal">
+          <div class="frame frame--browser">
+            <div class="frame__bar"><i></i><i></i><i></i><span class="frame__url">heart-disease-prediction-brkakyldz.streamlit.app</span></div>
+            <img src="assets/img/heart-disease/model-performance.webp" width="1920" height="1080" loading="lazy" decoding="async"
+                 alt="Doğruluk, kesinlik, recall ve F1 skorlarını gösteren model performans sekmesi.">
+          </div>
+          <div class="card__meta">
+            <span class="card__index">04</span>
+            <span class="badge badge--done">Tamamlandı · canlı demo</span>
+          </div>
+          <h3 class="card__title"><a href="projeler/heart-disease-prediction.html">Kalp Hastalığı Risk Tahmini</a></h3>
+          <p class="card__outcome">
+            Yinelenen satırlardan temizlenmiş 302 kayıtlık veri setinde recall'a göre optimize
+            edilmiş, 0.931 recall ile canlıya alınmış LightGBM modeli.
+          </p>
+          <ul class="chips">
+            <li class="chip">Python</li>
+            <li class="chip">LightGBM</li>
+            <li class="chip">scikit-learn</li>
+            <li class="chip">Streamlit</li>
+            <li class="chip">pandas</li>
+          </ul>
+          <span class="card__cta" aria-hidden="true">Detay →</span>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ YAKLAŞIM ============ -->
+  <section class="section" id="yaklasim" style="border-top:1px solid var(--border)">
+    <div class="container">
+      <div class="section__head">
+        <p class="eyebrow">Yaklaşım</p>
+        <h2>Dört projede tekrar eden üç ilke</h2>
+      </div>
+      <div class="metrics">
+        <div class="metric metric--text">
+          <b>Deterministik çekirdek</b>
+          <span>Sayılar, puanlar ve metrikler LLM'in dokunmadığı katmanda üretiliyor; model yalnızca
+          bunların etrafındaki anlatıyı yazıyor.</span>
+        </div>
+        <div class="metric metric--text">
+          <b>Görünür ödünleşim</b>
+          <span>Her projede yapamadığım şeyi yazıyorum: engellenen rapor, düşen tampon, yeniden
+          başlamayan süreç, feda edilen kesinlik.</span>
+        </div>
+        <div class="metric metric--text">
+          <b>Ölçülebilir çıktı</b>
+          <span>Doğrulanabilir sayı yoksa iddia da yok — bu sayfadaki her rakam koddan veya canlı
+          uygulamadan teyit edildi.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container site-footer__inner">
+    <span>Berke Akyıldız · Agentic AI Engineer · Projelerin tamamı GitHub'da açık kaynak</span>
+    <span>Son güncelleme: Ağustos 2026</span>
+  </div>
+</footer>
+
+<script src="assets/js/site.js"></script>
+</body>
+</html>

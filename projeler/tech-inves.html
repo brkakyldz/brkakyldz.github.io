@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TechInves — Berke Akyıldız</title>
+<meta name="description" content="SEC EDGAR verisiyle 40 teknoloji şirketini deterministik olarak puanlayan ve LangGraph fan-out pipeline'ıyla kaynaklı araştırma raporu üreten, tek kullanıcılık kendi kendine barındırılan uygulama.">
+<meta name="color-scheme" content="dark">
+<script>document.documentElement.classList.add('js')</script>
+<link rel="stylesheet" href="../assets/css/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%230B0D11'/><text x='16' y='22' font-family='monospace' font-size='16' fill='%239B8CFF' text-anchor='middle'>B</text></svg>">
+</head>
+<body>
+
+<a class="skip-link" href="#icerik">İçeriğe geç</a>
+
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a class="brand" href="../index.html">Berke Akyıldız</a>
+    <nav class="nav" aria-label="Gezinme">
+      <a href="../index.html#projeler">Projeler</a>
+      <a href="https://github.com/brkakyldz/tech_inves" target="_blank" rel="noopener">Depo ↗</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="container">
+    <p class="breadcrumb"><a href="../index.html#projeler">← Projeler</a></p>
+
+    <div class="project-head">
+      <div class="project-head__meta">
+        <span>02 / 04</span><span class="dot">·</span>
+        <span>Solo geliştirici</span><span class="dot">·</span>
+        <span>Ağustos 2026</span><span class="dot">·</span>
+        <span class="badge badge--active">Aktif geliştirme · demo modu</span>
+      </div>
+      <h1>TechInves</h1>
+      <p class="project-head__lead">
+        Sayıları LLM'e hiç dokundurmadan üreten deterministik bir finansal puanlama motoru ile, her
+        iddiası kaynağa bağlı raporlar yazan ve düşük kaliteli taslağı yayımlamayı reddedebilen bir
+        LangGraph ajan pipeline'ının birleşimi.
+      </p>
+      <div class="project-head__links">
+        <a class="btn btn--primary" href="https://github.com/brkakyldz/tech_inves" target="_blank" rel="noopener">Kaynak Kod ↗</a>
+      </div>
+    </div>
+
+    <hr class="rule">
+
+    <div class="project-layout">
+
+      <aside class="project-rail">
+        <div class="project-rail__inner">
+          <div class="rail-group"><h4>Rol</h4><p>Solo geliştirici</p></div>
+          <div class="rail-group"><h4>Durum</h4><p>Aktif geliştirme · tek kullanıcılık</p></div>
+          <div class="rail-group"><h4>Dil</h4><p>Python 3.11+ · TypeScript</p></div>
+          <div class="rail-group"><h4>Lisans</h4><p>Belirtilmemiş</p></div>
+          <div class="rail-group"><h4>Öne çıkan</h4><p>İki aşamalı doğrulayıcı (verifier)</p></div>
+          <div class="rail-group rail-toc" data-spy>
+            <h4>Bu sayfada</h4>
+            <a href="#problem">Problem</a>
+            <a href="#rolum">Rolüm</a>
+            <a href="#yigin">Teknoloji yığını</a>
+            <a href="#mimari">Mimari</a>
+            <a href="#kararlar">Kritik kararlar</a>
+            <a href="#sonuclar">Sonuçlar</a>
+            <a href="#degerlendirme">Değerlendirme</a>
+            <a href="#gorseller">Ekran görüntüleri</a>
+            <a href="#ogrendiklerim">Öğrendiklerim</a>
+          </div>
+        </div>
+      </aside>
+
+      <article class="prose" id="icerik">
+
+        <h2 id="problem">Problem / Bağlam</h2>
+        <p>
+          Bir teknoloji hisseleri listesini takip ederken iki ayrı ihtiyaç var ve bunlar birbirine
+          karıştırılınca sorun çıkıyor. Birincisi tekrarlanabilir, açıklanabilir ve tamamen kamuya
+          açık finansal tablolardan üretilmiş bir puan — burada bir dil modelinin uydurma yapma
+          ihtimali kabul edilemez. İkincisi ise haberleri, yeni dosyalanan belgeleri ve makro bağlamı
+          sentezleyen, pahalı olduğu için ancak talep üzerine çalıştırılacak bir araştırma raporu.
+          Piyasadaki "yapay zekâ hisse seçici" araçları ikisini tek bir kara kutuda birleştiriyor;
+          TechInves bunları bilinçli olarak ayrı iki katman halinde tutuyor. Kişisel kullanım için
+          yazılmış, tek kullanıcılık bir araç — zamanlanmış bir iş yok, kimseye bir şey gönderilmiyor.
+        </p>
+
+        <h2 id="rolum">Rolüm</h2>
+        <p>
+          Puanlama motoru, FastAPI servisi, LangGraph pipeline'ı, doğrulayıcı katmanı ve Next.js
+          arayüzü dahil olmak üzere projenin tamamını tek başıma yazdım. Yaklaşık üç günlük yoğun bir
+          geliştirme döneminde ~306 commit attım; hata düzeltmelerinin gerekçeleri kod yorumlarında
+          ilgili çalıştırma kimlikleriyle birlikte duruyor.
+        </p>
+
+        <h2 id="yigin">Teknoloji Yığını</h2>
+        <div class="stack-groups">
+          <div class="stack-group">
+            <h4>Dil &amp; Runtime</h4>
+            <ul class="chips"><li class="chip">Python 3.11+</li><li class="chip">TypeScript 5</li><li class="chip">Node.js</li></ul>
+          </div>
+          <div class="stack-group">
+            <h4>Yapay Zekâ &amp; Ajan</h4>
+            <ul class="chips"><li class="chip">LangGraph 1.2+</li><li class="chip">langchain-core</li><li class="chip">langchain-openai</li><li class="chip">LangGraph checkpointing</li><li class="chip">Tavily</li><li class="chip">Exa</li></ul>
+          </div>
+          <div class="stack-group">
+            <h4>Servis &amp; Veri</h4>
+            <ul class="chips"><li class="chip">FastAPI</li><li class="chip">SQLAlchemy 2</li><li class="chip">Alembic</li><li class="chip">SQLite / PostgreSQL</li><li class="chip">Pydantic 2</li><li class="chip">NumPy</li></ul>
+          </div>
+          <div class="stack-group">
+            <h4>Veri Kaynakları</h4>
+            <ul class="chips"><li class="chip">SEC EDGAR (XBRL companyfacts)</li><li class="chip">Financial Modeling Prep</li><li class="chip">Federal Register</li><li class="chip">FRED</li></ul>
+          </div>
+          <div class="stack-group">
+            <h4>Arayüz</h4>
+            <ul class="chips"><li class="chip">Next.js 16 (App Router)</li><li class="chip">React 19</li><li class="chip">Tailwind CSS 4</li><li class="chip">Radix UI</li><li class="chip">Recharts</li></ul>
+          </div>
+          <div class="stack-group">
+            <h4>Test &amp; Kalite</h4>
+            <ul class="chips"><li class="chip">pytest</li><li class="chip">httpx</li><li class="chip">node --test</li><li class="chip">GitHub Actions</li></ul>
+          </div>
+        </div>
+
+        <h2 id="mimari">Mimari</h2>
+        <p>
+          Sistem üç katmana ayrılmış durumda ve aralarındaki sınır bilinçli olarak keskin. Puanlama
+          katmanı her şirket için SEC EDGAR'dan XBRL verisini, Financial Modeling Prep'ten
+          fiyat/piyasa değeri bilgisini çekiyor; ardından şirketi kendi kohortu içinde yüzdelik
+          sıralamaya sokarak 0–100 arası bir bileşik puan ve ayrı bir risk puanı üretiyor — bu
+          katmanda hiç LLM çağrısı yok. Rapor pipeline'ı yalnızca kullanıcı tetiklediğinde çalışıyor:
+          LangGraph grafiği öne çıkan her şirket ve her makro konu için ayrı bir araştırma dalı açıyor
+          (<strong>fan-out</strong>), bu dallar eş zamanlı olarak son yedi günlük pencerede güvenilir
+          kaynakları tarıyor, sonuçlar tek bir sentez düğümünde birleşiyor. Sentezden çıkan taslak
+          doğrudan yayımlanmıyor; önce ucuz ve deterministik kural tabanlı bir doğrulayıcıdan, sonra
+          LLM hakem katmanından geçiyor ve dört kademeli bir <strong>verdict</strong> ile birlikte
+          saklanıyor. Arayüz bu verdict'i gizlemiyor, raporun tepesinde bir bant olarak gösteriyor.
+        </p>
+
+        <figure>
+          <div class="diagram">
+            <svg viewBox="0 0 1000 520" role="img"
+                 aria-label="TechInves mimarisi: üstte veri kaynakları puanlama motoruna, oradan FastAPI ve veritabanına akıyor. Soldaki çalıştırma tetikleyicisi ya puanlamayı ya da alttaki paralel araştırma dallarını başlatıyor; dallar sentezde birleşiyor, sentez kural doğrulayıcıya, oradan LLM hakeme ve son olarak rapor ile verdict kutusuna gidiyor. Kural doğrulayıcı ihlal bulursa hakemi atlayarak raporu doğrudan engelliyor.">
+              <defs>
+                <marker id="ah2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                  <path d="M0 0 L10 5 L0 10 z" fill="#6F7986"/>
+                </marker>
+              </defs>
+              <g font-family="ui-monospace, Consolas, monospace">
+
+                <!-- lane 1: deterministik puanlama -->
+                <rect x="40" y="40" width="160" height="56" rx="10" fill="#1A1F27" stroke="#38414F"/>
+                <text x="120" y="66" fill="#E7EAF0" font-size="14" text-anchor="middle">Veri kaynakları</text>
+                <text x="120" y="84" fill="#6F7986" font-size="10.5" text-anchor="middle">SEC EDGAR · FMP</text>
+
+                <rect x="250" y="40" width="160" height="56" rx="10" fill="#1D1B33" stroke="#9B8CFF"/>
+                <text x="330" y="66" fill="#9B8CFF" font-size="14" text-anchor="middle">Puanlama motoru</text>
+                <text x="330" y="84" fill="#9B8CFF" font-size="10.5" text-anchor="middle" opacity=".8">LLM yok</text>
+
+                <rect x="780" y="180" width="180" height="56" rx="10" fill="#1A1F27" stroke="#38414F"/>
+                <text x="870" y="214" fill="#E7EAF0" font-size="14" text-anchor="middle">FastAPI + veritabanı</text>
+
+                <!-- tetikleyici -->
+                <rect x="40" y="180" width="160" height="56" rx="10" fill="#1A1F27" stroke="#38414F"/>
+                <text x="120" y="206" fill="#E7EAF0" font-size="14" text-anchor="middle">Çalıştırma</text>
+                <text x="120" y="224" fill="#E7EAF0" font-size="14" text-anchor="middle">tetikleyici</text>
+
+                <!-- lane 2: rapor pipeline -->
+                <rect x="244" y="318" width="160" height="56" rx="10" fill="#12151B" stroke="#38414F"/>
+                <rect x="247" y="324" width="160" height="56" rx="10" fill="#161A21" stroke="#38414F"/>
+                <rect x="250" y="330" width="160" height="56" rx="10" fill="#1A1F27" stroke="#38414F"/>
+                <text x="330" y="356" fill="#E7EAF0" font-size="14" text-anchor="middle">Araştırma dalları</text>
+                <text x="330" y="374" fill="#6F7986" font-size="10.5" text-anchor="middle">paralel, en çok 6</text>
+
+                <rect x="450" y="330" width="120" height="56" rx="10" fill="#1A1F27" stroke="#38414F"/>
+                <text x="510" y="364" fill="#E7EAF0" font-size="14" text-anchor="middle">Sentez</text>
+
+                <rect x="610" y="330" width="170" height="56" rx="10" fill="#1D1B33" stroke="#9B8CFF"/>
+                <text x="695" y="364" fill="#9B8CFF" font-size="14" text-anchor="middle">Kural doğrulayıcı</text>
+
+                <rect x="820" y="330" width="140" height="56" rx="10" fill="#1A1F27" stroke="#38414F"/>
+                <text x="890" y="364" fill="#E7EAF0" font-size="14" text-anchor="middle">LLM hakem</text>
+
+                <rect x="610" y="440" width="170" height="56" rx="10" fill="#1A1F27" stroke="#38414F"/>
+                <text x="695" y="474" fill="#E7EAF0" font-size="14" text-anchor="middle">Rapor + verdict</text>
+
+                <!-- oklar -->
+                <g stroke="#6F7986" stroke-width="1.5" fill="none" marker-end="url(#ah2)">
+                  <path d="M200 68  L246 68"/>
+                  <path d="M410 68  L870 68 L870 176"/>
+                  <path d="M200 208 L330 208 L330 100"/>
+                  <path d="M120 236 L120 358 L246 358"/>
+                  <path d="M410 358 L446 358"/>
+                  <path d="M570 358 L606 358"/>
+                  <path d="M780 358 L816 358"/>
+                  <path d="M890 386 L890 468 L784 468"/>
+                  <path d="M660 386 L660 436"/>
+                </g>
+                <g stroke="#6F7986" stroke-width="1.5" fill="none" stroke-dasharray="5 4" marker-end="url(#ah2)">
+                  <path d="M695 496 L985 496 L985 240"/>
+                </g>
+
+                <g fill="#6F7986" font-size="11.5">
+                  <text x="212" y="200">scores</text>
+                  <text x="132" y="300">report</text>
+                  <text x="798" y="348">geçerse</text>
+                  <text x="668" y="416">block</text>
+                </g>
+              </g>
+            </svg>
+          </div>
+          <figcaption>
+            Vurgulanan iki kutu, sayfanın anlatmak istediği iki fikri taşıyor: puanlama katmanına
+            hiçbir LLM çağrısı girmiyor ve kural doğrulayıcı, hakem ne derse desin yayını tek başına
+            engelleyebiliyor.
+          </figcaption>
+        </figure>
+
+        <h2 id="kararlar">Kritik Kararlar</h2>
+
+        <div class="decision">
+          <h3>Araştırma dallarında LangGraph'ın hazır <code>RetryPolicy</code> mekanizmasını kullanmamak.</h3>
+          <dl>
+            <div><dt>Neden</dt><dd><code>RetryPolicy</code> denemeleri tükettikten sonra istisnayı yeniden fırlatıyor ve bu, tek bir hisse ya da konu yüzünden tüm fan-out'un çökmesi anlamına geliyor. Rapor, dallarından biri eksik olsa da üretilebilmeli; başarısız dal bir <code>FailureNote</code>'a dönüşüyor.</dd></div>
+            <div><dt>Ödünleşim</dt><dd>Rapor bazen eksik bir dalla yayımlanıyor. Bunu gizlemek yerine görünür kıldım: eksik dal rapora bir başarısızlık notu olarak giriyor ve doğrulayıcının bütünlük kontrolüne dahil oluyor.</dd></div>
+          </dl>
+        </div>
+
+        <div class="decision">
+          <h3>Doğrulayıcıyı iki aşamalı kurmak — önce ucuz ve deterministik kurallar, sonra LLM hakem.</h3>
+          <dl>
+            <div><dt>Neden</dt><dd>Sayı sızıntısı, uydurma atıf, eksik yasal uyarı gibi bilinen hata sınıflarını yakalamak için bir dil modeline para vermeye gerek yok. Ayrıca bir kural ihlali söz konusuysa hakemin ne düşündüğü önemsiz olmalı.</dd></div>
+            <div><dt>Ödünleşim</dt><dd>Kurallar fazla katı davranıp doğru içeriği engelleyebiliyor. Bu gerçekten yaşandı: raporun kendi "As of: 2026-08-17" satırı üç uydurma sayı sanılıp bir çalıştırmayı bloke etti; düzeltmeyi tarih formatını tanıyan bir regex olarak kalıcı hale getirdim.</dd></div>
+          </dl>
+        </div>
+
+        <div class="decision">
+          <h3>Fan-in biriktiricilerini her yeni çalıştırmada açıkça sıfırlayan bir <code>RESET</code> sentinel'i eklemek.</h3>
+          <dl>
+            <div><dt>Neden</dt><dd>Grafik, her kanalın mevcut değerini toplamalı reducer'lara yeniden yayıyordu. Temiz bir thread'de bu görünmez bir no-op'tu; checkpoint'ten devam eden bir thread'de ise bulguları sessizce ikiye katlıyordu.</dd></div>
+            <div><dt>Ödünleşim</dt><dd>Sıfırlama mantığının kapsamı elle sınırlanmak zorunda kaldı — sadece <code>START</code>'tan başlayan tam çalıştırmalarda tetikleniyor, çökme sonrası devam eden bir çalıştırmada asla çalışmıyor. Bu, ek bir durum ayrımı ve dolayısıyla ek karmaşıklık demek.</dd></div>
+          </dl>
+        </div>
+
+        <div class="decision">
+          <h3>Demo modunu bir yer tutucu değil, birinci sınıf bir durum olarak ele almak.</h3>
+          <dl>
+            <div><dt>Neden</dt><dd>Hiç API anahtarı olmayan biri uygulamayı klonladığında boş bir ekranla değil, gezilebilir bir uygulamayla karşılaşmalı. Sıfır anahtarla açıldığında uygulama kendini örnek verilerle dolduruyor — dört verdict türünü de kapsayan 5 örnek rapor ve 40 örnek şirket puanı.</dd></div>
+            <div><dt>Ödünleşim</dt><dd>Örnek verinin bakımı sürekli bir yük; şema değiştiğinde fixture'ların da güncellenmesi gerekiyor. Buna karşılık her tetikleyici, eksik olan ortam değişkeninin tam adını söyleyerek reddediyor — böylece demo ile gerçek çalıştırma arasındaki fark belirsiz kalmıyor.</dd></div>
+          </dl>
+        </div>
+
+        <h2 id="sonuclar">Sonuçlar &amp; Rakamlar</h2>
+        <div class="metrics">
+          <div class="metric"><b>541</b><span>Test fonksiyonu (60 dosyada)</span></div>
+          <div class="metric"><b>43</b><span>İzleme listesindeki hisse (40'ı puanlanıyor)</span></div>
+          <div class="metric"><b>~306</b><span>Commit (3 günde)</span></div>
+        </div>
+        <ul>
+          <li>Puanlama katmanında hiç LLM çağrısı yok: 3 kohort içinde yüzdelik sıralama, 4 kategori (değerleme, büyüme, kalite, finansal sağlık) ve ayrı bir risk puanı (Altman-Z, Piotroski-F) tamamen deterministik olarak hesaplanıyor.</li>
+          <li>Pipeline çökmeye dayanıklı: LangGraph checkpointing sayesinde yarıda kesilen bir çalıştırma son tamamlanan adımdan devam ediyor, her araştırma dalı yeniden satın alınmıyor.</li>
+        </ul>
+
+        <h2 id="degerlendirme">Değerlendirme</h2>
+        <p>
+          Rapor pipeline'ının çıktısı hiçbir zaman doğrudan yayımlanmıyor; her taslak dört kademeli
+          bir verdict alıyor ve bu verdict raporla birlikte saklanıp arayüzde bant olarak gösteriliyor.
+          Kural tabanlı ön eleme, LLM hakem katmanından önce ve ondan bağımsız olarak çalışıyor —
+          buradaki bir ihlal, hakemin görüşü ne olursa olsun sonucu <code>block</code>'a çeviriyor.
+        </p>
+
+        <div class="decision">
+          <dl>
+            <div><dt>pass</dt><dd>Hem kural katmanı hem hakem temiz; rapor olduğu gibi yayımlanıyor.</dd></div>
+            <div><dt>pass_with_flags</dt><dd>Yayımlanıyor, ancak işaretlenen noktalar raporla birlikte görünüyor.</dd></div>
+            <div><dt>degraded_publish</dt><dd>Bazı araştırma dalları eksik veya düşük güvenilirlikte; rapor bu uyarıyla yayımlanıyor.</dd></div>
+            <div><dt>block</dt><dd>Kural ihlali var (sayı sızıntısı, atıf uyuşmazlığı, eksik uyarı); rapor yayımlanmıyor.</dd></div>
+          </dl>
+        </div>
+
+        <p>
+          <strong>Kural katmanının deterministik kontrolleri:</strong> sayı sızıntısı taraması ·
+          atıf sadakati (her sayının gerçek bir kaynağa bağlanması) · yasal uyarı ve yapay zekâ
+          kullanım bildirimi kontrolü · düşük güvenilirlikli kaynakların etiketlenmesi · bölüm
+          bütünlüğü kontrolü.
+        </p>
+
+        <h2 id="gorseller">Ekran Görüntüleri</h2>
+        <div class="gallery" data-gallery>
+
+          <figure class="shot" data-shot data-caption="Ana ekran; en son çalıştırmanın öne çıkan sonucu ve üç tetikleyicili çalıştırma paneli.">
+            <button type="button" aria-label="Büyüt: ana ekran">
+              <div class="frame frame--browser">
+                <div class="frame__bar"><i></i><i></i><i></i><span class="frame__url">techinves.local</span></div>
+                <img src="../assets/img/tech-inves/landing.webp" width="1920" height="1200" loading="lazy" decoding="async"
+                     alt="TechInves ana sayfası: en son çalıştırma özeti ve çalıştırma tetikleyicileri paneli.">
+              </div>
+            </button>
+            <figcaption>Ana ekran; en son çalıştırmanın öne çıkan sonucu ve üç tetikleyicili çalıştırma paneli.</figcaption>
+          </figure>
+
+          <figure class="shot" data-shot data-caption="Her tetikleyici kendi maliyetini ve son çalıştırma durumunu gösteriyor; eksik API anahtarı varsa adını söyleyerek reddediyor.">
+            <button type="button" aria-label="Büyüt: çalıştırma paneli">
+              <div class="frame frame--browser">
+                <div class="frame__bar"><i></i><i></i><i></i><span class="frame__url">techinves.local/runs</span></div>
+                <img src="../assets/img/tech-inves/run-panel.webp" width="1920" height="1200" loading="lazy" decoding="async"
+                     alt="Üç çalıştırma tetikleyicisini maliyet ve son durum bilgisiyle gösteren panel.">
+              </div>
+            </button>
+            <figcaption>Her tetikleyici kendi maliyetini ve son çalıştırma durumunu gösteriyor; eksik API anahtarı varsa adını söyleyerek reddediyor.</figcaption>
+          </figure>
+
+          <figure class="shot" data-shot data-caption="40 şirketin bileşik puanı; kohorta göre filtrelenebilen ve her sütuna göre sıralanabilen tarama tablosu.">
+            <button type="button" aria-label="Büyüt: tarama tablosu">
+              <div class="frame frame--browser">
+                <div class="frame__bar"><i></i><i></i><i></i><span class="frame__url">techinves.local/screener</span></div>
+                <img src="../assets/img/tech-inves/screener.webp" width="1920" height="1200" loading="lazy" decoding="async"
+                     alt="Teknoloji şirketlerinin bileşik puanlarını listeleyen sıralanabilir tarama tablosu.">
+              </div>
+            </button>
+            <figcaption>40 şirketin bileşik puanı; kohorta göre filtrelenebilen ve her sütuna göre sıralanabilen tarama tablosu.</figcaption>
+          </figure>
+
+          <figure class="shot" data-shot data-caption="Şirket detayı: kategori kırılımını gösteren radar grafiği ve çalıştırmalar arası puan değişimi.">
+            <button type="button" aria-label="Büyüt: şirket detayı">
+              <div class="frame frame--browser">
+                <div class="frame__bar"><i></i><i></i><i></i><span class="frame__url">techinves.local/company</span></div>
+                <img src="../assets/img/tech-inves/company.webp" width="1920" height="1200" loading="lazy" decoding="async"
+                     alt="Bir şirketin kategori radar grafiği ve puan geçmişini gösteren detay sayfası.">
+              </div>
+            </button>
+            <figcaption>Şirket detayı: kategori kırılımını gösteren radar grafiği ve çalıştırmalar arası puan değişimi.</figcaption>
+          </figure>
+
+          <figure class="shot" data-shot data-caption="Üretilmiş bir rapor; en üstte doğrulayıcının verdict bandı, altında kaynaklarıyla birlikte şirket derinlemesine incelemeleri.">
+            <button type="button" aria-label="Büyüt: üretilmiş rapor">
+              <div class="frame frame--browser">
+                <div class="frame__bar"><i></i><i></i><i></i><span class="frame__url">techinves.local/reports</span></div>
+                <img src="../assets/img/tech-inves/report.webp" width="1920" height="1200" loading="lazy" decoding="async"
+                     alt="Doğrulayıcı verdict bandı ve kaynaklı analiz bölümleri içeren üretilmiş rapor sayfası.">
+              </div>
+            </button>
+            <figcaption>Üretilmiş bir rapor; en üstte doğrulayıcının verdict bandı, altında kaynaklarıyla birlikte şirket derinlemesine incelemeleri.</figcaption>
+          </figure>
+
+        </div>
+
+        <h2 id="ogrendiklerim">Zorluklar &amp; Öğrendiklerim</h2>
+        <p>
+          En çok zorlandığım şey paralel bir grafikte hata ve maliyet muhasebesini doğru tutmaktı. Her
+          dalın kendi token sayacını taşıması gerektiğini, ortak bir biriktiriciyi eş zamanlı dalların
+          yarış haline sokacağını iş üstünde öğrendim; sonra da sentez ve doğrulayıcı çağrılarının
+          maliyete hiç girmediğini fark edip düzelttim. Bu projede asıl kavradığım şey şu oldu: ajan
+          sistemlerinde mühendisliğin ağırlığı modelde değil, modelin etrafındaki sınırlarda — neyin
+          deterministik kalacağına, hangi hatanın izole edileceğine ve hangi çıktının yayımlanmayı hak
+          etmediğine karar verdiğiniz yerde.
+        </p>
+
+      </article>
+    </div>
+
+    <nav class="pager" aria-label="Proje gezinmesi">
+      <a href="second-brain-os.html"><small>Önceki proje</small><b>← Second Brain OS</b></a>
+      <a class="pager__next" href="terminal-organizer.html"><small>Sonraki proje</small><b>Terminal Organizer →</b></a>
+    </nav>
+  </div>
+</main>
+
+<dialog class="lightbox" id="lightbox" aria-label="Ekran görüntüsü büyütülmüş görünüm">
+  <div class="lightbox__inner">
+    <img data-lightbox-img alt="">
+    <div class="lightbox__bar">
+      <p class="lightbox__caption" data-lightbox-caption></p>
+      <div class="lightbox__nav">
+        <span class="lightbox__caption" data-lightbox-counter></span>
+        <button type="button" data-lightbox-prev aria-label="Önceki görsel">←</button>
+        <button type="button" data-lightbox-next aria-label="Sonraki görsel">→</button>
+        <button type="button" class="lightbox__close" data-lightbox-close aria-label="Kapat">✕</button>
+      </div>
+    </div>
+  </div>
+</dialog>
+
+<footer class="site-footer">
+  <div class="container site-footer__inner">
+    <span>Berke Akyıldız · Agentic AI Engineer</span>
+    <span><a href="../index.html">Tüm projeler</a></span>
+  </div>
+</footer>
+
+<script src="../assets/js/site.js"></script>
+</body>
+</html>
