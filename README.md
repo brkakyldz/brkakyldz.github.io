@@ -17,7 +17,3 @@ assets/             CSS, JS, ekran görüntüleri
 ```bash
 python -m http.server 4173
 ```
-
-## Güncelleme
-
-Dosyayı düzenle, commit'le, push'la. Site ~1 dakika içinde güncellenir.
