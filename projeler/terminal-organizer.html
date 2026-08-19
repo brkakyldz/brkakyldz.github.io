@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Terminal Organizer — Berke Akyıldız</title>
-<meta name="description" content="Her projeye kendi çok panelli terminal alanını veren Windows masaüstü uygulaması: projeler arası geçişte terminal oturumları arka planda çalışmaya devam ediyor. Electron, React ve node-pty ile.">
+<meta name="description" content="Agentic coding için tmux benzeri bir panel düzenini Windows'a getiren masaüstü uygulaması: her proje kendi kalıcı çalışma alanı, her panel ayrı bir ajan CLI oturumu (Claude Code, Codex). Electron, React ve node-pty ile.">
 <meta name="color-scheme" content="dark">
 <script>document.documentElement.classList.add('js')</script>
 <link rel="stylesheet" href="../assets/css/style.css">
@@ -37,9 +37,10 @@
       </div>
       <h1>Terminal Organizer</h1>
       <p class="project-head__lead">
-        Paralel çalışan projeler arasında geçiş yaparken terminal oturumlarını kapatmak zorunda
-        kalmamak için yazdığım, her projeye kendi kalıcı ve çok panelli terminal alanını veren
-        Windows uygulaması.
+        Aynı anda birden fazla yapay zekâ kodlama ajanını (Claude Code, Codex) paralel çalıştırmak
+        için yazdığım uygulama: tmux'un panel disiplinini Windows'a taşıyor, her projeye kendi kalıcı
+        çalışma alanını veriyor ve profil listesinden "Claude" seçtiğinizde paneli doğrudan o projenin
+        dizininde Claude Code oturumu olarak açıyor.
       </p>
       <div class="project-head__links">
         <a class="btn btn--primary" href="https://github.com/brkakyldz/terminal-organizer" target="_blank" rel="noopener">Kaynak Kod ↗</a>
@@ -60,10 +61,11 @@
           <div class="rail-group"><h4>Durum</h4><p>v0.1.0 · erken sürüm · yalnızca Windows</p></div>
           <div class="rail-group"><h4>Dil</h4><p>TypeScript</p></div>
           <div class="rail-group"><h4>Lisans</h4><p>Belirtilmemiş</p></div>
-          <div class="rail-group"><h4>Öne çıkan</h4><p>Proje bazlı kalıcı PTY oturumları</p></div>
+          <div class="rail-group"><h4>Öne çıkan</h4><p>Paralel ajan CLI panelleri · proje bazlı kalıcı PTY oturumları</p></div>
           <div class="rail-group rail-toc" data-spy>
             <h4>Bu sayfada</h4>
             <a href="#problem">Problem</a>
+            <a href="#akis">Agentic iş akışı</a>
             <a href="#rolum">Rolüm</a>
             <a href="#yigin">Teknoloji yığını</a>
             <a href="#mimari">Mimari</a>
@@ -79,21 +81,60 @@
 
         <h2 id="problem">Problem / Bağlam</h2>
         <p>
-          Aynı anda birkaç yerel proje üzerinde çalışırken her biri kendi terminallerini istiyor: bir
-          dev sunucusu, bir build watcher, bir de yapay zekâ kodlama CLI'ı. Klasik terminal
-          sekmeleriyle bu düzen hızla dağılıyor — hangi sekmenin hangi projeye ait olduğunu takip
-          etmek, pencereler arasında geçiş yapmak ve her seferinde doğru dizine <code>cd</code> yapmak
-          sürekli bir sürtünme yaratıyor. Terminal Organizer bu sürtünmeyi ortadan kaldırmak için
-          terminalleri sekmelere değil projelere bağlıyor: bir projeden diğerine geçtiğinizde önceki
-          projenin terminalleri kapanmıyor, arka planda çalışmaya devam ediyor. Kendi günlük iş akışım
-          için yazdığım bir araç; IDE ya da dosya yöneticisi olmaya çalışmıyor.
+          Bu uygulamanın çıkış noktası "terminal yönetmek" değil, <strong>agentic coding</strong>ti:
+          gün boyu Claude Code ve Codex gibi ajan CLI'larını aynı anda birkaç tane çalıştırıyorum —
+          biri bir refactor'ü sürdürürken diğeri test yazıyor, üçüncüsü başka bir projede araştırma
+          yapıyor. Bu iş akışının doğal aracı tmux: panelleri böl, oturumları isimlendir, oturumdan
+          çık ama süreçleri öldürme. Windows'ta bunun karşılığı yok; Windows Terminal sekmeleri
+          oturum kavramı taşımıyor, WSL'e taşınmak ise ajanların üzerinde çalıştığı Windows
+          projelerini ve araç zincirini bozuyor.
+        </p>
+        <p>
+          Terminal Organizer tam olarak bu boşluğu dolduruyor: <em>tmux'un panel + oturum modelini
+          Windows'a, üstelik ajan CLI'larını birinci sınıf vatandaş kabul eden bir arayüzle
+          getiriyor.</em> Terminaller sekmelere değil projelere bağlı; bir projeden diğerine
+          geçtiğinizde önceki projenin ajanları kapanmıyor, arka planda çalışmaya devam ediyor.
+          Electron, React ya da xterm.js projenin amacı değil — Windows'ta bu davranışı makul bir
+          sürede paketleyip dağıtmanın en kısa yolu oldukları için seçildiler.
+        </p>
+
+        <h2 id="akis">Agentic İş Akışı</h2>
+        <p>
+          Uygulamanın günlük kullanımı üç kavrama indirgeniyor ve üçü de tmux'tan tanıdık:
+        </p>
+        <ul>
+          <li>
+            <b>Çalışma alanı = proje (tmux session).</b> Her çalışma alanının bir kök dizini var;
+            o alanda açılan her panel doğrudan o dizinde başlıyor, <code>cd</code> etmek gerekmiyor.
+            Kenar çubuğundaki rozet o projede kaç oturumun canlı olduğunu gösteriyor.
+          </li>
+          <li>
+            <b>Panel = ajan oturumu (tmux pane).</b> Paneller 2x2'ye kadar bölünebiliyor; ekran
+            görüntülerindeki dört panelin her birinde ayrı bir Codex oturumu eş zamanlı koşuyor.
+            Her panel başlığında oturumun canlı olup olmadığını gösteren bir <code>RUNNING</code>
+            durumu var — ajan uzun bir işi arka planda sürdürürken hangi panelin hâlâ çalıştığını
+            bakmadan görmek için.
+          </li>
+          <li>
+            <b>Profil = hangi ajanı başlatacağı.</b> Kenar çubuğundaki terminal profili listesinden
+            <code>Claude</code> seçip yeni terminal açtığınızda uygulama boş bir kabuk açıp sizden
+            komut beklemiyor; paneli doğrudan projenin kökünde bir Claude Code oturumu olarak
+            başlatıyor. <code>Codex</code> için de aynısı geçerli. PowerShell, CMD, Git Bash ve WSL
+            klasik kabuk profilleri olarak yanlarında duruyor.
+          </li>
+        </ul>
+        <p>
+          Bunun üzerine ajan çıktısıyla çalışmayı kolaylaştıran iki şey ekli: panel içi çıktı araması
+          (uzun bir ajan oturumunda bir dosya adını ya da hata satırını geri bulmak için) ve
+          göz yorgunluğuna göre değiştirilebilen arayüz temaları.
         </p>
 
         <h2 id="rolum">Rolüm</h2>
         <p>
-          Uygulamanın tamamını tek başıma yazdım: PTY yaşam döngüsünü yöneten ana süreç,
-          contextBridge üzerinden tanımlanan IPC katmanı, React arayüzü, kalıcılık deposu ve etiket
-          bazlı sürüm derlemesini yapan GitHub Actions iş akışı.
+          Fikirden sürüme kadar tamamını tek başıma yazdım: kendi iş akışımdaki ihtiyacın ürün
+          tanımına çevrilmesi, PTY yaşam döngüsünü yöneten ana süreç, contextBridge üzerinden
+          tanımlanan IPC katmanı, ajan profillerinin ve kabuk tespitinin tasarımı, React arayüzü,
+          kalıcılık deposu ve etiket bazlı sürüm derlemesini yapan GitHub Actions iş akışı.
         </p>
 
         <h2 id="yigin">Teknoloji Yığını</h2>
@@ -109,6 +150,10 @@
           <div class="stack-group">
             <h4>Sistem Katmanı</h4>
             <ul class="chips"><li class="chip">node-pty 1.1</li><li class="chip">Windows ConPTY</li><li class="chip">contextBridge IPC</li></ul>
+          </div>
+          <div class="stack-group">
+            <h4>Ajan Profilleri</h4>
+            <ul class="chips"><li class="chip">Claude Code CLI</li><li class="chip">OpenAI Codex CLI</li></ul>
           </div>
           <div class="stack-group">
             <h4>Kalıcılık</h4>
@@ -219,6 +264,22 @@
         <h2 id="kararlar">Kritik Kararlar</h2>
 
         <div class="decision">
+          <h3>WSL + tmux'a taşınmak yerine Windows'a özgü bir uygulama yazmak.</h3>
+          <dl>
+            <div><dt>Neden</dt><dd>Aradığım davranış tam olarak tmux'unki, ama ajanların üzerinde çalıştığı projeler, araç zincirleri ve dosya yolları Windows tarafında. WSL'e taşınmak her ajan oturumuna bir dosya sistemi sınırı ve yol çevirisi ekliyordu. ConPTY üzerinden yerel süreç açmak, tmux'un panel/oturum modelini kopyalayıp maliyeti ödemeden almayı sağladı.</dd></div>
+            <div><dt>Ödünleşim</dt><dd>tmux'un olgun özellik setinin (detach/attach, betiklenebilirlik, uzak oturumlar) tamamı elden gitti; elde kalan onun küçük ama günlük kullanımda en çok işe yarayan alt kümesi. Uygulama ayrıca yalnızca Windows'ta çalışıyor.</dd></div>
+          </dl>
+        </div>
+
+        <div class="decision">
+          <h3>Claude Code ve Codex CLI'larını birer kabuk profili olarak birinci sınıf tanımlamak.</h3>
+          <dl>
+            <div><dt>Neden</dt><dd>Uygulamanın asıl kullanıcısı ajanları paralel çalıştıran biri. Profil listesinden <code>Claude</code> seçilince yeni panelin doğrudan doğru dizinde doğru CLI'ı başlatması, "kabuk aç → dizine geç → komutu yaz" üçlüsünü tek tıka indiriyor; günde onlarca kez tekrarlanan bir adım olduğu için farkı da orantısız büyük.</dd></div>
+            <div><dt>Ödünleşim</dt><dd>Profiller <code>cmd.exe</code> üzerinden başlatıldığı ve komut adları sabit olduğu için, CLI'ın kurulu olmadığı bir makinede profil çalışmıyor. Kabuk tespiti PowerShell ve CMD dışında tamamen sonda (probe) tabanlı.</dd></div>
+          </dl>
+        </div>
+
+        <div class="decision">
           <h3>PTY süreçlerini ana süreçte tutmak ve proje değişiminde yalnızca arayüz görünümünü ayırıp bağlamak.</h3>
           <dl>
             <div><dt>Neden</dt><dd>Uygulamanın var olma sebebi tam olarak bu: bir projeden çıkmak, o projenin terminallerini öldürmemeli. Süreç sahipliğini arayüz bileşenlerinden ayırmak bunun tek temiz yolu.</dd></div>
@@ -242,17 +303,10 @@
           </dl>
         </div>
 
-        <div class="decision">
-          <h3>Claude Code ve Codex CLI'larını birer kabuk profili olarak birinci sınıf tanımlamak.</h3>
-          <dl>
-            <div><dt>Neden</dt><dd>Bu araçları zaten gün boyu kullanıyorum ve her seferinde bir kabuk açıp komutu elle yazmak gereksiz bir adım. Profil listesine eklenince yeni panel açmak doğrudan doğru CLI'ı doğru dizinde başlatıyor.</dd></div>
-            <div><dt>Ödünleşim</dt><dd>Profiller <code>cmd.exe</code> üzerinden başlatıldığı ve komut adları sabit olduğu için, CLI'ın kurulu olmadığı bir makinede profil çalışmıyor. Kabuk tespiti PowerShell ve CMD dışında tamamen sonda (probe) tabanlı.</dd></div>
-          </dl>
-        </div>
-
         <h2 id="sonuclar">Sonuçlar &amp; Rakamlar</h2>
         <div class="metrics">
-          <div class="metric"><b>6</b><span>Kabuk profili (PowerShell, CMD, Git Bash, WSL, Claude, Codex)</span></div>
+          <div class="metric"><b>2 + 4</b><span>Ajan profili (Claude, Codex) + kabuk profili (PowerShell, CMD, Git Bash, WSL)</span></div>
+          <div class="metric"><b>4</b><span>Tek projede eş zamanlı çalışabilen ajan paneli (2x2)</span></div>
           <div class="metric"><b>~19</b><span>Tipli IPC kanalı</span></div>
           <div class="metric"><b>v0.1.0</b><span>Yayınlanmış Windows sürümü</span></div>
         </div>
@@ -264,7 +318,7 @@
         <h2 id="gorseller">Ekran Görüntüleri</h2>
         <div class="gallery" data-gallery>
 
-          <figure class="shot" data-shot data-caption="Her projeye ayrılmış, proje değiştirdiğinizde arka planda çalışmayı sürdüren terminal alanı; panelde Claude Code oturumu açık.">
+          <figure class="shot" data-shot data-caption="Profil listesinden &quot;Claude&quot; seçilip açılan panel: uygulama boş kabuk yerine doğrudan projenin kökünde bir Claude Code oturumu başlatıyor.">
             <button type="button" aria-label="Büyüt: tek panelli görünüm">
               <div class="frame frame--terminal">
                 <div class="frame__bar"><i></i><i></i><i></i><span class="frame__url">Workspace · Claude</span></div>
@@ -272,10 +326,10 @@
                      alt="Terminal Organizer ana ekranı: solda proje listesi, sağda Claude Code CLI çalıştıran tek terminal paneli.">
               </div>
             </button>
-            <figcaption>Her projeye ayrılmış, proje değiştirdiğinizde arka planda çalışmayı sürdüren terminal alanı; panelde Claude Code oturumu açık.</figcaption>
+            <figcaption>Sol altta terminal profili <b>Claude</b> seçili: yeni terminal açmak, panelde doğrudan projenin kökünde bir Claude Code oturumu başlatıyor. Panel başlığındaki <code>RUNNING</code> rozeti oturumun canlı olduğunu gösteriyor.</figcaption>
           </figure>
 
-          <figure class="shot" data-shot data-caption="Tek bir projenin içinde 2x2 bölünmüş dört panel; her birinde ayrı bir Codex CLI oturumu eş zamanlı çalışıyor.">
+          <figure class="shot" data-shot data-caption="tmux benzeri 2x2 panel düzeni: tek projede dört Codex ajanı eş zamanlı, hepsi aynı proje dizininde çalışıyor.">
             <button type="button" aria-label="Büyüt: dört panelli görünüm">
               <div class="frame frame--terminal">
                 <div class="frame__bar"><i></i><i></i><i></i><span class="frame__url">Workspace2 · 4 panel</span></div>
@@ -283,10 +337,10 @@
                      alt="Dört eşit terminal panelinin her birinde ayrı bir Codex CLI oturumu çalışan proje çalışma alanı.">
               </div>
             </button>
-            <figcaption>Tek bir projenin içinde 2x2 bölünmüş dört panel; her birinde ayrı bir Codex CLI oturumu eş zamanlı çalışıyor.</figcaption>
+            <figcaption>Asıl kullanım senaryosu: 2x2 bölünmüş dört panelde dört Codex ajanı aynı proje dizininde paralel çalışıyor. Kenar çubuğundaki rozet çalışma alanında kaç oturumun canlı olduğunu gösteriyor — soldaki projede 1, seçili projede 4.</figcaption>
           </figure>
 
-          <figure class="shot" data-shot data-caption="Terminal çıktısında arama kutusu ve arayüz temaları — bu görünümde &quot;Volt&quot; teması kullanılıyor.">
+          <figure class="shot" data-shot data-caption="Uzun ajan çıktısında arama: bir dosya adını ya da hata satırını panel içinde geri bulmak için. Arayüz teması da değiştirilebiliyor (burada &quot;Volt&quot;).">
             <button type="button" aria-label="Büyüt: arama ve tema">
               <div class="frame frame--terminal">
                 <div class="frame__bar"><i></i><i></i><i></i><span class="frame__url">Workspace · arama · Volt</span></div>
@@ -294,7 +348,7 @@
                      alt="Üstteki panelde çıktı arama kutusu açık, altta ikinci bir terminal paneli; arayüz yeşil vurgulu Volt temasında.">
               </div>
             </button>
-            <figcaption>Terminal çıktısında arama kutusu ve arayüz temaları — bu görünümde "Volt" teması kullanılıyor.</figcaption>
+            <figcaption>Uzun süren bir ajan oturumunun çıktısında arama — bir dosya adını ya da hata satırını yüzlerce satır sonra geri bulmak için. Arayüz teması değiştirilebiliyor; burada "Volt".</figcaption>
           </figure>
 
         </div>
@@ -308,7 +362,9 @@
           denemek gerekti. Bu projede en net öğrendiğim şey, yapamadığınız şeyi dokümanda açıkça
           yazmanın maliyetinin sıfır, gizlemenin maliyetinin ise kullanıcının güveni olduğu oldu;
           "yeniden başlatmada süreçler geri gelmez" satırını README'ye yazmak, o kısıtı savunmayı da
-          kolaylaştırdı.
+          kolaylaştırdı. Ürün tarafında öğrendiğim şey ise şu: bu uygulamayı değerli kılan Electron
+          ya da xterm.js değil, ajan CLI'larını bir kabuk komutu değil bir <em>oturum türü</em>
+          olarak görmesi — asıl tasarım kararı orada.
         </p>
 
       </article>
