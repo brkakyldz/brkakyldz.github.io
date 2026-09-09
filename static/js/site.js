@@ -204,21 +204,81 @@
   }
 
 
-  /* ---------- sayfa içi gezinme anında gider ----------
-     scroll-behavior: smooth sayfa içi ipuçları için doğru, ama gezinme
-     bağlantısı yirmi bin pikselden fazla yol alıyor: yumuşak kaydırma
-     ziyaretçiyi bütün bölümlerin içinden geçiriyor ve saniyeler sürüyor.
-     Gezinmede istenen şey varmak. Aynı sebeple işler ızgarasındaki levhalar
-     da buradan geçiyor: kart, kendi anlatım bölümüne aynı anda iner. */
-  Array.prototype.forEach.call(doc.querySelectorAll('.top__nav a[href^="#"], .top__name[href^="#"], .card__name a[href^="#"]'), function (a) {
-    a.addEventListener('click', function (e) {
-      var target = doc.querySelector(a.getAttribute('href'));
-      if (!target || e.metaKey || e.ctrlKey || e.shiftKey || e.button) { return; }
-      e.preventDefault();
-      target.scrollIntoView({ block: 'start', behavior: 'instant' });
-      history.replaceState(null, '', a.getAttribute('href'));
+  /* ---------- sayfa içi gezinme ----------
+     İki ayrı istek, iki ayrı davranış.
+
+     Üst çubuk anında gider: scroll-behavior: smooth sayfa içi ipuçları için
+     doğru, ama gezinme bağlantısı yirmi bin pikselden fazla yol alıyor ve
+     tarayıcının yumuşak kaydırması ziyaretçiyi bütün bölümlerin içinden
+     geçiriyor. Gezinmede istenen şey varmak.
+
+     İşler ızgarası bunu söylemiyor: levha, anlatımın aşağıda olduğunu
+     gösteriyor, o yüzden kart kayarak iniyor. Süreyi tarayıcıya bırakmıyoruz,
+     çünkü tarayıcının yumuşak kaydırması mesafeyle uzuyor: burada süre
+     mesafenin kareköküyle büyüyor ve 900 ms'de duruyor — yirmi bin piksel de,
+     iki bin piksel de aynı çırpıda bitiyor, ama hiçbiri çat diye açılmıyor. */
+  var docEl = doc.documentElement;
+  var cancelGlide = null;
+
+  /* Varış noktası: bölümün tepesi, eksi sabit üst çubuğun payı. Pay CSS'te
+     duruyor (html { scroll-padding-top }) ve scrollIntoView onu kendiliğinden
+     uyguluyor; elle kaydırırken aynı sayıyı oradan okuyoruz ki iki yol da
+     aynı yere varsın. */
+  var destOf = function (target) {
+    var pad = parseFloat(window.getComputedStyle(docEl).scrollPaddingTop) || 0;
+    var top = target.getBoundingClientRect().top + window.pageYOffset - pad;
+    return Math.max(0, Math.min(top, docEl.scrollHeight - window.innerHeight));
+  };
+
+  var glideTo = function (target) {
+    var from = window.pageYOffset;
+    var span = destOf(target) - from;
+    if (!span) { return; }
+    var ms = Math.min(900, 360 + Math.sqrt(Math.abs(span)) * 4);
+    var keys = ['wheel', 'touchstart', 'keydown'];
+    var live = true;
+    var t0 = 0;
+    var stop = function () {
+      live = false;
+      if (cancelGlide === stop) { cancelGlide = null; }
+      docEl.style.scrollBehavior = '';
+      keys.forEach(function (k) { window.removeEventListener(k, stop); });
+    };
+    var step = function (now) {
+      if (!live) { return; }
+      if (!t0) { t0 = now; }
+      var p = Math.min(1, (now - t0) / ms);
+      /* easeInOutCubic: yavaş kalkış, hızlı orta, yumuşak duruş. */
+      var e = p < .5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2;
+      window.scrollTo(0, from + span * e);
+      if (p < 1) { window.requestAnimationFrame(step); } else { stop(); }
+    };
+    if (cancelGlide) { cancelGlide(); }
+    cancelGlide = stop;
+    /* CSS'teki smooth, her karedeki scrollTo'yu kendi animasyonuna çevirip
+       ikisini birbirine sürterdi; kayma boyunca kapalı duruyor. */
+    docEl.style.scrollBehavior = 'auto';
+    /* Ziyaretçi kendi kaydırmaya başlarsa animasyon yolu bırakıyor. */
+    keys.forEach(function (k) { window.addEventListener(k, stop, { passive: true }); });
+    window.requestAnimationFrame(step);
+  };
+
+  var wireJumps = function (sel, glide) {
+    Array.prototype.forEach.call(doc.querySelectorAll(sel), function (a) {
+      a.addEventListener('click', function (e) {
+        var href = a.getAttribute('href');
+        var target = doc.querySelector(href);
+        if (!target || e.metaKey || e.ctrlKey || e.shiftKey || e.button) { return; }
+        e.preventDefault();
+        /* Hareket azaltma açıkken kayma yok: aynı yere anında. */
+        if (glide && !reduce.matches) { glideTo(target); }
+        else { target.scrollIntoView({ block: 'start', behavior: 'instant' }); }
+        history.replaceState(null, '', href);
+      });
     });
-  });
+  };
+  wireJumps('.top__nav a[href^="#"], .top__name[href^="#"]', false);
+  wireJumps('.card__name a[href^="#"]', true);
 
   /* ---------- işler ızgarası: tek iş, bölüme girişte levhaları oturtmak ----------
      Burada eskiden bir yelpaze vardı: sürükleme, oklar, çentikler, klavye ve
