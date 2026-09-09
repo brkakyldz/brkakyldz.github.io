@@ -623,7 +623,16 @@ main { position: relative; z-index: 1; }
   font: 400 .84rem/1.4 var(--sans); color: var(--ink-3); transition: color .3s, border-color .3s; }
 .prose__index a:hover { color: var(--ink); border-left-color: var(--ink-2); }
 @media (max-width: 1000px) {
-  .prose__cols { grid-template-columns: 1fr; gap: 2.4rem; }
+  /* `1fr` değil `minmax(0, 1fr)`: bir track'in otomatik asgari boyu min-content'tir
+     ve .prose__body içinde `white-space: pre` olan şemalar ile tablolar duruyor —
+     min-content'leri 632-644px. `1fr` ile track 331px yerine 640px oluyordu, sayfa
+     device-width'e sığmıyor ve tarayıcı layout viewport'u içeriğe göre şişiriyordu:
+     telefonda ölçülen innerWidth 375 değil 662, yani bütün sayfa %57'ye uzaklaştırılmış
+     hâlde açılıyordu (gövde metni 17,9px yerine 10,1px). `body { overflow-x: hidden }`
+     taşmayı kaydırma çubuğu olarak göstermediği için masaüstünde hiç görünmüyordu.
+     Sıfır asgari ile track kapsayıcıya kilitlenir; pre ve .tablewrap zaten kendi
+     `overflow-x: auto` kutularında yatay kayıyor. */
+  .prose__cols { grid-template-columns: minmax(0, 1fr); gap: 2.4rem; }
   .prose__index { position: static; order: 0; }
 }
 .prose__body { max-width: 40rem; font: 300 1.12rem/1.65 var(--serif); color: var(--ink-2); }
@@ -798,7 +807,14 @@ main { position: relative; z-index: 1; }
   .about__grid { grid-template-columns: 1fr; gap: 3rem; }
 
   .figs { grid-template-columns: 1fr 1fr; }
-  .plate figure { grid-template-columns: 1fr; }
+  /* Çizim ile künyesi aynı track'te: `1fr` min-content'i alınca track, svg'nin
+     `min-width: 520px`ine kilitleniyor ve künye metni de 520px oluyordu — 331px'lik
+     ekranda sağ tarafı kesiliyor, okumak için yatay kaydırmak gerekiyordu. Track artık
+     sütun genişliğinde; çizim 520px kalıp figure'ın `overflow-x: auto`sunda kayıyor
+     (331px'e küçültülse 13px etiketler 8,6px'e düşer, okunmaz olurdu), künye ise
+     kaydırma kutusunun sol kenarına yapışıp ekranda kalıyor. */
+  .plate figure { grid-template-columns: minmax(0, 1fr); }
+  .plate figcaption { position: sticky; left: 0; width: 100%; }
   .meta { grid-template-columns: 1fr 1fr; }
   .contact__links a { font-size: 1.15rem; }
   .foot { flex-direction: column; gap: .4rem; }
