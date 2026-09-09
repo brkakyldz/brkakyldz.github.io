@@ -1,0 +1,648 @@
+<!doctype html>
+<html lang="tr" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TechInves — Berke Akyıldız</title>
+  <meta name="description" content="ABD borsasındaki teknoloji şirketlerini yalnızca kendi benzerleriyle karşılaştırarak puanlayan bir hesap motoru ve bu puanların üstüne yazılan, açılmadan önce kurallarla denetlenen bir araştırma raporu hattı.">
+  <meta name="theme-color" content="#07131d">
+  <meta name="color-scheme" content="dark">
+  <link rel="canonical" href="https://brkakyldz.github.io/isler/techinves/">
+  <link rel="icon" href="../../static/favicon.ico?v=3" sizes="any">
+  <link rel="icon" href="../../static/favicon.svg?v=3" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../../static/apple-touch-icon.png?v=3">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:site_name" content="Berke Akyıldız">
+  <meta property="og:title" content="TechInves — çalışma mantığı">
+  <meta property="og:description" content="ABD borsasındaki teknoloji şirketlerini yalnızca kendi benzerleriyle karşılaştırarak puanlayan bir hesap motoru ve bu puanların üstüne yazılan, açılmadan önce kurallarla denetlenen bir araştırma raporu hattı.">
+  <meta property="og:url" content="https://brkakyldz.github.io/isler/techinves/">
+  <meta property="og:image" content="https://brkakyldz.github.io/static/media/ocean-poster-v3.jpg">
+  <meta property="og:image:width" content="1920">
+  <meta property="og:image:height" content="1080">
+  <meta property="og:image:alt" content="Mavi saatte, bulutlu gökyüzünün altında açık deniz.">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preload" href="../../static/fonts/newsreader-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../../static/fonts/plex-sans-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../static/css/site.css">
+  <script>document.documentElement.classList.remove('no-js')</script>
+  <script src="../../static/js/site.js" defer></script>
+</head>
+<body class="detail">
+  <a class="skip" href="#main">İçeriğe atla</a>
+  <div class="ocean" aria-hidden="true">
+    <img class="ocean__still" src="../../static/media/ocean-poster-v3.jpg" width="1920" height="1080" alt="" decoding="async">
+    <div class="ocean__grain"></div>
+  </div>
+  <header class="top">
+    <a class="top__name" href="../../"><img class="top__mark" src="../../static/mark.svg" alt="" width="23" height="17" decoding="async">Berke Akyıldız</a>
+    <button class="top__toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menü</button>
+    <nav class="top__nav" id="site-nav" aria-label="Site"><a href="../../hakkimda/">Hakkımda</a><a href="../../#isler" aria-current="page">İşler</a><a href="../../cv/">Özgeçmiş</a><a href="../../#iletisim">İletişim</a><a href="https://github.com/brkakyldz" rel="me"><span lang="en">GitHub</span></a></nav>
+  </header>
+  <main id="main">
+    <section class="page wrap">
+      <div class="page__head">
+        <p class="cap">İş 03 / 04 · Duraklatıldı</p>
+        <h1 class="page__title">TechInves</h1>
+        <p class="page__lead">ABD borsasındaki teknoloji şirketlerini yalnızca kendi benzerleriyle karşılaştırarak puanlayan bir hesap motoru ve bu puanların üstüne yazılan, açılmadan önce kurallarla denetlenen bir araştırma raporu hattı.</p>
+      </div>
+    </section>
+    <section class="brief veiled wrap" aria-labelledby="techinves-ozet">
+      <h2 class="brief__title" id="techinves-ozet">Kısaca</h2>
+      <dl class="brief__list">
+        <div class="brief__row">
+          <dt class="cap">Problem</dt>
+          <dd>Bir şirketin finansal sayısı tek başına bir şey söylemiyor: yüzde otuz kâr marjının yüksek olup olmadığı, şirketin ne iş yaptığına bağlı. Puanı doğrudan bir dil modelinden istemek ise sayının nereden geldiğini açıklanamaz hâle getiriyor.</dd>
+        </div>
+        <div class="brief__row">
+          <dt class="cap">Kullanıcı için değişen</dt>
+          <dd>Her şirket yalnızca kendi grubunun içinde, aynı veriyle her seferinde aynı sonucu veren bir hesapla 0–100 arasında puanlanıyor. Puanların üstüne yazılan araştırma raporu ise açılmadan önce kurallardan geçiyor; kusurluysa kusuru üstünde yazılı olarak açılıyor.</dd>
+        </div>
+        <div class="brief__row">
+          <dt class="cap">Bunu mümkün kılan karar</dt>
+          <dd>Puanlama katmanında tek bir model çağrısı yok. Model yalnızca anlatıyı yazıyor ve yazdığı hiçbir şey kural denetiminden geçmeden rapora girmiyor; ikinci bir modelin verdiği not kararı yalnızca yukarı çekebiliyor, aşağı çekemiyor.</dd>
+        </div>
+        <div class="brief__row">
+          <dt class="cap">Kanıt</dt>
+          <dd>Puanlama katmanındaki model çağrısı sayısı sıfır. Listedeki 40 şirketin tamamı canlı veriyle çözülüyor, şirket başına iki istekle. Testlerin hiçbiri ağa çıkmıyor. Rapor kararının dört seviyesi de saklanıyor ve gösteriliyor.</dd>
+        </div>
+      </dl>
+      <dl class="meta">
+        <div><dt>Tür</dt><dd>ABD teknoloji sektörü için puanlama motoru + araştırma/sentez/doğrulama hattı</dd></div>
+        <div><dt>Durum</dt><dd>Çalışır durumda; 2026-08-25'ten beri duraklatıldı, terk edilmedi</dd></div>
+        <div><dt>Yığın</dt><dd>Python · LangGraph · FastAPI · SQLAlchemy · Alembic · SQLite/Postgres · Next.js</dd></div>
+        <div><dt>Repo</dt><dd><a href="https://github.com/brkakyldz/tech_inves" rel="noopener">github.com/brkakyldz/tech_inves</a></dd></div>
+      </dl>
+    </section>
+
+    <section class="gallery veiled wrap" aria-labelledby="techinves-gallery-title">
+      <div class="gallery__head">
+        <div>
+          <p class="cap">Ürünün yüzü</p>
+          <h2 id="techinves-gallery-title">Arayüzden görüntüler</h2>
+        </div>
+        <p class="gallery__total"><b data-gallery-current>01</b> / 05</p>
+      </div>
+      <a href="../../static/media/projects/techinves/screener.webp" class="gallery__stage" data-gallery="techinves" data-gallery-open data-gallery-index="0" aria-label="TechInves arayüz görüntüsünü tam ekran aç">
+        <img src="../../static/media/projects/techinves/screener.webp" width="2200" height="1375" alt="Kırk şirketin kendi karşılaştırma grubu içinde sıralandığı puan tablosu." loading="lazy" decoding="async">
+        <span class="gallery__expand"><span>Tam ekran</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6 2H2v4M10 2h4v4M14 10v4h-4M6 14H2v-4"/></svg></span>
+      </a>
+      <div class="gallery__reading">
+        <p class="gallery__selected"><b data-gallery-title>Şirket tarayıcısı</b><span data-gallery-caption>Kırk şirketin kendi karşılaştırma grubu içinde sıralandığı puan tablosu.</span></p>
+        <ol class="gallery__thumbs" aria-label="TechInves ekran görüntüleri">
+          <li>
+            <a href="../../static/media/projects/techinves/screener.webp" class="gallery__thumb" data-gallery="techinves" data-gallery-item data-gallery-select data-gallery-index="0" data-gallery-title="Şirket tarayıcısı" data-gallery-caption="Kırk şirketin kendi karşılaştırma grubu içinde sıralandığı puan tablosu." data-gallery-width="2200" data-gallery-height="1375" aria-current="true">
+              <img src="../../static/media/projects/techinves/screener-thumb.webp" width="420" height="262" alt="" loading="lazy" decoding="async">
+              <span>Şirket tarayıcısı</span>
+            </a>
+          </li>
+          <li>
+            <a href="../../static/media/projects/techinves/company.webp" class="gallery__thumb" data-gallery="techinves" data-gallery-item data-gallery-select data-gallery-index="1" data-gallery-title="Şirket ayrıntısı" data-gallery-caption="Bileşik puan, sektör yüzdeliği ve kategori kırılımı tek şirket görünümünde." data-gallery-width="2200" data-gallery-height="1375">
+              <img src="../../static/media/projects/techinves/company-thumb.webp" width="420" height="262" alt="" loading="lazy" decoding="async">
+              <span>Şirket ayrıntısı</span>
+            </a>
+          </li>
+          <li>
+            <a href="../../static/media/projects/techinves/report.webp" class="gallery__thumb" data-gallery="techinves" data-gallery-item data-gallery-select data-gallery-index="2" data-gallery-title="Araştırma raporu" data-gallery-caption="Kaynaklara bağlanan, şirket bazında bölümlenmiş sektör araştırması." data-gallery-width="2200" data-gallery-height="1375">
+              <img src="../../static/media/projects/techinves/report-thumb.webp" width="420" height="262" alt="" loading="lazy" decoding="async">
+              <span>Araştırma raporu</span>
+            </a>
+          </li>
+          <li>
+            <a href="../../static/media/projects/techinves/run-panel.webp" class="gallery__thumb" data-gallery="techinves" data-gallery-item data-gallery-select data-gallery-index="3" data-gallery-title="Çalıştırma paneli" data-gallery-caption="Puan yenileme, tüm raporu üretme ve tek şirket araştırmasını ayrı maliyet sınırlarıyla başlatma." data-gallery-width="2200" data-gallery-height="1375">
+              <img src="../../static/media/projects/techinves/run-panel-thumb.webp" width="420" height="262" alt="" loading="lazy" decoding="async">
+              <span>Çalıştırma paneli</span>
+            </a>
+          </li>
+          <li>
+            <a href="../../static/media/projects/techinves/landing.webp" class="gallery__thumb" data-gallery="techinves" data-gallery-item data-gallery-select data-gallery-index="4" data-gallery-title="Son çalışmanın özeti" data-gallery-caption="Giriş sayfasında son çalışmanın öne çıkan şirketi ve puan farkı." data-gallery-width="2200" data-gallery-height="1375">
+              <img src="../../static/media/projects/techinves/landing-thumb.webp" width="420" height="262" alt="" loading="lazy" decoding="async">
+              <span>Son çalışmanın özeti</span>
+            </a>
+          </li>
+        </ol>
+      </div>
+    </section>
+    <section class="plate veiled wrap" aria-label="Sistem çizimi">
+      <figure>
+        <svg class="diagram" xmlns="http://www.w3.org/2000/svg" viewBox="-8 -8 544 672" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="techinves-t techinves-d">
+  <title id="techinves-t">TechInves: hesaplanan şirket puanı ile modelin yazdığı raporun ayrı akışları.</title>
+  <desc id="techinves-d">Finansal veriler soldaki hesap hattında benzer şirketlerle karşılaştırılarak puana dönüşür; model bu puana müdahale etmez. Sağdaki hat birkaç şirketi araştırır, raporu yazar ve kullanıcıya göstermeden önce kurallarla denetler.</desc>
+<g id="d-techinves">
+            <!-- Sol hat: puanlama merdiveni -->
+            <path class="k" d="M48,54 V82 M48,94 V148 M48,204 V252 M48,260 V316 M48,324 V440"/>
+            <g class="node s1"><circle class="k" cx="48" cy="48" r="6"/><text class="num" x="64" y="52">01</text><text class="t" x="88" y="52">resmî finansal veri</text><text class="t sm" x="88" y="68">SEC EDGAR · companyfacts</text></g>
+            <g class="node s1"><circle class="k" cx="48" cy="88" r="6"/><text class="num" x="64" y="92">02</text><text class="t" x="88" y="92">şirket künyesi</text></g>
+            <g class="s5 s6"><text class="t sm" x="88" y="108">FMP · ~250 istek / gün</text></g>
+            <g class="node s2">
+              <circle class="fx" cx="48" cy="152" r="3.5"/><circle class="fx" cx="48" cy="176" r="3.5"/><circle class="fx" cx="48" cy="200" r="3.5"/>
+              <path class="k" d="M48,156 V172 M48,180 V196"/>
+              <text class="num" x="64" y="156">03</text><text class="t" x="88" y="156">uçları törpüle</text><text class="t" x="88" y="180">yön düzeltme</text><text class="t" x="88" y="204">grup içinde yüzdelik</text>
+            </g>
+            <g class="s6"><text class="t sm" x="88" y="222">en az 2 benzer şirket</text></g>
+            <g class="node s3"><circle class="fx" cx="48" cy="256" r="3.5"/><text class="num" x="64" y="260">04</text><text class="t" x="88" y="260">kategori skoru</text><text class="t sm" x="88" y="276">eksik metrik ağırlığı dağılır</text></g>
+            <g class="node s3">
+              <circle class="fx" cx="48" cy="320" r="3.5"/><text class="num" x="64" y="324">05</text><text class="t" x="88" y="324">bileşik puan</text>
+              <path class="k" d="M176,300 V340"/><circle class="fx" cx="176" cy="320" r="3.5"/><text class="t" x="188" y="324">risk puanı</text><text class="t sm" x="188" y="340">ayrı tutulur</text>
+            </g>
+            <g class="s3 s5"><rect class="k" x="88" y="348" width="56" height="48"/><text class="ms-n" x="97" y="382">70</text><text class="ms-c" x="88" y="412">riskliyse tavan</text></g>
+            <g class="node s3"><path class="k" d="M40,440 H56"/><text class="num" x="64" y="444">06</text><text class="t" x="88" y="444">puan ve bant</text><text class="t sm" x="88" y="460">veri yok da bir bant</text></g>
+
+            <!-- Sağ hat: rapor -->
+            <path class="k" d="M296,158 V190 M296,258 V276 M296,284 V312 M296,360 V432"/>
+            <g class="node s4"><circle class="fx" cx="296" cy="152" r="3.5"/><text class="num" x="312" y="156">08</text><text class="t" x="336" y="156">ucuz ön eleme</text><text class="t sm" x="336" y="172">3–4 şirket seçilir</text></g>
+            <g class="node s4">
+              <path class="k" d="M296,190 L272,206 V242 L296,258 M296,190 L284,206 V242 L296,258 M296,190 V258 M296,190 L308,206 V242 L296,258 M296,190 L320,206 V242 L296,258"/>
+              <path class="k" d="M272,228 a5,5 0 1 0 0,-10"/>
+              <text class="num" x="336" y="214">09</text><text class="t" x="360" y="214">13–14 araştırma dalı</text><text class="t sm" x="336" y="232">yeniden dene ×2</text>
+            </g>
+            <g class="node s4"><circle class="fx" cx="296" cy="280" r="3.5"/><text class="num" x="312" y="284">10</text><text class="t" x="336" y="284">tek taslakta birleşir</text></g>
+            <g class="node s4">
+              <rect class="k" x="280" y="312" width="136" height="48"/><text class="num" x="288" y="330">11</text><text class="t" x="312" y="330">doğrulayıcı</text><text class="t sm" x="288" y="348">kural önce</text>
+              <path class="k" d="M296,376 H308 M296,392 H308 M296,408 H308 M296,424 H308"/>
+              <text class="t sm" x="316" y="380">durdur</text><text class="t sm" x="316" y="396">uyarılarla aç</text><text class="t sm" x="316" y="412">notla geç</text><text class="t sm" x="316" y="428">geç</text>
+            </g>
+            <g class="node s4"><path class="k" d="M296,432 V452 M291,447 L296,452 L301,447"/><text class="num" x="312" y="452">12</text><text class="t" x="336" y="452">rapor</text><text class="t sm" x="312" y="470">kusuru üstünde yazılı açılır</text></g>
+
+            <!-- Sınır -->
+            <g class="bd s2"><path class="k" d="M16,488 H464 M16,492 H464"/><text class="cap" x="16" y="478">puan hattı</text><text class="cap" x="200" y="478">rapor hattı</text><text class="cap" x="120" y="512">modelin çalıştığı yer</text></g>
+
+            <!-- Model, altında -->
+            <g class="node s2"><rect class="k" x="232" y="544" width="128" height="48"/><text class="num" x="240" y="562">07</text><text class="t" x="264" y="562">model</text><text class="t sm" x="240" y="580">yazar · hakem</text></g>
+            <g class="s4"><path class="k" d="M360,568 H460 V208 M460,214 H452 M460,284 H452 M460,336 H416"/></g>
+            <g class="rf-g s2 s5"><path class="k rf" d="M232,568 H64 V510"/><path class="k" d="M59,499 L69,509 M69,499 L59,509"/><text class="t" x="80" y="530">0 model çağrısı</text></g>
+            <g class="node s6"><circle class="k rf" cx="240" cy="616" r="6"/><text class="num" x="256" y="620">13</text><text class="t" x="280" y="620">bağlanmamış çağrı yeri</text><text class="t sm" x="280" y="636">section_synthesis · 0 çalıştırma</text></g>
+          </g>
+</svg>
+
+        <figcaption><span class="cap">Sistem çizimi</span>TechInves: hesaplanan şirket puanı ile modelin yazdığı raporun ayrı akışları.</figcaption>
+      </figure>
+    </section>
+    <section class="prose veiled wrap" aria-labelledby="techinves-derinlik">
+      <p class="cap prose__tier" id="techinves-derinlik">Teknik derinlik</p>
+      <p class="prose__tiernote">Buradan sonrası mimari ayrıntı: iç adlar, eşikler, durum değerleri, modül yolları ve ayrıntılı ölçümler. Yukarıdaki özet tek başına okunduğunda proje anlaşılır.</p>
+      <div class="prose__cols">
+        <div class="prose__body">
+          <h2 id="techinves-b1">Problem</h2>
+<p>Bir şirketin finansal sayıları tek başına bir şey söylemiyor: 45'lik bir brüt
+marj bir yazılım şirketinde kötü, bir donanım şirketinde iyi. Karşılaştırma
+akranlarla yapılmalı. Öte yandan haber akışı, sayılara bakmadan anlatı üretiyor.</p>
+<p>TechInves ikisini de yapıyor ama <strong>birbirine karıştırmıyor</strong>: puanlama katmanı
+tamamen deterministik ve LLM'siz, rapor katmanı LLM'li ama yazdığı hiçbir şey
+kural denetiminden geçmeden yayımlanmıyor.</p>
+<h2 id="techinves-b2">Kurucu kararlar</h2>
+<h3>Puanlamada tek bir LLM çağrısı yok</h3>
+<p>Skor doğrudan veriden hesaplanıyor. Şirket temelleri SEC EDGAR'ın XBRL
+<code>companyfacts</code> API'sinden, hisse fiyatı ve piyasa değeri Financial Modeling
+Prep'in ücretsiz <code>profile</code> uç noktasından geliyor. Puan, model görüşü değil,
+aritmetik.</p>
+<h3>Yüzdelik sıralama kohort içindedir</h3>
+<p>Her şirket <strong>kendi kohortu</strong> içinde 0–100 arasında puanlanıyor: Software &amp;
+Internet (A), Hardware &amp; Semiconductors (B), IT Services (C). Bu, tek bir
+ticker'ı puanlamanın bile bütün kohortun ham verisini çekmeyi gerektirmesi
+demek — yüzdelik normalleştirme, kohort geneli bir işlem. <code>score --ticker</code> tek
+bir şirketi <em>göstermenin</em> kolaylığı; kohort genelindeki hesabı atlamanın yolu
+değil.</p>
+<p>Bir kohort minimum boyutun altına düşerse, kalan en büyük gruba yinelemeli olarak
+birleştiriliyor ("genişletilmiş kohort") ve o gruptaki her ticker
+<code>extended=True</code> işaretini taşıyor.</p>
+<h3>Veri boşluğu, ölçülmüş bir başarısızlık değildir</h3>
+<p>Sistemin en dikkatli tasarım kararı bu. Hesaplanamayan bir metrik <code>0.0</code> olarak
+geçmiyor — <code>None</code> oluyor ve ağırlığı kategori içinde yeniden dağıtılıyor. Aynısı
+bir seviye yukarıda da geçerli: hiçbir metriği hesaplanamayan bir kategori
+<code>score=None</code> alıyor ve bileşik skordan dışlanıp kalan ağırlıklar yeniden
+ölçekleniyor.</p>
+<blockquote>
+<p><code>0.0</code> meşru bir skordur — kohortun dibi, her metrikte. Verinin yokluğu <strong>başka
+bir olgudur</strong> ve başka bir değer alır.</p>
+</blockquote>
+<p>Hiçbir kategori hesaplanamadıysa bileşik skor <code>None</code> ve bandı "Very Weak" değil,
+<strong>"No Data"</strong>. Bu ayrım bilerek yapıldı.</p>
+<p>Aynı ilkenin bir başka görünümü: bir metrik, kohortta <em>tanımlı</em> değeri olan en az
+iki üye yoksa yüzdelik sıralamaya sokulmuyor. Tek üyeyle ortalama-sıra yüzdeliği
+her zaman tam olarak 50,0 çıkar — bu bir ölçüm değil, istatistiksel bir yozlaşma,
+ve "nötr 50 atanmaz" kuralı tam da bunu yasaklıyor.</p>
+<h3>Rejim, metrik setini değiştirir</h3>
+<p>GAAP faaliyet karı son dört çeyrektir negatifse şirket "kârsız büyüme" rejimine
+atanıyor ve risk skorundaki ağırlıkların %40'ı yer değiştiriyor: kaldıraç ve faiz
+karşılama yerine <strong>nakit ömrü</strong> ve <strong>burn multiple</strong>. Yeterli çeyreklik geçmiş
+yoksa (yeni halka arz gibi) tahmin yürütülmüyor, en son yıllık faaliyet karına
+düşülüyor.</p>
+<h3>Rapor hattı sabit ve denetlenebilir bir iş akışıdır</h3>
+<p>Model hangi aracın çağrılacağına karar vermiyor. Arama sağlayıcıları Python'dan
+doğrudan, önceden belirlenmiş bir sırayla çağrılıyor; model yalnızca çıkarım,
+yargı ve anlatı yazımı gereken adımlarda devreye giriyor. Bir araştırma dalındaki
+tek döngü, başarısız bir ağ çağrısını yeniden deniyor; iş akışının yönünü model
+değiştirmiyor.</p>
+<h3>Pahalı olan her şey grafik çağrılmadan önce kararlaştırılır</h3>
+<p>Öne çıkan şirket seçimi, skorlar ve makro omurga grafiğe <strong>girdi</strong> olarak
+veriliyor, yani yayılma genişliği ilk dal başlamadan önce sabit. Düşük maliyetli
+bir ön eleme izleme listesini sıralayıp 3–4 öne çıkan şirketi seçiyor; bu yüzden
+sitenin gösterdiği iki seçim — öne çıkan rozetleri ve derin inceleme bölümleri —
+sonradan uzlaştırmayla değil, <strong>inşa gereği</strong> birbiriyle uyumlu.</p>
+<h3>Dayanak tespit edilmez, yapısaldır</h3>
+<p>Yazar model <strong>asla URL üretmiyor</strong>. <code>[S3]</code> biçiminde işaretler bırakıyor ve
+deterministik bir genişletme bunları, istemde listelenen aynı kapalı kelime
+dağarcığından bağlantılara çeviriyor. Uydurulmuş bir kimlik hiçbir şeye
+genişliyor ve doğrulayıcıya kanıt olarak raporlanıyor — atıf kapısının temizlenmiş
+taslağı değil, temizlenmeden önceki taslağı okumasının sebebi bu.</p>
+<h3>Deterministik olan hiçbir şey modelden istenmez</h3>
+<p>İzleme listesi tablosu, çitlenmiş skor bloğu, makro omurga, öne çıkanların giriş
+cümlesi ve sıfır-verim kapsama notu — hepsi koddan, veriden render ediliyor.
+Modele tek bir iş bırakılıyor: eline verilen bulgular üzerine anlatı yazmak.</p>
+<h3>Eksik veri açıkça görünür kalır</h3>
+<p>Eksik bir isteğe bağlı anahtar (<code>FRED_API_KEY</code>, <code>EXA_API_KEY</code>) bir ayağı atlıyor
+ve bunu söylüyor; eksik bir zorunlu anahtar tetikleyiciyi <strong>adını vererek</strong>
+reddediyor. Eksik skor verisi açık bir gerekçeyle render ediliyor, asla atlanmıyor
+ya da aradeğerlenmiyor.</p>
+<p>Bunun kurulumdaki karşılığı demo modu: hiçbir API anahtarı olmadan üç komutla
+tamamen dolu, gezilebilir bir site ayağa kalkıyor — beş örnek rapor
+(doğrulayıcının bütün karar aralığını kapsıyor), 40 örnek şirket skoru. Her
+sayfanın üstündeki bir bant bunu açıkça söylüyor ve üç çalıştırma tetikleyicisi
+görünür biçimde devre dışı, her biri eksik olan anahtarı adıyla söylüyor.</p>
+<h2 id="techinves-b3">Nasıl çalışır</h2>
+<h3>İki katman, veritabanında buluşuyor</h3>
+<pre><code>                       SEC EDGAR (XBRL companyfacts)  +  FMP (profile)
+                                        │
+              ┌─────────────────────────┴──────────────────────────┐
+              ▼                                                    ▼
+    PUANLAMA HATTI (deterministik, LLM'siz)          RAPOR HATTI (LangGraph, talep üzerine)
+    winsorize → yön düzeltme → yüzdelik              ucuz sonda → 3-4 öne çıkan seçilir
+    → kategori ağırlıkları → bileşik skor            → araştırma dalları (13-14) yayılır
+    → risk alt skoru → sıkıntı tavanı                → sentez (tek taslak)
+              │                                      → doğrulayıcı (kural + LLM hakem)
+              ▼                                                    ▼
+         Skor · doğrudan veriden                     pass / pass_with_flags /
+                                                     degraded_publish / block
+</code></pre>
+<p><code>pipeline</code>, <code>techinves</code>'i import ediyor; bağımlılık asla ters yöne akmıyor.</p>
+<h3>Puanlama, adım adım</h3>
+<p>Sıra önemli ve metodoloji belgesinin kendi adımlarını yansıtıyor:</p>
+<ol>
+<li><strong>Winsorize</strong> — ham değerler kendi orijinal birimlerinde, kohortun
+   [%2,5, %97,5] yüzdelik aralığına kırpılıyor. Tanımsız değerler dışlanıyor,
+   asla 0'a kırpılmıyor.</li>
+<li><strong>Yön düzeltme</strong> — düşük-daha-iyi metrikler negatifleniyor, böylece "daha
+   yüksek yüzdelik = her zaman daha iyi" tek kural hâline geliyor.</li>
+<li><strong>Yüzdelik sıralama</strong> — ortalama-sıra yüzdeliği:
+   <code>(küçük olanlar + 0,5 × eşit olanlar) / n × 100</code>.</li>
+<li><strong>Kategori skoru</strong> — kategori içinde ağırlıklı toplam; hesaplanamayan
+   metriklerin ağırlığı, hesaplanabilenler arasında yeniden dağıtılıyor.</li>
+<li><strong>Bileşik skor</strong> — kategori skorlarının, gerçekten skoru olan kategoriler
+   üzerinde yeniden normalleştirilmiş ağırlıklı toplamı.</li>
+</ol>
+<p>Kohort başına kategori ağırlıkları farklı — kohortun ne olduğu, neyin önemli
+olduğunu değiştiriyor:</p>
+<div class="tablewrap">
+<table>
+<thead>
+<tr>
+<th>Kohort</th>
+<th>quality</th>
+<th>growth</th>
+<th>valuation</th>
+<th>financial health</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A · Software &amp; Internet</td>
+<td>0,30</td>
+<td>0,30</td>
+<td>0,20</td>
+<td>0,20</td>
+</tr>
+<tr>
+<td>B · Hardware &amp; Semiconductors</td>
+<td>0,35</td>
+<td>0,20</td>
+<td>0,25</td>
+<td>0,20</td>
+</tr>
+<tr>
+<td>C · IT Services &amp; Infrastructure</td>
+<td>0,30</td>
+<td>0,25</td>
+<td>0,25</td>
+<td>0,20</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Risk ayrı bir skor</strong>, bileşiğin içinde değil. Üç bileşen iki rejimde de ortak —
+Altman-Z (0,30), Piotroski-F (0,20), seyrelme (0,10) — kalan %40 rejime bağlı:
+kârlı şirketlerde net borç/EBITDA ve faiz karşılama (0,20 + 0,20), kârsız büyüme
+rejiminde nakit ömrü ve burn multiple.</p>
+<p>Bunun üstünde bir <strong>sıkıntı tavanı</strong> var: belirli eşiklerin (faiz karşılama &lt; 2,0,
+Altman-Z &lt; 1,1, nakit ömrü &lt; 12 ay) altındaki bir şirketin bileşik skoru 70'i
+geçemiyor. Bant eşikleri: 80+ Strong, 65+ Good, 45+ Moderate, 30+ Weak, altı Very
+Weak — ve hesaplanamayan bir skor için "No Data".</p>
+<p><strong>Veri kapsamı</strong> ayrı bir gösterge: dört kategorinin metriklerinin kaçının
+hesaplanabildiği (0,0–1,0), ve eşiğin altındaysa şirket "düşük güvenilirlik"
+etiketiyle işaretleniyor.</p>
+<h3>Rapor hattı, adım adım</h3>
+<p><strong>Grafik öncesi (deterministik).</strong> Kapsanan olaylar yükleniyor, ucuz bir arama
+sondası izleme listesini sıralayıp 3–4 öne çıkan ticker'ı seçiyor, skorlar ve
+makro omurga yükleniyor.</p>
+<p><strong>Grafik (dört düğüm derinliğinde).</strong> <code>init</code> bir <code>RESET</code> işareti yayıyor —
+kontrol noktalı bir iş parçacığı yeniden çağrıldığında, çöken bir denemenin
+biriktirdiğini ikiye katlamak yerine boştan başlıyor. Ardından <code>Send</code>'lerle 13–14
+araştırma dalı yayılıyor: 3–4 şirket dalı artı on sabit makro konusu.</p>
+<p><strong>Bir araştırma dalının içi.</strong> Bütün dış çağrılar burada. İki arama sorgusu
+Tavily'ye gidiyor (Exa yedekli); ek ayaklar EDGAR'a, şirket yatırımcı ilişkileri
+beslemelerine ve Federal Register'a gidiyor. <strong>Her ayak toplamalı</strong>: boş ya da
+başarısız bir ayak sıfır sonuç katkısı yapıyor, asla dalın başarısızlığı değil.
+Sonuçlar <code>retrieved_urls</code> içinde tekilleşiyor ve bir atfın sonradan
+gösterebileceği tek şey bu küme.</p>
+<p>Yeniden deneme yayı sistemdeki tek döngü. Bir içerik reddi onu anında kısa
+devre yaptırıyor — bir içerik filtresini yeniden denemek kotadan başka bir şey
+satın almıyor — zaman aşımı ya da hız sınırı ise geri çekilmeli iki deneme daha
+alıyor, tükendiğinde dal bir <code>FailureNote</code>'a bozuluyor ve rapor bunu Kapsama
+Notları'nda adıyla söylüyor.</p>
+<p><strong>Durum kanalları ve içeri katlama.</strong> On üç ya da on dört dal aynı anda dört
+kanala yazıyor:</p>
+<div class="tablewrap">
+<table>
+<thead>
+<tr>
+<th>Kanal</th>
+<th>İndirgeyici</th>
+<th>Taşıdığı</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>research_findings</code></td>
+<td><code>additive_with_reset</code></td>
+<td>Bulgular — şema gereği sayısal alan yok</td>
+</tr>
+<tr>
+<td><code>retrieved_urls</code></td>
+<td><code>union_with_reset</code></td>
+<td>Atıf kapısının ölçtüğü dayanak kümesi</td>
+</tr>
+<tr>
+<td><code>failures</code></td>
+<td><code>additive_with_reset</code></td>
+<td>Bozulmuş dallar, okuyucuya gösteriliyor</td>
+</tr>
+<tr>
+<td><code>branch_yields</code></td>
+<td><code>additive_with_reset</code></td>
+<td>Dal başına süre, token, maliyet, bulgu sayısı</td>
+</tr>
+<tr>
+<td><code>draft_report</code></td>
+<td>son yazan kazanır</td>
+<td>Bir kez yazılıyor, <code>synthesis</code> tarafından</td>
+</tr>
+<tr>
+<td><code>verifier_report</code></td>
+<td>son yazan kazanır</td>
+<td>Karar, ihlaller, bölüm puanları</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Bir çalıştırmadaki her LLM çağrısı</strong> — dört çağrı yeri, üçü grafiğe bağlı:</p>
+<div class="tablewrap">
+<table>
+<thead>
+<tr>
+<th>Çağrı yeri</th>
+<th>Model</th>
+<th>Biçim</th>
+<th>Çalıştırma başına</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>research/agent.py</code></td>
+<td><code>WRITER_MODEL</code></td>
+<td>yapılandırılmış → <code>FindingsBatch</code></td>
+<td>13–14, dal başına bir</td>
+</tr>
+<tr>
+<td><code>synthesis/node.py</code></td>
+<td><code>WRITER_MODEL</code></td>
+<td>düz <code>invoke</code> → Markdown</td>
+<td>1, taslağın tamamı</td>
+</tr>
+<tr>
+<td><code>verifier/node.py</code></td>
+<td><code>JUDGE_MODEL</code></td>
+<td>yapılandırılmış → bölüm puanları 0–10</td>
+<td>0–1, <code>block</code>'ta atlanıyor</td>
+</tr>
+<tr>
+<td><code>synthesis/section_synthesis.py</code></td>
+<td><code>WRITER_MODEL</code></td>
+<td>düz <code>invoke</code> → tek şirketin düzyazısı</td>
+<td>0 — henüz grafik düğümü değil</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Token ve maliyet muhasebesi her çağrıya taze bir kullanım işleyicisi bağlıyor, ki
+eşzamanlı dallar asla bir biriktirici paylaşmasın.</p>
+<h3>Kararı ne verir</h3>
+<p>Kural tabanlı ön eleme deterministik ve önce çalışıyor. Kararı <strong>şiddet
+belirliyor, hakem değil</strong>; LLM katmanı kararı yalnızca yükseltebilir, asla
+düşüremez. Engellenmiş bir karar hakeme hiç ulaşmıyor: <code>block</code> için kural katmanı
+otoriter, ve yayımlanamaz bir taslağın tutarlılık incelemesine para ödemek
+tasarım gereği atlanıyor.</p>
+<div class="tablewrap">
+<table>
+<thead>
+<tr>
+<th>Karar</th>
+<th>Neyin tetiklediği</th>
+<th>Rapora ne oluyor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>block</code></td>
+<td>Herhangi bir <code>compliance_hard</code> ihlali — sızmış bir sayı, uydurma bir atıf, eksik feragatname ya da yapay zekâ açıklaması</td>
+<td>İhlal listesiyle <strong>birlikte</strong> yayımlanıyor, asla sessizce atılmıyor. <code>covered_events</code> dokunulmadan kalıyor, böylece bir sonraki çalıştırma pencereyi yeniden araştırıyor</td>
+</tr>
+<tr>
+<td><code>degraded_publish</code></td>
+<td>Uyumluluk sorunu olmadan bir <code>structural_hard</code> ihlali — örneğin eksik derin inceleme bölümleri</td>
+<td>Her boşluğu adıyla sayan, azaltılmış kapsama bandının arkasında yayımlanıyor</td>
+</tr>
+<tr>
+<td><code>pass_with_flags</code></td>
+<td>Eksik düşük-güvenilirlik etiketleri, yumuşak eksiklikler, ya da hakemin güven puanı 5'in altında olan herhangi bir bölüm</td>
+<td>Yayımlanıyor; işaretlenen bölümler çalıştırmanın karar gerekçesinde adıyla anılıyor</td>
+</tr>
+<tr>
+<td><code>pass</code></td>
+<td>Yukarıdakilerin hiçbiri ateşlenmedi</td>
+<td>Temiz yayımlanıyor</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Eksiksizlik, çalıştırmanın kendi öne çıkan alt kümesine karşı değil, <strong>puanlamaya
+uygun izleme listesinin tamamına</strong> karşı ölçülüyor — aksi hâlde dar bir
+çalıştırma kendini önemsizce tatmin ederdi.</p>
+<h3>Çalıştırma tetikleyicileri</h3>
+<p>Üç iş birimi, arayüzün çalıştırma panelinden ya da doğrudan çağrılabiliyor:</p>
+<ul>
+<li><strong><code>scores</code></strong> ("Skorları yenile") — izleme listesinin tamamı için temelleri
+  yeniden çekiyor ve her skoru yeniden hesaplıyor. Deterministik, LLM çağrısı yok,
+  ~40 EDGAR + ~40 FMP isteği.</li>
+<li><strong><code>report</code></strong> ("Rapor üret") — izleme listesinin tamamı üzerinde tam
+  araştırma/sentez/doğrulama zinciri. Birkaç dakika; ücretli LLM ve arama API'leri.</li>
+<li><strong><code>company</code></strong> ("Bu şirketi araştır") — aynı zincir tek bir ticker'a daraltılmış,
+  o ticker raporun öne çıkanı olarak sabitleniyor.</li>
+</ul>
+<p>Tetikleyici tipi başına aynı anda tek çalıştırma; bunu kısmi bir benzersiz indeks
+zorluyor. Redler <strong>makine tarafından okunabilir</strong>, asla yalnız düzyazı:
+<code>UnknownTriggerType</code> (422), <code>TickerRequired</code> / <code>UnknownTicker</code> (422),
+<code>UnexpectedTicker</code> (422), <code>MissingApiKey</code> (503, anahtarı adıyla),
+<code>RunNotReconciled</code> (503), <code>RunRefused</code> (409, kilidi tutan çalıştırmayı adıyla).</p>
+<p>Çalıştırmalar API sürecinde bir arka plan iş parçacığında yürüyor: <strong>sayfayı
+kapatmak çalıştırmayı durdurmuyor</strong>, ve tekrar açmak canlı logu kaldığı yerden
+sürdürüyor. Çalıştırma ortasında bir çökme, her araştırma dalını yeniden satın
+almak yerine son tamamlanan adımdan devam ediyor (LangGraph kontrol noktalama).</p>
+<h3>Veri kaynakları ve sınırlar</h3>
+<p>Ticker başına bir yenileme <strong>bir</strong> EDGAR ve <strong>bir</strong> FMP isteğine mal oluyor.</p>
+<div class="tablewrap">
+<table>
+<thead>
+<tr>
+<th>Kaynak</th>
+<th>Ne sağlıyor</th>
+<th>Kimlik</th>
+<th>Sınır</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SEC EDGAR <code>companyfacts</code></td>
+<td>gelir tablosu, bilanço, nakit akışı, dosyalama geçmişi</td>
+<td>anahtar yok — iletişim adresli <code>User-Agent</code> zorunlu</td>
+<td>10 istek/sn, günlük tavan yok</td>
+</tr>
+<tr>
+<td>FMP <code>profile</code></td>
+<td>hisse fiyatı, piyasa değeri, sektör/endüstri</td>
+<td><code>FMP_API_KEY</code></td>
+<td>~250 istek/gün (ücretsiz kademe)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>SEC, iletişim adresi taşımayan <code>User-Agent</code>'lı istekleri reddediyor; <code>EdgarClient</code>
+SEC'in yayımladığı 10 istek/sn sınırına kendini kısıtlıyor. Yanıtlar diske
+önbelleğe alınıyor (24 saat TTL), esas olarak yük boyutu için — <code>companyfacts</code>
+belgeleri her biri 0,5–4 MB.</p>
+<p>Canlı doğrulanmış kapsama notları (40 puanlanan ticker'ın 40'ı çözülüyor):</p>
+<ul>
+<li><strong>ASML</strong> yalnızca EUR cinsinden dosyalıyor; rakamlar herhangi bir USD oranı
+  hesaplanmadan önce ECB referans kurlarıyla çevriliyor. TSM hem TWD hem USD
+  dosyalıyor; USD rakamları kullanılıyor.</li>
+<li><strong>IBM</strong> faaliyet karını kabul edilen hiçbir kavram adı altında etiketlemiyor;
+  etkilenen metrikler kullanılamaz işaretleniyor ve ağırlıkları kategori içinde
+  yeniden dağıtılıyor. Şirket yine de skor alıyor.</li>
+</ul>
+<h2 id="techinves-b4">Sayılar</h2>
+<h3>Ölçülenler</h3>
+<div class="tablewrap">
+<table>
+<thead>
+<tr>
+<th>Ne</th>
+<th>Değer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Kapsama</td>
+<td>40/40 ticker canlı olarak çözülüyor — kapsama, isabet değil</td>
+</tr>
+<tr>
+<td>Tam yenileme maliyeti</td>
+<td>~40 EDGAR + ~40 FMP isteği</td>
+</tr>
+<tr>
+<td>API anahtarsız kurulum</td>
+<td>3 komut, tam gezilebilir demo (5 rapor, 40 skor)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Bu iki tablo bilerek ayrı. Üsttekiler sistemi çalıştırınca çıkan sayılar; alttakiler kodda öyle yazdığı için doğru. İkincisi de doğrulanabilir, ama doğrulanabilir olmak bir sayıyı ölçüm yapmıyor — ve bu sayfanın kuralı ölçmediğini iddia etmemek.</p>
+<h3>Tasarım sabitleri</h3>
+<div class="tablewrap">
+<table>
+<thead>
+<tr>
+<th>Ne</th>
+<th>Değer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Puanlama katmanındaki LLM çağrısı</td>
+<td><strong>0</strong></td>
+</tr>
+<tr>
+<td>Ağa çıkan test</td>
+<td><strong>0</strong> — istemciler her yerde enjekte ediliyor</td>
+</tr>
+<tr>
+<td>Kohort</td>
+<td>3 (A · B · C)</td>
+</tr>
+<tr>
+<td>Puan kategorisi</td>
+<td>4, artı ayrı bir risk skoru</td>
+</tr>
+<tr>
+<td>İzleme listesi</td>
+<td>43 ticker, <strong>40'ı puanlanıyor</strong> (RKLB, ASTS, SPCX yalnızca araştırma)</td>
+</tr>
+<tr>
+<td>Ticker başına istek</td>
+<td>1 EDGAR + 1 FMP</td>
+</tr>
+<tr>
+<td>Grafik derinliği</td>
+<td>4 düğüm</td>
+</tr>
+<tr>
+<td>Araştırma dalı</td>
+<td>13–14 (3–4 şirket + 10 sabit makro konusu)</td>
+</tr>
+<tr>
+<td>Rapor kararı</td>
+<td>4 seviye, hepsi saklanıyor ve gösteriliyor</td>
+</tr>
+<tr>
+<td>Araştırma penceresi</td>
+<td>son 7 gün, <code>as_of</code> ile biten yuvarlanan pencere</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Puanın bir şey öngörüp öngörmediği hiçbir tabloda yok, çünkü ölçülmedi. Puanlama katmanında sıfır model çağrısı olması onu belirlenebilir yapıyor; belirlenebilir olmak isabetli olmak değil.</p>
+        </div>
+      <nav class="prose__index" aria-label="Teknik derinlik bölümleri">
+        <p class="cap">Bu bölümde</p>
+        <ol>
+          <li><a href="#techinves-b1">Problem</a></li>
+          <li><a href="#techinves-b2">Kurucu kararlar</a></li>
+          <li><a href="#techinves-b3">Nasıl çalışır</a></li>
+          <li><a href="#techinves-b4">Sayılar</a></li>
+        </ol>
+      </nav>
+      </div>
+      <p class="prose__src">Kaynak: <a href="https://github.com/brkakyldz/tech_inves/blob/master/README.md">README.md</a>, <a href="https://github.com/brkakyldz/tech_inves/blob/master/docs/pipeline.md">docs/pipeline.md</a>, <a href="https://github.com/brkakyldz/tech_inves/blob/master/CLAUDE.md">CLAUDE.md</a>; puanlama gerekçeleri modül docstring'lerinde. Bu sayfa <code>master</code> dalının 2026-09-07 tarihli hâlinden (son push 2026-08-20) alındı.</p>
+      <nav class="pager" aria-label="Diğer işler"><a href="../second-brain-os/"><span>Önceki</span><b>Second Brain OS</b></a><a href="../terminal-organizer/"><span>Sonraki</span><b>Terminal Organizer</b></a></nav>
+    </section>
+  </main>
+</body>
+</html>

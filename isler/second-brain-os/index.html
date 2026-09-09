@@ -1,0 +1,684 @@
+<!doctype html>
+<html lang="tr" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Second Brain OS — Berke Akyıldız</title>
+  <meta name="description" content="Bir yapay zekâ ajanının kalıcı belleği, düz metin dosyaları hâlinde: her yeni oturumda projeyi baştan anlatmak yerine ajan aynı klasörü okuyup kaldığı yerden devam ediyor. Aynı klasörü insan da açıp okuyabiliyor.">
+  <meta name="theme-color" content="#07131d">
+  <meta name="color-scheme" content="dark">
+  <link rel="canonical" href="https://brkakyldz.github.io/isler/second-brain-os/">
+  <link rel="icon" href="../../static/favicon.ico?v=3" sizes="any">
+  <link rel="icon" href="../../static/favicon.svg?v=3" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../../static/apple-touch-icon.png?v=3">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:site_name" content="Berke Akyıldız">
+  <meta property="og:title" content="Second Brain OS — çalışma mantığı">
+  <meta property="og:description" content="Bir yapay zekâ ajanının kalıcı belleği, düz metin dosyaları hâlinde: her yeni oturumda projeyi baştan anlatmak yerine ajan aynı klasörü okuyup kaldığı yerden devam ediyor. Aynı klasörü insan da açıp okuyabiliyor.">
+  <meta property="og:url" content="https://brkakyldz.github.io/isler/second-brain-os/">
+  <meta property="og:image" content="https://brkakyldz.github.io/static/media/ocean-poster-v3.jpg">
+  <meta property="og:image:width" content="1920">
+  <meta property="og:image:height" content="1080">
+  <meta property="og:image:alt" content="Mavi saatte, bulutlu gökyüzünün altında açık deniz.">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preload" href="../../static/fonts/newsreader-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../../static/fonts/plex-sans-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../static/css/site.css">
+  <script>document.documentElement.classList.remove('no-js')</script>
+  <script src="../../static/js/site.js" defer></script>
+</head>
+<body class="detail">
+  <a class="skip" href="#main">İçeriğe atla</a>
+  <div class="ocean" aria-hidden="true">
+    <img class="ocean__still" src="../../static/media/ocean-poster-v3.jpg" width="1920" height="1080" alt="" decoding="async">
+    <div class="ocean__grain"></div>
+  </div>
+  <header class="top">
+    <a class="top__name" href="../../"><img class="top__mark" src="../../static/mark.svg" alt="" width="23" height="17" decoding="async">Berke Akyıldız</a>
+    <button class="top__toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menü</button>
+    <nav class="top__nav" id="site-nav" aria-label="Site"><a href="../../hakkimda/">Hakkımda</a><a href="../../#isler" aria-current="page">İşler</a><a href="../../cv/">Özgeçmiş</a><a href="../../#iletisim">İletişim</a><a href="https://github.com/brkakyldz" rel="me"><span lang="en">GitHub</span></a></nav>
+  </header>
+  <main id="main">
+    <section class="page wrap">
+      <div class="page__head">
+        <p class="cap">İş 02 / 04 · Çalışıyor, kullanımda</p>
+        <h1 class="page__title">Second Brain OS</h1>
+        <p class="page__lead">Bir yapay zekâ ajanının kalıcı belleği, düz metin dosyaları hâlinde: her yeni oturumda projeyi baştan anlatmak yerine ajan aynı klasörü okuyup kaldığı yerden devam ediyor. Aynı klasörü insan da açıp okuyabiliyor.</p>
+      </div>
+    </section>
+    <section class="brief veiled wrap" aria-labelledby="second-brain-os-ozet">
+      <h2 class="brief__title" id="second-brain-os-ozet">Kısaca</h2>
+      <dl class="brief__list">
+        <div class="brief__row">
+          <dt class="cap">Problem</dt>
+          <dd>Her yeni yapay zekâ oturumu sıfırdan başlıyor: projenin bağlamını, verilmiş kararları ve tercihleri her seferinde yeniden anlatmak gerekiyor. Anlatılmadığında ajan makul görünen ama bu ortamda yanlış olan cevaplar üretiyor.</dd>
+        </div>
+        <div class="brief__row">
+          <dt class="cap">Kullanıcı için değişen</dt>
+          <dd>Notlar, kararlar ve çalışma kayıtları sonraki oturumun okuyup devam edebileceği kalıcı bir belleğe dönüşüyor. Aynı dosyaları insan da açıp okuyor ve düzeltiyor, yani bellek denetlenebilir kalıyor.</dd>
+        </div>
+        <div class="brief__row">
+          <dt class="cap">Bunu mümkün kılan karar</dt>
+          <dd>Bellek düz Markdown dosyalarından ibaret: veritabanı, vektör deposu ve arama indeksi yok. Sürüm geçmişini Git tutuyor, bu yüzden yanlış bir yazma geri alınabiliyor. Belleğin tamamı değil, o an gereken kademesi yükleniyor.</dd>
+        </div>
+        <div class="brief__row">
+          <dt class="cap">Kanıt</dt>
+          <dd>Aynı sorular aynı modele iki kez soruldu: bir kez belleğe tam erişimle, bir kez yalnızca kısa bir tanıtım metniyle. Bellekli taraf soruların neredeyse hepsini kapattı; belleksiz taraf yanlışlarını kendinden emin ve genel bir dille verdi. Doğru cevapların hiçbiri otomasyondan gelmedi — hepsi aramayla bulunan bir Markdown dosyasından geldi.</dd>
+        </div>
+      </dl>
+      <dl class="meta">
+        <div><dt>Tür</dt><dd>Bir yapay zekâ ajanı için dosya-yerel uzun süreli bellek sistemi</dd></div>
+        <div><dt>Durum</dt><dd>Çalışıyor ve kullanımda; v1.0 kamuya açık şablon 2026-09-03'te yayımlandı</dd></div>
+        <div><dt>Yığın</dt><dd>Markdown · YAML frontmatter · <code>[[wikilink]]</code> · Git · Claude Code hook'ları ve skill'leri · Obsidian</dd></div>
+        <div><dt>Repo</dt><dd><a href="https://github.com/brkakyldz/second-brain-os" rel="noopener">github.com/brkakyldz/second-brain-os (kamuya açık şablon, v1.0)</a></dd></div>
+      </dl>
+    </section>
+
+    <section class="plate veiled wrap" aria-label="Sistem çizimi">
+      <figure>
+        <svg class="diagram" xmlns="http://www.w3.org/2000/svg" viewBox="-8 -8 501.6 696" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="second-brain-os-t second-brain-os-d">
+  <title id="second-brain-os-t">Second Brain OS: insanın ve yapay zekâ oturumunun paylaştığı proje belleği.</title>
+  <desc id="second-brain-os-d">İnsan ve yapay zekâ aynı dosya tabanlı belleği okur. Küçük çekirdek her oturumda, ayrıntılı notlar gerektiğinde, günlükler ise yalnızca ilgili tarih sorulduğunda yüklenir. Yeni bilgi önce notlara girer; bağımsız teyit olmadan çekirdek belleğe alınmaz.</desc>
+<g id="d-second-brain-os">
+            <!-- İki okuyucu -->
+            <g class="node s1"><circle class="k" cx="48" cy="40" r="6"/><path class="k" d="M48,46 V88"/><text class="num" x="64" y="44">01</text><text class="t" x="88" y="44">insan · Obsidian</text></g>
+            <g class="node s1"><circle class="k" cx="296" cy="40" r="6"/><path class="k" d="M296,46 V88"/><text class="num" x="312" y="44">02</text><text class="t" x="336" y="44">ajan · oturum</text></g>
+            <g class="s6"><text class="num" x="336" y="60">17</text><text class="t sm" x="356" y="60">tek yazar kilidi</text></g>
+
+            <!-- Kademe bantları -->
+            <g class="bd s2"><path class="k" d="M16,88 H360 M16,168 H360 M16,384 H360 M16,440 H360"/>
+              <text class="cap" x="112" y="80">her oturumda yüklenir</text><text class="cap" x="112" y="184">istendiğinde açılır</text><text class="cap" x="112" y="400">gün sorulunca okunur</text></g>
+
+            <g class="node s2 s4"><text class="num" x="48" y="112">03</text><text class="t" x="72" y="112">çekirdek · core/</text><text class="t sm" x="48" y="128">kimlik · kullanıcı · bellek</text><text class="t sm" x="48" y="142">açık sorular</text><text class="t sm" x="48" y="158">~2.000 / ~4.000 karakter</text></g>
+
+            <!-- Üç yazma yolu, merdiven -->
+            <g class="node s4"><path class="k" d="M72,204 V248"/><text class="num" x="72" y="200">11</text><text class="t" x="96" y="200">oturumdan süz</text></g>
+            <g class="node s4"><path class="k" d="M128,220 V248"/><text class="num" x="128" y="216">12</text><text class="t" x="152" y="216">dışarıdan al</text></g>
+            <g class="node s4"><path class="k" d="M184,236 V248"/><text class="num" x="184" y="232">13</text><text class="t" x="208" y="232">sohbetten al</text></g>
+
+            <!-- Sahip: notes/ -->
+            <g class="node s2 s3 s4"><rect class="k" x="48" y="248" width="224" height="48"/><text class="num" x="56" y="268">04</text><text class="t" x="80" y="268">notlar · notes/</text><text class="t sm" x="56" y="286">ekle · birleştir · yerine geç</text></g>
+            <g class="s4 s6"><text class="t sm" x="48" y="314">getirme: kelime araması,</text><text class="t sm" x="48" y="328">dizin ve bağlantılar</text></g>
+            <g class="node s2 s3"><text class="num" x="48" y="350">08</text><text class="t" x="72" y="350">arşiv · archive/</text><text class="t sm" x="48" y="366">39 karar · silinmez, taşınır</text></g>
+            <g class="s6"><text class="t sm" x="296" y="378">anlamsal arama yok</text></g>
+
+            <!-- Kapı: notes → core -->
+            <g class="node s4"><path class="k" d="M272,268 H296 V170 M290,208 H302"/><text class="t sm" x="308" y="212">yükseltme:</text><text class="t sm" x="308" y="226">ikinci bağımsız teyit</text></g>
+
+            <!-- Ölçüm: getirme tarafı -->
+            <g class="s2 s5"><rect class="k" x="296" y="288" width="48" height="44"/><text class="ms-n" x="311" y="320">0</text><text class="ms-c" x="296" y="350">veritabanı · vektör</text><text class="ms-c" x="296" y="364">deposu · arama indeksi</text></g>
+
+            <!-- Kademe 2 -->
+            <g class="node s2 s3"><text class="num" x="48" y="420">06</text><text class="t" x="72" y="420">kayıtlar</text><text class="t sm" x="136" y="420">logs/ · her oturum ekler</text></g>
+
+            <!-- Kademesiz klasörler, sağ sütun -->
+            <g class="cap-g"><text class="cap" x="392" y="80">kademe dışı</text></g>
+            <g class="node s3 s6"><text class="num" x="392" y="104">07</text><text class="t sm" x="416" y="104">my-notes/</text><text class="t sm" x="392" y="120">gelenek,</text><text class="t sm" x="392" y="134">zorlama değil</text></g>
+            <g class="node s3"><text class="num" x="392" y="184">09</text><text class="t sm" x="416" y="184">.claude/</text><text class="t sm" x="392" y="200">kontroller</text></g>
+            <g class="node s3"><text class="num" x="392" y="248">10</text><text class="t sm" x="416" y="248">scripts/</text><text class="t sm" x="392" y="264">bakım betiği</text></g>
+            <g class="node s3"><text class="num" x="392" y="408">05</text><text class="t sm" x="416" y="408">ham belge</text><text class="t sm" x="392" y="424">ajan yazmaz</text></g>
+
+            <!-- Sınır: kod ═ yargı -->
+            <g class="bd s5"><path class="k" d="M16,472 H464 M16,476 H464"/><text class="cap" x="16" y="464">kod</text><text class="cap" x="464" y="464" text-anchor="end">yargı</text></g>
+            <g class="node s5"><text class="num" x="48" y="504">14</text><text class="t" x="72" y="504">otomatik kontrol ×4</text><text class="t sm" x="48" y="520">SessionStart · Stop</text><text class="t sm" x="48" y="534">PreCompact · SessionEnd</text><text class="t" x="48" y="560">bakım betiği ×3</text><text class="t sm" x="48" y="576">link-sweep · retrieval-eval</text><text class="t sm" x="48" y="590">vault-metrics</text></g>
+            <g class="node s5"><text class="num" x="280" y="504">15</text><text class="t" x="304" y="504">yardımcı komut ×7</text><text class="t sm" x="280" y="520">ingest · file · recall</text><text class="t sm" x="280" y="534">curator · audit</text><text class="t sm" x="280" y="548">lesson · note</text></g>
+
+            <!-- Kontrol noktası → git -->
+            <g class="s5"><path class="k" d="M48,598 V644 M43,639 L48,644 L53,639"/><text class="t" x="64" y="648">Git</text>
+              <rect class="k" x="120" y="604" width="40" height="40"/><text class="ms-n" x="131" y="634">1</text><text class="num" x="168" y="620">16</text><text class="ms-c" x="120" y="660">tur · en kötü kayıp</text></g>
+
+            <!-- Ağacın dışı -->
+            <g class="s6"><rect class="k rf" x="376" y="604" width="96" height="40"/><text class="num" x="384" y="620">18</text><text class="t sm" x="408" y="620">gitignore</text><text class="t sm" x="384" y="636">yan dosya</text></g>
+          </g>
+</svg>
+
+        <figcaption><span class="cap">Sistem çizimi</span>Second Brain OS: insanın ve yapay zekâ oturumunun paylaştığı proje belleği.</figcaption>
+      </figure>
+    </section>
+    <section class="prose veiled wrap" aria-labelledby="second-brain-os-derinlik">
+      <p class="cap prose__tier" id="second-brain-os-derinlik">Teknik derinlik</p>
+      <p class="prose__tiernote">Buradan sonrası mimari ayrıntı: iç adlar, eşikler, durum değerleri, modül yolları ve ayrıntılı ölçümler. Yukarıdaki özet tek başına okunduğunda proje anlaşılır.</p>
+      <div class="prose__cols">
+        <div class="prose__body">
+          <h2 id="second-brain-os-b1">Problem</h2>
+<p>Bir ajanın belleği yalnızca ajan tarafından okunabiliyorsa, insan onu denetleme
+ve düzeltme yeteneğini kaybeder. <strong>Denetlenemeyen bir bellek, tek bir kendinden
+emin yanlış olguyla sonraki bütün oturumları zehirleyebilir.</strong></p>
+<p>Ama depolama işin sıkıcı yarısı. İlginç yarısı, deponun çürümesini engelleyen
+<strong>yaşam döngüsü politikası</strong> ve o politikanın mekanik olarak denetlenebilir
+kısmını uygulayan ince çalışma zamanı.</p>
+<p>Aynı dosyalar aynı anda üç şey:</p>
+<ul>
+<li>bir <strong>Obsidian kasası</strong> — insan okur, yazar, denetler,</li>
+<li>ajan için bir <strong>bellek deposu</strong> — her oturumda yüklenir ve aranır,</li>
+<li><strong>Git ile eşitlenen bir bilgi tabanı</strong> — sürümlenmiş, taşınabilir, yedekli.</li>
+</ul>
+<h2 id="second-brain-os-b2">Kurucu kararlar</h2>
+<p>Geri kalan her şey bu beş öncülden türüyor.</p>
+<ol>
+<li><strong>İnsanın okuyabildiği taban.</strong> Markdown + düz YAML frontmatter +
+   <code>[[wikilink]]</code>, tek doğruluk kaynağı.</li>
+<li><strong>Tek veritabanı Git.</strong> Her değişiklik bir commit; <code>git log</code> denetim izi;
+   <code>git revert</code> geri alma; uzak depo eşitleme ve yedek. Tek mekanizma,
+   dört mekanizmanın işini görüyor.</li>
+<li><strong>Bağlam sonlu bir bütçedir, depolama değil.</strong> Getirme kademeli ve
+   işaretçiye dayalı; her zaman yüklenen yüzey <strong>karakterle</strong> tavanlanmış.</li>
+<li><strong>Açık düşen otomasyon.</strong> Hiçbir hook ya da betik çalışan bir oturumu
+   engelleyemez. Her otomatik yol, başarısız olduğunda bile başarıyla çıkar.</li>
+<li><strong>Makine durumu izlenen ağaçta yaşamaz.</strong> Çalışma zamanının işlediği bir
+   sayaç kanıt değildir; türetilmiş, yeniden kurulabilir durum bir commit'e mal
+   olmak yerine gitignore'lu bir yan dosyaya gider.</li>
+</ol>
+<h2 id="second-brain-os-b3">Nasıl çalışır</h2>
+<h3>Klasör haritası — kategori başına değil, <em>yaşam döngüsü</em> başına</h3>
+<p>Yapısal ana fikir, ve kişisel bilgi sistemlerinin çoğunun yanlış yaptığı şey.
+<strong>Bir notun ne olduğu</strong> frontmatter'daki <code>type:</code> alanında yaşar. <strong>Nasıl yazılıp
+nasıl emekliye ayrıldığı</strong>, hangi klasörde durduğunu belirler. Olgunluk bir
+<code>status:</code> değeridir, asla bir yol değil — böylece büyüyen bir not yer değiştirmez
+ve bir düşünce olgunlaştı diye hiçbir bağlantı kırılmaz.</p>
+<div class="tablewrap">
+<table>
+<thead>
+<tr>
+<th>Klasör</th>
+<th>Tuttuğu yaşam döngüsü</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>core/</code></td>
+<td>Kademe 0 — <em>her</em> oturuma yüklenen birkaç dosya, sert karakter bütçeleri altında</td>
+</tr>
+<tr>
+<td><code>notes/</code></td>
+<td>Bellek deposu: her kalıcı sayfa, <strong>düz</strong>, alt klasör yok</td>
+</tr>
+<tr>
+<td><code>raw/</code></td>
+<td>Değişmez kaynaklar — makaleler, transkriptler, dışa aktarımlar. İnsan koyar, ajan okur ve asla yazmaz</td>
+</tr>
+<tr>
+<td><code>logs/</code></td>
+<td>Yalnızca ekleme yapılan oturum günlükleri. Makine yazımı kanıt: okunur, yeniden yazılmaz</td>
+</tr>
+<tr>
+<td><code>my-notes/</code></td>
+<td>İnsanın kendi notları, <strong>yalnızca</strong> açık istek üzerine yazılır. Hiçbir otomatik geçiş burayı okuyup yeniden yazmaz, damıtmaz, arşivlemez, silmez</td>
+</tr>
+<tr>
+<td><code>archive/</code></td>
+<td>Kapanmış, geçersizleşmiş ve tarihsel içerik — her mimari karar dahil. Asla silinmez, hep buraya taşınır</td>
+</tr>
+<tr>
+<td><code>.claude/</code></td>
+<td>Makine: hook'lar, skill'ler, şablonlar. Ajanın nasıl çalıştığı, ne bildiği değil</td>
+</tr>
+<tr>
+<td><code>scripts/</code></td>
+<td>Elle ya da bir skill tarafından çalıştırılan deterministik bakım araçları</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Kökte üç dosya, işleri örtüşmeyen: <strong>anayasa</strong> (bu depoda ajanın uymak zorunda
+olduğu bağlayıcı kurallar), <strong><code>INDEX.md</code></strong> (her sayfanın bir satırlık kataloğu) ve
+insanın elle tuttuğu küçük bir <strong>açık iş listesi</strong>. <code>core/</code> dört dosya tutuyor:
+asistanın kimliği ve çalışma kuralları, kullanıcının profili, kalıcı olgu indeksi,
+ve açık soruların defteri.</p>
+<h3>Üç tür bellek, üç yazma kipi</h3>
+<p>Bunları karıştırmak "tek bir notlar klasörü" yaklaşımının klasik hatası: epizodik
+içerik sınırsız büyür, anlamsal içerik uzlaştırılacağına üstüne eklenir, ve
+prosedürel içerik sahibi olmadığı için savrulur.</p>
+<div class="tablewrap">
+<table>
+<thead>
+<tr>
+<th>Tür</th>
+<th>Nerede</th>
+<th>Nasıl yazılır</th>
+<th>Nasıl biter</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Epizodik</strong> — ne oldu</td>
+<td><code>logs/</code></td>
+<td>yalnızca ekleyerek</td>
+<td>damıtılır, sonra arşivlenir</td>
+</tr>
+<tr>
+<td><strong>Anlamsal</strong> — ne doğru</td>
+<td>olgu indeksi, <code>notes/</code></td>
+<td><strong>yazarken uzlaştırılarak</strong></td>
+<td>geçersizleşir → arşivlenir</td>
+</tr>
+<tr>
+<td><strong>Prosedürel</strong> — nasıl çalışıyoruz</td>
+<td>playbook notları, skill'ler</td>
+<td>kasıtlı revizyon</td>
+<td>bölüm bölüm değiştirilir</td>
+</tr>
+<tr>
+<td><strong>Kanıt</strong> — kaynak ne dedi</td>
+<td><code>raw/</code></td>
+<td>ajan asla yazmaz</td>
+<td>asla kaldırılmaz; kuyruk değil, külliyat</td>
+</tr>
+<tr>
+<td><em>(Makine durumu)</em></td>
+<td>gitignore'lu yan dosyalar</td>
+<td>üzerine yazarak, kilitsiz</td>
+<td>atılır, asla commit edilmez</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>"Yazarken uzlaştırma" zor olanı.</strong> Gelen her olgu için tam olarak bir karar:
+<strong>ADD / MERGE / SUPERSEDE / NOOP</strong>. Asla körlemesine ekleme. Yalnızca ekleyen bir
+bellek deposu, birbiriyle çelişen yarı-kopyalar yığınına dönüşür ve ajanın
+hangisinin güncel olduğunu anlamasının yolu kalmaz.</p>
+<p>Prosedür için paralel bir kapı var: bir not <strong>playbook</strong> seviyesine ancak
+<strong>doğrulanmış iki başarılı kullanımdan</strong> sonra yükseltilir. Bir kez işe yaramış
+şey taslaktır, yöntem değil.</p>
+<h3>Getirme — arama indeksi değil, kademeler ve işaretçiler</h3>
+<p>Kararla, <strong>hiçbir gömme indeksi ve vektör deposu yok</strong>.</p>
+<ul>
+<li><strong>Kademe 0 — hep yüklü.</strong> Kimlik, kullanıcı profili ve kalıcı olgu indeksi, her
+  oturumun başında enjekte ediliyor. Karakterle bütçelenmiş (iki veri dosyası
+  için yaklaşık 2k ve 4k) ve açılış rutini her dosyanın kullanımını bütçesine
+  karşı yazdırıyor — böylece ajan kalan yerini yazdıktan <em>sonra</em> değil, önce
+  görüyor.</li>
+<li><strong>Kademe 1 — talep üzerine.</strong> <code>notes/</code> içindeki her şey; bir Kademe-0
+  işaretçisini izleyerek, indeksi okuyarak ya da grep ile ulaşılır. Asla önceden
+  yüklenmez.</li>
+<li><strong>Kademe 2 — epizodik akış.</strong> <code>logs/</code>, yalnızca belirli bir oturum ya da gün söz
+  konusu olduğunda okunur.</li>
+<li><strong><code>archive/</code> bunların altında bir kademe değil.</strong> Kademe-1 derinliğinde canlı
+  kanıt: her mimari karar orada ve bir sonraki pahalı seçimden <em>önce</em> okunmak
+  üzere duruyor.</li>
+</ul>
+<p><strong>Bütçe dekorasyon değil, mekanizma.</strong> Belli bir yük boyutunun ötesinde koşum
+takımı, hep-yüklü kademeyi satır içine almayı <em>tamamen</em> bırakıyor — bütçe aşımı
+dikkati kademeli olarak bozmuyor, Kademe 0'ı sessizce kapatıyor. Bu yüzden bir
+dosya bütçeyi aştığında kural <strong>birleştir, asla sessizce kırpma</strong>, ve açılış
+rutini varsayılan bir sınıra güvenmek yerine kendi yük boyutunu her çalıştırmada
+ölçüp loglıyor.</p>
+<p><strong>Olgu indeksi işaretçi tutar, ayrıntı değil.</strong> Satır başına bir olgu, çoğu satır
+ayrıntıyı taşıyan sayfaya giden bir <code>[[wikilink]]</code> ile bitiyor. İki şey oradan
+kesin olarak yasaklı — kasanın kendi inşa tarihi ve açık iş maddeleri — çünkü
+ikisi de sınırsız ve hiçbiri kalıcı bir olgu değil.</p>
+<p><strong><code>INDEX.md</code> getirmenin ucuz yarısı.</strong> Sayfa başına bir satır: bağlantı, tek
+cümlelik özet, durum. Hangi iki üç sayfayı açmaya değeceğine karar vermek için
+önce o okunuyor — ve bir arama indeksine hiç ihtiyaç duyulmamasının büyük
+sebeplerinden biri bu.</p>
+<h3>Bağlantı mekanizması — bir klasörü çizgeye çeviren şey</h3>
+<ul>
+<li><strong>Bağlantılar kısa biçimli <code>[[wikilink]]</code></strong> — dosya adı, yol yok, uzantı yok.</li>
+<li><strong>Dosya adları kasa genelinde benzersiz</strong> <code>kebab-case</code>, ve bağlantıların kısa
+  kalıp bir dosya taşınsa bile hayatta kalmasını sağlayan tam olarak bu benzersizlik.</li>
+<li><strong>Bağlantılar cümle bağlamı taşır</strong>, çıplak bağlantı listesi değil. Bir bağlantı
+  bir ilişki iddiasıdır, o yüzden ilişkinin ne olduğunu söyleyen düzyazının
+  içinde yazılır.</li>
+<li><strong>Her yeni not kapanmadan önce en az bir dışa bağlantı alır.</strong> Dışa bağlantısı
+  olmayan bir not çizgede bir çıkmaz sokaktır ve gezinerek asla bulunmaz.</li>
+<li><strong><code>aliases:</code> birinin gerçekten yazacağı sorgu biçimlerini taşır</strong> — kullanıcının
+  düşündüğü öteki dil ve aynı kelimenin çekimli hâlleri dahil. Sözlük tabanlı bir
+  sistemde getirme katmanı budur.</li>
+<li><strong><code>related:</code> açık çapraz bağlantıları tutar</strong>, ve iki zamanlı alanlar
+  (<code>superseded_by</code>) geçersizleşmenin kendisini bir bağlantıya çevirir.</li>
+<li><strong>Bir bağlantı taraması</strong>, hedefi olmayan wikilink'leri, öksüz notları (ne içeri
+  ne dışarı bağlantısı olan), yinelenen dosya adlarını ve — en önemlisi — artık
+  var olmayan bir sayfayı gösteren olgu indeksi satırlarını buluyor. Kırık bir
+  bağlantı tek başına zararsız görünür; Kademe 0'daki ölü bir işaretçi ajana
+  doğrudan zarar verir, çünkü o bir "ayrıntı burada" sözünün hiçbir yere
+  çıkmamasıdır.</li>
+</ul>
+<p>Bu bakım olmadan <strong>kasa çizge olmaktan çıkıp bir klasöre döner.</strong></p>
+<p><strong>Getirme dört katmanda çalışıyor</strong>, her biri bir üsttekine tırmanmadan önce
+deneniyor: (1) Kademe 0, zaten bağlamda; (2) <code>notes/</code>, sonra <code>logs/</code> üzerinde
+grep — başlıklar, alias'lar, etiketler, gövde, her iki dilde; (3) bir iki adım
+bağlantı sıçraması; (4) frontmatter filtreleri. Dördü de ıskaladığında ıska,
+omuz silkilerek geçilmiyor, <strong>tipli bir sinyal olarak loglanıyor</strong>. Bir getirme
+başarısızlığı depo hakkında veridir ve indeks-yok kararını devirebilecek tek
+şeydir — ki şimdiye kadar devirmedi, çünkü ıskalar tek bir biçimde toplanıyor
+(bir dilde yazılmış sayfaya öteki dilde sorgu) ve onun çaresi bir alias satırı,
+bir veritabanı değil.</p>
+<h3>Bilgi nasıl giriyor — üç giriş, tek çıkış</h3>
+<pre><code>   canlı damıtma            bir kaynağı içeri al        bir cevabı dosyala
+   (oturumda söylendi)      (raw/ içindeki belge)       (sohbette çıkarıldı)
+            \                       |                        /
+             \                      v                       /
+              ------------&gt;   notes/&lt;konu&gt;.md   &lt;----------
+                                    |
+                     doğrulama: yükseltilmeden önce ikinci,
+                        bağımsız bir teyit
+                                    v
+                          Kademe-0 olgu indeksi
+                            (tek işaretçi satırı)
+
+   her oturum ayrıca yazar:  logs/YYYY-MM-DD_HHMM.md  (epizodik, yalnız ekleme)
+</code></pre>
+<ul>
+<li><strong>Canlı damıtma</strong> varsayılan yol: kullanıcı bir şey söyler, not o oturumda
+  yazılır. Hiçbir şey sonraya kuyruğa alınmaz. Yakalama gelen kutusu yok —
+  güvenilir üreticisi olmayan bir kuyruk mobilyadır, ve sistem kendi kuyruğunu
+  kaldırdı.</li>
+<li><strong>İçeri alma</strong>, bir oturumun dışında okunan her şeyin yolu. Kaynak <strong>bir kez</strong>
+  okunur, tartışılır ve bir sayfaya damıtılır; bundan sonra kasa yeniden okuyarak
+  değil, damıtımdan cevaplar. Bütün ekonomisi bu: çapraz referanslar, çelişkiler
+  ve sentez, soru başına yeniden türetilmek yerine içeri alma anında derlenir.
+  Kaynak dosyanın kendisi <code>raw/</code> içinde, değişmez, nottan sonsuza dek bağlantılı
+  kalır.</li>
+<li><strong>Bir cevabı dosyalama</strong> üçüncü durumu kapatıyor: sohbette üretilen bir
+  karşılaştırma ya da analiz, içeri alınmış bir kaynak kadar değerlidir ve
+  varsayılan olarak oturum bitince buharlaşır.</li>
+</ul>
+<p>İki özellik kasıtlıdır. Depo ham konuşma dökümlerini değil, bunlardan çıkarılan
+özetleri, kararları ve gerekçeleri tutar. Bir oturum kendi kaydını hemen
+yazabilir; fakat bir olgu, birleştirme kontrolünden ve bağımsız bir teyitten
+geçmeden her oturumda yüklenen çekirdek belleğe alınmaz.</p>
+<h3>Zehirlenmeye karşı korumalar</h3>
+<p>Bir bellek sisteminin en kötü başarısızlığı unutmak değil — her açılışta yüklenen
+bir dosyada, yanlış bir şeyi kendinden emin biçimde, sonsuza dek hatırlamak.</p>
+<ul>
+<li><strong>Doğrulama kapısı.</strong> Tek oturumda bir kez görülen bir olgu <code>notes/</code> içine düşük
+  güvenle girer. Hep-yüklü kademeye ancak bağımsız bir teyitten sonra ulaşır.
+  Keskin hâli: <em>kalıcı statü birden fazla gözlem ister; zehirlemeye tek bir yazma
+  yeter.</em></li>
+<li><strong>Köken.</strong> Güvenilmeyen dış içerikten türeyen her şey sonsuza dek bir <code>source:</code>
+  işareti taşır ve kimlik ya da kullanıcı profili dosyalarına asla yazılamaz.</li>
+<li><strong>Kanıt işaretçileri, uydurma yok.</strong> Bir birleştirme geçişi, işaretçisi olmayan
+  bir çıkarım yazamaz — bir dosya yolu, birebir bir alıntı ya da bir commit
+  hash'i. Özetlemek çıkarımdır; iki olguyu birleştirip üçüncüsünü üretmek
+  çıkarımdır. Kanıt gösterilemiyorsa olgu yazılmaz, açık soruya dönüşür.</li>
+<li><strong>Korumalı dosyalar.</strong> Anayasa ve kimlik dosyası hiçbir otomatik geçiş
+  tarafından düzenlenmez — ajan önerir, insan uygular. Dürüstçe söylenmeli: bu bir
+  <em>gelenek</em>, zorlanmış bir sınır değil. Bir kabuk komutu, araç izinleri ne derse
+  desin herhangi bir dosyayı yazabilir. Koruma, ajanın anayasaya uymasıdır.</li>
+<li><strong>Tavanlı sabitlemeler.</strong> Bir sabitleme, bir olguyu düşürülmekten muaf tutar;
+  sabitleme sayısı kasa genelinde tavanlı ve periyodik olarak yeniden gerekçelenir.
+  Tavansız sabitleme, güvenlik etiketi takmış sınırsız büyümedir.</li>
+</ul>
+<h3>İş bölümü: deterministik iş bir betik, yargı işi bir model çağrısı</h3>
+<p>Temel mühendislik kuralı bu. Bağlantı kontrolü, bütçe ölçümü ve metrik sayımı
+doğru cevabı olan işlerdir, o yüzden koddur. İki olgunun aynı olgu olup olmadığına
+karar vermek değildir, o yüzden bir skill'dir. Sistem bu çizgi boyunca üç katman
+hâlinde kurulu.</p>
+<p><strong>Katman A — hook'lar: deterministik çalışma zamanı.</strong> Makine seviyesinde kayıtlı,
+yani kullanıcının çalıştığı <strong>her</strong> projede ateşleniyor ve hepsi kasayı gösteriyor.
+Her biri kasa kökünü kendi konumundan çözüyor, ve hepsi bir etkinleştirme işareti
+olmadan <strong>atıl</strong> — kullanıcı seviyesi yapılandırma, ilgisiz bir depoyu asla
+kirletmez.</p>
+<div class="tablewrap">
+<table>
+<thead>
+<tr>
+<th>An</th>
+<th>Ne olur</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Oturum başı</strong></td>
+<td>rebase ile pull; canlı bütçe göstergeleriyle Kademe 0 enjeksiyonu; en fazla birkaç yüksek öncelikli bildirim</td>
+</tr>
+<tr>
+<td><strong>Her turun sonu</strong></td>
+<td>derlenmiş kontroller, sonra kontrol noktası commit'i — en kötü durumda veri kaybını <strong>bir tura</strong> sınırlar</td>
+</tr>
+<tr>
+<td><strong>Bağlam sıkıştırmadan önce</strong></td>
+<td>aynı kontrol noktası, hiçbir şey sıkıştırılıp atılmadan önce</td>
+</tr>
+<tr>
+<td><strong>Oturum sonu</strong></td>
+<td>son commit, ve daha önce ertelenmiş bir commit'in teslimi</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Tablodan daha önemli tasarım notları: <strong>tur başına kontrol noktası bel kemiği,
+oturum sonu hook'u bonus</strong> — işletim sistemi oturumu kapandığında oturum sonu
+olayları güvenilmezdir, o yüzden hiçbir şeyin ona bağlı olmasına izin verilmiyor.
+<strong>Push başarısızlığı ölümcül değil</strong>: commit yerelde kalır ve bir dahakine
+eşitlenir. <strong>Teslimat, commit etmekten ayrı karar veriliyor</strong>: temiz bir bitiş
+bekleyen bir commit'i uydurmadan push eder, ve doğrulanamayan bir yedek durumu
+<em>doğrulanmadı</em> diye okunur, asla eşitlenme kanıtı diye değil. Engellediği hata
+sessiz olanı: hiçbir şey makineden çıkmamışken "eşitlendi" diyen bir sistem.</p>
+<p><strong>Katman B — skill'ler: yargı prosedürleri.</strong> Her biri modelin izlediği yazılı bir
+prosedür; insan çağırır, asla zamanlayıcı değil.</p>
+<div class="tablewrap">
+<table>
+<thead>
+<tr>
+<th>Skill</th>
+<th>Ne için</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>ingest</strong></td>
+<td>Bir kaynağı wiki'ye okumak: bir kez oku, tartış, bir sayfaya damıt, taşıdığı her olguyu kasanın hâlihazırda inandığıyla uzlaştır, indeksi güncelle, logla</td>
+</tr>
+<tr>
+<td><strong>file</strong></td>
+<td>Sohbette üretilen bir analizi, transkriptte ölmesine izin vermek yerine düzgün bir sayfa olarak tutmak</td>
+</tr>
+<tr>
+<td><strong>recall</strong></td>
+<td>Dört katmanlı getirme prosedürü, artı kasa ıskaladığında sinyal loglamak</td>
+</tr>
+<tr>
+<td><strong>curator</strong></td>
+<td>Bellek çekirdeği üzerinde birleştirme: kopyaları birleştir, çelişkileri çöz, eski logları damıt, bayat girdileri arşivle, bütçeleri yeniden kontrol et. Güvenli işlemler uygulanır; yıkıcı ya da yapısal olanlar insan kararına raporlanır</td>
+</tr>
+<tr>
+<td><strong>audit</strong></td>
+<td><strong>Yalnızca rapor eden</strong> yapısal geçiş — bütçeler, öksüzler, gecikmiş incelemeler, etiket yayılması, çelişki yığılması. Birleştirmeden bilerek ayrı: bellek sessizce bozulur, ve yazamayan bir geçiş, yakalamak için var olduğu savrulmaya sebep olamaz</td>
+</tr>
+<tr>
+<td><strong>lesson</strong></td>
+<td>Bir düzeltmeyi olduğu anda <strong>birebir</strong> yakalamak — tam kelimeler artı düzeltilen eser, sıfır yorumla. Ajanın "çıkarılan ders"i yazması yasak, çünkü kendi hatasını açıklaması istenen bir ajan akıcı ve yanlış bir hikâye üretir</td>
+</tr>
+<tr>
+<td><strong>note</strong></td>
+<td>İnsanın kendi klasörüne yazmak — yalnızca açık talimatla, asla çıkarımla</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Katman C — betikler: deterministik bakım.</strong> Bağlantı taraması · sabit bir
+sorgu→sayfa çifti kümesine karşı getirme değerlendirmesi · metrik sayımı (kontrol
+ateşlenmeleri, düzeltme tekrarı, ders hayatta kalma oranı). Hiçbirinde model
+çağrısı yok.</p>
+<h3>Zorlama: ne kod, ne düzyazı</h3>
+<p>Çalışma zamanı politikanın yalnızca bir kısmını zorluyor, ve sistem hangi kısım
+olduğu konusunda açık.</p>
+<ul>
+<li><strong>Derlenmiş kontroller</strong> kontrol noktası yolundan çalışıyor, <strong>önce uyarır, asla
+  engellemez</strong>, ve her ateşlenme (kontrol, dosya, ayrıntı) üçlüsü başına ayda bir
+  kez sinyal defterine tekilleştiriliyor — böylece tekrarlayan bir dırdır yüz veri
+  noktası yerine bir veri noktası oluyor. Mekanik olarak karara bağlanabilir
+  kuralları kapsıyorlar: bağlantı biçimi, not kuralları, indeks kapsamı.</li>
+<li><strong>Bütçeler</strong> her kontrol noktasında ölçülüyor ve açılışta gösteriliyor.</li>
+<li><strong>Sır taraması</strong> her hazırlanmış commit'te çalışıyor.</li>
+<li>Geri kalan her şey — doğrulama kapısı, iki zamanlı geçersizleştirme, olgunluk
+  merdiveni, silmeden önce arşivleme — <strong>gelenek artı insanın çalıştırdığı
+  geçişler</strong>.</li>
+</ul>
+<p>Bu ayrımın arkasında kanıt var: yazılı bir düzeltme, aynı hatayı mekanik bir
+kontrolün yakalamasından çok daha sık yeniden ihlal ediliyor. Bir modele hatasını
+düzyazıyla söylemek tutmuyor. O yüzden hedef hep bir kuralı düzyazıdan çıkarıp bir
+kontrole taşımak — ve mekanik olarak denetlenemeyen bir kural, bilerek daha zayıf
+kabul ediliyor, gizlice "aslında sorun yok" değil.</p>
+<p>Bunun altındaki <strong>sinyal defteri</strong> yalnızca eklenen, tipli bir olay akışı: ayda
+bir dosya, olay başına bir satır, zaman damgası, tip, yük ve oturum kimliği ile.
+<strong>Geçmiş bir satır asla yeniden yazılmaz; düzeltme daha yeni bir satırdır.</strong>
+Hizmet ettiği iyileştirme döngüsü <strong>yakala → doğrula → zorla ya da emekliye
+ayır</strong>: bir düzeltme olduğu anda birebir yakalanır; bir tekrar sınıfına ancak
+bağımsız olarak yinelendikten sonra müdahale edilir; ve dönüştüğü şey ya derlenmiş
+bir kontrol ya da anayasada kasıtlı bir satırdır.</p>
+<h3>Büyüme kontrolü ve dikkat ekonomisi</h3>
+<p>Tasarımın en görüşlü kısmı, ve sistemin kendini yemesini engelleyen kısım.</p>
+<ul>
+<li><strong>Hiçbir şey zamanlanmıyor.</strong> Tetikleyici insanın bir oturum açması, bir saat
+  değil. Gözetimsiz bakım denendi ve terk edildi: içindeki her kusur, <em>yalnızca</em>
+  kimse bakmadığı için var olan gözetim katmanında yaşıyordu, ve klavye başındaki
+  bir insan zaten izin denetleyicisi, takılma tespitçisi ve eşzamanlılık kontrolü.</li>
+<li><strong>Durum gözlenebiliyorsa zamanlamayı yener.</strong> Bir damga dosyası ancak bir
+  geçişin en son ne zaman <em>çalıştığını</em> söyleyebilir; ağacın kendisi işin
+  <em>bekliyor</em> olup olmadığını söyler. Ve hiçbir şey zamanlanmadığında hiçbir şey
+  gecikmez — bu yüzden "geçişi çalıştır" hatırlatması bir bulgu değil ve
+  kaldırıldı.</li>
+<li><strong>Gerçek bir getirme başarısızlığı talep etmeden yeni klasör, etiket veya
+  taksonomi katmanı yok.</strong> Fazla düzenleme, üstüne adım eklenmiş erteleme.</li>
+<li><strong>Aynı kapı makineye de uygulanıyor.</strong> Yeni bir hook ya da betik, tıpkı yeni bir
+  klasör gibi karşılaşılmış bir başarısızlık ister. Bu kural taksonomi için, kimse
+  onu koda uygulamadan çok önce vardı — ve eksiklik ölçülebilirdi: birkaç düzine
+  notun etrafında binlerce satır otomasyon birikmişti. Makineyi kaldırmak bir
+  klasörü kaldırmaktan <strong>daha zor</strong>, daha kolay değil: çağıran edinir.</li>
+<li><strong>Her otomatik iş beyan edilmiş bir öldürme ölçütü taşır.</strong> Nasıl
+  başarısız olacağı tanımlanmamış bir iş, kimsenin asla kapatmayacağı bir iştir.
+  Pratikte bu sistem tuttuğundan çok mekanizma öldürdü: sadakatle çalışıp hiç aday
+  üretmeyen bir yeniden yüzeye çıkarma işi; hiç çalışmamış bir yedek paketi; tek
+  üreticisi iptal edilmiş bir yakalama kuyruğu; günlerce sessizce başarısız olan
+  bir log yeniden kurma işi; kimsenin karar vermediği satırlar biriktiren bir
+  öneri kuyruğu; ve cevaplamak için kurulduğu soru başka yoldan cevaplandığında
+  kendi kullanım telemetrisi. <strong>Sağlığın kanıtı bir sistemin biriktirdiği değil,
+  sildiği şeydir.</strong></li>
+<li><strong>Dikkatin sert bir bütçesi var:</strong> günde küçük ve sabit sayıda proaktif madde,
+  <em>bütün</em> yüzeyler boyunca tek bir paylaşılan sayaçla sayılıyor, açık bir öncelik
+  sırasıyla — bozuk bir yedek bir bütçe uyarısını, o da bir stil kontrolünü yener.
+  Tavanı aşan her şey bir <strong>çekme eseri</strong> oluyor: insanın istediğinde açtığı bir
+  dosya, asla itilen bir şey değil.</li>
+<li><strong>Sağlık hacimle değil getirmeyle ölçülür.</strong> Önemli olan metrik neyin
+  yakalandığı değil, neyin <em>yeniden kullanıldığı</em>. Bir ay boyunca hiçbir şey
+  getirilmediyse depo yazma-yalnız bir mezarlıktır.</li>
+</ul>
+<h3>Kararlar bellek değil, kayıttır</h3>
+<p>Geri döndürmesi pahalı olan her seçim — bir kütüphane, bir veri modeli, bir
+protokol, bir dizin mimarisi — kabul edildi, geçersizleşti ya da geri alındı
+durumuyla numaralı bir <strong>mimari karar kaydı</strong> olarak yazılıyor. <code>archive/</code> içinde
+duruyorlar; ölü oldukları için değil, o klasör Kademe-1 derinliğinde canlı kanıt
+olduğu ve her biri bir sonraki pahalı seçimden <em>önce</em> okunmak üzere durduğu için.</p>
+<p>Eskisiyle çelişen yeni bir karar, eskisinin durumunu geçersiz olarak işaretlemek
+ve yerine geçeni adıyla söylemek zorunda. <strong>Sessiz bir çelişki, o klasörün
+engellemek için var olduğu tek başarısızlıktır.</strong></p>
+<h3>Çıktının şekli</h3>
+<p>Bu projenin arayüzü yok, o yüzden gösterilecek bir ekran görüntüsü de yok.
+Gösterilebilecek tek şey üretilen şeyin kendisi: bir dosya. Aşağıdaki iki blok
+biçimi anlatıyor — gerçek bir kasadan alınmış içerik değil, o kasanın her
+dosyasının uyduğu şablon.</p>
+<p>Bir not, künyesi ve gövdesiyle:</p>
+<pre><code>---
+type: note
+status: stable
+updated: 2026-09-08
+aliases: [ranker, sıralayıcı]
+---
+
+# Sıralayıcının isabeti
+
+Aynı günün iki sıralaması arasındaki örtüşme iki kez ölçüldü; ikisi de kabul
+eşiğinin altında kaldı. İki ölçüm rastlantısal değişkenliği kalıcı bir
+sorundan ayırmaya yetmediği için sıralayıcıda henüz bir şey değiştirilmedi.
+
+Bağlantılar: [[ai-digest]], [[eval-notlari]]
+</code></pre>
+<p>Aynı olgunun her oturumda yüklenen dosyadaki karşılığı tek satır — açıklama
+değil, işaretçi:</p>
+<pre><code>- Sıralayıcının isabeti iki ölçümde de eşiğin altında; değişiklik yapılmadı
+  → [[siralayicinin-isabeti]]
+</code></pre>
+<p>İkisi arasındaki fark bu sistemin tamamı: ayrıntı notta, işaretçi bütçede.
+Kademe-0 karakterle tavanlı olduğu için oraya olgunun kendisi değil, olgunun
+nerede olduğu yazılıyor.</p>
+<h2 id="second-brain-os-b4">Sayılar</h2>
+<h3>Ölçülenler</h3>
+<div class="tablewrap">
+<table>
+<thead>
+<tr>
+<th>Ne</th>
+<th>Değer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mimari karar kaydı</td>
+<td><strong>40</strong> — hepsi gerekçesiyle yazılı</td>
+</tr>
+<tr>
+<td>Otomasyonun yönü</td>
+<td>mutlak satır sayısı olarak <strong>küçülüyor</strong>, notlar büyürken</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Bu iki tablo bilerek ayrı. Üsttekiler sistemi çalıştırınca çıkan sayılar; alttakiler kodda öyle yazdığı için doğru. İkincisi de doğrulanabilir, ama doğrulanabilir olmak bir sayıyı ölçüm yapmıyor — ve bu sayfanın kuralı ölçmediğini iddia etmemek.</p>
+<h3>Tasarım sabitleri</h3>
+<div class="tablewrap">
+<table>
+<thead>
+<tr>
+<th>Ne</th>
+<th>Değer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Kademe-0 bütçesi</td>
+<td>iki veri dosyası için 2.000 ve 4.000 karakter</td>
+</tr>
+<tr>
+<td>En kötü durumda veri kaybı</td>
+<td><strong>bir tur</strong></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Bu bölümde eskiden "birkaç düzine kalıcı sayfa", "birkaç yüz oturum
+günlüğü" gibi satırlar da vardı. Onlar ölçüm değil, tahmindi; "ölçmediğimi
+iddia etmem" kuralının altında duramazlardı ve silindiler.</p>
+<p><strong>Bellek cevapları gerçekten değiştiriyor mu?</strong> Her iki kol çalışmadan önce
+kaydedilmiş bir soru kümesi, aynı modele iki kez soruldu: bir kez kasaya tam
+erişimle, bir kez yalnızca kısa bir brifle. Bulgular, puan olarak değil bulgu
+olarak:</p>
+<ul>
+<li><strong>Belleğe erişen koşul açık farkla daha fazla soruyu cevapladı; belleksiz
+  kontrol koşulu çoğunlukla çekimser kaldı.</strong> Kontrol koşulunda model bilmediğini
+  açıkça söyledi; belleğin buradaki katkısı yanlış üretimini engellemekten çok
+  daha fazla soruyu yanıtlayabilmekti.</li>
+<li><strong>Belleksiz koşulun yanlış cevapları kendinden emin ve geneldi</strong>: makul genel
+  tavsiye, ama <em>bu ortamda</em> yanlış. Bir kasanın gerçekten engellediği başarısızlık
+  biçimi bu — cehalet değil, yerelde tutmayan akla yatkın bir cevap.</li>
+<li><strong>Doğru cevapların kaynağı otomasyon araçları değildi.</strong> Hepsi grep ile
+  bulunmuş bir Markdown dosyasından geldi; otomatik kontroller, kuyruklar ve
+  telemetri dosyaları tek bir doğru cevaba katkı vermedi.</li>
+</ul>
+<p>Bu son bulgu, sistemin hangi parçasının değer ürettiğini gösteriyor: yanıtları
+iyileştiren notların kendisi. Bu nedenle notlar büyürken çevrelerindeki ölçüm ve
+otomasyon araçlarının satır sayısı azaltılıyor.</p>
+<p><strong>Bu karşılaştırmanın eksiği açık:</strong> kaç soru sorulduğu ve kaçının doğru çıktığı
+kaydedilmedi, yani ortada bir isabet oranı yok. Bu yüzden yukarıdakiler bulgu
+olarak yazılı, ölçüm olarak değil. Sayıyı üretecek düzeneği kurmak — sabit bir
+soru kümesi, iki kol, kayıtlı sonuçlar — açık işler arasında ve bitene kadar
+buraya bir yüzde yazılmayacak.</p>
+        </div>
+      <nav class="prose__index" aria-label="Teknik derinlik bölümleri">
+        <p class="cap">Bu bölümde</p>
+        <ol>
+          <li><a href="#second-brain-os-b1">Problem</a></li>
+          <li><a href="#second-brain-os-b2">Kurucu kararlar</a></li>
+          <li><a href="#second-brain-os-b3">Nasıl çalışır</a></li>
+          <li><a href="#second-brain-os-b4">Sayılar</a></li>
+        </ol>
+      </nav>
+      </div>
+      <p class="prose__src">Kaynak: sistemin işletim mantığını anlatan brif (15 bölüm). Kamuya açık şablon: <a href="https://github.com/brkakyldz/second-brain-os">github.com/brkakyldz/second-brain-os</a> (v1.0, 2026-09-03). Bu sayfa brifin 2026-09-07 tarihli hâlinden alındı; kasanın içeriği bu sayfaya girmez.</p>
+      <nav class="pager" aria-label="Diğer işler"><a href="../ai-digest/"><span>Önceki</span><b>AI Digest</b></a><a href="../techinves/"><span>Sonraki</span><b>TechInves</b></a></nav>
+    </section>
+  </main>
+</body>
+</html>

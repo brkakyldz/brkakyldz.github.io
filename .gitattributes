@@ -1,0 +1,11 @@
+# Depo ve calisma agaci LF kalir: tools/build.py LF yaziyor, aksi halde
+# her derleme butun dosyalari degismis gosterir.
+* text=auto eol=lf
+
+# Ikili varliklar
+*.mp4 binary
+*.webm binary
+*.jpg binary
+*.png binary
+*.ico binary
+*.woff2 binary

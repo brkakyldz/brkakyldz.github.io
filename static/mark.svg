@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 2.6 32 23.7" role="img" aria-labelledby="t">
+  <title id="t">Berke Akyıldız</title>
+  <!-- favicon.svg ile aynı geometri; burada zemin yok ve kutu içeriğe kırpıldı,
+       çünkü üst barda yazının yanında satır içi duruyor. -->
+  <path d="M0 25.4H32" fill="none" stroke="#6f8493" stroke-width="1.8"/>
+  <path d="M3.6 22.2H29L25 25.4H7.2Z" fill="#93a7b5"/>
+  <path d="M16.6 2.6C13.83 9.83 9.89 16.37 4.8 22.2L16.6 22.2Z" fill="#eef4f7"/>
+  <path d="M17.9 7C21.35 11.67 24.05 16.73 26 22.2L17.9 22.2Z" fill="#61788a"/>
+</svg>

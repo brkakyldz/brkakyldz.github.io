@@ -1,0 +1,493 @@
+<!doctype html>
+<html lang="tr" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI Digest — Berke Akyıldız</title>
+  <meta name="description" content="Günlük yapay zekâ haber bülteni: kaynak listesini kendi başına yokluyor — liste arayüzden düzenleniyor, yeni besleme eklenip istenmeyen kapatılıyor — aynı olayı anlatan haberleri tek başlık altında topluyor, kalanı özetliyor ve günü tek sayfa hâlinde veriyor.">
+  <meta name="theme-color" content="#07131d">
+  <meta name="color-scheme" content="dark">
+  <link rel="canonical" href="https://brkakyldz.github.io/isler/ai-digest/">
+  <link rel="icon" href="../../static/favicon.ico?v=3" sizes="any">
+  <link rel="icon" href="../../static/favicon.svg?v=3" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../../static/apple-touch-icon.png?v=3">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:site_name" content="Berke Akyıldız">
+  <meta property="og:title" content="AI Digest — çalışma mantığı">
+  <meta property="og:description" content="Günlük yapay zekâ haber bülteni: kaynak listesini kendi başına yokluyor — liste arayüzden düzenleniyor, yeni besleme eklenip istenmeyen kapatılıyor — aynı olayı anlatan haberleri tek başlık altında topluyor, kalanı özetliyor ve günü tek sayfa hâlinde veriyor.">
+  <meta property="og:url" content="https://brkakyldz.github.io/isler/ai-digest/">
+  <meta property="og:image" content="https://brkakyldz.github.io/static/media/ocean-poster-v3.jpg">
+  <meta property="og:image:width" content="1920">
+  <meta property="og:image:height" content="1080">
+  <meta property="og:image:alt" content="Mavi saatte, bulutlu gökyüzünün altında açık deniz.">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preload" href="../../static/fonts/newsreader-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../../static/fonts/plex-sans-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../static/css/site.css">
+  <script>document.documentElement.classList.remove('no-js')</script>
+  <script src="../../static/js/site.js" defer></script>
+</head>
+<body class="detail">
+  <a class="skip" href="#main">İçeriğe atla</a>
+  <div class="ocean" aria-hidden="true">
+    <img class="ocean__still" src="../../static/media/ocean-poster-v3.jpg" width="1920" height="1080" alt="" decoding="async">
+    <div class="ocean__grain"></div>
+  </div>
+  <header class="top">
+    <a class="top__name" href="../../"><img class="top__mark" src="../../static/mark.svg" alt="" width="23" height="17" decoding="async">Berke Akyıldız</a>
+    <button class="top__toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menü</button>
+    <nav class="top__nav" id="site-nav" aria-label="Site"><a href="../../hakkimda/">Hakkımda</a><a href="../../#isler" aria-current="page">İşler</a><a href="../../cv/">Özgeçmiş</a><a href="../../#iletisim">İletişim</a><a href="https://github.com/brkakyldz" rel="me"><span lang="en">GitHub</span></a></nav>
+  </header>
+  <main id="main">
+    <section class="page wrap">
+      <div class="page__head">
+        <p class="cap">İş 01 / 04 · Çalışıyor, geliştirme sürüyor</p>
+        <h1 class="page__title">AI Digest</h1>
+        <p class="page__lead">Günlük yapay zekâ haber bülteni: kaynak listesini kendi başına yokluyor — liste arayüzden düzenleniyor, yeni besleme eklenip istenmeyen kapatılıyor — aynı olayı anlatan haberleri tek başlık altında topluyor, kalanı özetliyor ve günü tek sayfa hâlinde veriyor.</p>
+      </div>
+    </section>
+    <section class="brief veiled wrap" aria-labelledby="ai-digest-ozet">
+      <h2 class="brief__title" id="ai-digest-ozet">Kısaca</h2>
+      <dl class="brief__list">
+        <div class="brief__row">
+          <dt class="cap">Problem</dt>
+          <dd>Yapay zekâ haberleri günde onlarca kaynaktan geliyor ve aynı olay beş ayrı başlıkla yazılıyor. Bir haber okuyucusu listeyi verir ama seçimi yapmaz; bir bülten aboneliği seçimi yapar ama neyi neden seçtiğini göstermez.</dd>
+        </div>
+        <div class="brief__row">
+          <dt class="cap">Kullanıcı için değişen</dt>
+          <dd>Okuyucu sabah onlarca başlık yerine tek bir sayfa okuyor. Aynı olayı anlatan haberler tek başlık altında toplanmış oluyor, her özetin altında hangi kaynaktan geldiği yazıyor ve okuyucu her özete &#8220;doğru / yanlış&#8221; işareti bırakabiliyor.</dd>
+        </div>
+        <div class="brief__row">
+          <dt class="cap">Bunu mümkün kılan karar</dt>
+          <dd>Kendiliğinden çalışan hiçbir aşama para harcamıyor. Kaynak yoklaması ücretsiz olduğu için zamanlayıcıya bağlı; model çağıran özetleme ve sıralama ise yalnızca arayüzdeki tek bir basışla, ödenecek birim fiyat ekranda görünürken başlıyor.</dd>
+        </div>
+        <div class="brief__row">
+          <dt class="cap">Kanıt</dt>
+          <dd>Ölçülen fatura ayda ~2,50 dolar; bütçe 10 dolardı. İlk çalıştırma bir haftalık birikimi — 136 haber — 85 saniyede ve 0,115 dolara işledi. Ağa hiç çıkmayan 369 test ~20 saniyede koşuyor.</dd>
+        </div>
+      </dl>
+      <dl class="meta">
+        <div><dt>Tür</dt><dd>Günlük yapay zekâ haber bülteni — LangGraph hattı + tek sayfalık okuma arayüzü</dd></div>
+        <div><dt>Durum</dt><dd>Çalışıyor; 2026-09-04'te M0–M6 tek oturumda gönderildi, geliştirme sürüyor</dd></div>
+        <div><dt>Yığın</dt><dd>Python · LangGraph · FastAPI · Jinja · HTMX · SQLite (WAL + FTS5) · OpenAI</dd></div>
+        <div><dt>Repo</dt><dd><a href="https://github.com/brkakyldz/ai-research-agent" rel="noopener">github.com/brkakyldz/ai-research-agent</a></dd></div>
+      </dl>
+    </section>
+
+    <section class="gallery veiled wrap" aria-labelledby="ai-digest-gallery-title">
+      <div class="gallery__head">
+        <div>
+          <p class="cap">Ürünün yüzü</p>
+          <h2 id="ai-digest-gallery-title">Arayüzden görüntüler</h2>
+        </div>
+        <p class="gallery__total"><b data-gallery-current>01</b> / 06</p>
+      </div>
+      <a href="../../static/media/projects/ai-digest/digest.webp" class="gallery__stage" data-gallery="ai-digest" data-gallery-open data-gallery-index="0" aria-label="AI Digest arayüz görüntüsünü tam ekran aç">
+        <img src="../../static/media/projects/ai-digest/digest.webp" width="2200" height="1667" alt="Günün seçilen yapay zekâ haberleri, kısa özetleri ve neden önemli olduklarıyla tek okumada." loading="lazy" decoding="async">
+        <span class="gallery__expand"><span>Tam ekran</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6 2H2v4M10 2h4v4M14 10v4h-4M6 14H2v-4"/></svg></span>
+      </a>
+      <div class="gallery__reading">
+        <p class="gallery__selected"><b data-gallery-title>Günlük bülten</b><span data-gallery-caption>Günün seçilen yapay zekâ haberleri, kısa özetleri ve neden önemli olduklarıyla tek okumada.</span></p>
+        <ol class="gallery__thumbs" aria-label="AI Digest ekran görüntüleri">
+          <li>
+            <a href="../../static/media/projects/ai-digest/digest.webp" class="gallery__thumb" data-gallery="ai-digest" data-gallery-item data-gallery-select data-gallery-index="0" data-gallery-title="Günlük bülten" data-gallery-caption="Günün seçilen yapay zekâ haberleri, kısa özetleri ve neden önemli olduklarıyla tek okumada." data-gallery-width="2200" data-gallery-height="1667" aria-current="true">
+              <img src="../../static/media/projects/ai-digest/digest-thumb.webp" width="420" height="318" alt="" loading="lazy" decoding="async">
+              <span>Günlük bülten</span>
+            </a>
+          </li>
+          <li>
+            <a href="../../static/media/projects/ai-digest/sources.webp" class="gallery__thumb" data-gallery="ai-digest" data-gallery-item data-gallery-select data-gallery-index="1" data-gallery-title="Kaynaklar" data-gallery-caption="Kaynak listesi: her beslemenin ağırlığı, bulunan haber sayısı ve son yoklama durumu; üstte yeni besleme ekleme alanı, her satırda kapatma." data-gallery-width="2200" data-gallery-height="1667">
+              <img src="../../static/media/projects/ai-digest/sources-thumb.webp" width="420" height="318" alt="" loading="lazy" decoding="async">
+              <span>Kaynaklar</span>
+            </a>
+          </li>
+          <li>
+            <a href="../../static/media/projects/ai-digest/runs.webp" class="gallery__thumb" data-gallery="ai-digest" data-gallery-item data-gallery-select data-gallery-index="2" data-gallery-title="Çalışmalar" data-gallery-caption="Kaynak yoklaması ile ücretli özetleme çalışmalarının süre ve maliyet geçmişi." data-gallery-width="2200" data-gallery-height="1667">
+              <img src="../../static/media/projects/ai-digest/runs-thumb.webp" width="420" height="318" alt="" loading="lazy" decoding="async">
+              <span>Çalışmalar</span>
+            </a>
+          </li>
+          <li>
+            <a href="../../static/media/projects/ai-digest/run-detail.webp" class="gallery__thumb" data-gallery="ai-digest" data-gallery-item data-gallery-select data-gallery-index="3" data-gallery-title="Çalışma ayrıntısı" data-gallery-caption="Bir bülten çalışmasının toplama, ayıklama, zenginleştirme, özetleme ve sıralama adımları." data-gallery-width="2200" data-gallery-height="1067">
+              <img src="../../static/media/projects/ai-digest/run-detail-thumb.webp" width="420" height="204" alt="" loading="lazy" decoding="async">
+              <span>Çalışma ayrıntısı</span>
+            </a>
+          </li>
+          <li>
+            <a href="../../static/media/projects/ai-digest/verdicts.webp" class="gallery__thumb" data-gallery="ai-digest" data-gallery-item data-gallery-select data-gallery-index="4" data-gallery-title="Okur kararları" data-gallery-caption="Desteksiz bulunan cümleler ile okurun doğru veya yanlış olarak işaretlediği haberler." data-gallery-width="2200" data-gallery-height="1667">
+              <img src="../../static/media/projects/ai-digest/verdicts-thumb.webp" width="420" height="318" alt="" loading="lazy" decoding="async">
+              <span>Okur kararları</span>
+            </a>
+          </li>
+          <li>
+            <a href="../../static/media/projects/ai-digest/digest-light.webp" class="gallery__thumb" data-gallery="ai-digest" data-gallery-item data-gallery-select data-gallery-index="5" data-gallery-title="Açık görünüm" data-gallery-caption="Aynı günlük bültenin açık renk görünümü." data-gallery-width="2200" data-gallery-height="1667">
+              <img src="../../static/media/projects/ai-digest/digest-light-thumb.webp" width="420" height="318" alt="" loading="lazy" decoding="async">
+              <span>Açık görünüm</span>
+            </a>
+          </li>
+        </ol>
+      </div>
+    </section>
+    <section class="plate veiled wrap" aria-label="Sistem çizimi">
+      <figure>
+        <svg class="diagram" xmlns="http://www.w3.org/2000/svg" viewBox="-8 -8 496 696" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="ai-digest-t ai-digest-d">
+  <title id="ai-digest-t">AI Digest akışı: haber kaynaklarından günlük okuma sayfasına.</title>
+  <desc id="ai-digest-d">Sistem, arayüzden düzenlenebilen kaynak listesini ücretsiz olarak yoklar, aynı gelişmeyi anlatan haberleri gruplar ve yeterli metni bulur. Ücretli özetleme ile günlük seçim yalnızca kullanıcı düğmeye bastığında başlar. Ölçüm zincirin dışında, ayrı bir kolda duruyor.</desc>
+<g id="d-ai-digest">
+            <!-- Omurga -->
+            <path class="k" d="M240,38 V92 M240,100 V148 M240,192 V268 M240,276 V332 M240,340 V416 M240,464 V492 M240,500 V540 M240,548 V600 M235,595 L240,600 L245,595"/>
+            <g class="node s1"><circle class="k" cx="240" cy="32" r="6"/><text class="num" x="256" y="36">01</text><text class="t" x="280" y="36">haber kaynakları</text><text class="t sm" x="280" y="52">liste arayüzden</text><text class="t sm" x="280" y="66">eklenir · kapatılır</text></g>
+            <g class="node s4"><circle class="fx" cx="240" cy="96" r="3.5"/><text class="num" x="256" y="100">02</text><text class="t" x="280" y="100">kaynakları yokla</text><text class="t sm" x="280" y="116">collect · ücretsiz</text><text class="t sm" x="280" y="130">aynı haber tek kayıt</text></g>
+            <g class="node s2"><circle class="k" cx="40" cy="96" r="6"/><path class="k" d="M46,96 H236"/><text class="num" x="40" y="120">09</text><text class="t" x="64" y="120">zamanlayıcı</text><text class="t sm" x="40" y="136">3 saatte bir</text><text class="t sm" x="40" y="150">yalnızca yoklama</text></g>
+
+            <!-- Sınır ve tek ücretli geçiş -->
+            <g class="bd s2"><path class="k" d="M16,168 H216 M264,168 H464 M16,172 H216 M264,172 H464"/><text class="cap" x="464" y="160" text-anchor="end">kendiliğinden · ücretsiz</text><text class="cap" x="464" y="190" text-anchor="end">insan basar · ücretli</text></g>
+            <g class="s2 s5"><rect class="k" x="216" y="148" width="48" height="44"/><text class="ms-n" x="232" y="180">1</text></g>
+            <g class="node s2"><circle class="k" cx="40" cy="216" r="6"/><path class="k" d="M46,216 H236"/><text class="num" x="40" y="240">10</text><text class="t" x="64" y="240">bülteni üret</text><text class="t sm" x="40" y="256">para harcayan tek düğme</text><text class="t sm" x="40" y="270">POST /runs/start</text></g>
+
+            <g class="node s4"><circle class="fx" cx="240" cy="272" r="3.5"/><text class="num" x="256" y="276">03</text><text class="t" x="280" y="276">aynı olayı eşle</text><text class="t sm" x="280" y="292">dedupe · eşik 85</text><text class="t sm" x="280" y="306">işaretlenir, silinmez</text></g>
+
+            <!-- enrich ve merdiven -->
+            <g class="node s3">
+              <circle class="fx" cx="240" cy="336" r="3.5"/><text class="num" x="256" y="340">04</text><text class="t" x="280" y="340">metni getir · enrich</text>
+              <path class="k" d="M240,348 H304 V392 M304,356 H316 M304,374 H316 M304,392 H316"/>
+              <text class="t sm" x="324" y="360">besleme · bedava</text><text class="t sm" x="324" y="378">sayfa · 1 istek</text><text class="t sm" x="324" y="396">arama · 1 kredi</text><text class="t sm" x="324" y="410">önce ayrılır</text>
+            </g>
+
+            <!-- summarize demeti -->
+            <g class="node s4">
+              <path class="k" d="M240,416 L216,432 V448 L240,464 M240,416 L228,432 V448 L240,464 M240,416 V464 M240,416 L252,432 V448 L240,464 M240,416 L264,432 V448 L240,464"/>
+              <text class="num" x="280" y="440">05</text><text class="t" x="304" y="440">her habere bir özet</text><text class="t sm" x="304" y="456">summarize · biri düşse</text><text class="t sm" x="304" y="470">gerisi gider</text>
+            </g>
+            <g class="node s4"><circle class="fx" cx="240" cy="496" r="3.5"/><text class="num" x="256" y="500">06</text><text class="t" x="280" y="500">günü sırala · rank</text></g>
+            <g class="node s4"><circle class="fx" cx="240" cy="544" r="3.5"/><text class="num" x="256" y="548">07</text><text class="t" x="280" y="548">çalıştırmayı kapat</text><text class="t sm" x="280" y="564">persist · tam / eksik</text></g>
+            <g class="s5"><rect class="k" x="64" y="524" width="152" height="48"/><text class="ms-n" x="74" y="558">~2,50 $</text><text class="ms-c" x="64" y="588">ay · ölçülen fatura</text></g>
+            <g class="node s1"><text class="num" x="256" y="604">08</text><text class="t" x="280" y="604">bülten sayfası</text></g>
+
+            <!-- Değerlendirme, zincirin dışında -->
+            <g class="s5"><path class="k" d="M240,608 V624 H272 M272,616 V676"/><text class="cap" x="284" y="628">ölçüm · zincir dışı</text><text class="num" x="284" y="644">11</text><text class="t sm" x="308" y="644">test · okuyucu işareti</text><text class="t sm" x="284" y="658">hakem · sıralama sondası</text></g>
+          </g>
+</svg>
+
+        <figcaption><span class="cap">Sistem çizimi</span>AI Digest akışı: haber kaynaklarından günlük okuma sayfasına.</figcaption>
+      </figure>
+    </section>
+    <section class="prose veiled wrap" aria-labelledby="ai-digest-derinlik">
+      <p class="cap prose__tier" id="ai-digest-derinlik">Teknik derinlik</p>
+      <p class="prose__tiernote">Buradan sonrası mimari ayrıntı: iç adlar, eşikler, durum değerleri, modül yolları ve ayrıntılı ölçümler. Yukarıdaki özet tek başına okunduğunda proje anlaşılır.</p>
+      <div class="prose__cols">
+        <div class="prose__body">
+          <h2 id="ai-digest-b1">Problem</h2>
+<p>Yapay zekâ haberleri günde onlarca kaynaktan geliyor ve aynı olay beş ayrı
+başlıkla yazılıyor. Bir okuyucunun ihtiyacı liste değil: bugün ne oldu, hangisi
+önemli, nerede durabilirim. Bir RSS okuyucusu bunu vermiyor; bir haber bülteni
+aboneliği ise kimin neyi neden seçtiğini göstermiyor.</p>
+<p>Bu sistem cevabı üretiyor <strong>ve</strong> nasıl ürettiğini gösteriyor: her çalıştırma
+düğüm düğüm kayıtlı, her özetin altında okuyucunun "doğru / yanlış" düğmesi var.</p>
+<h2 id="ai-digest-b2">Kurucu kararlar</h2>
+<p>Sistemin tamamı bu yedi inançtan türüyor. Her biri kodda karşılığı olan kararlar
+üretti.</p>
+<h3>Bu bir alet, ürün değil</h3>
+<p>Sabah açılır, birkaç dakika okunur, kapanır. Kimseyi ikna etme işi yok: kahraman
+görsel yok, atmosfer yok, kaydırma animasyonu yok. Sayfadaki her öğeye tek soru
+soruldu — <em>senin işin ne, ve içerik zaten o işi yapıyor mu?</em> — ve bu soruyla
+silinenlerin listesi, kalanların listesinden uzun.</p>
+<h3>Para bir tasarım malzemesi</h3>
+<p>Bütçe ayda 10 dolardı, ölçülen fatura 2,50. Bu kısıt faturada değil, mimaride
+görünüyor:</p>
+<ul>
+<li>Zenginleştirme <strong>üç kademe, en ucuzu önce</strong>; ücretli kademe yalnızca iki
+  bedava kademeden sonra hâlâ boş kalan içerik için çalışır.</li>
+<li>Tavily kredi tavanı bir <strong>veritabanı tablosu</strong>, bellekteki sayaç değil — günde
+  iki kez yeniden başlayan bir süreç, kendi bütçesini de günde iki kez
+  sıfırlardı.</li>
+<li>Sıralama, çift başına karşılaştırma değil, <strong>günün tamamı üzerinde tek çağrı</strong>.</li>
+<li>Milyon token başına fiyat <strong>düğmenin altına, basmadan önce</strong> çiziliyor:
+  kademeler arasında elli kata varan fark var ve sürpriz, gelecek ayki fatura
+  ekranında değil, bu ekranda olmalı.</li>
+<li>Ücretsiz kaynak yoklaması üç saatte bir kendiliğinden çalışıyor. Model çağıran
+  ve ücret doğuran bülten üretimini ise zamanlayıcı değil, arayüzdeki düğmeye
+  basan insan başlatıyor.</li>
+</ul>
+<p>Kısıtın <strong>almadığı</strong> şey ucuz bir ön filtre: toplanan her haber özetleniyor,
+çünkü haber başına 0,00085 dolarda, neyin okunmaya değer olduğuna önceden karar
+veren bir başlık filtresi dört sent kazandırıp günün asıl haberini gizlerdi.</p>
+<h3>Bir hata bütün bülteni durdurmaz</h3>
+<p>Bir bülten yüz küçük işten oluşur ve bunlardan bazıları hata verebilir. Kural her
+yerde aynı: hata onu tutabilecek <strong>en küçük birimde</strong> kalır ve çalıştırmanın geri
+kalanı tamamlanır.</p>
+<div class="tablewrap">
+<table>
+<thead>
+<tr>
+<th>Birim</th>
+<th>Düşmesinin bedeli</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Bir besleme</td>
+<td>O kaynağın satırı işaretlenir; listedeki diğer kaynaklar çekilir</td>
+</tr>
+<tr>
+<td>Bir haberin özet çağrısı</td>
+<td><code>errors</code>'a bir satır; doksan dokuz özet yine gider</td>
+</tr>
+<tr>
+<td>Sıralama çağrısı</td>
+<td>Öneme, sonra kaynak ağırlığına göre yedek sıralama; editör notu bunu söyler</td>
+</tr>
+<tr>
+<td>Tavily</td>
+<td>Boş dize ve daha ince bir özet</td>
+</tr>
+<tr>
+<td>WAL pragma</td>
+<td>Uyarı, ve geri alma günlüğü</td>
+</tr>
+<tr>
+<td>Kayıt tutma (<code>run_steps</code>, izleme)</td>
+<td>Yutulur ve loglanır — ücretli bir çalıştırma kendi ölçüm aracı yüzünden ölmez</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><code>partial</code> gerçek bir durum, yumuşatılmış bir hata değil: bir besleme 404 verdi,
+üç haber özetlenmedi, kalan doksan yedi hâlâ bir bültendir.</p>
+<h3>Her çalıştırma nerede zaman ve para harcadığını göstermeli</h3>
+<p><code>runs</code> satırı bir çalıştırmanın ne tuttuğunu hep söylüyordu; <strong>nereye</strong> gittiğini
+söylemiyordu. Yavaş ya da pahalı bir çalıştırma karşısında insanın sorduğu iki
+soru — iki dakikayı hangi düğüm yedi, on bir senti hangi düğüm yedi — logu
+okumadan cevapsızdı. <code>run_steps</code> düğüm başına bir satırla ikisini de yanıtlıyor,
+<code>/runs/&lt;id&gt;</code> bunu geri okuyor.</p>
+<p>Aynı inanç, yinelenen bir haberin <strong>işaretlenip asla silinmemesinin</strong> de sebebi:
+yanlış bir birleştirme, kimsenin yokluğunu açıklayamadığı bir haber olmak yerine
+incelenebilir kalıyor. Çöken bir çalıştırma da sonsuza dek <code>running</code> demek yerine
+<code>error</code> olarak kapatılıyor.</p>
+<h3>Modelin söylediği hiçbir şey güvenilir sayılmaz</h3>
+<p>Çıktı kalitesi bir belgedeki iddia değil, bir komutun yeniden ürettiği sayı. Dört
+katman, en ucuzu önce: kayıtlı fikstürler üzerinde çevrimdışı çalışan
+deterministik kontroller, her haberin altında okuyucunun kendi <em>doğru · yanlış</em>
+işareti, hattan bir kademe üstteki modelle örneklenmiş bir dayanak hakemi, ve bir
+sıralama kararlılığı sondası. <strong>Yer gerçeği okuyucunun etiketleridir</strong>; kalibre
+edilen hakemdir, tersi değil.</p>
+<p>Değerlendirme katmanı beşinci bir katman: hat ve web katmanı onu hiç import
+etmiyor. <code>src/ainews/evals/</code> silinse tek bir CLI alt komutu bozulur, başka hiçbir
+şey.</p>
+<h3>Göster, harcama</h3>
+<p>Uygulama tek kişi tarafından klonlanıp çalıştırılıyor, hiç dağıtılmıyor. Bu
+çerçeve arayüzü belirliyor: arayüz <strong>her şeyi gösterebilir</strong> — bir çalıştırmanın
+maliyeti, hangi modelin yazdığı, hangi düğümün ne kadar sürdüğü, kaç özetin
+etiketi var — ve <strong>para harcayan tam olarak tek bir kontrolü</strong> var: <code>/runs</code>
+sayfasındaki basış.</p>
+<p>Bakmak gerçekten ilginç olan değerlendirmenin ikinci bir düğme değil de terminal
+komutu olmasının sebebi bu. İkinci bir ücretli basış, bir <code>uv run</code> tasarrufu
+karşılığında faturadan sürpriz yeme yolunu ikiye katlardı.</p>
+<h3>Bir değer tek yerde yaşar</h3>
+<p>Renk ve ölçek <code>theme.css</code>'te, bir belgede tekrar edilmiyor. Bir okuma sorgusu
+<code>web/queries.py</code>'de, rotada değil — bütün sayfalar aynı birkaç şekli istiyor ve
+iki kez yazılmış bir sorgu, sonra kendisiyle çelişen bir sorgudur. Model adları
+<code>pipeline/pricing.py</code>'de: fiyat tablosu ve menü aynı anda. Ortam tek modülde
+okunuyor, <code>config.py</code>. Bir satırın gerekçesi o satırın üzerindeki yorumdur, başka
+yerde toplanan bir paragraf değil.</p>
+<h2 id="ai-digest-b3">Nasıl çalışır</h2>
+<pre><code>                 ┌──────── FastAPI, tek uvicorn işçisi ─────────┐
+                 │  APScheduler: 3 saatte bir collect           │
+                 │  POST /runs/start  ← insanın bastığı düğme   │
+                 └───────────────────┬─────────────────────────-┘
+                                     ▼
+  RSS ×N ─► collect ─► dedupe ─► enrich ─► [Send ×N] summarize ─► rank ─► persist
+                                     ▼
+   SQLite (WAL + FTS5): sources · articles · summaries · runs · run_steps · verdicts
+                                     ▼
+      Jinja + HTMX:  /   /archive   /sources   /runs   /runs/&lt;id&gt;   /search
+</code></pre>
+<p><strong>collect</strong> — Şartlı GET: son başarılı çekimden gelen <code>ETag</code> / <code>Last-Modified</code>
+geri gönderiliyor, <code>304</code> normal durum ve bedava. Tarayıcı User-Agent'ı
+gönderiliyor, çünkü The Verge ve Ars Technica varsayılan Python dizesini
+reddediyor — o sabit, bu iki beslemenin bizim için var olmasını sağlayan şey.
+Hata kaynak başına: beş art arda başarısızlıkta kaynak kendini kapatıyor. Yedi
+günden eski girdiler eleniyor; bazı beslemeler tüm arşivini sunuyor (OpenAI 1169
+girdi, Hugging Face 859) ve bu ufuk olmasa ilk toplama yılların haberini gerçek
+maliyetle özetlerdi. URL kanonikleştirme — <code>utm_*</code> atılır, <code>www./m./amp.</code>
+katlanır — ilk ve en ucuz yineleme katmanı; <code>url_canonical</code> tabloda <code>unique</code>, yani
+üç beslemeye birden düşen bir haber bir kez saklanıyor.</p>
+<p><strong>/sources</strong> — Beslemeler <code>feeds.yaml</code>'de <em>hazır liste</em> olarak geliyor;
+<code>sources</code> tablosu ise işletenin kopyası. Tohumlama tek yönlü ve yalnızca ekliyor:
+dosyada olup tabloda olmayan besleme ekleniyor, geri kalan her satır işletenin
+bıraktığı gibi kalıyor — bu yüzden kapatılan bir kaynak yeniden başlatmayı da
+atlatıyor. Sayfadaki üç kontrol şunlar: <strong>besleme ekle</strong> — URL önce yoklanıyor,
+ayrıştırılamayan bir besleme yazıldığı anda reddediliyor, çünkü onu düzeltebilecek
+tek kişi o an oradadır; birkaç ana makine (HN, Reddit) yoklanmadan reddediliyor,
+çünkü verecekleri hiçbir cevap kararı değiştirmezdi. <strong>Aç / kapat</strong> — kapatmak bir
+seçim, satır tabloda daha soluk mürekkeple duruyor; yeniden açmak art arda hata
+sayacını da sıfırlıyor, yoksa ilk tek hata kaynağı hemen yine kapatırdı.
+<strong>Ağırlık</strong> — 0,5–2,0 aralığında, ve tablonun tamamı tek gönderimde kaydediliyor,
+çünkü ağırlık göreli bir yargı: soru "bu beslemelerden hangisi öne geçsin",
+ve satır satır cevaplamak diğerlerini okuyucunun aklında tutmasını istemek olurdu.
+Ağırlık üç editoryal iş yapıyor: sıralamada beraberliği bozuyor, hangi ince
+haberin bir Tavily kredisine değdiğini söylüyor ve bir yineleme kümesinden hangi
+haberin kalacağını seçiyor.</p>
+<p><strong>Silme yok, ve bu bir eksik değil karar.</strong> Kapatılan besleme tabloda kalıyor,
+çünkü o okuyucunun verdiği ve görebildiği bir karar; silinen besleme ya
+haberlerinin yabancı anahtarını da götürürdü ya da arşivi artık adı olmayan bir
+kaynağa bakar hâlde bırakırdı.</p>
+<p><strong>dedupe</strong> — URL indeksinin yapamadığı yarısı: aynı olayın beş ayrı gazetede beş
+ayrı başlıkla yazılması. Başlıklar normalize edilip <code>rapidfuzz.token_set_ratio</code>
+ile 85 eşiğinde karşılaştırılıyor. <code>token_set_ratio</code> özellikle seçildi: buradaki
+hata biçimi yanlış yazım değil, kelime eklenip çıkarılması — "OpenAI ships X" ile
+"X shipped by OpenAI today". Aday havuzu, <em>hiçbir dilde hiçbir çalıştırmada özeti
+olmayan</em> haberler; bu yüzden düğmeye üst üste iki kez basmak ikinci sefer hiçbir
+şey özetlemiyor ve sayfa hiç reddetmeden tavsiye verebiliyor.</p>
+<p><strong>enrich</strong> — Üç kademe, her biri bir öncekinden kısa dönen içerik için: (1)
+beslemenin zaten gönderdiği HTML'i temizle — bedava, beslemelerin çoğunu kapatır;
+(2) sayfayı çek ve çıkar — bir istek; (3) tek, tavanlı Tavily araması — bir
+kredi, ve yalnızca hâlâ boş <strong>ve</strong> kaynak ağırlığı ≥ 1.0 olan içerik için. Kredi
+çağrıdan <strong>önce</strong> rezerve ediliyor, çünkü zaman aşımına uğrayan bir istek de
+kredisini harcıyor. Sıralama tasarımın kendisi: para harcayabilen tek adım bu ve
+üçüncü kademeye gelindiğinde haberlerin çoğunun ona ihtiyacı kalmıyor.</p>
+<p><strong>summarize</strong> — LangGraph <code>Send</code> ile yayılma: hayatta kalan her aday için bir dal,
+hepsi tek bir süperadımda. Durum <strong>gövde değil kimlik taşıyor</strong> — LangGraph her
+süperadımda kontrol noktası yazıyor, oraya yüz haber gövdesi koymak ucuz bir
+çalıştırmayı yavaş bir çalıştırmaya çevirirdi. Seçilen model her <code>Send</code>'in
+üzerinde gidiyor: dallar çalıştırmanın kendisi ve bir çalıştırma tek modelle
+özetlenmeli, ortam ortasında değişse bile. Bir dal <strong>asla hata fırlatmaz</strong> —
+fırlatan dal tüm grafiği düşürür; düşen haber <code>errors</code>'a bir satır olur ve
+doksan dokuz özet yine bültene ulaşır.</p>
+<p><strong>rank</strong> — Özetlerdeki önem puanları tek tek, birbirinden habersiz verildi; beş
+ayrı "4" sık görülüyor ve göreli olarak hiçbir şey ifade etmiyor. Sıralama, günün
+tamamını gören tek yer — "bu üçü aynı olay" ve "bu 4 aslında bugünün 5'i"
+diyebilen yer. Modele numaralı bir aday tablosu gösterilip <strong>aday numaraları</strong>
+isteniyor, kimlik değil: kimlikler uzun, yer değiştirmesi kolay ve anlamsız; tek
+bir istem içinde var olan kısa sıra sayılarını sessizce yanlış yapmak çok daha
+zor, doğrulaması da bir aralık kontrolü. Çağrı düşerse bülten yine çıkıyor: öneme,
+sonra kaynak ağırlığına göre yedek sıralama — aynı tabloyla bir insanın yapacağı
+şey — ve editör notu bunu okuyucunun dilinde söylüyor.</p>
+<p>2026-09-07'den beri <code>rank</code> <strong>seçiyor, sıralamıyor</strong>: hangi haberlerin bültene
+gireceğine <code>rank</code>, hangi sırayla okunacağına <code>importance</code> karar veriyor. İkisi
+ayrı ölçüm ve sürekli çelişiyorlar — gerçek bir gün p4, p3, p3, p2, p3 olarak
+çıktı, ve tek sıralama göstergesi başlık boyu olan bir sayfada inip tekrar
+yükselen bir boy, sıra yokmuş gibi okunuyor.</p>
+<p><strong>persist</strong> — Haber başına bir <code>Summary</code> satırı, sonra çalıştırma satırının
+kapanışı: sayımlar, token'lar, maliyet, not, en fazla 20 hata satırı, <code>ok</code> ya da
+<code>partial</code>. Fiyatlar repoya kasıtlı olarak işlenmiş: gösterge panelinin gösterdiği
+bir maliyet yeniden üretilebilir olmalı, çalışma anında çekilen bir rakam değildir.
+Bilinmeyen bir model, bildiğimiz en pahalı model gibi fiyatlanıyor — bizim
+ekranımızdaki kötümser bir sayı, fatura ekranındaki sürprizden iyidir.</p>
+<p><strong>Sayfa</strong> — FastAPI + Jinja + HTMX; Node araç zinciri yok, Tailwind yok, hiçbir
+üçüncü taraf varlık yok (yazı tipleri ve <code>htmx.min.js</code> <code>/static</code>'ten servis
+ediliyor, ve bunu doğrulayan bir test var). Konsol kabuğu: pencerenin üstünde tek
+bir çubuk, ilk hücresinin altında aynı zeminde sol raf. Her haber bir kart.
+Sıralamayı tipografi taşıyor. Haber bloğu asla yeniden sıralanmıyor — kaynak ve
+yaş, başlık, özet, kendi levhasında <em>neden önemli</em>, konular, kaynak bağlantısı:
+her öğede aynı altı şey aynı sırada, ki bu onu bir besleme okuyucusundan ayıran
+şey. Arayüz Türkçe ve İngilizce; görünen her dize <code>web/i18n.py</code>'de iki sözlükte,
+eksik anahtar sessiz İngilizce yedeği değil, render anında <code>KeyError</code>.</p>
+<p>Düğmenin yerine geçen şey <strong>tavsiye</strong>: beş durum (<code>running</code>, <code>blocked</code>, <code>never</code>,
+<code>waiting</code>, <code>due</code>), ve tavsiye <strong>yalnızca tavsiye eder, asla reddetmez</strong> — basışı
+gerçekten durduran iki şey makineyle ilgili olgular, zamanlamayla ilgili görüşler
+değil.</p>
+<h3>Güvenlik ve dağıtım</h3>
+<p>Arayüz tek kullanıcılık ve kendi barındırılan; oturum ve hesap yok. Buna rağmen
+para harcayan bir düğme taşıdığı için üç şey kodda:</p>
+<ul>
+<li><strong>Durum değiştiren istekler yalnızca sayfanın kendisinden kabul ediliyor.</strong>
+  Tarayıcının gönderdiği <code>Sec-Fetch-Site</code> başlığı <code>same-origin</code> değilse istek
+  reddediliyor. Başka bir sitedeki bir bağlantının bir çalıştırmayı — yani bir
+  harcamayı — başlatabilmesi bu yüzden mümkün değil.</li>
+<li><strong>Aynı anda tek çalıştırma.</strong> Kilit veritabanında, kısmi benzersiz indeksle
+  zorlanıyor: bir çalıştırma sürerken ikincisini başlatmayı deneyen istek
+  makine okunur bir ret kodu alıyor. Kural düzyazıda değil, şemada.</li>
+<li><strong>Bütün zamanlar UTC.</strong> Tarih sütunları özel bir tip üzerinden geçiyor ve
+  yerel saat hiçbir yerde saklanmıyor; günün sınırının makineye göre kayması
+  bültenin hangi haberleri kapsadığını sessizce değiştirirdi.</li>
+</ul>
+<p>Dağıtım tek satır: repo bir <code>Dockerfile</code> ve bir compose dosyası taşıyor, hat ve
+arayüz tek konteynerde, tek uvicorn işçisinde çalışıyor. Veri tek bir SQLite
+dosyasında, yani yedek bir dosya kopyası.</p>
+<p><strong>Henüz yok:</strong> sürekli entegrasyon. 369 test yerelde koşuyor; her itmede
+koşmuyor. Test kültürünü kanıtlayan şey testlerin sayısı değil, kimsenin
+çalıştırmayı hatırlamak zorunda olmaması — o yüzden bu bir eksik.</p>
+<h2 id="ai-digest-b4">Sayılar</h2>
+<h3>Ölçülenler</h3>
+<div class="tablewrap">
+<table>
+<thead>
+<tr>
+<th>Ne</th>
+<th>Değer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Aylık maliyet</td>
+<td>~<strong>2,50 $</strong> (bütçe 10 $)</td>
+</tr>
+<tr>
+<td>İlk çalıştırma (bir haftalık birikim)</td>
+<td>136 haber · 191.960 / 64.126 token · <strong>0,115 $</strong> · 85 sn</td>
+</tr>
+<tr>
+<td>Üç saatlik delta</td>
+<td>21 haber · 30.600 / 8.200 token · 0,017 $ · 43 sn</td>
+</tr>
+<tr>
+<td>Test</td>
+<td><strong>369 test</strong>, çevrimdışı, ~20 saniye; 12'si <code>xfail(strict=True)</code></td>
+</tr>
+<tr>
+<td>Sıralama kararlılığı</td>
+<td>Kendall τ <strong>0,47</strong> ve 0,50 (tetikleyici eşik 0,6)</td>
+</tr>
+<tr>
+<td>Değerlendirme, ilk çalıştırma (91 haber)</td>
+<td>%4,4 özet kelime bütçesini aştı · 2 dayanaksız rakam · %67,6 etiket tekil</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Bu iki tablo bilerek ayrı. Üsttekiler sistemi çalıştırınca çıkan sayılar; alttakiler kodda öyle yazdığı için doğru. İkincisi de doğrulanabilir, ama doğrulanabilir olmak bir sayıyı ölçüm yapmıyor — ve bu sayfanın kuralı ölçmediğini iddia etmemek.</p>
+<h3>Tasarım sabitleri</h3>
+<div class="tablewrap">
+<table>
+<thead>
+<tr>
+<th>Ne</th>
+<th>Değer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Kaynak</td>
+<td>16 hazır RSS beslemesi; liste <code>/sources</code>'tan eklenir ve kapatılır</td>
+</tr>
+<tr>
+<td>Zamanlanmış iş sayısı</td>
+<td><strong>1</strong> — ve o, ücretsiz olan (besleme toplama)</td>
+</tr>
+<tr>
+<td>Para harcayan kontrol sayısı</td>
+<td><strong>1</strong> (<code>/runs</code> sayfasındaki basış)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Maliyetin mimaride tutulduğu iddiası alttaki tabloya dayanıyor, üsttekine değil: tek zamanlanmış iş ve tek ücretli düğme bir ölçüm sonucu değil, kurulan yapının kendisi. Üstteki fatura o yapının sonucunu gösteriyor.</p>
+        </div>
+      <nav class="prose__index" aria-label="Teknik derinlik bölümleri">
+        <p class="cap">Bu bölümde</p>
+        <ol>
+          <li><a href="#ai-digest-b1">Problem</a></li>
+          <li><a href="#ai-digest-b2">Kurucu kararlar</a></li>
+          <li><a href="#ai-digest-b3">Nasıl çalışır</a></li>
+          <li><a href="#ai-digest-b4">Sayılar</a></li>
+        </ol>
+      </nav>
+      </div>
+      <p class="prose__src">Kaynak: projenin kendi <code>docs/HOW-IT-WORKS.md</code> belgesi (24 numaralı karar, ADR tablosu). Kod: <a href="https://github.com/brkakyldz/ai-research-agent">github.com/brkakyldz/ai-research-agent</a>. Bu sayfa belgenin 2026-09-07 tarihli hâlinden alındı; belge ile kod çeliştiğinde kod haklıdır.</p>
+      <nav class="pager" aria-label="Diğer işler"><a href="../terminal-organizer/"><span>Önceki</span><b>Terminal Organizer</b></a><a href="../second-brain-os/"><span>Sonraki</span><b>Second Brain OS</b></a></nav>
+    </section>
+  </main>
+</body>
+</html>

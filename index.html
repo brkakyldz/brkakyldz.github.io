@@ -1,0 +1,770 @@
+<!doctype html>
+<html lang="tr" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Berke Akyıldız — yapay zekâ ve ajan sistemleri</title>
+  <meta name="description" content="Merak ettiğim şeyleri, çalışan sistemlere dönüştürüyorum. Yapay zekâ ve ajan sistemleri: AI Digest, Second Brain OS, TechInves, Terminal Organizer.">
+  <meta name="theme-color" content="#07131d">
+  <meta name="color-scheme" content="dark">
+  <link rel="canonical" href="https://brkakyldz.github.io/">
+  <link rel="icon" href="static/favicon.ico?v=3" sizes="any">
+  <link rel="icon" href="static/favicon.svg?v=3" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="static/apple-touch-icon.png?v=3">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:site_name" content="Berke Akyıldız">
+  <meta property="og:title" content="Merak ettiğim şeyleri, çalışan sistemlere dönüştürüyorum.">
+  <meta property="og:description" content="Yapay zekâ ve ajan sistemleri geliştiriyorum. Bilgiyi düzenleyen, araştırmayı kolaylaştıran ve günlük işleri otomatikleştiren araçlar.">
+  <meta property="og:url" content="https://brkakyldz.github.io/">
+  <meta property="og:image" content="https://brkakyldz.github.io/static/media/ocean-poster-v3.jpg">
+  <meta property="og:image:width" content="1920">
+  <meta property="og:image:height" content="1080">
+  <meta property="og:image:alt" content="Mavi saatte, bulutlu gökyüzünün altında açık deniz.">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preload" href="static/fonts/newsreader-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="static/fonts/newsreader-latin-ext.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="static/fonts/plex-sans-500.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="static/media/ocean-poster-v3.jpg" as="image" fetchpriority="high">
+  <link rel="stylesheet" href="static/css/site.css">
+  <script>document.documentElement.classList.remove('no-js')</script>
+  <script src="static/js/site.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main">İçeriğe atla</a>
+
+  <!-- Deniz: bütün sayfayı birbirine bağlayan ortam. Ses yok, otomatik oynatma JS ile ve yalnızca hareket isteyene. -->
+  <div class="ocean" aria-hidden="true">
+    <video class="ocean__video" autoplay muted loop playsinline preload="none" data-webm="static/media/ocean-v3.webm" data-mp4="static/media/ocean-v3.mp4" poster="static/media/ocean-poster-v3.jpg" width="2560" height="1440" tabindex="-1">
+    </video>
+    <img class="ocean__still" src="static/media/ocean-poster-v3.jpg" width="1920" height="1080" alt="" decoding="async">
+    <!-- İniş perdesi: sayfa indikçe ışık azalır, kapanışta geri gelir. Yoğunluğunu site.js kurar. -->
+    <div class="ocean__deep"></div>
+    <div class="ocean__grain"></div>
+  </div>
+
+  <header class="top">
+    <a class="top__name" href="#top"><img class="top__mark" src="static/mark.svg" alt="" width="23" height="17" decoding="async">Berke Akyıldız</a>
+    <button class="top__toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menü</button>
+    <nav class="top__nav" id="site-nav" aria-label="Site">
+      <a href="#hakkimda" data-sec="#hakkimda">Hakkımda</a>
+      <a href="#isler">İşler</a>
+      <a href="cv/">Özgeçmiş</a>
+      <a href="#iletisim">İletişim</a>
+      <a href="https://github.com/brkakyldz" rel="me"><span lang="en">GitHub</span></a>
+    </nav>
+  </header>
+
+  <main id="main">
+
+    <!-- ===================== AÇILIŞ ===================== -->
+    <section class="hero wrap" id="top" aria-labelledby="hero-title">
+      <div class="hero__copy">
+        <h1 class="hero__title" id="hero-title">Merak ettiğim şeyleri, <br>çalışan sistemlere dönüştürüyorum.</h1>
+        <p class="hero__lead">Python ve <span lang="en">LangGraph</span> ile <span lang="en">LLM</span> hatları kuruyorum: model yazar, kod doğrular. Dört sistemde de aynı üç kural — para mimariye baştan yazılır, tek doğru cevabı olan iş modele sorulmaz, ölçülmeyen şey iddia edilmez.</p>
+        <div class="hero__links">
+          <a href="#isler">İşler</a>
+          <a href="cv/">Özgeçmiş</a>
+          <a href="https://github.com/brkakyldz" rel="me"><span lang="en">GitHub</span></a>
+        </div>
+      </div>
+      <div class="hero__foot">
+        <div class="scrollcue"><span class="cap">kaydır</span></div>
+      </div>
+    </section>
+
+    <!-- ===================== HAKKIMDA (fragman) ===================== -->
+    <section class="about veiled wrap" id="hakkimda" aria-labelledby="about-title">
+      <div class="about__grid">
+        <div>
+          <h2 class="cap" id="about-title">Hakkımda</h2>
+          <p class="about__lead">Berke Akyıldız. Antalya'da yaşıyorum. Beni ilgilendiren şey işin kendisi değil, <em>işin etrafındaki tekrar</em>.</p>
+          <p class="about__lead" style="margin-top:1.2rem">Dört işim de aynı yerden çıktı: bir insanın her gün elle yaptığı bir işi alıp, kararını hâlâ insanın verdiği ama tekrarını üstlenen bir sisteme çevirmek.</p>
+          <a class="about__more" href="hakkimda/">Nasıl çalışıyorum</a>
+        </div>
+        <dl class="ident" aria-label="Künye">
+          <div><dt>Rol</dt><dd><span lang="en">AI</span> / <span lang="en">LLM</span> mühendisliği — Python ve <span lang="en">LangGraph</span> ile hat kuruyorum, puanlama ve denetimi kodda tutuyorum.</dd></div>
+          <div><dt>Konum</dt><dd>Antalya, Türkiye · uzaktan çalışmaya açık</dd></div>
+          <div><dt>Projeler</dt><dd>Dört sistem: bir haber bülteni hattı, bir ajan belleği, bir finansal puanlama motoru ve bir masaüstü terminal uygulaması. Dördünün de kodu açık.</dd></div>
+          <div><dt>Yöntem</dt><dd>Geliştirmenin çoğunu ajanla yapıyorum; karşılığında ajanın belleğini ve her kararın gerekçesini okunabilir dosyalarda tutuyorum.</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- ===================== İŞLER: seçim şeridi ===================== -->
+    <section class="works veiled wrap" id="isler" aria-labelledby="works-title">
+      <div class="works__head">
+        <h2 class="works__label" id="works-title"><span class="cap">İşler</span><span class="works__rule" aria-hidden="true"></span></h2>
+        <p class="works__lead">Dört sistem. Her kart o işin sayfasına gider; aşağıdaki bölümler aynı dördünü sırayla anlatır.</p>
+      </div>
+
+      <ul class="works__grid">
+          <li class="card" style="--i:0">
+            <article class="card__panel">
+              <div class="card__mark">
+                <!-- cardmark:ai-digest start -->
+<svg class="diagram card__diagram" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="186 16 260 132" preserveAspectRatio="xMidYMid meet">
+  <g id="card-ai-digest-d-ai-digest">
+            <!-- Omurga -->
+            <path class="k" d="M240,38 V92 M240,100 V148 M240,192 V268 M240,276 V332 M240,340 V416 M240,464 V492 M240,500 V540 M240,548 V600 M235,595 L240,600 L245,595"/>
+            <g class="node s1"><circle class="k" cx="240" cy="32" r="6"/><text class="num" x="256" y="36">01</text><text class="t" x="280" y="36">haber kaynakları</text><text class="t sm" x="280" y="52">liste arayüzden</text><text class="t sm" x="280" y="66">eklenir · kapatılır</text></g>
+            <g class="node s4"><circle class="fx" cx="240" cy="96" r="3.5"/><text class="num" x="256" y="100">02</text><text class="t" x="280" y="100">kaynakları yokla</text><text class="t sm" x="280" y="116">collect · ücretsiz</text><text class="t sm" x="280" y="130">aynı haber tek kayıt</text></g>
+            <g class="node s2"><circle class="k" cx="40" cy="96" r="6"/><path class="k" d="M46,96 H236"/><text class="num" x="40" y="120">09</text><text class="t" x="64" y="120">zamanlayıcı</text><text class="t sm" x="40" y="136">3 saatte bir</text><text class="t sm" x="40" y="150">yalnızca yoklama</text></g>
+
+            <!-- Sınır ve tek ücretli geçiş -->
+            <g class="bd s2"><path class="k" d="M16,168 H216 M264,168 H464 M16,172 H216 M264,172 H464"/><text class="cap" x="464" y="160" text-anchor="end">kendiliğinden · ücretsiz</text><text class="cap" x="464" y="190" text-anchor="end">insan basar · ücretli</text></g>
+            <g class="s2 s5"><rect class="k" x="216" y="148" width="48" height="44"/><text class="ms-n" x="232" y="180">1</text></g>
+            <g class="node s2"><circle class="k" cx="40" cy="216" r="6"/><path class="k" d="M46,216 H236"/><text class="num" x="40" y="240">10</text><text class="t" x="64" y="240">bülteni üret</text><text class="t sm" x="40" y="256">para harcayan tek düğme</text><text class="t sm" x="40" y="270">POST /runs/start</text></g>
+
+            <g class="node s4"><circle class="fx" cx="240" cy="272" r="3.5"/><text class="num" x="256" y="276">03</text><text class="t" x="280" y="276">aynı olayı eşle</text><text class="t sm" x="280" y="292">dedupe · eşik 85</text><text class="t sm" x="280" y="306">işaretlenir, silinmez</text></g>
+
+            <!-- enrich ve merdiven -->
+            <g class="node s3">
+              <circle class="fx" cx="240" cy="336" r="3.5"/><text class="num" x="256" y="340">04</text><text class="t" x="280" y="340">metni getir · enrich</text>
+              <path class="k" d="M240,348 H304 V392 M304,356 H316 M304,374 H316 M304,392 H316"/>
+              <text class="t sm" x="324" y="360">besleme · bedava</text><text class="t sm" x="324" y="378">sayfa · 1 istek</text><text class="t sm" x="324" y="396">arama · 1 kredi</text><text class="t sm" x="324" y="410">önce ayrılır</text>
+            </g>
+
+            <!-- summarize demeti -->
+            <g class="node s4">
+              <path class="k" d="M240,416 L216,432 V448 L240,464 M240,416 L228,432 V448 L240,464 M240,416 V464 M240,416 L252,432 V448 L240,464 M240,416 L264,432 V448 L240,464"/>
+              <text class="num" x="280" y="440">05</text><text class="t" x="304" y="440">her habere bir özet</text><text class="t sm" x="304" y="456">summarize · biri düşse</text><text class="t sm" x="304" y="470">gerisi gider</text>
+            </g>
+            <g class="node s4"><circle class="fx" cx="240" cy="496" r="3.5"/><text class="num" x="256" y="500">06</text><text class="t" x="280" y="500">günü sırala · rank</text></g>
+            <g class="node s4"><circle class="fx" cx="240" cy="544" r="3.5"/><text class="num" x="256" y="548">07</text><text class="t" x="280" y="548">çalıştırmayı kapat</text><text class="t sm" x="280" y="564">persist · tam / eksik</text></g>
+            <g class="s5"><rect class="k" x="64" y="524" width="152" height="48"/><text class="ms-n" x="74" y="558">~2,50 $</text><text class="ms-c" x="64" y="588">ay · ölçülen fatura</text></g>
+            <g class="node s1"><text class="num" x="256" y="604">08</text><text class="t" x="280" y="604">bülten sayfası</text></g>
+
+            <!-- Değerlendirme, zincirin dışında -->
+            <g class="s5"><path class="k" d="M240,608 V624 H272 M272,616 V676"/><text class="cap" x="284" y="628">ölçüm · zincir dışı</text><text class="num" x="284" y="644">11</text><text class="t sm" x="308" y="644">test · okuyucu işareti</text><text class="t sm" x="284" y="658">hakem · sıralama sondası</text></g>
+          </g>
+</svg>
+
+<!-- cardmark:ai-digest end -->
+              </div>
+              <div class="card__body">
+                <p class="card__idx">01<span class="card__kind">Haber bülteni</span></p>
+                <h3 class="card__name"><a href="isler/ai-digest/">AI Digest</a></h3>
+                <p class="card__line">Takip ettiğiniz haber kaynaklarını tarayıp günün yapay zekâ haberlerini tek sayfada özetler.</p>
+              </div>
+              <footer class="card__foot">
+                <span class="card__go">Nasıl çalışır<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></span>
+                <a class="card__repo" href="https://github.com/brkakyldz/ai-research-agent" rel="noopener">Kod<span class="u-hidden"> — AI Digest deposu GitHub'da</span><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
+              </footer>
+            </article>
+          </li>
+          <li class="card" style="--i:1">
+            <article class="card__panel">
+              <div class="card__mark">
+                <!-- cardmark:second-brain-os start -->
+<svg class="diagram card__diagram" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="40 24 260 142" preserveAspectRatio="xMidYMid meet">
+  <g id="card-second-brain-os-d-second-brain-os">
+            <!-- İki okuyucu -->
+            <g class="node s1"><circle class="k" cx="48" cy="40" r="6"/><path class="k" d="M48,46 V88"/><text class="num" x="64" y="44">01</text><text class="t" x="88" y="44">insan · Obsidian</text></g>
+            <g class="node s1"><circle class="k" cx="296" cy="40" r="6"/><path class="k" d="M296,46 V88"/><text class="num" x="312" y="44">02</text><text class="t" x="336" y="44">ajan · oturum</text></g>
+            <g class="s6"><text class="num" x="336" y="60">17</text><text class="t sm" x="356" y="60">tek yazar kilidi</text></g>
+
+            <!-- Kademe bantları -->
+            <g class="bd s2"><path class="k" d="M16,88 H360 M16,168 H360 M16,384 H360 M16,440 H360"/>
+              <text class="cap" x="112" y="80">her oturumda yüklenir</text><text class="cap" x="112" y="184">istendiğinde açılır</text><text class="cap" x="112" y="400">gün sorulunca okunur</text></g>
+
+            <g class="node s2 s4"><text class="num" x="48" y="112">03</text><text class="t" x="72" y="112">çekirdek · core/</text><text class="t sm" x="48" y="128">kimlik · kullanıcı · bellek</text><text class="t sm" x="48" y="142">açık sorular</text><text class="t sm" x="48" y="158">~2.000 / ~4.000 karakter</text></g>
+
+            <!-- Üç yazma yolu, merdiven -->
+            <g class="node s4"><path class="k" d="M72,204 V248"/><text class="num" x="72" y="200">11</text><text class="t" x="96" y="200">oturumdan süz</text></g>
+            <g class="node s4"><path class="k" d="M128,220 V248"/><text class="num" x="128" y="216">12</text><text class="t" x="152" y="216">dışarıdan al</text></g>
+            <g class="node s4"><path class="k" d="M184,236 V248"/><text class="num" x="184" y="232">13</text><text class="t" x="208" y="232">sohbetten al</text></g>
+
+            <!-- Sahip: notes/ -->
+            <g class="node s2 s3 s4"><rect class="k" x="48" y="248" width="224" height="48"/><text class="num" x="56" y="268">04</text><text class="t" x="80" y="268">notlar · notes/</text><text class="t sm" x="56" y="286">ekle · birleştir · yerine geç</text></g>
+            <g class="s4 s6"><text class="t sm" x="48" y="314">getirme: kelime araması,</text><text class="t sm" x="48" y="328">dizin ve bağlantılar</text></g>
+            <g class="node s2 s3"><text class="num" x="48" y="350">08</text><text class="t" x="72" y="350">arşiv · archive/</text><text class="t sm" x="48" y="366">39 karar · silinmez, taşınır</text></g>
+            <g class="s6"><text class="t sm" x="296" y="378">anlamsal arama yok</text></g>
+
+            <!-- Kapı: notes → core -->
+            <g class="node s4"><path class="k" d="M272,268 H296 V170 M290,208 H302"/><text class="t sm" x="308" y="212">yükseltme:</text><text class="t sm" x="308" y="226">ikinci bağımsız teyit</text></g>
+
+            <!-- Ölçüm: getirme tarafı -->
+            <g class="s2 s5"><rect class="k" x="296" y="288" width="48" height="44"/><text class="ms-n" x="311" y="320">0</text><text class="ms-c" x="296" y="350">veritabanı · vektör</text><text class="ms-c" x="296" y="364">deposu · arama indeksi</text></g>
+
+            <!-- Kademe 2 -->
+            <g class="node s2 s3"><text class="num" x="48" y="420">06</text><text class="t" x="72" y="420">kayıtlar</text><text class="t sm" x="136" y="420">logs/ · her oturum ekler</text></g>
+
+            <!-- Kademesiz klasörler, sağ sütun -->
+            <g class="cap-g"><text class="cap" x="392" y="80">kademe dışı</text></g>
+            <g class="node s3 s6"><text class="num" x="392" y="104">07</text><text class="t sm" x="416" y="104">my-notes/</text><text class="t sm" x="392" y="120">gelenek,</text><text class="t sm" x="392" y="134">zorlama değil</text></g>
+            <g class="node s3"><text class="num" x="392" y="184">09</text><text class="t sm" x="416" y="184">.claude/</text><text class="t sm" x="392" y="200">kontroller</text></g>
+            <g class="node s3"><text class="num" x="392" y="248">10</text><text class="t sm" x="416" y="248">scripts/</text><text class="t sm" x="392" y="264">bakım betiği</text></g>
+            <g class="node s3"><text class="num" x="392" y="408">05</text><text class="t sm" x="416" y="408">ham belge</text><text class="t sm" x="392" y="424">ajan yazmaz</text></g>
+
+            <!-- Sınır: kod ═ yargı -->
+            <g class="bd s5"><path class="k" d="M16,472 H464 M16,476 H464"/><text class="cap" x="16" y="464">kod</text><text class="cap" x="464" y="464" text-anchor="end">yargı</text></g>
+            <g class="node s5"><text class="num" x="48" y="504">14</text><text class="t" x="72" y="504">otomatik kontrol ×4</text><text class="t sm" x="48" y="520">SessionStart · Stop</text><text class="t sm" x="48" y="534">PreCompact · SessionEnd</text><text class="t" x="48" y="560">bakım betiği ×3</text><text class="t sm" x="48" y="576">link-sweep · retrieval-eval</text><text class="t sm" x="48" y="590">vault-metrics</text></g>
+            <g class="node s5"><text class="num" x="280" y="504">15</text><text class="t" x="304" y="504">yardımcı komut ×7</text><text class="t sm" x="280" y="520">ingest · file · recall</text><text class="t sm" x="280" y="534">curator · audit</text><text class="t sm" x="280" y="548">lesson · note</text></g>
+
+            <!-- Kontrol noktası → git -->
+            <g class="s5"><path class="k" d="M48,598 V644 M43,639 L48,644 L53,639"/><text class="t" x="64" y="648">Git</text>
+              <rect class="k" x="120" y="604" width="40" height="40"/><text class="ms-n" x="131" y="634">1</text><text class="num" x="168" y="620">16</text><text class="ms-c" x="120" y="660">tur · en kötü kayıp</text></g>
+
+            <!-- Ağacın dışı -->
+            <g class="s6"><rect class="k rf" x="376" y="604" width="96" height="40"/><text class="num" x="384" y="620">18</text><text class="t sm" x="408" y="620">gitignore</text><text class="t sm" x="384" y="636">yan dosya</text></g>
+          </g>
+</svg>
+
+<!-- cardmark:second-brain-os end -->
+              </div>
+              <div class="card__body">
+                <p class="card__idx">02<span class="card__kind">Ajan belleği</span></p>
+                <h3 class="card__name"><a href="isler/second-brain-os/">Second Brain OS</a></h3>
+                <p class="card__line">Ajan oturumları arasında taşınan, insanın da okuyup düzeltebildiği proje belleği.</p>
+              </div>
+              <footer class="card__foot">
+                <span class="card__go">Nasıl çalışır<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></span>
+                <a class="card__repo" href="https://github.com/brkakyldz/second-brain-os" rel="noopener">Kod<span class="u-hidden"> — Second Brain OS deposu GitHub'da</span><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
+              </footer>
+            </article>
+          </li>
+          <li class="card" style="--i:2">
+            <article class="card__panel">
+              <div class="card__mark">
+                <!-- cardmark:techinves start -->
+<svg class="diagram card__diagram" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="30 26 300 114" preserveAspectRatio="xMidYMid meet">
+  <g id="card-techinves-d-techinves">
+            <!-- Sol hat: puanlama merdiveni -->
+            <path class="k" d="M48,54 V82 M48,94 V148 M48,204 V252 M48,260 V316 M48,324 V440"/>
+            <g class="node s1"><circle class="k" cx="48" cy="48" r="6"/><text class="num" x="64" y="52">01</text><text class="t" x="88" y="52">resmî finansal veri</text><text class="t sm" x="88" y="68">SEC EDGAR · companyfacts</text></g>
+            <g class="node s1"><circle class="k" cx="48" cy="88" r="6"/><text class="num" x="64" y="92">02</text><text class="t" x="88" y="92">şirket künyesi</text></g>
+            <g class="s5 s6"><text class="t sm" x="88" y="108">FMP · ~250 istek / gün</text></g>
+            <g class="node s2">
+              <circle class="fx" cx="48" cy="152" r="3.5"/><circle class="fx" cx="48" cy="176" r="3.5"/><circle class="fx" cx="48" cy="200" r="3.5"/>
+              <path class="k" d="M48,156 V172 M48,180 V196"/>
+              <text class="num" x="64" y="156">03</text><text class="t" x="88" y="156">uçları törpüle</text><text class="t" x="88" y="180">yön düzeltme</text><text class="t" x="88" y="204">grup içinde yüzdelik</text>
+            </g>
+            <g class="s6"><text class="t sm" x="88" y="222">en az 2 benzer şirket</text></g>
+            <g class="node s3"><circle class="fx" cx="48" cy="256" r="3.5"/><text class="num" x="64" y="260">04</text><text class="t" x="88" y="260">kategori skoru</text><text class="t sm" x="88" y="276">eksik metrik ağırlığı dağılır</text></g>
+            <g class="node s3">
+              <circle class="fx" cx="48" cy="320" r="3.5"/><text class="num" x="64" y="324">05</text><text class="t" x="88" y="324">bileşik puan</text>
+              <path class="k" d="M176,300 V340"/><circle class="fx" cx="176" cy="320" r="3.5"/><text class="t" x="188" y="324">risk puanı</text><text class="t sm" x="188" y="340">ayrı tutulur</text>
+            </g>
+            <g class="s3 s5"><rect class="k" x="88" y="348" width="56" height="48"/><text class="ms-n" x="97" y="382">70</text><text class="ms-c" x="88" y="412">riskliyse tavan</text></g>
+            <g class="node s3"><path class="k" d="M40,440 H56"/><text class="num" x="64" y="444">06</text><text class="t" x="88" y="444">puan ve bant</text><text class="t sm" x="88" y="460">veri yok da bir bant</text></g>
+
+            <!-- Sağ hat: rapor -->
+            <path class="k" d="M296,158 V190 M296,258 V276 M296,284 V312 M296,360 V432"/>
+            <g class="node s4"><circle class="fx" cx="296" cy="152" r="3.5"/><text class="num" x="312" y="156">08</text><text class="t" x="336" y="156">ucuz ön eleme</text><text class="t sm" x="336" y="172">3–4 şirket seçilir</text></g>
+            <g class="node s4">
+              <path class="k" d="M296,190 L272,206 V242 L296,258 M296,190 L284,206 V242 L296,258 M296,190 V258 M296,190 L308,206 V242 L296,258 M296,190 L320,206 V242 L296,258"/>
+              <path class="k" d="M272,228 a5,5 0 1 0 0,-10"/>
+              <text class="num" x="336" y="214">09</text><text class="t" x="360" y="214">13–14 araştırma dalı</text><text class="t sm" x="336" y="232">yeniden dene ×2</text>
+            </g>
+            <g class="node s4"><circle class="fx" cx="296" cy="280" r="3.5"/><text class="num" x="312" y="284">10</text><text class="t" x="336" y="284">tek taslakta birleşir</text></g>
+            <g class="node s4">
+              <rect class="k" x="280" y="312" width="136" height="48"/><text class="num" x="288" y="330">11</text><text class="t" x="312" y="330">doğrulayıcı</text><text class="t sm" x="288" y="348">kural önce</text>
+              <path class="k" d="M296,376 H308 M296,392 H308 M296,408 H308 M296,424 H308"/>
+              <text class="t sm" x="316" y="380">durdur</text><text class="t sm" x="316" y="396">uyarılarla aç</text><text class="t sm" x="316" y="412">notla geç</text><text class="t sm" x="316" y="428">geç</text>
+            </g>
+            <g class="node s4"><path class="k" d="M296,432 V452 M291,447 L296,452 L301,447"/><text class="num" x="312" y="452">12</text><text class="t" x="336" y="452">rapor</text><text class="t sm" x="312" y="470">kusuru üstünde yazılı açılır</text></g>
+
+            <!-- Sınır -->
+            <g class="bd s2"><path class="k" d="M16,488 H464 M16,492 H464"/><text class="cap" x="16" y="478">puan hattı</text><text class="cap" x="200" y="478">rapor hattı</text><text class="cap" x="120" y="512">modelin çalıştığı yer</text></g>
+
+            <!-- Model, altında -->
+            <g class="node s2"><rect class="k" x="232" y="544" width="128" height="48"/><text class="num" x="240" y="562">07</text><text class="t" x="264" y="562">model</text><text class="t sm" x="240" y="580">yazar · hakem</text></g>
+            <g class="s4"><path class="k" d="M360,568 H460 V208 M460,214 H452 M460,284 H452 M460,336 H416"/></g>
+            <g class="rf-g s2 s5"><path class="k rf" d="M232,568 H64 V510"/><path class="k" d="M59,499 L69,509 M69,499 L59,509"/><text class="t" x="80" y="530">0 model çağrısı</text></g>
+            <g class="node s6"><circle class="k rf" cx="240" cy="616" r="6"/><text class="num" x="256" y="620">13</text><text class="t" x="280" y="620">bağlanmamış çağrı yeri</text><text class="t sm" x="280" y="636">section_synthesis · 0 çalıştırma</text></g>
+          </g>
+</svg>
+
+<!-- cardmark:techinves end -->
+              </div>
+              <div class="card__body">
+                <p class="card__idx">03<span class="card__kind">Puanlama motoru</span></p>
+                <h3 class="card__name"><a href="isler/techinves/">TechInves</a></h3>
+                <p class="card__line">Şirketleri benzerleriyle karşılaştırarak puanlar; raporu açmadan önce kurallarla denetler.</p>
+              </div>
+              <footer class="card__foot">
+                <span class="card__go">Nasıl çalışır<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></span>
+                <a class="card__repo" href="https://github.com/brkakyldz/tech_inves" rel="noopener">Kod<span class="u-hidden"> — TechInves deposu GitHub'da</span><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
+              </footer>
+            </article>
+          </li>
+          <li class="card" style="--i:3">
+            <article class="card__panel">
+              <div class="card__mark">
+                <!-- cardmark:terminal-organizer start -->
+<svg class="diagram card__diagram" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="30 26 258 130" preserveAspectRatio="xMidYMid meet">
+  <g id="card-terminal-organizer-d-terminal-organizer">
+            <!-- Renderer katmanı -->
+            <g class="node s1 s4"><circle class="k" cx="48" cy="48" r="6"/><text class="num" x="64" y="52">01</text><text class="t" x="88" y="52">tuş vuruşu</text></g>
+            <g class="node s3 s4"><path class="k" d="M48,54 V96"/><circle class="fx" cx="48" cy="104" r="3.5"/><text class="num" x="64" y="108">03</text><text class="t" x="88" y="108">terminal görünümü</text><text class="t sm" x="88" y="140">xterm.js · TerminalPane</text></g>
+            <path class="k" d="M48,110 V248"/>
+            <g class="node s4"><path class="k" d="M96,162 V124 H48 M96,174 V248"/><circle class="fx" cx="96" cy="168" r="3.5"/><text class="num" x="112" y="172">07</text><text class="t" x="136" y="172">çıktı toplu yazılır</text><text class="t sm" x="136" y="188">ekranın yenilenme hızına</text></g>
+            <g class="node s4"><text class="num" x="112" y="216">04</text><text class="t" x="136" y="216">pencere ↔ yönetici</text><text class="t sm" x="136" y="232">IPC · terminals:*</text></g>
+
+            <!-- Proje değişimi: reddedilen yol -->
+            <g class="node s1 s3"><circle class="k" cx="272" cy="48" r="6"/><text class="num" x="288" y="52">02</text><text class="t" x="312" y="52">proje değişimi</text></g>
+            <g class="rf-g s3"><path class="k rf" d="M272,54 V230"/><path class="k" d="M267,233 L277,243 M277,233 L267,243"/><text class="t sm" x="288" y="140">yalnızca bağlan ve kop</text><text class="t sm" x="288" y="156">terminals:detach / attach</text><text class="t" x="288" y="236">hiçbir süreç durmaz</text></g>
+
+            <!-- Sınır: preload -->
+            <g class="bd s2"><path class="k" d="M16,248 H464 M16,252 H464"/><text class="cap" x="464" y="218" text-anchor="end">pencere</text><text class="cap" x="136" y="272">arka plan</text><text class="cap" x="464" y="272" text-anchor="end">süreç sınırı</text></g>
+
+            <!-- Main katmanı -->
+            <g class="node s2 s4"><rect class="k" x="32" y="296" width="200" height="48"/><text class="num" x="48" y="316">05</text><text class="t sm" x="72" y="316">oturum yöneticisi</text><text class="t sm" x="48" y="332">TerminalSessionManager</text></g>
+            <path class="k" d="M48,252 V296 M96,252 V296"/>
+            <g class="node s4"><path class="k" d="M48,344 V396 M54,400 H96 V344"/><circle class="fx" cx="48" cy="400" r="3.5"/><text class="num" x="112" y="404">06</text><text class="t" x="136" y="404">çalışan süreç</text><text class="t sm" x="136" y="420">PTY · node-pty</text></g>
+            <g class="node s4"><path class="k" d="M232,320 H272"/><text class="num" x="280" y="300">08</text><text class="t" x="304" y="300">proje kayıtları</text><text class="t sm" x="280" y="316">workspace.json</text><text class="t sm" x="280" y="332">kabuk profilleri</text></g>
+            <g class="node s4 s5"><text class="num" x="280" y="388">09</text><text class="t sm" x="304" y="388">proje</text><text class="t sm" x="292" y="402">→ çalışma alanı</text><text class="t sm" x="304" y="416">→ düzen ağacı</text><text class="t sm" x="316" y="430">→ panel</text><text class="t sm" x="328" y="444">→ oturum</text><text class="t sm" x="280" y="472">başlıyor · çalışıyor · çıktı</text><text class="t sm" x="280" y="486">hata · kapanıyor</text></g>
+
+            <!-- Sınırlar -->
+            <g class="node s6"><circle class="k" cx="48" cy="480" r="6"/><path class="k" d="M48,474 V406"/><text class="num" x="64" y="484">10</text><text class="t" x="88" y="484">uygulama kapanır</text><text class="t sm" x="88" y="500">düzen geri gelir, süreç gelmez</text></g>
+            <g class="s6"><text class="t sm" x="280" y="520">Windows · imzasız · v0.1.0</text></g>
+          </g>
+</svg>
+
+<!-- cardmark:terminal-organizer end -->
+              </div>
+              <div class="card__body">
+                <p class="card__idx">04<span class="card__kind">Masaüstü uygulaması</span></p>
+                <h3 class="card__name"><a href="isler/terminal-organizer/">Terminal Organizer</a></h3>
+                <p class="card__line">Proje değiştirirken çalışan terminal komutlarını kesmeyen masaüstü uygulaması.</p>
+              </div>
+              <footer class="card__foot">
+                <span class="card__go">Nasıl çalışır<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></span>
+                <a class="card__repo" href="https://github.com/brkakyldz/terminal-organizer" rel="noopener">Kod<span class="u-hidden"> — Terminal Organizer deposu GitHub'da</span><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
+              </footer>
+            </article>
+          </li>
+      </ul>
+    </section>
+
+    <!-- ===================== ARA: deniz ===================== -->
+    <!-- ===================== I · AI DIGEST ===================== -->
+    <section class="chapter chapter--digest" id="ai-digest" aria-labelledby="digest-title">
+      <div class="canvas">
+        <div class="veil" aria-hidden="true"></div>
+        <div class="field" aria-hidden="true">
+          <i style="--px:44%;--py:18%"></i><i style="--px:52%;--py:30%"></i><i class="dup" style="--px:61%;--py:22%"></i><i style="--px:70%;--py:14%"></i>
+          <i style="--px:80%;--py:26%"></i><i style="--px:90%;--py:18%"></i><i class="dup" style="--px:66%;--py:36%"></i><i style="--px:48%;--py:48%"></i>
+          <i class="dup" style="--px:74%;--py:44%"></i><i style="--px:86%;--py:52%"></i><i style="--px:56%;--py:60%"></i><i class="dup" style="--px:63%;--py:55%"></i>
+          <i style="--px:92%;--py:66%"></i><i class="dup" style="--px:71%;--py:64%"></i><i style="--px:50%;--py:74%"></i><i style="--px:82%;--py:80%"></i>
+          <svg class="field__links" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M61,22 L66,36 L74,44 L63,55 L71,64"/></svg>
+          <span class="field__label" style="left:77%;top:40%">aynı olay · beş başlık</span>
+        </div>
+        <figure class="drawing">
+          <!-- diagram:ai-digest start -->
+<svg class="diagram" xmlns="http://www.w3.org/2000/svg" viewBox="-8 -8 496 696" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="ai-digest-t ai-digest-d">
+  <title id="ai-digest-t">AI Digest akışı: haber kaynaklarından günlük okuma sayfasına.</title>
+  <desc id="ai-digest-d">Sistem, arayüzden düzenlenebilen kaynak listesini ücretsiz olarak yoklar, aynı gelişmeyi anlatan haberleri gruplar ve yeterli metni bulur. Ücretli özetleme ile günlük seçim yalnızca kullanıcı düğmeye bastığında başlar. Ölçüm zincirin dışında, ayrı bir kolda duruyor.</desc>
+<g id="d-ai-digest">
+            <!-- Omurga -->
+            <path class="k" d="M240,38 V92 M240,100 V148 M240,192 V268 M240,276 V332 M240,340 V416 M240,464 V492 M240,500 V540 M240,548 V600 M235,595 L240,600 L245,595"/>
+            <g class="node s1"><circle class="k" cx="240" cy="32" r="6"/><text class="num" x="256" y="36">01</text><text class="t" x="280" y="36">haber kaynakları</text><text class="t sm" x="280" y="52">liste arayüzden</text><text class="t sm" x="280" y="66">eklenir · kapatılır</text></g>
+            <g class="node s4"><circle class="fx" cx="240" cy="96" r="3.5"/><text class="num" x="256" y="100">02</text><text class="t" x="280" y="100">kaynakları yokla</text><text class="t sm" x="280" y="116">collect · ücretsiz</text><text class="t sm" x="280" y="130">aynı haber tek kayıt</text></g>
+            <g class="node s2"><circle class="k" cx="40" cy="96" r="6"/><path class="k" d="M46,96 H236"/><text class="num" x="40" y="120">09</text><text class="t" x="64" y="120">zamanlayıcı</text><text class="t sm" x="40" y="136">3 saatte bir</text><text class="t sm" x="40" y="150">yalnızca yoklama</text></g>
+
+            <!-- Sınır ve tek ücretli geçiş -->
+            <g class="bd s2"><path class="k" d="M16,168 H216 M264,168 H464 M16,172 H216 M264,172 H464"/><text class="cap" x="464" y="160" text-anchor="end">kendiliğinden · ücretsiz</text><text class="cap" x="464" y="190" text-anchor="end">insan basar · ücretli</text></g>
+            <g class="s2 s5"><rect class="k" x="216" y="148" width="48" height="44"/><text class="ms-n" x="232" y="180">1</text></g>
+            <g class="node s2"><circle class="k" cx="40" cy="216" r="6"/><path class="k" d="M46,216 H236"/><text class="num" x="40" y="240">10</text><text class="t" x="64" y="240">bülteni üret</text><text class="t sm" x="40" y="256">para harcayan tek düğme</text><text class="t sm" x="40" y="270">POST /runs/start</text></g>
+
+            <g class="node s4"><circle class="fx" cx="240" cy="272" r="3.5"/><text class="num" x="256" y="276">03</text><text class="t" x="280" y="276">aynı olayı eşle</text><text class="t sm" x="280" y="292">dedupe · eşik 85</text><text class="t sm" x="280" y="306">işaretlenir, silinmez</text></g>
+
+            <!-- enrich ve merdiven -->
+            <g class="node s3">
+              <circle class="fx" cx="240" cy="336" r="3.5"/><text class="num" x="256" y="340">04</text><text class="t" x="280" y="340">metni getir · enrich</text>
+              <path class="k" d="M240,348 H304 V392 M304,356 H316 M304,374 H316 M304,392 H316"/>
+              <text class="t sm" x="324" y="360">besleme · bedava</text><text class="t sm" x="324" y="378">sayfa · 1 istek</text><text class="t sm" x="324" y="396">arama · 1 kredi</text><text class="t sm" x="324" y="410">önce ayrılır</text>
+            </g>
+
+            <!-- summarize demeti -->
+            <g class="node s4">
+              <path class="k" d="M240,416 L216,432 V448 L240,464 M240,416 L228,432 V448 L240,464 M240,416 V464 M240,416 L252,432 V448 L240,464 M240,416 L264,432 V448 L240,464"/>
+              <text class="num" x="280" y="440">05</text><text class="t" x="304" y="440">her habere bir özet</text><text class="t sm" x="304" y="456">summarize · biri düşse</text><text class="t sm" x="304" y="470">gerisi gider</text>
+            </g>
+            <g class="node s4"><circle class="fx" cx="240" cy="496" r="3.5"/><text class="num" x="256" y="500">06</text><text class="t" x="280" y="500">günü sırala · rank</text></g>
+            <g class="node s4"><circle class="fx" cx="240" cy="544" r="3.5"/><text class="num" x="256" y="548">07</text><text class="t" x="280" y="548">çalıştırmayı kapat</text><text class="t sm" x="280" y="564">persist · tam / eksik</text></g>
+            <g class="s5"><rect class="k" x="64" y="524" width="152" height="48"/><text class="ms-n" x="74" y="558">~2,50 $</text><text class="ms-c" x="64" y="588">ay · ölçülen fatura</text></g>
+            <g class="node s1"><text class="num" x="256" y="604">08</text><text class="t" x="280" y="604">bülten sayfası</text></g>
+
+            <!-- Değerlendirme, zincirin dışında -->
+            <g class="s5"><path class="k" d="M240,608 V624 H272 M272,616 V676"/><text class="cap" x="284" y="628">ölçüm · zincir dışı</text><text class="num" x="284" y="644">11</text><text class="t sm" x="308" y="644">test · okuyucu işareti</text><text class="t sm" x="284" y="658">hakem · sıralama sondası</text></g>
+          </g>
+</svg>
+
+<!-- diagram:ai-digest end -->
+          <figcaption class="cap">Sistem çizimi · haber kaynaklarından günlük okuma sayfasına</figcaption>
+        </figure>
+      </div>
+
+      <div class="steps">
+        <article class="step step--entrance" data-step="intro">
+          <p class="cap step__kicker">İş 01 / 04</p>
+          <h2 class="step__title" id="digest-title"><a class="step__link" href="isler/ai-digest/">AI Digest</a></h2>
+          <p class="step__body">Günlük yapay zekâ haber bülteni: kaynak listesini yokluyor — liste arayüzden düzenleniyor, yeni besleme eklenip istenmeyen kapatılıyor — aynı olayı anlatan haberleri tek başlık altında topluyor ve günü tek sayfada veriyor.</p>
+          <p class="step__body">Sabah onlarca başlık yerine bir sayfa okunuyor; her özetin altında hangi kaynaktan geldiği duruyor.</p>
+        </article>
+
+        <article class="step" data-step="problem">
+          <p class="cap step__kicker">Problem</p>
+          <h3 class="step__title">Takip etmek zor değil. Aynı gelişmeyi <em>beş kez</em> görmek yorucu.</h3>
+          <p class="step__body">Aynı olay günde beş ayrı başlıkla yazılıyor. Okuyucunun ihtiyacı liste değil: bugün ne oldu, hangisi önemli, nerede durabilirim.</p>
+          <p class="step__body">Bu sistem seçim yapıyor <em>ve</em> seçimini gösteriyor.</p>
+        </article>
+
+        <article class="step" data-step="pipeline">
+          <p class="cap step__kicker">Hat</p>
+          <h3 class="step__title">Onlarca başlıktan tek sayfaya, dört durakta.</h3>
+          <p class="step__body">Kaynaklar üç saatte bir yoklanıyor ve yalnızca yeni girdiler alınıyor; kaynak &#8220;değişen bir şey yok&#8221; diye cevap verdiğinde hiçbir şey indirilmiyor, o yüzden bu durak para harcamıyor. Ardından aynı olayı anlatan haberler birbirine bağlanıyor: eşleşenler tek bir olayın altında toplanıyor, hiçbiri silinmiyor.</p>
+          <p class="step__body">Üçüncü durakta özet çıkarmaya yetecek metin aranıyor — önce kaynağın kendi gönderdiği metin, yetmezse sayfanın kendisi, hâlâ boşsa ve haber ağır basıyorsa tek bir arama servisi; her kademe bir öncekinden pahalı. Son durakta her haber ayrı ayrı özetleniyor ve gün bir kez, bütün olarak sıralanıyor.</p>
+          <p class="step__note">Bu dört durağın koddaki adları <code>collect</code>, <code>dedupe</code>, <code>enrich</code>, <code>summarize</code> ve <code>rank</code>. Bir haberin özeti düşerse yalnızca o haber kayıt defterine bir satır olarak geçiyor; sıralama düşerse bülten sırasız yayımlanıyor. Eşikler ve geri çekilme kuralları iş sayfasında.</p>
+        </article>
+
+        <article class="step" data-step="button">
+          <p class="cap step__kicker">Karar · para bir tasarım malzemesi</p>
+          <h3 class="step__title">Kendiliğinden çalışan her şey ücretsiz. Para harcayan <em>tek</em> bir düğme var.</h3>
+          <p class="step__body">Zamanlayıcının tek işi ücretsiz yoklama; model çağıran hiçbir aşamayı kendi başına başlatmıyor. Özetleme ve sıralama arayüzdeki tek bir basışla başlıyor ve o basıştan önce ödenecek birim fiyat düğmenin altında yazıyor.</p>
+          <p class="step__note">Yani bültenin ne zaman üretileceğine saat değil, insan karar veriyor. Saate bağlı olan tek iş, hiçbir ücret doğurmayan yoklama.</p>
+        </article>
+
+        <article class="step" data-step="evidence">
+          <p class="cap step__kicker">Ölçülen</p>
+          <h3 class="step__title">Bütçe ayda 10 dolardı; fatura 2,50.</h3>
+          <div class="figs">
+            <div class="fig"><p class="fig__n">1</p><p class="fig__c">para harcayan düğme</p></div>
+            <div class="fig"><p class="fig__n">369</p><p class="fig__c">otomatik test · ~20 saniye</p></div>
+            <div class="fig fig--wide"><p class="fig__n">0,115<small>$</small></p><p class="fig__c">ilk çalıştırma · bir haftalık birikim · 136 haber · 85 saniye</p></div>
+          </div>
+          <p class="step__note">Bu sayılar tek bir iddiayı destekliyor: maliyet sonradan kısılarak değil, en baştan mimaride tutuluyor.</p>
+          <div class="step__links">
+            <a class="step__more" href="isler/ai-digest/"><span>Nasıl çalışır</span><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
+            <a class="step__more step__more--ghost" href="https://github.com/brkakyldz/ai-research-agent" rel="noopener"><span>Kaynak kodu<span class="u-hidden"> — AI Digest deposu GitHub'da</span></span><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ===================== ARA ===================== -->
+    <!-- ===================== II · SECOND BRAIN OS ===================== -->
+    <section class="chapter chapter--brain" id="second-brain-os" aria-labelledby="brain-title">
+      <div class="canvas">
+        <div class="veil" aria-hidden="true"></div>
+        <figure class="drawing">
+          <!-- diagram:second-brain-os start -->
+<svg class="diagram" xmlns="http://www.w3.org/2000/svg" viewBox="-8 -8 501.6 696" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="second-brain-os-t second-brain-os-d">
+  <title id="second-brain-os-t">Second Brain OS: insanın ve yapay zekâ oturumunun paylaştığı proje belleği.</title>
+  <desc id="second-brain-os-d">İnsan ve yapay zekâ aynı dosya tabanlı belleği okur. Küçük çekirdek her oturumda, ayrıntılı notlar gerektiğinde, günlükler ise yalnızca ilgili tarih sorulduğunda yüklenir. Yeni bilgi önce notlara girer; bağımsız teyit olmadan çekirdek belleğe alınmaz.</desc>
+<g id="d-second-brain-os">
+            <!-- İki okuyucu -->
+            <g class="node s1"><circle class="k" cx="48" cy="40" r="6"/><path class="k" d="M48,46 V88"/><text class="num" x="64" y="44">01</text><text class="t" x="88" y="44">insan · Obsidian</text></g>
+            <g class="node s1"><circle class="k" cx="296" cy="40" r="6"/><path class="k" d="M296,46 V88"/><text class="num" x="312" y="44">02</text><text class="t" x="336" y="44">ajan · oturum</text></g>
+            <g class="s6"><text class="num" x="336" y="60">17</text><text class="t sm" x="356" y="60">tek yazar kilidi</text></g>
+
+            <!-- Kademe bantları -->
+            <g class="bd s2"><path class="k" d="M16,88 H360 M16,168 H360 M16,384 H360 M16,440 H360"/>
+              <text class="cap" x="112" y="80">her oturumda yüklenir</text><text class="cap" x="112" y="184">istendiğinde açılır</text><text class="cap" x="112" y="400">gün sorulunca okunur</text></g>
+
+            <g class="node s2 s4"><text class="num" x="48" y="112">03</text><text class="t" x="72" y="112">çekirdek · core/</text><text class="t sm" x="48" y="128">kimlik · kullanıcı · bellek</text><text class="t sm" x="48" y="142">açık sorular</text><text class="t sm" x="48" y="158">~2.000 / ~4.000 karakter</text></g>
+
+            <!-- Üç yazma yolu, merdiven -->
+            <g class="node s4"><path class="k" d="M72,204 V248"/><text class="num" x="72" y="200">11</text><text class="t" x="96" y="200">oturumdan süz</text></g>
+            <g class="node s4"><path class="k" d="M128,220 V248"/><text class="num" x="128" y="216">12</text><text class="t" x="152" y="216">dışarıdan al</text></g>
+            <g class="node s4"><path class="k" d="M184,236 V248"/><text class="num" x="184" y="232">13</text><text class="t" x="208" y="232">sohbetten al</text></g>
+
+            <!-- Sahip: notes/ -->
+            <g class="node s2 s3 s4"><rect class="k" x="48" y="248" width="224" height="48"/><text class="num" x="56" y="268">04</text><text class="t" x="80" y="268">notlar · notes/</text><text class="t sm" x="56" y="286">ekle · birleştir · yerine geç</text></g>
+            <g class="s4 s6"><text class="t sm" x="48" y="314">getirme: kelime araması,</text><text class="t sm" x="48" y="328">dizin ve bağlantılar</text></g>
+            <g class="node s2 s3"><text class="num" x="48" y="350">08</text><text class="t" x="72" y="350">arşiv · archive/</text><text class="t sm" x="48" y="366">39 karar · silinmez, taşınır</text></g>
+            <g class="s6"><text class="t sm" x="296" y="378">anlamsal arama yok</text></g>
+
+            <!-- Kapı: notes → core -->
+            <g class="node s4"><path class="k" d="M272,268 H296 V170 M290,208 H302"/><text class="t sm" x="308" y="212">yükseltme:</text><text class="t sm" x="308" y="226">ikinci bağımsız teyit</text></g>
+
+            <!-- Ölçüm: getirme tarafı -->
+            <g class="s2 s5"><rect class="k" x="296" y="288" width="48" height="44"/><text class="ms-n" x="311" y="320">0</text><text class="ms-c" x="296" y="350">veritabanı · vektör</text><text class="ms-c" x="296" y="364">deposu · arama indeksi</text></g>
+
+            <!-- Kademe 2 -->
+            <g class="node s2 s3"><text class="num" x="48" y="420">06</text><text class="t" x="72" y="420">kayıtlar</text><text class="t sm" x="136" y="420">logs/ · her oturum ekler</text></g>
+
+            <!-- Kademesiz klasörler, sağ sütun -->
+            <g class="cap-g"><text class="cap" x="392" y="80">kademe dışı</text></g>
+            <g class="node s3 s6"><text class="num" x="392" y="104">07</text><text class="t sm" x="416" y="104">my-notes/</text><text class="t sm" x="392" y="120">gelenek,</text><text class="t sm" x="392" y="134">zorlama değil</text></g>
+            <g class="node s3"><text class="num" x="392" y="184">09</text><text class="t sm" x="416" y="184">.claude/</text><text class="t sm" x="392" y="200">kontroller</text></g>
+            <g class="node s3"><text class="num" x="392" y="248">10</text><text class="t sm" x="416" y="248">scripts/</text><text class="t sm" x="392" y="264">bakım betiği</text></g>
+            <g class="node s3"><text class="num" x="392" y="408">05</text><text class="t sm" x="416" y="408">ham belge</text><text class="t sm" x="392" y="424">ajan yazmaz</text></g>
+
+            <!-- Sınır: kod ═ yargı -->
+            <g class="bd s5"><path class="k" d="M16,472 H464 M16,476 H464"/><text class="cap" x="16" y="464">kod</text><text class="cap" x="464" y="464" text-anchor="end">yargı</text></g>
+            <g class="node s5"><text class="num" x="48" y="504">14</text><text class="t" x="72" y="504">otomatik kontrol ×4</text><text class="t sm" x="48" y="520">SessionStart · Stop</text><text class="t sm" x="48" y="534">PreCompact · SessionEnd</text><text class="t" x="48" y="560">bakım betiği ×3</text><text class="t sm" x="48" y="576">link-sweep · retrieval-eval</text><text class="t sm" x="48" y="590">vault-metrics</text></g>
+            <g class="node s5"><text class="num" x="280" y="504">15</text><text class="t" x="304" y="504">yardımcı komut ×7</text><text class="t sm" x="280" y="520">ingest · file · recall</text><text class="t sm" x="280" y="534">curator · audit</text><text class="t sm" x="280" y="548">lesson · note</text></g>
+
+            <!-- Kontrol noktası → git -->
+            <g class="s5"><path class="k" d="M48,598 V644 M43,639 L48,644 L53,639"/><text class="t" x="64" y="648">Git</text>
+              <rect class="k" x="120" y="604" width="40" height="40"/><text class="ms-n" x="131" y="634">1</text><text class="num" x="168" y="620">16</text><text class="ms-c" x="120" y="660">tur · en kötü kayıp</text></g>
+
+            <!-- Ağacın dışı -->
+            <g class="s6"><rect class="k rf" x="376" y="604" width="96" height="40"/><text class="num" x="384" y="620">18</text><text class="t sm" x="408" y="620">gitignore</text><text class="t sm" x="384" y="636">yan dosya</text></g>
+          </g>
+</svg>
+
+<!-- diagram:second-brain-os end -->
+          <figcaption class="cap">Sistem çizimi · insanın ve ajan oturumunun paylaştığı proje belleği</figcaption>
+        </figure>
+      </div>
+
+      <div class="steps">
+        <article class="step step--entrance" data-step="readers">
+          <p class="cap step__kicker">İş 02 / 04</p>
+          <h2 class="step__title" id="brain-title"><a class="step__link" href="isler/second-brain-os/">Second Brain OS</a></h2>
+          <p class="step__body">Bir yapay zekâ ajanının kalıcı belleği, düz metin dosyaları hâlinde. Her yeni oturumda projeyi baştan anlatmak yerine ajan aynı klasörü okuyup kaldığı yerden devam ediyor.</p>
+          <p class="step__body">Aynı klasörü insan da okuyor: içindeki her cümle açılıp düzeltilebiliyor.</p>
+        </article>
+
+        <article class="step" data-step="files">
+          <p class="cap step__kicker">Belleğin biçimi</p>
+          <h3 class="step__title">Veritabanı yok; bellek Markdown dosyalarından ibaret.</h3>
+          <p class="step__body">Notlar başlıklı Markdown dosyaları, üstlerinde birkaç satırlık künye ve birbirine köşeli parantezle verilmiş bağlantılar. Aynı klasör aynı anda üç şey: insanın gezindiği bir kasa, ajanın okuduğu bellek ve Git ile sürümlenen bir depo. Sürüm kontrolü burada süs değil, mekanizma: yanlış bir yazma geri alınabiliyor ve en kötü durumda kaybedilen bir turluk iş.</p>
+          <p class="step__body">Belleğin tamamı her oturumda okunmuyor. En üstte her oturumda kendiliğinden yüklenen birkaç küçük dosya var &#8212; kim olduğum, ne üzerinde çalıştığım, kalıcı olgular. İkinci kademe istendiğinde açılıyor: notların kendisi. Üçüncüsü yalnızca belirli bir gün sorulduğunda okunuyor: oturum kayıtları.</p>
+          <p class="step__note">Klasörler konuya göre değil, bir notun yaşam evresine göre ayrılmış; olgunlaşan not yer değiştirmediği için hiçbir bağlantı kırılmıyor. En üst kademenin boyutu karakterle tavanlanmış ve tavan gerçek bir sınır: dosya tavanı geçerse kendiliğinden yükleme tamamen duruyor. Bu yüzden bakım kuralı &#8220;birleştir&#8221;; sessiz kırpma, kaybolduğu fark edilmeyen bilgi demek olurdu.</p>
+        </article>
+
+        <article class="step" data-step="split">
+          <p class="cap step__kicker">Karar · nerede kod, nerede model</p>
+          <h3 class="step__title">Doğru cevabı olan iş bir betik; olmayan iş bir model çağrısı.</h3>
+          <p class="step__body">Kırık bağlantı var mı, bir dosya bütçesini aştı mı, kaç not birikti — bunların tek bir doğru cevabı var, hepsi kod. İki notun aynı olguyu mu anlattığı ise yargı gerektiriyor; orası model işi.</p>
+          <p class="step__body">Otomatik kontroller hiçbir zaman işi durdurmuyor: başarısız olduklarında bile oturumu engellemiyorlar. Bir bakım aracının bozulması, çalışmanın kendisini bozmamalı.</p>
+          <p class="step__note">Belleğe her şey aynı kapıdan giriyor: oturum sırasında çıkan bir karar da, dışarıdan alınan bir belge de aynı klasörde birleşiyor ve her olgu için tek bir karar veriliyor &#8212; yeni not, birleştir, yerine geç ya da hiçbir şey yapma. Kalıcı statü ikinci ve bağımsız bir teyit istiyor; belleği bozmaya tek bir yazma yetiyor. Arkasındaki gözlem ölçülmüş: yazılı bir kural, mekanik bir kontrolden çok daha sık ihlal ediliyor.</p>
+        </article>
+
+        <article class="step" data-step="evidence">
+          <p class="cap step__kicker">Ölçülen</p>
+          <h3 class="step__title">Değeri üreten şey notların kendisi, üstündeki otomasyon değil.</h3>
+          <p class="step__body">Aynı sorular aynı modele iki kez soruldu: bir kez belleğin tamamına erişimle, bir kez yalnızca kısa bir tanıtım metniyle. Bellekli taraf açık farkla daha iyiydi; belleksiz taraf yanlış cevaplarını kendinden emin ve genel bir dille verdi. Asıl bulgu ikincisiydi: doğru cevapların hiçbiri otomasyondan gelmedi, hepsi aramayla bulunan düz bir Markdown dosyasından geldi.</p>
+          <div class="figs">
+            <div class="fig"><p class="fig__n">0</p><p class="fig__c">veritabanı · vektör deposu · arama indeksi</p></div>
+            <div class="fig"><p class="fig__n">1<small>tur</small></p><p class="fig__c">en kötü durumda kaybedilen iş</p></div>
+            <div class="fig fig--wide"><p class="fig__n">~40</p><p class="fig__c">yazılı mimari karar · her biri gerekçesiyle</p></div>
+          </div>
+          <p class="step__note">Karşılaştırmanın gücü kurulumunda: aynı model, aynı sorular, tek değişken belleğin açık olup olmaması. Düzenek yerinde durduğu için bellekte yapılan her değişiklikten sonra yeniden koşulabiliyor.</p>
+          <div class="step__links">
+            <a class="step__more" href="isler/second-brain-os/"><span>Nasıl çalışır</span><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
+            <a class="step__more step__more--ghost" href="https://github.com/brkakyldz/second-brain-os" rel="noopener"><span>Kaynak kodu<span class="u-hidden"> — Second Brain OS deposu GitHub'da</span></span><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ===================== ARA ===================== -->
+    <!-- ===================== III · TECHINVES ===================== -->
+    <section class="chapter chapter--inves" id="techinves" aria-labelledby="inves-title">
+      <div class="canvas">
+        <div class="veil" aria-hidden="true"></div>
+        <figure class="drawing">
+          <!-- diagram:techinves start -->
+<svg class="diagram" xmlns="http://www.w3.org/2000/svg" viewBox="-8 -8 544 672" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="techinves-t techinves-d">
+  <title id="techinves-t">TechInves: hesaplanan şirket puanı ile modelin yazdığı raporun ayrı akışları.</title>
+  <desc id="techinves-d">Finansal veriler soldaki hesap hattında benzer şirketlerle karşılaştırılarak puana dönüşür; model bu puana müdahale etmez. Sağdaki hat birkaç şirketi araştırır, raporu yazar ve kullanıcıya göstermeden önce kurallarla denetler.</desc>
+<g id="d-techinves">
+            <!-- Sol hat: puanlama merdiveni -->
+            <path class="k" d="M48,54 V82 M48,94 V148 M48,204 V252 M48,260 V316 M48,324 V440"/>
+            <g class="node s1"><circle class="k" cx="48" cy="48" r="6"/><text class="num" x="64" y="52">01</text><text class="t" x="88" y="52">resmî finansal veri</text><text class="t sm" x="88" y="68">SEC EDGAR · companyfacts</text></g>
+            <g class="node s1"><circle class="k" cx="48" cy="88" r="6"/><text class="num" x="64" y="92">02</text><text class="t" x="88" y="92">şirket künyesi</text></g>
+            <g class="s5 s6"><text class="t sm" x="88" y="108">FMP · ~250 istek / gün</text></g>
+            <g class="node s2">
+              <circle class="fx" cx="48" cy="152" r="3.5"/><circle class="fx" cx="48" cy="176" r="3.5"/><circle class="fx" cx="48" cy="200" r="3.5"/>
+              <path class="k" d="M48,156 V172 M48,180 V196"/>
+              <text class="num" x="64" y="156">03</text><text class="t" x="88" y="156">uçları törpüle</text><text class="t" x="88" y="180">yön düzeltme</text><text class="t" x="88" y="204">grup içinde yüzdelik</text>
+            </g>
+            <g class="s6"><text class="t sm" x="88" y="222">en az 2 benzer şirket</text></g>
+            <g class="node s3"><circle class="fx" cx="48" cy="256" r="3.5"/><text class="num" x="64" y="260">04</text><text class="t" x="88" y="260">kategori skoru</text><text class="t sm" x="88" y="276">eksik metrik ağırlığı dağılır</text></g>
+            <g class="node s3">
+              <circle class="fx" cx="48" cy="320" r="3.5"/><text class="num" x="64" y="324">05</text><text class="t" x="88" y="324">bileşik puan</text>
+              <path class="k" d="M176,300 V340"/><circle class="fx" cx="176" cy="320" r="3.5"/><text class="t" x="188" y="324">risk puanı</text><text class="t sm" x="188" y="340">ayrı tutulur</text>
+            </g>
+            <g class="s3 s5"><rect class="k" x="88" y="348" width="56" height="48"/><text class="ms-n" x="97" y="382">70</text><text class="ms-c" x="88" y="412">riskliyse tavan</text></g>
+            <g class="node s3"><path class="k" d="M40,440 H56"/><text class="num" x="64" y="444">06</text><text class="t" x="88" y="444">puan ve bant</text><text class="t sm" x="88" y="460">veri yok da bir bant</text></g>
+
+            <!-- Sağ hat: rapor -->
+            <path class="k" d="M296,158 V190 M296,258 V276 M296,284 V312 M296,360 V432"/>
+            <g class="node s4"><circle class="fx" cx="296" cy="152" r="3.5"/><text class="num" x="312" y="156">08</text><text class="t" x="336" y="156">ucuz ön eleme</text><text class="t sm" x="336" y="172">3–4 şirket seçilir</text></g>
+            <g class="node s4">
+              <path class="k" d="M296,190 L272,206 V242 L296,258 M296,190 L284,206 V242 L296,258 M296,190 V258 M296,190 L308,206 V242 L296,258 M296,190 L320,206 V242 L296,258"/>
+              <path class="k" d="M272,228 a5,5 0 1 0 0,-10"/>
+              <text class="num" x="336" y="214">09</text><text class="t" x="360" y="214">13–14 araştırma dalı</text><text class="t sm" x="336" y="232">yeniden dene ×2</text>
+            </g>
+            <g class="node s4"><circle class="fx" cx="296" cy="280" r="3.5"/><text class="num" x="312" y="284">10</text><text class="t" x="336" y="284">tek taslakta birleşir</text></g>
+            <g class="node s4">
+              <rect class="k" x="280" y="312" width="136" height="48"/><text class="num" x="288" y="330">11</text><text class="t" x="312" y="330">doğrulayıcı</text><text class="t sm" x="288" y="348">kural önce</text>
+              <path class="k" d="M296,376 H308 M296,392 H308 M296,408 H308 M296,424 H308"/>
+              <text class="t sm" x="316" y="380">durdur</text><text class="t sm" x="316" y="396">uyarılarla aç</text><text class="t sm" x="316" y="412">notla geç</text><text class="t sm" x="316" y="428">geç</text>
+            </g>
+            <g class="node s4"><path class="k" d="M296,432 V452 M291,447 L296,452 L301,447"/><text class="num" x="312" y="452">12</text><text class="t" x="336" y="452">rapor</text><text class="t sm" x="312" y="470">kusuru üstünde yazılı açılır</text></g>
+
+            <!-- Sınır -->
+            <g class="bd s2"><path class="k" d="M16,488 H464 M16,492 H464"/><text class="cap" x="16" y="478">puan hattı</text><text class="cap" x="200" y="478">rapor hattı</text><text class="cap" x="120" y="512">modelin çalıştığı yer</text></g>
+
+            <!-- Model, altında -->
+            <g class="node s2"><rect class="k" x="232" y="544" width="128" height="48"/><text class="num" x="240" y="562">07</text><text class="t" x="264" y="562">model</text><text class="t sm" x="240" y="580">yazar · hakem</text></g>
+            <g class="s4"><path class="k" d="M360,568 H460 V208 M460,214 H452 M460,284 H452 M460,336 H416"/></g>
+            <g class="rf-g s2 s5"><path class="k rf" d="M232,568 H64 V510"/><path class="k" d="M59,499 L69,509 M69,499 L59,509"/><text class="t" x="80" y="530">0 model çağrısı</text></g>
+            <g class="node s6"><circle class="k rf" cx="240" cy="616" r="6"/><text class="num" x="256" y="620">13</text><text class="t" x="280" y="620">bağlanmamış çağrı yeri</text><text class="t sm" x="280" y="636">section_synthesis · 0 çalıştırma</text></g>
+          </g>
+</svg>
+
+<!-- diagram:techinves end -->
+          <figcaption class="cap">Sistem çizimi · hesaplanan puan ile modelin yazdığı raporun ayrı akışları</figcaption>
+        </figure>
+        <div class="zero" aria-hidden="true"><p class="fig__n">0</p><p class="fig__c">puanlama katmanındaki<br>model çağrısı</p></div>
+      </div>
+
+      <div class="steps">
+        <article class="step step--entrance" data-step="idea">
+          <p class="cap step__kicker">İş 03 / 04 · <span lang="en">TechInves</span></p>
+          <h2 class="step__title" id="inves-title"><a class="step__link" href="isler/techinves/">Model raporu yazar; puanı model vermez.</a></h2>
+          <p class="step__body">ABD borsasındaki teknoloji şirketleri için bir puanlama ve araştırma raporu sistemi. Puan aynı veriyle her seferinde aynı çıkan bir hesaptan geliyor; model yalnızca çıkan puanların üzerine anlatıyı yazıyor.</p>
+          <p class="step__body">Nedeni tek bir soru: bir sayının nereden geldiği sorulduğunda cevap &#8220;model öyle dedi&#8221; olmamalı.</p>
+        </article>
+
+        <article class="step" data-step="score">
+          <p class="cap step__kicker">Karşılaştırma · hesap</p>
+          <h3 class="step__title">Bir şirketin sayısı tek başına bir şey söylemez; benzerleri söyler.</h3>
+          <p class="step__body">Yüzde otuz kâr marjı yüksek mi? Cevap şirketin ne iş yaptığına bağlı. Bu yüzden her şirket yalnızca kendi grubunun içinde puanlanıyor: yazılım şirketleri yazılımcılarla, donanım donanımla, bilişim hizmetleri kendi arasında. Her metrik grubu içinde nereye düştüğüne göre 0–100 arasına yerleşiyor, kategoriler ağırlıklanıyor ve tek bir puanda toplanıyor.</p>
+          <p class="step__body">Risk ayrı bir puan olarak duruyor ve tek yönlü çalışıyor: belirli eşiklerin altındaki bir şirket, diğer puanları ne olursa olsun 70'i geçemiyor.</p>
+          <p class="step__note">Uç değerler hesaba girmeden önce törpüleniyor, yoksa tek bir aşırı şirket bütün grubun sırasını belirlerdi. Eksik veri sıfır sayılmıyor: hesaplanamayan bir metrik boş bırakılıyor, ağırlığı diğerlerine dağıtılıyor ve şirket &#8220;veri yok&#8221; bandıyla işaretleniyor.</p>
+        </article>
+
+        <article class="step step--right" data-step="report">
+          <p class="cap step__kicker">Rapor</p>
+          <h3 class="step__title">Araştırma kırk şirket için değil, dört şirket için çalışır.</h3>
+          <p class="step__body">Puan tablosu çıktıktan sonra kısa ve ucuz bir model çağrısı yalnızca tabloya bakıp o gün derinlemesine incelenecek üç-dört şirketi seçiyor. Seçilen her şirket için on üçe yakın araştırma dalı aynı anda koşuyor &#8212; finansallar, rekabet, riskler &#8212; ve hepsi tek bir taslakta birleşiyor.</p>
+          <p class="step__body">Pahalı olan iş araştırmanın kendisi, seçimi değil. Bu yüzden seçim en ucuz katmanda yapılıyor ve neye göre yapıldığı raporun başında duruyor.</p>
+          <p class="step__note">Dallar sıraya değil, hepsi birden koşuyor; biri boş dönerse rapor o bölüm eksik olarak değil, o bölümde &#8220;veri bulunamadı&#8221; yazılı olarak çıkıyor.</p>
+        </article>
+
+        <article class="step step--right" data-step="verify">
+          <p class="cap step__kicker">Doğrulama</p>
+          <h3 class="step__title">Kusurlu rapor, kusuru üstünde yazılı olarak açılır.</h3>
+          <p class="step__body">Taslak gösterilmeden önce kurallardan geçiyor: metindeki sayılar tabloyla uyuşuyor mu, yatırım tavsiyesi olmadığı yazılmış mı, dayanağı olmayan bir iddia var mı. Bu kontrollerin hepsi kod; tek doğru cevabı olan bir işi modele sormanın anlamı yok.</p>
+          <p class="step__body">İhlal ağırsa rapor durduruluyor; hafifse rapor uyarılarıyla birlikte açılıyor. İkinci bir model rapora ayrıca not veriyor, ama bu not kararı yalnızca yukarı çekebiliyor &#8212; bir modelin beğenmemesi bir raporu durdurmuyor.</p>
+          <p class="step__note">&#8220;Açılır&#8221; burada kamuya duyurulmak değil: rapor projenin kendi arayüzünde, ihlal listesi başında görünecek şekilde saklanıyor. Amaç kusurlu bir raporu sessizce atmak yerine kusuruyla birlikte görünür kılmak.</p>
+        </article>
+
+        <article class="step" data-step="evidence">
+          <p class="cap step__kicker">Ölçülen</p>
+          <h3 class="step__title">Ölçülen şey kapsama: kırk şirketin kırkı da çözülüyor.</h3>
+          <p class="step__body">İzleme listesindeki kırk şirketin kırkı için de veri canlı olarak çözülüyor; hiçbiri &#8220;veri yok&#8221; diye düşmüyor. Tam bir yenileme şirket başına iki istek ediyor &#8212; biri resmî başvurulara, biri veri sağlayıcısına &#8212; yani kırk şirket için yaklaşık seksen istek.</p>
+          <p class="step__body">Sistem API anahtarı olmadan da kuruluyor: üç komutla, beş rapor ve kırk skor içeren gezilebilir bir demo açılıyor. Kodun çalıştığını anahtar istemeden gösterme yolu bu.</p>
+          <p class="step__note">Kırkta kırkın çözülmesi hesabın veriye kesintisiz ulaştığını gösteriyor. Puanın kendisi deterministik: aynı veri her seferinde aynı sonucu veriyor ve sonucun hangi bileşenden çıktığı satır satır izlenebiliyor.</p>
+          <div class="step__links">
+            <a class="step__more" href="isler/techinves/"><span>Nasıl çalışır</span><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
+            <a class="step__more step__more--ghost" href="https://github.com/brkakyldz/tech_inves" rel="noopener"><span>Kaynak kodu<span class="u-hidden"> — TechInves deposu GitHub'da</span></span><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ===================== ARA ===================== -->
+    <!-- ===================== IV · TERMINAL ORGANIZER ===================== -->
+    <section class="chapter chapter--term" id="terminal-organizer" aria-labelledby="term-title">
+      <div class="canvas">
+        <div class="veil" aria-hidden="true"></div>
+        <div class="lines" aria-hidden="true">
+          <ul class="lines__list">
+            <li class="lines__row"><span class="lines__lab">dev sunucusu</span><span class="lines__wire"></span></li>
+            <li class="lines__row"><span class="lines__lab">test izleyici</span><span class="lines__wire"></span></li>
+            <li class="lines__row"><span class="lines__lab">paket kurulumu</span><span class="lines__wire"></span></li>
+          </ul>
+        </div>
+        <figure class="drawing">
+          <!-- diagram:terminal-organizer start -->
+<svg class="diagram" xmlns="http://www.w3.org/2000/svg" viewBox="-8 -8 496 556" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="terminal-organizer-t terminal-organizer-d">
+  <title id="terminal-organizer-t">Terminal Organizer: proje görünümü değişirken çalışan komutların devam etmesi.</title>
+  <desc id="terminal-organizer-d">Kullanıcının gördüğü pencere ile komutları çalıştıran süreçler birbirinden ayrıdır. Proje değiştirmek yalnızca pencerenin farklı süreçlere bağlanmasını sağlar; hiçbir komutu sonlandırmaz. Uygulama tamamen kapatıldığında ise süreçler kapanır ve yalnızca panel düzeni saklanır.</desc>
+<g id="d-terminal-organizer">
+            <!-- Renderer katmanı -->
+            <g class="node s1 s4"><circle class="k" cx="48" cy="48" r="6"/><text class="num" x="64" y="52">01</text><text class="t" x="88" y="52">tuş vuruşu</text></g>
+            <g class="node s3 s4"><path class="k" d="M48,54 V96"/><circle class="fx" cx="48" cy="104" r="3.5"/><text class="num" x="64" y="108">03</text><text class="t" x="88" y="108">terminal görünümü</text><text class="t sm" x="88" y="140">xterm.js · TerminalPane</text></g>
+            <path class="k" d="M48,110 V248"/>
+            <g class="node s4"><path class="k" d="M96,162 V124 H48 M96,174 V248"/><circle class="fx" cx="96" cy="168" r="3.5"/><text class="num" x="112" y="172">07</text><text class="t" x="136" y="172">çıktı toplu yazılır</text><text class="t sm" x="136" y="188">ekranın yenilenme hızına</text></g>
+            <g class="node s4"><text class="num" x="112" y="216">04</text><text class="t" x="136" y="216">pencere ↔ yönetici</text><text class="t sm" x="136" y="232">IPC · terminals:*</text></g>
+
+            <!-- Proje değişimi: reddedilen yol -->
+            <g class="node s1 s3"><circle class="k" cx="272" cy="48" r="6"/><text class="num" x="288" y="52">02</text><text class="t" x="312" y="52">proje değişimi</text></g>
+            <g class="rf-g s3"><path class="k rf" d="M272,54 V230"/><path class="k" d="M267,233 L277,243 M277,233 L267,243"/><text class="t sm" x="288" y="140">yalnızca bağlan ve kop</text><text class="t sm" x="288" y="156">terminals:detach / attach</text><text class="t" x="288" y="236">hiçbir süreç durmaz</text></g>
+
+            <!-- Sınır: preload -->
+            <g class="bd s2"><path class="k" d="M16,248 H464 M16,252 H464"/><text class="cap" x="464" y="218" text-anchor="end">pencere</text><text class="cap" x="136" y="272">arka plan</text><text class="cap" x="464" y="272" text-anchor="end">süreç sınırı</text></g>
+
+            <!-- Main katmanı -->
+            <g class="node s2 s4"><rect class="k" x="32" y="296" width="200" height="48"/><text class="num" x="48" y="316">05</text><text class="t sm" x="72" y="316">oturum yöneticisi</text><text class="t sm" x="48" y="332">TerminalSessionManager</text></g>
+            <path class="k" d="M48,252 V296 M96,252 V296"/>
+            <g class="node s4"><path class="k" d="M48,344 V396 M54,400 H96 V344"/><circle class="fx" cx="48" cy="400" r="3.5"/><text class="num" x="112" y="404">06</text><text class="t" x="136" y="404">çalışan süreç</text><text class="t sm" x="136" y="420">PTY · node-pty</text></g>
+            <g class="node s4"><path class="k" d="M232,320 H272"/><text class="num" x="280" y="300">08</text><text class="t" x="304" y="300">proje kayıtları</text><text class="t sm" x="280" y="316">workspace.json</text><text class="t sm" x="280" y="332">kabuk profilleri</text></g>
+            <g class="node s4 s5"><text class="num" x="280" y="388">09</text><text class="t sm" x="304" y="388">proje</text><text class="t sm" x="292" y="402">→ çalışma alanı</text><text class="t sm" x="304" y="416">→ düzen ağacı</text><text class="t sm" x="316" y="430">→ panel</text><text class="t sm" x="328" y="444">→ oturum</text><text class="t sm" x="280" y="472">başlıyor · çalışıyor · çıktı</text><text class="t sm" x="280" y="486">hata · kapanıyor</text></g>
+
+            <!-- Sınırlar -->
+            <g class="node s6"><circle class="k" cx="48" cy="480" r="6"/><path class="k" d="M48,474 V406"/><text class="num" x="64" y="484">10</text><text class="t" x="88" y="484">uygulama kapanır</text><text class="t sm" x="88" y="500">düzen geri gelir, süreç gelmez</text></g>
+            <g class="s6"><text class="t sm" x="280" y="520">Windows · imzasız · v0.1.0</text></g>
+          </g>
+</svg>
+
+<!-- diagram:terminal-organizer end -->
+          <figcaption class="cap">Sistem çizimi · proje değişirken çalışan komutların devam etmesi</figcaption>
+        </figure>
+      </div>
+
+      <div class="steps">
+        <article class="step step--entrance" data-step="promise">
+          <p class="cap step__kicker">İş 04 / 04 · <span lang="en">Terminal Organizer</span></p>
+          <h2 class="step__title" id="term-title"><a class="step__link" href="isler/terminal-organizer/">Proje değişir; çalışan terminaller durmaz.</a></h2>
+          <p class="step__body">Windows için bir masaüstü uygulaması: her projeye kendi terminal çalışma alanını veriyor. Bir projede dev sunucusu ve test izleyici çalışırken başka bir projeye geçmek ikisini de kesmiyor.</p>
+          <p class="step__body">Uygulamayı kapatmak ayrı bir şey: o zaman terminaller de kapanıyor.</p>
+        </article>
+
+        <article class="step" data-step="why">
+          <p class="cap step__kicker">Neden çalışıyor</p>
+          <h3 class="step__title">Terminal süreçleri, onları gösteren pencerenin dışında yaşar.</h3>
+          <p class="step__body">Bir terminal aslında iki parça: komutu gerçekten çalıştıran işletim sistemi süreci ve onun çıktısını gösteren pencere. Bu uygulamada süreçlerin sahibi pencere değil, arka planda duran bir yönetici. Pencere onlara yalnızca bir kimlikle bağlanıp kopuyor.</p>
+          <p class="step__body">Proje değiştirmek bu bağın kopup yeniden kurulmasından ibaret; süreçlere hiç dokunulmuyor. &#8220;Hiçbir terminal durmaz&#8221; bu yüzden ölçülmüş bir performans sonucu değil, tasarımın kuralı: proje geçişi süreç sonlandıran hiçbir yol içermiyor.</p>
+          <p class="step__note">Yüksek çıktı da arayüzü kilitlemiyor. Gelen metin ekrana harf harf değil, ekranın kendi yenilenme hızına bağlanıp toplu hâlde yazılıyor; paket kurulumu sırasında pencere donmuyor.</p>
+        </article>
+
+        <article class="step" data-step="evidence">
+          <p class="cap step__kicker">Ölçülen</p>
+          <h3 class="step__title">Kanıt dört uçtan uca senaryo ve iki birim testi.</h3>
+          <p class="step__body">Elle koşulan dört durum doğrulandı: arayüzün açılması, paket kurulumu gibi yüksek çıktılı bir komutun pencereyi dondurmaması, uygulama kapanıp açıldığında proje listesinin ve panel düzeninin geri gelmesi, ve iki proje arasında geçerken hiçbir sürecin durmaması.</p>
+          <p class="step__body">Birim testi tam da riskin toplandığı iki yerde: proje kayıtlarını saklayan katmanda ve kabuk profillerini bulan katmanda.</p>
+          <p class="step__note">Dört senaryonun hepsi uygulamanın asıl sözünü sınıyor: proje değişimi, yeniden başlatma ve yüksek çıktı altında çalışan süreçlerin hayatta kalması.</p>
+          <div class="step__links">
+            <a class="step__more" href="isler/terminal-organizer/"><span>Nasıl çalışır</span><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
+            <a class="step__more step__more--ghost" href="https://github.com/brkakyldz/terminal-organizer" rel="noopener"><span>Kaynak kodu<span class="u-hidden"> — Terminal Organizer deposu GitHub'da</span></span><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ===================== KAPANIŞ ===================== -->
+    <section class="contact wrap" id="iletisim" aria-labelledby="contact-title">
+      <div class="contact__copy">
+        <h2 class="contact__title" id="contact-title">Birlikte ne geliştirebiliriz?</h2>
+        <p class="contact__lead">Yapay zekâ alanındaki iş fırsatlarına ve birlikte proje geliştirmeye açığım.</p>
+        <div class="contact__links">
+          <a href="mailto:berkeakyildz@gmail.com"><small class="cap">E-posta</small>berkeakyildz@gmail.com</a>
+          <a href="cv/"><small class="cap">Özgeçmiş</small>Deneyim ve projeler</a>
+          <a href="https://github.com/brkakyldz" rel="me"><small class="cap"><span lang="en">GitHub</span></small>github.com/brkakyldz</a>
+          <a href="https://www.linkedin.com/in/berkeakyildiz/" rel="me"><small class="cap"><span lang="en">LinkedIn</span></small>linkedin.com/in/berkeakyildiz</a>
+        </div>
+      </div>
+      <footer class="foot">
+        <span>Berke Akyıldız · 2026</span>
+        <span>Deniz görüntüsü yapay zekâ ile üretildi. Sistem çizimleri repoların kendisinden çıkarıldı.</span>
+      </footer>
+    </section>
+
+  </main>
+</body>
+</html>

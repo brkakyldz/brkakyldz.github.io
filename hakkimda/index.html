@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="tr" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hakkımda — Berke Akyıldız</title>
+  <meta name="description" content="Berke Akyıldız: Antalya'da yapay zekâ destekli sistemler kuruyorum. İlgilendiğim problemler, karar ilkelerim ve açık olduğum iş türleri.">
+  <meta name="theme-color" content="#07131d">
+  <meta name="color-scheme" content="dark">
+  <link rel="canonical" href="https://brkakyldz.github.io/hakkimda/">
+  <link rel="icon" href="../static/favicon.ico?v=3" sizes="any">
+  <link rel="icon" href="../static/favicon.svg?v=3" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../static/apple-touch-icon.png?v=3">
+  <meta property="og:type" content="profile">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:site_name" content="Berke Akyıldız">
+  <meta property="og:title" content="Hakkımda — Berke Akyıldız">
+  <meta property="og:description" content="Antalya'da yapay zekâ destekli sistemler kuruyorum. İlgilendiğim problemler, karar ilkelerim ve açık olduğum iş türleri.">
+  <meta property="og:url" content="https://brkakyldz.github.io/hakkimda/">
+  <meta property="og:image" content="https://brkakyldz.github.io/static/media/ocean-poster-v3.jpg">
+  <meta property="og:image:width" content="1920">
+  <meta property="og:image:height" content="1080">
+  <meta property="og:image:alt" content="Mavi saatte, bulutlu gökyüzünün altında açık deniz.">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preload" href="../static/fonts/newsreader-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../static/fonts/newsreader-latin-ext.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../static/css/site.css">
+  <script>document.documentElement.classList.remove('no-js')</script>
+  <script src="../static/js/site.js" defer></script>
+</head>
+<body class="about-page">
+  <a class="skip" href="#main">İçeriğe atla</a>
+  <div class="ocean" aria-hidden="true">
+    <video class="ocean__video" autoplay muted loop playsinline preload="none" data-webm="../static/media/ocean-v3.webm" data-mp4="../static/media/ocean-v3.mp4" poster="../static/media/ocean-poster-v3.jpg" width="2560" height="1440" tabindex="-1">
+    </video>
+    <img class="ocean__still" src="../static/media/ocean-poster-v3.jpg" width="1920" height="1080" alt="" decoding="async">
+    <div class="ocean__grain"></div>
+  </div>
+
+  <header class="top">
+    <a class="top__name" href="../"><img class="top__mark" src="../static/mark.svg" alt="" width="23" height="17" decoding="async">Berke Akyıldız</a>
+    <button class="top__toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menü</button>
+    <nav class="top__nav" id="site-nav" aria-label="Site">
+      <a href="./" aria-current="page">Hakkımda</a>
+      <a href="../#isler">İşler</a>
+      <a href="../cv/">Özgeçmiş</a>
+      <a href="../#iletisim">İletişim</a>
+      <a href="https://github.com/brkakyldz" rel="me"><span lang="en">GitHub</span></a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="page wrap">
+      <div class="page__head">
+        <p class="cap">Hakkımda</p>
+        <h1 class="page__title">Model yazar, kod doğrular.</h1>
+        <p class="page__lead">Berke Akyıldız. Antalya'da <span lang="en">AI</span> / <span lang="en">LLM</span> mühendisliği yapıyorum: Python ve <span lang="en">LangGraph</span> ile hatlar kuruyorum, puanlamayı ve denetimi kodda tutuyorum. Aşağıda hangi problemlerle ilgilendiğim ve ajanla nasıl çalıştığım yazıyor.</p>
+        <dl class="meta">
+          <div><dt>Rol</dt><dd><span lang="en">AI</span> / <span lang="en">LLM</span> mühendisliği</dd></div>
+          <div><dt>Konum</dt><dd>Antalya, Türkiye · uzaktan çalışmaya açık</dd></div>
+          <div><dt>Özgeçmiş</dt><dd><a href="../cv/">Deneyim ve projeler</a></dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <section class="prose veiled wrap" aria-labelledby="ilgi">
+      <div class="prose__body">
+        <h2 id="ilgi">Beni ilgilendiren problemler</h2>
+        <p>Bir insanın her gün elle yaptığı ve bir noktada bir sisteme devredebileceği işler. Dört projem de dört böyle problemden çıktı: aynı haberi beş ayrı kaynaktan okumak; her yeni yapay zekâ oturumunda aynı proje bağlamını yeniden anlatmak; bir şirketin finansal sayısını benzerleriyle karşılaştırmadan yorumlamaya çalışmak; proje değiştirince çalışan terminalleri kaybetmek.</p>
+        <p>Ortak nokta işin kendisi değil, işin etrafındaki tekrar. İlgimi çeken soru şu: bu tekrarın ne kadarı bir sisteme devredilebilir ve kararın hangi kısmı insanda kalmalı? Cevap her projede farklı çıkıyor — neyi okuyacağıma ben karar veriyorum ama okunacakları sistem topluyor; bir raporun yayımlanıp yayımlanmayacağına kural karar veriyor ama raporu model yazıyor.</p>
+
+        <h2 id="yaklasim">Nasıl çalışıyorum</h2>
+        <p>Önce fayda, sonra mühendislik. Bir sistemin ne işe yaradığını anlatamıyorsam, nasıl çalıştığını anlatmanın da bir anlamı yok. Mühendislik kararlarını da açıkta bırakıyorum: her projenin sayfasında hangi kararın neden verildiği ve hangi sayıyla desteklendiği yazıyor.</p>
+        <p>Aşağıdaki dört madde, dört projede de tekrar eden karar ilkeleri. Her birinin bir projede somut karşılığı ve bir sayısı var.</p>
+      </div>
+
+      <ol class="principles" aria-label="Karar ilkelerim">
+        <li><span class="n">01</span><div><b>Parayı mimariye yazarım.</b><span>Maliyeti sonradan kısılan bir kalem değil, baştan verilen bir karar olarak görüyorum. AI Digest'te bütçe ayda 10 dolardı, ölçülen fatura 2,50: en ucuz yol her zaman önce deneniyor, kendiliğinden çalışan hiçbir aşama para harcamıyor ve harcama yapan tek bir düğme var — fiyatı da basılmadan önce ekranda duruyor. Para harcayan hiçbir işi saate bağlamıyorum; tetikleyici insan. <a href="../isler/ai-digest/">AI Digest</a></span></div></li>
+        <li><span class="n">02</span><div><b>Nerede kod, nerede model olduğunu baştan ayırırım.</b><span>Tek doğru cevabı olan iş koddur ve modele sorulmaz: bağlantı kontrolü, bütçe ölçümü, puanlama. Doğru cevabı olmayan iş modele gider: iki bilginin aynı bilgi olup olmadığı, bir bulgu üzerine anlatı yazmak. TechInves'in puanlama katmanında tek bir model çağrısı yok; raporu durduran kural katmanı da tamamen kod. <a href="../isler/techinves/">TechInves</a></span></div></li>
+        <li><span class="n">03</span><div><b>Boşluğu uydurmam, işaretlerim.</b><span>Bir hesap veriye ulaşamadığında sistemin en kolay yaptığı şey sıfır yazmaktır; TechInves'te hesaplanamayan metrik sıfır sayılmıyor, &#8220;veri yok&#8221; olarak işaretlenip öyle taşınıyor. Aynı kural elemede de geçerli: tekrar eden bir haber işaretleniyor, silinmiyor. Kararı okuyucu veriyor, sessizce eleyen sistem değil. <a href="../isler/techinves/">TechInves</a>, <a href="../isler/ai-digest/">AI Digest</a></span></div></li>
+        <li><span class="n">04</span><div><b>İddiayı değil, iddiayı üreten komutu yazarım.</b><span>Bir sistemin iyi çalıştığını söylemek yerine, iyi çalıştığını gösteren sayıyı üreten komutu yazıyorum. AI Digest'te maliyet, hız ve sıralama kalitesi zincirin dışında duran ayrı bir ölçüm koluyla üretiliyor; ayda 2,50 dolarlık fatura da, bir haftalık birikimi 85 saniyede işleyen ilk çalıştırma da o koldan çıkan sayılar. Böylece &#8220;iyi çalışıyor&#8221; bir kanaat değil, yeniden koşulabilir bir komut oluyor. <a href="../isler/ai-digest/">AI Digest</a></span></div></li>
+      </ol>
+
+      <div class="prose__body" style="margin-top:4rem">
+        <h2 id="isler">Ne yaptım</h2>
+        <p>Bu portföyde dört sistem var: bir haber bülteni hattı, bir yapay zekâ belleği, bir finansal puanlama motoru ve bir masaüstü terminal uygulaması. Üçü bugün çalışıyor; TechInves 2026-08-25'ten beri duraklatıldı — kodu çalışıyor, üzerine geliştirme yapılmıyor. Her birinin ölçülen sayıları kendi sayfasında duruyor.</p>
+        <p>Hatları Python ve LangGraph ile, arayüzleri FastAPI ile, belleği Markdown ve Git ile yazıyorum. Geliştirmenin kendisini de yapay zekâ destekli araçlarla yapıyorum: kullandığım kodlama ajanına kendi otomatik kontrollerimi, kendi yardımcı komutlarımı ve dış sistemlere kendi bağlantılarımı yazıyorum.</p>
+      </div>
+
+      <dl class="stack" aria-label="Kullandığım teknolojiler">
+        <div><dt>Programlama</dt><dd>Python · SQL · TypeScript</dd></div>
+        <div><dt>Yapay zekâ</dt><dd>LangGraph · LangChain · ajanlı kodlama araçları (Claude Code; kendi yazdığım otomatik kontroller, yardımcı komutlar ve MCP bağlantıları)</dd></div>
+        <div><dt>Backend</dt><dd>FastAPI · SQLAlchemy · Pydantic · SQLite/PostgreSQL · REST</dd></div>
+        <div><dt>Araçlar</dt><dd>Git · GitHub Actions</dd></div>
+      </dl>
+
+      <div class="prose__body" style="margin-top:4rem">
+        <h2 id="ajan">Ajanla nasıl çalışıyorum</h2>
+        <p>Kodun çoğunu bir kodlama ajanıyla yazıyorum. Bunu saklamıyorum, çünkü asıl soru kimin yazdığı değil: ajanın yazdığını nasıl denetlediğim. Denetimin üç yeri var. Geri dönmesi pahalı olan her seçim, seçilmeden önce gerekçesiyle birlikte bir karar kaydına yazılıyor — sonradan &#8220;neden böyle yapmıştık&#8221; sorusunun cevabı hafızada değil dosyada duruyor. Ajanın belleği düz metin: ne bildiğini açıp okuyabiliyorum, yanlış bir cümleyi elle düzeltebiliyorum. Ve yazılı her kural, taşınabildiği anda bir kontrole dönüşüyor; çünkü düzyazıda duran bir kural o anki alışkanlığa yeniliyor.</p>
+        <p>Bunun ölçülmüş bir karşılığı var: gözetimsiz otomatik bakımı denedim ve bıraktım. Kimsenin bakmadığı katmanda kusurlar birikiyordu, üstelik biriktikleri yer tam da &#8220;otomatik olduğu için doğru sayılan&#8221; yerdi. Bugün her otomatik iş bir öldürme ölçütü taşıyor: neyi kanıtlayamazsa kapatılacağı baştan yazılı.</p>
+
+        <h3 id="duzeltme">Bir düzeltme hikâyesi</h3>
+        <p>Haber kaynaklarının her birinin, sıralamada ağırlığını belirleyen bir katsayısı var: 0,5 ile 2,0 arasında herhangi bir ondalık sayı. Bu katsayıyı arayüzden düzenlemek için dört kademeli bir açılır liste ekledim &#8212; 0,5, 1,0, 1,5, 2,0 &#8212; ve kontrolü doğrudan gerçek veritabanında denedim. Liste, kayıtlı değeri kendi seçenekleri arasında bulamadığında ilk seçeneği gösteriyordu; kaydettiğim anda dokuz gerçek kaynağın ağırlığı 0,5'e düştü. Hiçbir hata çıkmadı, hiçbir uyarı görünmedi: kontrolün kendisi geçerli bir değer yazıyordu, yalnızca yanlış olanı.</p>
+        <p>Buradan iki kural çıktı. Bir yazma yolu ilk kez canlı veriyle denenmez. Ve bir kontrolün kabul ettiği aralık, yazdığı sütunun aralığından dar olamaz &#8212; dar olduğunda veri kaybı sessiz oluyor, çünkü yazılan değer teknik olarak geçerli. İkincisi bende artık bir kural değil, arayüzü üretirken uyguladığım bir kontrol.</p>
+      </div>
+
+      <div class="prose__body" style="margin-top:4rem">
+        <h2 id="temalar">İşleri birbirine bağlayan temalar</h2>
+      </div>
+      <div class="themes">
+        <div><h3>Bellek ve bağlam</h3><p>Bir yapay zekâ ajanının bildiği şey, insanın da açıp okuyabildiği bir yerde durmalı: düz dosyalar, sürüm geçmişi, o an gerektiği kadar yüklenen bağlam. <a href="../isler/second-brain-os/">Second Brain OS</a></p></div>
+        <div><h3>Bilgiyi ayıklamak</h3><p>Çok kaynaktan gelen aynı şeyi bir kez göstermek, önemliyi öne almak ve bunu neye göre yaptığını söylemek. <a href="../isler/ai-digest/">AI Digest</a></p></div>
+        <div><h3>Karşılaştırma ve doğrulama</h3><p>Bir sayı ancak benzerlerinin yanında anlam kazanır; modelin yazdığı da açılmadan önce kural denetiminden geçer. <a href="../isler/techinves/">TechInves</a></p></div>
+        <div><h3>Günlük işin sürekliliği</h3><p>Bağlam değişirken çalışan şeyin durmaması; geri alınamaz olanın onay istemesi, olanın sormaması. <a href="../isler/terminal-organizer/">Terminal Organizer</a></p></div>
+      </div>
+
+      <div class="prose__body" style="margin-top:4rem">
+        <h2 id="iletisim">İletişim</h2>
+        <p>Yapay zekâ alanındaki iş fırsatlarına ve birlikte proje geliştirmeye açığım. Özellikle ilgimi çekenler: tekrar eden bir işin hangi kısmının otomatikleştirilebileceğinin henüz belli olmadığı problemler, bir modelin çıktısının denetlenmesi gereken yerler ve maliyeti baştan tasarlanması gereken hatlar.</p>
+        <p>Doğrudan yazabilirsiniz: <a href="mailto:berkeakyildz@gmail.com">berkeakyildz@gmail.com</a> · <a href="https://github.com/brkakyldz" rel="me">github.com/brkakyldz</a> · <a href="https://www.linkedin.com/in/berkeakyildiz/" rel="me">linkedin.com/in/berkeakyildiz</a></p>
+      </div>
+
+      <nav class="pager" aria-label="Devam"><a href="../#isler"><span>İşler</span><b>Dört sistem, dört bölüm</b></a><a href="../isler/ai-digest/"><span>İlk iş</span><b>AI Digest</b></a></nav>
+    </section>
+  </main>
+</body>
+</html>

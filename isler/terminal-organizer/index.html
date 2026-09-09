@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="tr" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Terminal Organizer — Berke Akyıldız</title>
+  <meta name="description" content="Her projeye kendi terminal çalışma alanını veren, projeler arasında geçerken çalışan komutları kesmeyen bir Windows masaüstü uygulaması.">
+  <meta name="theme-color" content="#07131d">
+  <meta name="color-scheme" content="dark">
+  <link rel="canonical" href="https://brkakyldz.github.io/isler/terminal-organizer/">
+  <link rel="icon" href="../../static/favicon.ico?v=3" sizes="any">
+  <link rel="icon" href="../../static/favicon.svg?v=3" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../../static/apple-touch-icon.png?v=3">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:site_name" content="Berke Akyıldız">
+  <meta property="og:title" content="Terminal Organizer — çalışma mantığı">
+  <meta property="og:description" content="Her projeye kendi terminal çalışma alanını veren, projeler arasında geçerken çalışan komutları kesmeyen bir Windows masaüstü uygulaması.">
+  <meta property="og:url" content="https://brkakyldz.github.io/isler/terminal-organizer/">
+  <meta property="og:image" content="https://brkakyldz.github.io/static/media/ocean-poster-v3.jpg">
+  <meta property="og:image:width" content="1920">
+  <meta property="og:image:height" content="1080">
+  <meta property="og:image:alt" content="Mavi saatte, bulutlu gökyüzünün altında açık deniz.">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preload" href="../../static/fonts/newsreader-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../../static/fonts/plex-sans-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../static/css/site.css">
+  <script>document.documentElement.classList.remove('no-js')</script>
+  <script src="../../static/js/site.js" defer></script>
+</head>
+<body class="detail">
+  <a class="skip" href="#main">İçeriğe atla</a>
+  <div class="ocean" aria-hidden="true">
+    <img class="ocean__still" src="../../static/media/ocean-poster-v3.jpg" width="1920" height="1080" alt="" decoding="async">
+    <div class="ocean__grain"></div>
+  </div>
+  <header class="top">
+    <a class="top__name" href="../../"><img class="top__mark" src="../../static/mark.svg" alt="" width="23" height="17" decoding="async">Berke Akyıldız</a>
+    <button class="top__toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menü</button>
+    <nav class="top__nav" id="site-nav" aria-label="Site"><a href="../../hakkimda/">Hakkımda</a><a href="../../#isler" aria-current="page">İşler</a><a href="../../cv/">Özgeçmiş</a><a href="../../#iletisim">İletişim</a><a href="https://github.com/brkakyldz" rel="me"><span lang="en">GitHub</span></a></nav>
+  </header>
+  <main id="main">
+    <section class="page wrap">
+      <div class="page__head">
+        <p class="cap">İş 04 / 04 · Erken sürüm v0.1.0</p>
+        <h1 class="page__title">Terminal Organizer</h1>
+        <p class="page__lead">Her projeye kendi terminal çalışma alanını veren, projeler arasında geçerken çalışan komutları kesmeyen bir Windows masaüstü uygulaması.</p>
+      </div>
+    </section>
+    <section class="brief veiled wrap" aria-labelledby="terminal-organizer-ozet">
+      <h2 class="brief__title" id="terminal-organizer-ozet">Kısaca</h2>
+      <dl class="brief__list">
+        <div class="brief__row">
+          <dt class="cap">Problem</dt>
+          <dd>Bir projede dev sunucusu, test izleyici ve paket kurulumu çalışırken başka bir projeye geçmek, alışılmış terminal uygulamalarında bu komutları kaybettiriyor. Her dönüşte aynı üç komutu yeniden başlatmak gerekiyor.</dd>
+        </div>
+        <div class="brief__row">
+          <dt class="cap">Kullanıcı için değişen</dt>
+          <dd>Her proje kendi terminal çalışma alanına sahip. Projeler arasında geçmek çalışan hiçbir komutu kesmiyor; geri dönüldüğünde üçü de kaldığı yerden akıyor. Uygulamayı tamamen kapatmak ise ayrı bir şey: o zaman terminaller de kapanıyor.</dd>
+        </div>
+        <div class="brief__row">
+          <dt class="cap">Bunu mümkün kılan karar</dt>
+          <dd>Komutu çalıştıran işletim sistemi süreçlerinin sahibi, onları gösteren pencere değil; uygulamanın arka planında duran bir yönetici. Pencere süreçlere yalnızca bir kimlikle bağlanıp kopuyor ve proje geçişi bu bağın kopup yeniden kurulmasından ibaret.</dd>
+        </div>
+        <div class="brief__row">
+          <dt class="cap">Kanıt</dt>
+          <dd>Proje geçişinde duran terminal sayısı sıfır. Bu ölçülmüş bir performans sonucu değil, tasarımın kuralı: geçiş yolu süreç sonlandıran hiçbir çağrı içermiyor. Yüksek çıktı da arayüzü kilitlemiyor; gelen metin ekranın kendi yenilenme hızına bağlanıp toplu hâlde yazılıyor.</dd>
+        </div>
+      </dl>
+      <dl class="meta">
+        <div><dt>Tür</dt><dd>Windows masaüstü uygulaması — proje kapsamlı terminal çalışma alanları</dd></div>
+        <div><dt>Durum</dt><dd>Erken Windows sürümü (v0.1.0); son geliştirme 2026-07-18</dd></div>
+        <div><dt>Yığın</dt><dd>Electron · React · TypeScript · xterm.js · node-pty (Windows ConPTY) · Vite · electron-builder</dd></div>
+        <div><dt>Repo</dt><dd><a href="https://github.com/brkakyldz/terminal-organizer" rel="noopener">github.com/brkakyldz/terminal-organizer</a></dd></div>
+      </dl>
+    </section>
+
+    <section class="gallery veiled wrap" aria-labelledby="terminal-organizer-gallery-title">
+      <div class="gallery__head">
+        <div>
+          <p class="cap">Ürünün yüzü</p>
+          <h2 id="terminal-organizer-gallery-title">Arayüzden görüntüler</h2>
+        </div>
+        <p class="gallery__total"><b data-gallery-current>01</b> / 04</p>
+      </div>
+      <a href="../../static/media/projects/terminal-organizer/four-pane.webp" class="gallery__stage" data-gallery="terminal-organizer" data-gallery-open data-gallery-index="0" aria-label="Terminal Organizer arayüz görüntüsünü tam ekran aç">
+        <img src="../../static/media/projects/terminal-organizer/four-pane.webp" width="1920" height="1020" alt="Claude, PowerShell ve Codex oturumlarının aynı projede birbirinden bağımsız çalışması." loading="lazy" decoding="async">
+        <span class="gallery__expand"><span>Tam ekran</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6 2H2v4M10 2h4v4M14 10v4h-4M6 14H2v-4"/></svg></span>
+      </a>
+      <div class="gallery__reading">
+        <p class="gallery__selected"><b data-gallery-title>Dört terminal, tek çalışma alanı</b><span data-gallery-caption>Claude, PowerShell ve Codex oturumlarının aynı projede birbirinden bağımsız çalışması.</span></p>
+        <ol class="gallery__thumbs" aria-label="Terminal Organizer ekran görüntüleri">
+          <li>
+            <a href="../../static/media/projects/terminal-organizer/four-pane.webp" class="gallery__thumb" data-gallery="terminal-organizer" data-gallery-item data-gallery-select data-gallery-index="0" data-gallery-title="Dört terminal, tek çalışma alanı" data-gallery-caption="Claude, PowerShell ve Codex oturumlarının aynı projede birbirinden bağımsız çalışması." data-gallery-width="1920" data-gallery-height="1020" aria-current="true">
+              <img src="../../static/media/projects/terminal-organizer/four-pane-thumb.webp" width="420" height="223" alt="" loading="lazy" decoding="async">
+              <span>Dört terminal, tek çalışma alanı</span>
+            </a>
+          </li>
+          <li>
+            <a href="../../static/media/projects/terminal-organizer/mixed-layout.webp" class="gallery__thumb" data-gallery="terminal-organizer" data-gallery-item data-gallery-select data-gallery-index="1" data-gallery-title="Karışık panel düzeni" data-gallery-caption="Yatay ve dikey bölünmüş terminallerin tek çalışma alanındaki yerleşimi." data-gallery-width="1920" data-gallery-height="1020">
+              <img src="../../static/media/projects/terminal-organizer/mixed-layout-thumb.webp" width="420" height="223" alt="" loading="lazy" decoding="async">
+              <span>Karışık panel düzeni</span>
+            </a>
+          </li>
+          <li>
+            <a href="../../static/media/projects/terminal-organizer/workspace-switch.webp" class="gallery__thumb" data-gallery="terminal-organizer" data-gallery-item data-gallery-select data-gallery-index="2" data-gallery-title="Çalışma alanı değişimi" data-gallery-caption="Başka projeye geçildiğinde dört terminal oturumunun kendi düzeniyle görünmesi." data-gallery-width="1920" data-gallery-height="1020">
+              <img src="../../static/media/projects/terminal-organizer/workspace-switch-thumb.webp" width="420" height="223" alt="" loading="lazy" decoding="async">
+              <span>Çalışma alanı değişimi</span>
+            </a>
+          </li>
+          <li>
+            <a href="../../static/media/projects/terminal-organizer/single-session.webp" class="gallery__thumb" data-gallery="terminal-organizer" data-gallery-item data-gallery-select data-gallery-index="3" data-gallery-title="Tek oturum görünümü" data-gallery-caption="Bir terminal oturumuna geniş alan ayrılan sade çalışma görünümü." data-gallery-width="1920" data-gallery-height="1020">
+              <img src="../../static/media/projects/terminal-organizer/single-session-thumb.webp" width="420" height="223" alt="" loading="lazy" decoding="async">
+              <span>Tek oturum görünümü</span>
+            </a>
+          </li>
+        </ol>
+      </div>
+    </section>
+    <section class="plate veiled wrap" aria-label="Sistem çizimi">
+      <figure>
+        <svg class="diagram" xmlns="http://www.w3.org/2000/svg" viewBox="-8 -8 496 556" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="terminal-organizer-t terminal-organizer-d">
+  <title id="terminal-organizer-t">Terminal Organizer: proje görünümü değişirken çalışan komutların devam etmesi.</title>
+  <desc id="terminal-organizer-d">Kullanıcının gördüğü pencere ile komutları çalıştıran süreçler birbirinden ayrıdır. Proje değiştirmek yalnızca pencerenin farklı süreçlere bağlanmasını sağlar; hiçbir komutu sonlandırmaz. Uygulama tamamen kapatıldığında ise süreçler kapanır ve yalnızca panel düzeni saklanır.</desc>
+<g id="d-terminal-organizer">
+            <!-- Renderer katmanı -->
+            <g class="node s1 s4"><circle class="k" cx="48" cy="48" r="6"/><text class="num" x="64" y="52">01</text><text class="t" x="88" y="52">tuş vuruşu</text></g>
+            <g class="node s3 s4"><path class="k" d="M48,54 V96"/><circle class="fx" cx="48" cy="104" r="3.5"/><text class="num" x="64" y="108">03</text><text class="t" x="88" y="108">terminal görünümü</text><text class="t sm" x="88" y="140">xterm.js · TerminalPane</text></g>
+            <path class="k" d="M48,110 V248"/>
+            <g class="node s4"><path class="k" d="M96,162 V124 H48 M96,174 V248"/><circle class="fx" cx="96" cy="168" r="3.5"/><text class="num" x="112" y="172">07</text><text class="t" x="136" y="172">çıktı toplu yazılır</text><text class="t sm" x="136" y="188">ekranın yenilenme hızına</text></g>
+            <g class="node s4"><text class="num" x="112" y="216">04</text><text class="t" x="136" y="216">pencere ↔ yönetici</text><text class="t sm" x="136" y="232">IPC · terminals:*</text></g>
+
+            <!-- Proje değişimi: reddedilen yol -->
+            <g class="node s1 s3"><circle class="k" cx="272" cy="48" r="6"/><text class="num" x="288" y="52">02</text><text class="t" x="312" y="52">proje değişimi</text></g>
+            <g class="rf-g s3"><path class="k rf" d="M272,54 V230"/><path class="k" d="M267,233 L277,243 M277,233 L267,243"/><text class="t sm" x="288" y="140">yalnızca bağlan ve kop</text><text class="t sm" x="288" y="156">terminals:detach / attach</text><text class="t" x="288" y="236">hiçbir süreç durmaz</text></g>
+
+            <!-- Sınır: preload -->
+            <g class="bd s2"><path class="k" d="M16,248 H464 M16,252 H464"/><text class="cap" x="464" y="218" text-anchor="end">pencere</text><text class="cap" x="136" y="272">arka plan</text><text class="cap" x="464" y="272" text-anchor="end">süreç sınırı</text></g>
+
+            <!-- Main katmanı -->
+            <g class="node s2 s4"><rect class="k" x="32" y="296" width="200" height="48"/><text class="num" x="48" y="316">05</text><text class="t sm" x="72" y="316">oturum yöneticisi</text><text class="t sm" x="48" y="332">TerminalSessionManager</text></g>
+            <path class="k" d="M48,252 V296 M96,252 V296"/>
+            <g class="node s4"><path class="k" d="M48,344 V396 M54,400 H96 V344"/><circle class="fx" cx="48" cy="400" r="3.5"/><text class="num" x="112" y="404">06</text><text class="t" x="136" y="404">çalışan süreç</text><text class="t sm" x="136" y="420">PTY · node-pty</text></g>
+            <g class="node s4"><path class="k" d="M232,320 H272"/><text class="num" x="280" y="300">08</text><text class="t" x="304" y="300">proje kayıtları</text><text class="t sm" x="280" y="316">workspace.json</text><text class="t sm" x="280" y="332">kabuk profilleri</text></g>
+            <g class="node s4 s5"><text class="num" x="280" y="388">09</text><text class="t sm" x="304" y="388">proje</text><text class="t sm" x="292" y="402">→ çalışma alanı</text><text class="t sm" x="304" y="416">→ düzen ağacı</text><text class="t sm" x="316" y="430">→ panel</text><text class="t sm" x="328" y="444">→ oturum</text><text class="t sm" x="280" y="472">başlıyor · çalışıyor · çıktı</text><text class="t sm" x="280" y="486">hata · kapanıyor</text></g>
+
+            <!-- Sınırlar -->
+            <g class="node s6"><circle class="k" cx="48" cy="480" r="6"/><path class="k" d="M48,474 V406"/><text class="num" x="64" y="484">10</text><text class="t" x="88" y="484">uygulama kapanır</text><text class="t sm" x="88" y="500">düzen geri gelir, süreç gelmez</text></g>
+            <g class="s6"><text class="t sm" x="280" y="520">Windows · imzasız · v0.1.0</text></g>
+          </g>
+</svg>
+
+        <figcaption><span class="cap">Sistem çizimi</span>Terminal Organizer: proje görünümü değişirken çalışan komutların devam etmesi.</figcaption>
+      </figure>
+    </section>
+    <section class="prose veiled wrap" aria-labelledby="terminal-organizer-derinlik">
+      <p class="cap prose__tier" id="terminal-organizer-derinlik">Teknik derinlik</p>
+      <p class="prose__tiernote">Buradan sonrası mimari ayrıntı: iç adlar, eşikler, durum değerleri, modül yolları ve ayrıntılı ölçümler. Yukarıdaki özet tek başına okunduğunda proje anlaşılır.</p>
+      <div class="prose__cols">
+        <div class="prose__body">
+          <h2 id="terminal-organizer-b1">Problem</h2>
+<p>Windows'ta geliştirici birden çok yerel depoyla çalışıyor: dev sunucusu, test
+izleyici, paket kurulumu, Git komutları, yapay zekâ CLI'ları. Mevcut terminaller
+sekme ve bölme destekliyor ama <strong>kalıcı proje çalışma alanları etrafında
+örgütlenmiş değiller</strong>. Bağlam değiştirmek genelde pencereler arasında avlanmak,
+bölme düzenini yeniden kurmak ya da komutları yeniden başlatmak demek.</p>
+<p>Projenin çözdüğü tek şey bu: proje değiştirmek terminal oturumlarını asla
+öldürmemeli.</p>
+<h2 id="terminal-organizer-b2">Kurucu kararlar</h2>
+<h3>Riskli olan kısım UI değil, oturum kalıcılığı</h3>
+<p>Projenin en riskli özelliği genel masaüstü arayüzü değil, <strong>Windows'ta güvenilir
+proje kapsamlı terminal kalıcılığı</strong>. Yığın seçimi doğrudan bunun üzerinden
+yapıldı: Tauri küçük yerel hisli uygulamalar için çekici ve komşu ürünlerde
+kullanılıyor, ama Electron <code>xterm.js</code> + <code>node-pty</code> üzerinden olgun bir terminal
+yoluna sahip — VS Code tarzı terminal entegrasyonlarına benzer bir yol.</p>
+<p>Karar (ADR-0001) POC için Electron + React + TypeScript + xterm.js + node-pty.
+Sonuçları da açıkça yazılmış: daha büyük ikili boyutu ve bellek ayak izi, ve
+ileride bir Tauri göçünün ancak oturum ve ürün sınırları temiz tutulursa mümkün
+kalacağı.</p>
+<h3>PTY süreçleri React yaşam döngüsünün dışında yaşar</h3>
+<p>Motoru bu kural taşıyor. Renderer oturumları <strong>gösteriyor ve kontrol ediyor</strong>,
+ama süreç yaşam döngüsüne sahip değil. React'in bir bileşeni söküp atması ya da
+görünüm değiştirmesi, arka uçtaki oturumu öldürmüyor.</p>
+<p>Renderer oturumlara <strong>kimlikle bağlanıyor ve kimlikle ayrılıyor</strong>. Bağlanmak, bir
+görünümün oturumun çıktısına abone olması ve ona girdi/yeniden boyutlandırma
+olayları göndermesi demek. Ayrılmak, aboneliğin bırakılıp xterm.js görünümünün
+imha edilmesi. <strong>Ayrılmak PTY sürecini sonlandırmıyor</strong> ve bir oturumun projesi
+gizliyken sıfır abonesi olabiliyor.</p>
+<h3>Yıkıcı olan onaylanır, yıkıcı olmayan sorulmaz</h3>
+<ul>
+<li>Çalışan bir terminali kapatmak <strong>onay istiyor</strong>.</li>
+<li>Çıkmış terminal panelleri <strong>görünür kalıyor</strong>; tek panel eylemi kapatma.</li>
+<li>Bir projeyi kenar çubuğundan kaldırmak <strong>diskten hiçbir dosya silmiyor</strong> — yalnızca
+  Terminal Organizer'ın listesinden çıkarıyor.</li>
+<li>Eksik proje klasörleri, kurtarılabilir bir hata durumu gösteriyor.</li>
+</ul>
+<h3>v1 tutamayacağı sözü vermez</h3>
+<p>En dürüst tasarım kararı bu ve README'de kendi başlığı var. Uygulama proje
+listesini ve panel düzenini yeniden başlatmadan sonra geri getirebiliyor, ama
+<strong>uygulama kapandıktan sonra yerel terminal süreçlerini devam ettiremiyor.</strong></p>
+<p>Bir dev sunucusu çalışırken Terminal Organizer kapatılırsa o süreç durur. Uygulama
+tekrar açıldığında panel düzeni geri gelir; komutun kendisi yeniden başlatılmalıdır.</p>
+<p>Aynı çizgi PRD'nin "hedef değil" listesinde de var: terminal kalıcılığı
+kanıtlanmadan takım işbirliği, bulut ajanları, SSH yönetimi, Kanban, tarayıcı
+önizlemesi ya da Git panelleri eklenmiyor.</p>
+<h3>Yüksek çıktı, akıcılığın gerçek testi</h3>
+<p><code>npm install</code>, bir test izleyici ya da uzun bir derleme saniyede binlerce satır
+üretiyor. Kural: <strong>çıktı xterm.js'e ulaşmadan önce parçalanmalı ve geri basınçlanmalı</strong>. Parçalama renderer'da, <code>requestAnimationFrame</code> başına bir boşaltma yapan bir yazma zamanlayıcısıyla yapılıyor; ana süreç yalnızca yeniden bağlanma için oturum başına 500 parçalık tampon tutuyor. Gizli projeler kısılmıyor, hiç render edilmiyor.</p>
+<h3>Açılış ekranı bir test değildir</h3>
+<p>Elektron duman testleri yalnızca pencerenin açılmasını doğrulamıyor: renderer'ın
+preload API'sini görmesi (<code>window.terminalOrganizer</code> var mı), temel IPC
+çağrılarının veri döndürmesi ve en az bir UI eyleminin IPC üzerinden uygulama
+durumunu gerçekten değiştirmesi kontrol ediliyor. Bir özelliğin var olduğunu
+söyleyen test, o özelliği kullanan test olmalı.</p>
+<h2 id="terminal-organizer-b3">Nasıl çalışır</h2>
+<h3>Çalışma zamanı modeli</h3>
+<pre><code>Electron Main Process
+  TerminalSessionManager      ← PTY süreçlerinin sahibi
+  ProjectStore
+  ShellProfileDetector
+  IPC API
+        │  contextBridge (nodeIntegration kapalı)
+Electron Preload
+  Context Bridge API · IPC istemci sarmalayıcıları
+        │
+Electron Renderer
+  React App · Proje kenar çubuğu · Terminal ızgarası · xterm.js görünümleri
+</code></pre>
+<h3>Çekirdek hiyerarşi</h3>
+<pre><code>Project            yerel klasör + görüntü meta verisi
+  Workspace        projenin terminal düzeni
+    LayoutTree
+      Pane         terminal oturumunu gösteren görünür düzen düğümü
+        TerminalSession   PTY süreci, cwd, kabuk profili, çıktı tamponu, durum
+</code></pre>
+<p>Bir <code>TerminalSession</code> şunları taşıyor: <code>id</code>, <code>projectId</code>, <code>profileId</code>, <code>cwd</code>,
+<code>title</code>, <code>state</code> (<code>starting</code> · <code>running</code> · <code>exited</code> · <code>failed</code> · <code>terminating</code>),
+<code>ptyHandle</code>, <code>subscriberCount</code>, <code>outputBuffer</code>. <code>ptyHandle</code> ve <code>outputBuffer</code> yalnızca ana süreçteki iç tipte (<code>ManagedTerminalSession</code>) yaşıyor; renderer'a giden kayıt <code>TerminalSessionRecord</code>.</p>
+<h3>Veri akışı</h3>
+<pre><code>Kullanıcı girdisi  →  xterm.js  →  Renderer IPC  →  TerminalSessionManager  →  PTY
+PTY çıktısı  →  TerminalSessionManager  →  çıktı kuyruğu  →  Renderer IPC  →  xterm.js
+Proje değişimi  →  Renderer eski görünümleri ayırır  →  yeni projenin görünümlerine bağlanır
+</code></pre>
+<p>Kritik nokta üçüncü satır: proje değişimi yalnızca renderer tarafında bağlanma ve
+ayrılmadan ibaret. Ana süreçteki PTY oturumları hiç dokunulmadan çalışmaya devam
+ediyor.</p>
+<h3>Yaşam döngüsü</h3>
+<ol>
+<li>Kullanıcı bir proje ya da panel oluşturuyor.</li>
+<li>Renderer IPC üzerinden oturum oluşturma istiyor.</li>
+<li>Ana süreç PTY'yi oluşturup <code>TerminalSessionManager</code>'da saklıyor.</li>
+<li>Renderer bir xterm.js görünümünü oturum kimliğine bağlıyor.</li>
+<li>PTY çıktısı tamponlanıyor, parçalanıyor ve bağlı renderer'lara akıtılıyor.</li>
+<li>Proje değişiminde renderer gizli projenin oturumlarından ayrılıyor.</li>
+<li>Ana süreç PTY oturumlarını canlı tutuyor.</li>
+<li>Panel kapanışında ana süreç, çalışan bir oturum için ancak onaydan sonra PTY'yi
+   sonlandırıyor.</li>
+</ol>
+<h3>Yeniden boyutlandırma ve yeniden başlatma</h3>
+<p>Panel boyutu değişimi terminal satır/sütun sayısına dönüşüyor; renderer boyutu
+ana sürece gönderiyor, ana süreç PTY'yi yeniden boyutlandırıyor, ve sürükleme
+sırasında olaylar kısılıyor. Bir paneli büyütmek yalnızca çalışma alanı görünürlük
+meta verisini değiştiriyor — kardeş panellerin oturumlarını kapatmıyor ve oturum
+sahipliğini yeniden yazmıyor.</p>
+<p>Yeniden başlatma projeyi, <code>cwd</code>'yi ve profili koruyor, ve aynı projedeki diğer
+panelleri etkilemiyor.</p>
+<h3>Kalıcılık</h3>
+<p>Kalıcı hâle getirilenler: proje listesi ve sırası; görüntü adları, renkler,
+yollar; proje başına düzen ağacı; panel–oturum meta veri eşlemesi; kabuk profili,
+<code>cwd</code>, başlık ve son aktif panel. MVP'de <strong>söz verilmeyenler</strong>: uygulama yeniden
+başladıktan sonra keyfî çalışan süreçlerin geri gelmesi, ve her yük altında her
+oturum için tam kalıcı kaydırma geçmişi.</p>
+<p>Depolama, uygulama veri dizininde yerel bir JSON deposu.</p>
+<h3>Windows tarafı</h3>
+<p>PowerShell ve CMD zorunlu temel profiller; Git Bash, WSL ve <code>codex</code> / <code>claude</code> CLI'ları mevcut olduğunda algılanan isteğe bağlı profiller. Profil algılama, eksik araçları düzgün biçimde
+karşılamak zorunda. Proje yolları boşluk ve ASCII olmayan karakter içerebiliyor.</p>
+<p>Preload çalışma zamanı kodu, üretim derlemelerinde Electron tarafından
+yüklenebilir olmak zorunda: paket <code>"type": "module"</code> olduğu için preload çalışma
+zamanı dosyaları <code>.cts</code> olarak yazılıp <code>.cjs</code>'e derleniyor.</p>
+<p>Paketleme: kurulum sihirbazı yok. GitHub Actions bir <code>v*</code> etiketi
+gönderildiğinde Windows sürümünü derliyor ve
+<code>Terminal Organizer Windows x.y.z.zip</code> ile <code>SHA256SUMS.txt</code> yayımlıyor. Kullanıcı
+zip'i indirip açıyor ve içindeki markalı <code>Terminal Organizer.exe</code>'ye çift
+tıklıyor. Erken derlemeler imzasız olduğu için Windows SmartScreen uyarısı
+çıkabiliyor.</p>
+<h2 id="terminal-organizer-b4">Sayılar</h2>
+<h3>Ölçülenler</h3>
+<div class="tablewrap">
+<table>
+<thead>
+<tr>
+<th>Ne</th>
+<th>Değer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Otomatik testler</td>
+<td><code>project-store</code> ve <code>shell-profile-detector</code> birim testleri</td>
+</tr>
+<tr>
+<td>Duman senaryoları</td>
+<td>4 — Electron UI, yüksek çıktı, kalıcılık, proje değişimi</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Bu iki tablo bilerek ayrı. Üsttekiler sistemi çalıştırınca çıkan sayılar; alttakiler kodda öyle yazdığı için doğru. İkincisi de doğrulanabilir, ama doğrulanabilir olmak bir sayıyı ölçüm yapmıyor — ve bu sayfanın kuralı ölçmediğini iddia etmemek.</p>
+<h3>Tasarım sabitleri</h3>
+<div class="tablewrap">
+<table>
+<thead>
+<tr>
+<th>Ne</th>
+<th>Değer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sürüm</td>
+<td>v0.1.0, Windows, imzasız</td>
+</tr>
+<tr>
+<td>Dağıtım</td>
+<td>GitHub Releases, zip; kurulum sihirbazı yok</td>
+</tr>
+<tr>
+<td>Kabuk profili</td>
+<td>2 zorunlu (PowerShell, CMD) + isteğe bağlı: Git Bash, WSL, codex, claude</td>
+</tr>
+<tr>
+<td>Terminal oturum durumu</td>
+<td>5 (<code>starting</code>, <code>running</code>, <code>exited</code>, <code>failed</code>, <code>terminating</code>)</td>
+</tr>
+<tr>
+<td>Ağ gereksinimi</td>
+<td><strong>yok</strong> — uygulama çevrimdışı kullanılabilir</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Test kanıtı ince ve öyle duruyor: iki birim testi ve dört duman senaryosu, otomatik regresyon takımı yok.</p>
+        </div>
+      <nav class="prose__index" aria-label="Teknik derinlik bölümleri">
+        <p class="cap">Bu bölümde</p>
+        <ol>
+          <li><a href="#terminal-organizer-b1">Problem</a></li>
+          <li><a href="#terminal-organizer-b2">Kurucu kararlar</a></li>
+          <li><a href="#terminal-organizer-b3">Nasıl çalışır</a></li>
+          <li><a href="#terminal-organizer-b4">Sayılar</a></li>
+        </ol>
+      </nav>
+      </div>
+      <p class="prose__src">Kaynak: <a href="https://github.com/brkakyldz/terminal-organizer/blob/main/README.md">README.md</a>, <a href="https://github.com/brkakyldz/terminal-organizer/blob/main/projects/ARCHITECTURE.md">ARCHITECTURE.md</a>, <a href="https://github.com/brkakyldz/terminal-organizer/blob/main/projects/PRD.md">PRD.md</a>, <a href="https://github.com/brkakyldz/terminal-organizer/blob/main/projects/engineering/terminal-session-model.md">terminal-session-model.md</a>, <a href="https://github.com/brkakyldz/terminal-organizer/blob/main/projects/decisions/ADR-0001-electron-poc.md">ADR-0001</a>. Bu sayfa <code>main</code> dalının 2026-09-07 tarihli hâlinden (<code>fdf682b</code>, son push 2026-07-18) alındı ve kodla karşılaştırılarak düzeltildi.</p>
+      <nav class="pager" aria-label="Diğer işler"><a href="../techinves/"><span>Önceki</span><b>TechInves</b></a><a href="../ai-digest/"><span>Sonraki</span><b>AI Digest</b></a></nav>
+    </section>
+  </main>
+</body>
+</html>
