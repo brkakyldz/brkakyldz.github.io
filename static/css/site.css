@@ -757,6 +757,75 @@ main { position: relative; z-index: 1; }
   .step__note { max-width: none; }
 }
 
+/* ---------- telefon: sahne değil sayfa ----------
+   Yukarıdaki yapışkan tuval 900'ün altında işe yaramıyor: ekrana çizimin
+   tamamı değil, ortasından kesilmiş bir dilim geliyor ve kaydırdıkça o dilim
+   değişiyor. Okunan şey çizim değil, çizimin rastgele bir parçası oluyor —
+   çizgiler kadrajın dört kenarından da çıkıp gidiyor.
+
+   Telefonda koreografi tamamen kalkıyor ve bölüm sıradan bir yazı gibi akıyor:
+   başlık, altında çizimin tamamı tek parça, sonra adımlar. Çizim kırpılmıyor,
+   sönmüyor, sahneye göre yanmıyor; bir kez, bütün ve nötr duruyor. Ekrandan
+   geniş kalıp kendi kutusunda yatay kayıyor, çünkü 331px'e sığdırılsa 13px'lik
+   etiketler 8,7px'e iner. Kaybedilen şey sahne geçişi; kazanılan şey çizimin
+   ve metnin ikisinin de eksiksiz okunması. Mobilin masaüstüyle aynı olması
+   şart değil. */
+@media (max-width: 900px) {
+  /* .steps kutusu kalkıyor ki giriş adımı ile tuval yer değiştirebilsin:
+     başlık (1), çizim (2), kalan adımlar (3). Kutu kalkınca kenar boşluğu da
+     kalkıyor, o yüzden oluk adımın kendisine geçiyor. */
+  .steps { display: contents; }
+  .step { order: 3; padding: 2.6rem var(--gutter); }
+  .step--entrance { order: 1; padding: 3rem var(--gutter) 2.6rem; border-bottom: 0; }
+  /* Çizim kenardan kenara: 22px'lik oluk burada bir kompozisyon değil, yalnızca
+     %13 genişlik kaybı — etiketler 9,8px yerine 8,7px'e iniyordu. Künye oluğunu
+     kendisi taşıyor, yani yazı hizası bozulmuyor. */
+  .canvas { order: 2; position: static; height: auto; overflow: visible;
+    padding: .8rem 0 .4rem; }
+  .canvas::after { display: none; }
+  /* Perde yapışkan tuvalin altından geçen metni kapatmak içindi; akan düzende
+     kapatılacak bir şey yok, bölümün kendi zemini (.chapter::before) yeterli. */
+  .veil { display: none; }
+
+  /* Çizim ekrana sığıyor: kırpım da yatay kaydırma da yok. 520px'lik okunur
+     boyda tutup kaydırmak denendi ve kenarda yarım kelime bırakıyordu — kırpımı
+     bir kez daha, bu sefer parmakla kurmak demekti. Sığdırınca etiketler
+     ~9,8px'e iniyor; küçük ama tam, ve zaten okunacak metin altındaki adımlarda.
+     Çizimin okunur boyu işin kendi sayfasında duruyor. */
+  .drawing,
+  .chapter--brain .drawing,
+  .chapter--inves .drawing,
+  .chapter--term .drawing {
+    position: static; inset: auto; width: auto; margin: 0; padding: 0;
+    display: block; overflow: visible;
+    transform: none !important; opacity: 1 !important; }
+  .drawing svg,
+  .chapter--inves .drawing svg,
+  .chapter--term .drawing svg {
+    width: 100%; min-width: 0; height: auto; overflow: visible; }
+  .drawing figcaption { position: static; display: block;
+    margin-top: .9rem; padding: 0 var(--gutter); bottom: auto; }
+
+  /* Sahne ışığı sönüyor: tek ve nötr bir çizim kalıyor. Her kural, sahneyi
+     kuran kuralla aynı özgüllükte ve ondan sonra yazıldığı için kazanıyor —
+     `.g-unit .k` gibi daha zayıf bir seçici `.g-unit.lit .k`i yenemezdi. */
+  .chapter.is-js .step { opacity: 1; }
+  .chapter.is-js[data-step] .g-unit,
+  .chapter.is-js[data-step] .g-unit.lit,
+  .chapter.is-js[data-step] .g-unit.faint { opacity: 1; }
+  .chapter.is-js[data-step] .g-unit .k,
+  .chapter.is-js[data-step] .g-unit.lit .k { stroke: var(--ink-2); }
+  .chapter.is-js[data-step] .g-unit.lit .fx { fill: var(--ink-2); }
+  .chapter.is-js[data-step] .g-unit.lit .t,
+  .chapter.is-js[data-step] .g-unit.lit .num,
+  .chapter.is-js[data-step] .g-unit.lit .cap { fill: var(--ink-2); }
+  .chapter.is-js[data-step] .g-unit.lit .t.i { fill: var(--ink); }
+  .chapter.is-js[data-step] .g-unit.lit .t.sm { fill: var(--ink-3); }
+  .chapter.is-js[data-step] .g-unit.lit .ms-n { fill: var(--ink); }
+  /* Kırpım kalktığı için "yarım kelime" diye gizlenecek etiket de kalmadı. */
+  .drawing text.is-cut { opacity: 1; }
+}
+
 /* ---------- geniş ama kısa ekran: bir adım bir ekrana sığsın ----------
    1366x768'de en uzun adım 822px içerik istiyor, ekran 768px veriyor: adım
    dikeyde ortalandığı için üstten ve alttan kesiliyor. Ayrık düzen burada
@@ -807,14 +876,14 @@ main { position: relative; z-index: 1; }
   .about__grid { grid-template-columns: 1fr; gap: 3rem; }
 
   .figs { grid-template-columns: 1fr 1fr; }
-  /* Çizim ile künyesi aynı track'te: `1fr` min-content'i alınca track, svg'nin
-     `min-width: 520px`ine kilitleniyor ve künye metni de 520px oluyordu — 331px'lik
-     ekranda sağ tarafı kesiliyor, okumak için yatay kaydırmak gerekiyordu. Track artık
-     sütun genişliğinde; çizim 520px kalıp figure'ın `overflow-x: auto`sunda kayıyor
-     (331px'e küçültülse 13px etiketler 8,6px'e düşer, okunmaz olurdu), künye ise
-     kaydırma kutusunun sol kenarına yapışıp ekranda kalıyor. */
-  .plate figure { grid-template-columns: minmax(0, 1fr); }
-  .plate figcaption { position: sticky; left: 0; width: 100%; }
+  /* Ayrıntı sayfasının çizimi de ana sayfadakiyle aynı davranıyor: ekrana sığar,
+     kenardan kenara, yatay kaydırma yok. Önce 520px'te tutulup kaydırılıyordu;
+     kazanılan okunurluk, kenarda kalan yarım kelimelere değmiyor — telefonda iki
+     ayrı çizim davranışı olması da ayrıca kafa karıştırıcıydı. */
+  .plate figure { grid-template-columns: minmax(0, 1fr); overflow-x: visible;
+    margin: 0 calc(var(--gutter) * -1); }
+  .plate svg { width: 100%; min-width: 0; }
+  .plate figcaption { position: static; padding: 0 var(--gutter); }
   .meta { grid-template-columns: 1fr 1fr; }
   .contact__links a { font-size: 1.15rem; }
   .foot { flex-direction: column; gap: .4rem; }

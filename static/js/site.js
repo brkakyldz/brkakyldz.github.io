@@ -7,6 +7,12 @@
   /* CSS'teki ayrık düzen eşiğiyle aynı sayı: bunun altında .field zaten
      display:none, sıfır boyutlu kutudan --dx/--dy hesaplamak anlamsız. */
   var narrow = window.matchMedia('(max-width: 1150px)');
+  /* Telefon eşiği, CSS'teki "sahne değil sayfa" bloğuyla aynı sayı. Buranın
+     altında bölüm sıradan bir yazı gibi akıyor ve çizim bir kez, bütün hâlde
+     duruyor — yani kırpılacak bir kadraj yok. Görünüşün geri kalanını CSS
+     nötrleştiriyor; JS'in burada bırakması gereken tek şey viewBox'a yazmak,
+     çünkü onu bir stil kuralı geri alamaz. */
+  var flat = window.matchMedia('(max-width: 900px)');
 
   /* ---------- deniz videosu: yalnızca isteyene ve yalnızca gerekiyorsa ----------
      Kaynaklar HTML'de durmuyor. 2,9 MB'lık döngü ve 1440p çözme telefonda
@@ -592,7 +598,7 @@
       /* Dar ekranda kadraj adımın odağına kırpılıyor; aydınlanan kümenin de
          o odak olması gerekiyor, yoksa kırpımın dışında kalan birimler
          yanıyor gibi görünürdü. */
-      var tight = narrow.matches && !reduce.matches && sc.focus;
+      var tight = narrow.matches && !flat.matches && !reduce.matches && sc.focus;
       units.forEach(function (u) { u.classList.remove('lit', 'faint', 'open'); });
       ['lit', 'faint', 'open'].forEach(function (kind) {
         var sel = (kind === 'lit' && tight) ? sc.focus : sc[kind];
@@ -683,7 +689,7 @@
 
     function frame(id) {
       if (!svg || !baseBox) { return; }
-      if (!narrow.matches || reduce.matches) { setBox(baseBox); hideCut(null); return; }
+      if (!narrow.matches || flat.matches || reduce.matches) { setBox(baseBox); hideCut(null); return; }
       var box = cropFor(id);
       if (box) { setBox(box); hideCut(box); }
     }
@@ -699,10 +705,13 @@
       if (ch.classList.contains('chapter--digest')) { gather(ch, id); }
     }
 
-    /* Ekran genişliği eşiği aşarsa kadraj yeniden kurulur: dar ekrandan geniş
-       ekrana geçildiğinde çizim kırpık kalmasın. */
-    narrow.addEventListener && narrow.addEventListener('change', function () {
-      if (current) { frame(current.getAttribute('data-step')); }
+    /* Ekran genişliği bir eşiği aşarsa kadraj yeniden kurulur: telefondan
+       tablete ya da dar ekrandan geniş ekrana geçildiğinde (çevirme de dâhil)
+       çizim kırpık kalmasın. */
+    [narrow, flat].forEach(function (mq) {
+      mq.addEventListener && mq.addEventListener('change', function () {
+        if (current) { paint(current.getAttribute('data-step')); frame(current.getAttribute('data-step')); }
+      });
     });
 
     ch.classList.add('is-js');
