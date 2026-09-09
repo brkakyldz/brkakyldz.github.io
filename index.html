@@ -83,7 +83,7 @@
           <a class="about__more" href="hakkimda/">Nasıl çalışıyorum</a>
         </div>
         <dl class="ident" aria-label="Künye">
-          <div><dt>Rol</dt><dd><span lang="en">AI</span> / <span lang="en">LLM</span> mühendisliği — Python ve <span lang="en">LangGraph</span> ile hat kuruyorum, puanlama ve denetimi kodda tutuyorum.</dd></div>
+          <div><dt>Rol</dt><dd>Yapay zekâ ajanlarıyla çalışan sistemler kuruyorum — Python ve <span lang="en">LangGraph</span> ile hat kuruyorum, puanlama ve denetimi kodda tutuyorum.</dd></div>
           <div><dt>Konum</dt><dd>Antalya, Türkiye · uzaktan çalışmaya açık</dd></div>
           <div><dt>Projeler</dt><dd>Dört sistem: bir haber bülteni hattı, bir ajan belleği, bir finansal puanlama motoru ve bir masaüstü terminal uygulaması. Dördünün de kodu açık.</dd></div>
           <div><dt>Yöntem</dt><dd>Geliştirmenin çoğunu ajanla yapıyorum; karşılığında ajanın belleğini ve her kararın gerekçesini okunabilir dosyalarda tutuyorum.</dd></div>
@@ -130,13 +130,13 @@
               <path class="k" d="M240,416 L216,432 V448 L240,464 M240,416 L228,432 V448 L240,464 M240,416 V464 M240,416 L252,432 V448 L240,464 M240,416 L264,432 V448 L240,464"/>
               <text class="num" x="280" y="440">05</text><text class="t" x="304" y="440">her habere bir özet</text><text class="t sm" x="304" y="456">summarize · biri düşse</text><text class="t sm" x="304" y="470">gerisi gider</text>
             </g>
-            <g class="node s4"><circle class="fx" cx="240" cy="496" r="3.5"/><text class="num" x="256" y="500">06</text><text class="t" x="280" y="500">günü sırala · rank</text></g>
-            <g class="node s4"><circle class="fx" cx="240" cy="544" r="3.5"/><text class="num" x="256" y="548">07</text><text class="t" x="280" y="548">çalıştırmayı kapat</text><text class="t sm" x="280" y="564">persist · tam / eksik</text></g>
-            <g class="s5"><rect class="k" x="64" y="524" width="152" height="48"/><text class="ms-n" x="74" y="558">~2,50 $</text><text class="ms-c" x="64" y="588">ay · ölçülen fatura</text></g>
+            <g class="node s4"><circle class="fx" cx="240" cy="496" r="3.5"/><text class="num" x="256" y="500">06</text><text class="t" x="280" y="500">günü sırala · rank</text><text class="t sm" x="280" y="516">üç okuma · uzlaşma</text></g>
+            <g class="node s4"><circle class="fx" cx="240" cy="544" r="3.5"/><text class="num" x="256" y="548">07</text><text class="t" x="280" y="548">çalıştırmayı kapat</text><text class="t sm" x="280" y="564">persist · tam / eksik</text><text class="t sm" x="280" y="578">bedava kontroller burada</text></g>
+            <g class="s5"><rect class="k" x="64" y="524" width="152" height="48"/><text class="ms-n" x="74" y="558">~1 $</text><text class="ms-c" x="64" y="588">ay · günde bir basış</text></g>
             <g class="node s1"><text class="num" x="256" y="604">08</text><text class="t" x="280" y="604">bülten sayfası</text></g>
 
-            <!-- Değerlendirme, zincirin dışında -->
-            <g class="s5"><path class="k" d="M240,608 V624 H272 M272,616 V676"/><text class="cap" x="284" y="628">ölçüm · zincir dışı</text><text class="num" x="284" y="644">11</text><text class="t sm" x="308" y="644">test · okuyucu işareti</text><text class="t sm" x="284" y="658">hakem · sıralama sondası</text></g>
+            <!-- Değerlendirmenin ücretli yarısı, zincirin dışında (ADR 0033) -->
+            <g class="s5"><path class="k" d="M240,608 V624 H272 M272,616 V676"/><text class="cap" x="284" y="628">ölçümün ücretli yarısı</text><text class="num" x="284" y="644">11</text><text class="t sm" x="308" y="644">hakem · fikstür defteri</text><text class="t sm" x="284" y="658">istem karşılaştırması</text></g>
           </g>
 </svg>
 
@@ -355,7 +355,7 @@
           <!-- diagram:ai-digest start -->
 <svg class="diagram" xmlns="http://www.w3.org/2000/svg" viewBox="-8 -8 496 696" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="ai-digest-t ai-digest-d">
   <title id="ai-digest-t">AI Digest akışı: haber kaynaklarından günlük okuma sayfasına.</title>
-  <desc id="ai-digest-d">Sistem, arayüzden düzenlenebilen kaynak listesini ücretsiz olarak yoklar, aynı gelişmeyi anlatan haberleri gruplar ve yeterli metni bulur. Ücretli özetleme ile günlük seçim yalnızca kullanıcı düğmeye bastığında başlar. Ölçüm zincirin dışında, ayrı bir kolda duruyor.</desc>
+  <desc id="ai-digest-d">Sistem, arayüzden düzenlenebilen kaynak listesini ücretsiz olarak yoklar, aynı gelişmeyi anlatan haberleri gruplar ve yeterli metni bulur. Ücretli özetleme ile günlük seçim yalnızca kullanıcı düğmeye bastığında başlar. Ölçümün bedava yarısı her basışta zincirin içinde koşuyor; ücretli yarısı ayrı bir kolda, zincirin dışında duruyor.</desc>
 <g id="d-ai-digest">
             <!-- Omurga -->
             <path class="k" d="M240,38 V92 M240,100 V148 M240,192 V268 M240,276 V332 M240,340 V416 M240,464 V492 M240,500 V540 M240,548 V600 M235,595 L240,600 L245,595"/>
@@ -382,13 +382,13 @@
               <path class="k" d="M240,416 L216,432 V448 L240,464 M240,416 L228,432 V448 L240,464 M240,416 V464 M240,416 L252,432 V448 L240,464 M240,416 L264,432 V448 L240,464"/>
               <text class="num" x="280" y="440">05</text><text class="t" x="304" y="440">her habere bir özet</text><text class="t sm" x="304" y="456">summarize · biri düşse</text><text class="t sm" x="304" y="470">gerisi gider</text>
             </g>
-            <g class="node s4"><circle class="fx" cx="240" cy="496" r="3.5"/><text class="num" x="256" y="500">06</text><text class="t" x="280" y="500">günü sırala · rank</text></g>
-            <g class="node s4"><circle class="fx" cx="240" cy="544" r="3.5"/><text class="num" x="256" y="548">07</text><text class="t" x="280" y="548">çalıştırmayı kapat</text><text class="t sm" x="280" y="564">persist · tam / eksik</text></g>
-            <g class="s5"><rect class="k" x="64" y="524" width="152" height="48"/><text class="ms-n" x="74" y="558">~2,50 $</text><text class="ms-c" x="64" y="588">ay · ölçülen fatura</text></g>
+            <g class="node s4"><circle class="fx" cx="240" cy="496" r="3.5"/><text class="num" x="256" y="500">06</text><text class="t" x="280" y="500">günü sırala · rank</text><text class="t sm" x="280" y="516">üç okuma · uzlaşma</text></g>
+            <g class="node s4"><circle class="fx" cx="240" cy="544" r="3.5"/><text class="num" x="256" y="548">07</text><text class="t" x="280" y="548">çalıştırmayı kapat</text><text class="t sm" x="280" y="564">persist · tam / eksik</text><text class="t sm" x="280" y="578">bedava kontroller burada</text></g>
+            <g class="s5"><rect class="k" x="64" y="524" width="152" height="48"/><text class="ms-n" x="74" y="558">~1 $</text><text class="ms-c" x="64" y="588">ay · günde bir basış</text></g>
             <g class="node s1"><text class="num" x="256" y="604">08</text><text class="t" x="280" y="604">bülten sayfası</text></g>
 
-            <!-- Değerlendirme, zincirin dışında -->
-            <g class="s5"><path class="k" d="M240,608 V624 H272 M272,616 V676"/><text class="cap" x="284" y="628">ölçüm · zincir dışı</text><text class="num" x="284" y="644">11</text><text class="t sm" x="308" y="644">test · okuyucu işareti</text><text class="t sm" x="284" y="658">hakem · sıralama sondası</text></g>
+            <!-- Değerlendirmenin ücretli yarısı, zincirin dışında (ADR 0033) -->
+            <g class="s5"><path class="k" d="M240,608 V624 H272 M272,616 V676"/><text class="cap" x="284" y="628">ölçümün ücretli yarısı</text><text class="num" x="284" y="644">11</text><text class="t sm" x="308" y="644">hakem · fikstür defteri</text><text class="t sm" x="284" y="658">istem karşılaştırması</text></g>
           </g>
 </svg>
 
@@ -429,13 +429,13 @@
 
         <article class="step" data-step="evidence">
           <p class="cap step__kicker">Ölçülen</p>
-          <h3 class="step__title">Bütçe ayda 10 dolardı; fatura 2,50.</h3>
+          <h3 class="step__title">Günde bir basış: ayda ~1 dolar.</h3>
           <div class="figs">
             <div class="fig"><p class="fig__n">1</p><p class="fig__c">para harcayan düğme</p></div>
-            <div class="fig"><p class="fig__n">369</p><p class="fig__c">otomatik test · ~20 saniye</p></div>
+            <div class="fig"><p class="fig__n">615</p><p class="fig__c">otomatik test · ~80 saniye</p></div>
             <div class="fig fig--wide"><p class="fig__n">0,115<small>$</small></p><p class="fig__c">ilk çalıştırma · bir haftalık birikim · 136 haber · 85 saniye</p></div>
           </div>
-          <p class="step__note">Bu sayılar tek bir iddiayı destekliyor: maliyet sonradan kısılarak değil, en baştan mimaride tutuluyor.</p>
+          <p class="step__note">Sıradan bir basış 0,034 dolar; kaynaklar günde ~18 haber getiriyor. Bu sayılar tek bir iddiayı destekliyor: maliyet sonradan kısılarak değil, en baştan mimaride tutuluyor.</p>
           <div class="step__links">
             <a class="step__more" href="isler/ai-digest/"><span>Nasıl çalışır</span><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
             <a class="step__more step__more--ghost" href="https://github.com/brkakyldz/ai-research-agent" rel="noopener"><span>Kaynak kodu<span class="u-hidden"> — AI Digest deposu GitHub'da</span></span><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8"/></svg></a>
