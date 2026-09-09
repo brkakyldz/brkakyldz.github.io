@@ -204,12 +204,13 @@
   }
 
 
-  /* ---------- üst çubuk bağlantıları anında gider ----------
+  /* ---------- sayfa içi gezinme anında gider ----------
      scroll-behavior: smooth sayfa içi ipuçları için doğru, ama gezinme
      bağlantısı yirmi bin pikselden fazla yol alıyor: yumuşak kaydırma
      ziyaretçiyi bütün bölümlerin içinden geçiriyor ve saniyeler sürüyor.
-     Gezinmede istenen şey varmak. */
-  Array.prototype.forEach.call(doc.querySelectorAll('.top__nav a[href^="#"], .top__name[href^="#"]'), function (a) {
+     Gezinmede istenen şey varmak. Aynı sebeple işler ızgarasındaki levhalar
+     da buradan geçiyor: kart, kendi anlatım bölümüne aynı anda iner. */
+  Array.prototype.forEach.call(doc.querySelectorAll('.top__nav a[href^="#"], .top__name[href^="#"], .card__name a[href^="#"]'), function (a) {
     a.addEventListener('click', function (e) {
       var target = doc.querySelector(a.getAttribute('href'));
       if (!target || e.metaKey || e.ctrlKey || e.shiftKey || e.button) { return; }
