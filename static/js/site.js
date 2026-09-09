@@ -204,19 +204,16 @@
   }
 
 
-  /* ---------- sayfa içi gezinme ----------
-     İki ayrı istek, iki ayrı davranış.
+  /* ---------- sayfa içi gezinme kayarak gider ----------
+     Sayfa içi her bağlantı — üst çubuk da, işler ızgarasındaki levhalar da —
+     hedefine kayarak iniyor: bir bölümün nerede durduğu, oraya giderken
+     görülüyor, hiçbir yer çat diye açılmıyor.
 
-     Üst çubuk anında gider: scroll-behavior: smooth sayfa içi ipuçları için
-     doğru, ama gezinme bağlantısı yirmi bin pikselden fazla yol alıyor ve
-     tarayıcının yumuşak kaydırması ziyaretçiyi bütün bölümlerin içinden
-     geçiriyor. Gezinmede istenen şey varmak.
-
-     İşler ızgarası bunu söylemiyor: levha, anlatımın aşağıda olduğunu
-     gösteriyor, o yüzden kart kayarak iniyor. Süreyi tarayıcıya bırakmıyoruz,
-     çünkü tarayıcının yumuşak kaydırması mesafeyle uzuyor: burada süre
-     mesafenin kareköküyle büyüyor ve 900 ms'de duruyor — yirmi bin piksel de,
-     iki bin piksel de aynı çırpıda bitiyor, ama hiçbiri çat diye açılmıyor. */
+     Süreyi tarayıcıya bırakmıyoruz. scroll-behavior: smooth sayfa içi ipuçları
+     için doğru, ama süresi mesafeyle uzuyor ve buradaki en uzun sıçrama yirmi
+     bin pikselden fazla: ziyaretçiyi bütün bölümlerin içinden ağır ağır
+     geçirirdi. Bizim süremiz mesafenin kareköküyle büyüyor ve 900 ms'de duruyor —
+     yirmi bin piksel de, iki bin piksel de aynı çırpıda bitiyor. */
   var docEl = doc.documentElement;
   var cancelGlide = null;
 
@@ -263,22 +260,19 @@
     window.requestAnimationFrame(step);
   };
 
-  var wireJumps = function (sel, glide) {
-    Array.prototype.forEach.call(doc.querySelectorAll(sel), function (a) {
-      a.addEventListener('click', function (e) {
-        var href = a.getAttribute('href');
-        var target = doc.querySelector(href);
-        if (!target || e.metaKey || e.ctrlKey || e.shiftKey || e.button) { return; }
-        e.preventDefault();
-        /* Hareket azaltma açıkken kayma yok: aynı yere anında. */
-        if (glide && !reduce.matches) { glideTo(target); }
-        else { target.scrollIntoView({ block: 'start', behavior: 'instant' }); }
-        history.replaceState(null, '', href);
-      });
+  var jumpLinks = '.top__nav a[href^="#"], .top__name[href^="#"], .card__name a[href^="#"]';
+  Array.prototype.forEach.call(doc.querySelectorAll(jumpLinks), function (a) {
+    a.addEventListener('click', function (e) {
+      var href = a.getAttribute('href');
+      var target = doc.querySelector(href);
+      if (!target || e.metaKey || e.ctrlKey || e.shiftKey || e.button) { return; }
+      e.preventDefault();
+      /* Hareket azaltma açıkken kayma yok: aynı yere anında. */
+      if (reduce.matches) { target.scrollIntoView({ block: 'start', behavior: 'instant' }); }
+      else { glideTo(target); }
+      history.replaceState(null, '', href);
     });
-  };
-  wireJumps('.top__nav a[href^="#"], .top__name[href^="#"]', false);
-  wireJumps('.card__name a[href^="#"]', true);
+  });
 
   /* ---------- işler ızgarası: tek iş, bölüme girişte levhaları oturtmak ----------
      Burada eskiden bir yelpaze vardı: sürükleme, oklar, çentikler, klavye ve
