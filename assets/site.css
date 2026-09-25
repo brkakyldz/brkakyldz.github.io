@@ -1,0 +1,2025 @@
+/* --------------------------------------------------------------------------
+   Berke Akyıldız — portfolio
+   Limestone in shade, dark ink, and a field of deep sea at the end of every
+   page. Sections are numbered and ruled so a long page can be scanned; the
+   type scale stays short. A few quiet things move: leaf shade in the corner,
+   light on the water, small drawings of each system at work.
+   -------------------------------------------------------------------------- */
+
+:root {
+  color-scheme: light;
+
+  /* Palette — sun-faded, never pure white. */
+  --paper: #e7e0d3;
+  --paper-shade: #ddd5c6;
+  --ink: #1c2124;
+  --ink-soft: #3a4043;
+  --muted: #5d5950;
+  --rule: #cdc4b3;
+  --horizon: #978d7b;
+  --link: #22476a;
+  --sea: #1c3d63;
+  --sea-ink: #ece5d7;
+  --sea-muted: #a9b9c6;
+  --sea-rule: rgba(236, 229, 215, 0.16);
+  --clay: #b0573a;
+  --clay-ink: #9a4930;
+  --cypress: #5b7150;
+  --selection: #c3d3d6;
+
+  /* Limestone: a faint, still grain so the paper is not a flat screen colour. */
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .3 0 0 0 0 .25 0 0 0 0 .18 0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+
+  --serif: "Newsreader", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  --mono: "IBM Plex Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+
+  /* A deliberately short scale. */
+  --text: clamp(1.0625rem, 0.99rem + 0.3vw, 1.1875rem);
+  --small: 0.9375rem;
+  --tiny: 0.8125rem;
+  --lede: clamp(1.25rem, 1.1rem + 0.6vw, 1.5rem);
+  --h2: clamp(1.375rem, 1.18rem + 0.75vw, 1.75rem);
+  --title: clamp(1.625rem, 1.35rem + 1.1vw, 2.125rem);
+  --leading: 1.62;
+
+  /* Columns: a hanging margin for labels, one reading measure. */
+  --edge: 1.375rem;
+  --label: 9.5rem;
+  --gutter: 3.5rem;
+  --measure: 37rem;
+
+  --space-m: 3rem;
+  --space-l: 5rem;
+  --space-xl: 7rem;
+
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--paper) var(--grain);
+  color: var(--ink);
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+body {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: var(--text);
+  line-height: var(--leading);
+  font-optical-sizing: auto;
+  font-kerning: normal;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: clip;
+}
+
+::selection {
+  background: var(--selection);
+  color: var(--ink);
+}
+
+p,
+ul,
+ol,
+dl,
+figure,
+blockquote {
+  margin: 0;
+}
+
+p,
+li,
+dd {
+  text-wrap: pretty;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+  font-weight: 600;
+  font-size: inherit;
+  line-height: 1.35;
+}
+
+/* Links: ink-blue, a hairline underline that firms up on hover. */
+a {
+  color: var(--link);
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+  text-decoration-color: color-mix(in srgb, currentColor 32%, transparent);
+  transition: text-decoration-color 180ms ease, color 180ms ease;
+}
+
+a:hover {
+  text-decoration-color: currentColor;
+}
+
+a:focus-visible {
+  outline: 1px solid currentColor;
+  outline-offset: 3px;
+  border-radius: 1px;
+}
+
+/* An arrow that leans forward when its link is pointed at. */
+.go {
+  display: inline-block;
+  margin-left: 0.3em;
+  transition: transform 220ms var(--ease);
+}
+
+a:hover .go {
+  transform: translateX(3px);
+}
+
+a:hover .go.up {
+  transform: translate(2px, -2px);
+}
+
+.skip {
+  position: absolute;
+  left: var(--edge);
+  top: -3rem;
+  padding: 0.4rem 0.75rem;
+  background: var(--paper);
+  font-size: var(--small);
+  z-index: 5;
+}
+
+.skip:focus {
+  top: 0.75rem;
+}
+
+.mono {
+  font-family: var(--mono);
+  font-size: var(--tiny);
+  letter-spacing: 0.005em;
+  font-weight: 400;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+/* ---------------------------------------------------------------- shade -- */
+
+/* Olive leaves between the sun and the wall: a soft shadow in the top corner. */
+.shade {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: min(48vw, 640px);
+  aspect-ratio: 600 / 440;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.shade::before {
+  content: "";
+  position: absolute;
+  inset: -20% -20% 0 0;
+  background: radial-gradient(closest-side at 78% 22%, rgba(255, 244, 222, 0.55), rgba(255, 244, 222, 0));
+}
+
+.shade img {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: auto;
+  mix-blend-mode: multiply;
+  transform-origin: 100% 0;
+}
+
+.shade .leaf-a {
+  opacity: 0.13;
+  filter: blur(5px);
+}
+
+.shade .leaf-b {
+  opacity: 0.09;
+  filter: blur(9px);
+  transform: translate(-6%, 10%) scale(0.8);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .shade .leaf-a {
+    animation: sway-a 11s ease-in-out infinite alternate;
+  }
+
+  .shade .leaf-b {
+    animation: sway-b 7.5s ease-in-out -3s infinite alternate;
+  }
+}
+
+@keyframes sway-a {
+  from {
+    transform: rotate(-1.6deg);
+  }
+  to {
+    transform: rotate(1.3deg) translate(-5px, 3px);
+  }
+}
+
+@keyframes sway-b {
+  from {
+    transform: translate(-6%, 10%) scale(0.8) rotate(1.4deg);
+  }
+  to {
+    transform: translate(-5%, 11%) scale(0.8) rotate(-2deg);
+  }
+}
+
+/* ---------------------------------------------------------------- grid -- */
+
+.row {
+  display: grid;
+  grid-template-columns:
+    [full-start] minmax(var(--edge), 1fr)
+    [label-start] var(--label) [label-end]
+    var(--gutter)
+    [main-start] minmax(0, var(--measure)) [main-end]
+    minmax(var(--edge), 1.45fr) [full-end];
+  align-items: baseline;
+}
+
+.row > * {
+  grid-column: main;
+}
+
+.row > .label {
+  grid-column: label;
+}
+
+.row > .span {
+  grid-column: label-start / main-end;
+  display: grid;
+  grid-template-columns: subgrid;
+  align-items: baseline;
+}
+
+.span > * {
+  grid-column: main;
+}
+
+.span > .label {
+  grid-column: label;
+}
+
+/* Margin labels: small, italic, quiet. */
+.label {
+  margin: 0;
+  font-size: var(--small);
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.45;
+  color: var(--muted);
+}
+
+/* ------------------------------------------------------------ masthead -- */
+
+.masthead {
+  padding-top: clamp(1.75rem, 1rem + 2.5vw, 3rem);
+}
+
+.masthead .name {
+  font-style: normal;
+  font-size: var(--text);
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.masthead .name a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.masthead-line {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: flex-end;
+  gap: 0.25rem 2rem;
+}
+
+.nav {
+  display: flex;
+  gap: 1.5rem;
+  font-size: var(--small);
+}
+
+.nav a {
+  color: var(--ink-soft);
+  text-decoration-color: transparent;
+}
+
+.nav a:hover,
+.nav a[aria-current="page"] {
+  color: var(--ink);
+  text-decoration-color: color-mix(in srgb, currentColor 45%, transparent);
+}
+
+/* The horizon: from the margin to the edge of the screen. */
+.horizon {
+  grid-column: label-start / full-end !important;
+  height: 1px;
+  margin-top: 1.1rem;
+  background: var(--horizon);
+  opacity: 0.7;
+  transform-origin: left center;
+}
+
+.js .horizon {
+  animation: draw 1.6s var(--ease) both;
+}
+
+@keyframes draw {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* ---------------------------------------------------------------- opening -- */
+
+.opening {
+  padding-top: clamp(3rem, 1.6rem + 4.5vw, 5.75rem);
+}
+
+.lede {
+  font-size: var(--lede);
+  line-height: 1.45;
+  font-weight: 400;
+  letter-spacing: -0.004em;
+  color: var(--ink);
+}
+
+.opening-more {
+  margin-top: 1.4rem;
+  color: var(--ink-soft);
+}
+
+.now {
+  margin-top: 2.25rem;
+  font-size: var(--small);
+  color: var(--muted);
+}
+
+.now .clock {
+  font-variant-numeric: tabular-nums;
+}
+
+.dot {
+  display: inline-block;
+  width: 0.45em;
+  height: 0.45em;
+  margin-right: 0.6em;
+  border-radius: 50%;
+  background: var(--clay);
+  vertical-align: 0.1em;
+}
+
+/* ------------------------------------------------------- section heads -- */
+
+main > section {
+  margin-top: var(--space-xl);
+}
+
+/* Every section opens on its own horizon: a number in clay, a plain heading. */
+.row > .sec-head {
+  grid-column: label-start / full-end;
+  display: grid;
+  grid-template-columns: subgrid;
+  align-items: baseline;
+  position: relative;
+  padding-top: 1.35rem;
+  margin-bottom: 2.25rem;
+}
+
+.sec-head::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--horizon);
+  opacity: 0.7;
+  transform-origin: left center;
+}
+
+.sec-head > .num {
+  grid-column: label;
+  font-family: var(--mono);
+  font-size: var(--tiny);
+  font-style: normal;
+  letter-spacing: 0.06em;
+  color: var(--clay-ink);
+}
+
+.sec-head > h2 {
+  grid-column: main;
+  font-size: var(--h2);
+  font-weight: 450;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
+.section-intro {
+  color: var(--ink-soft);
+}
+
+/* Things that arrive as you read. Only when scripting is on; never for reduced motion. */
+@media (prefers-reduced-motion: no-preference) {
+  .js .reveal {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 900ms var(--ease), transform 900ms var(--ease);
+  }
+
+  .js .reveal.is-in {
+    opacity: 1;
+    transform: none;
+  }
+
+  .js .sec-head::before {
+    transform: scaleX(0);
+    transition: transform 1.4s var(--ease);
+  }
+
+  .js .sec-head.is-in::before {
+    transform: scaleX(1);
+  }
+}
+
+/* ------------------------------------------------------------------ prose -- */
+
+.prose p + p,
+.prose p + ul,
+.prose p + ol,
+.prose ul + p,
+.prose ol + p,
+.prose p + blockquote,
+.prose blockquote + p {
+  margin-top: 1em;
+}
+
+.prose h3 {
+  position: relative;
+  margin-top: 2.75rem;
+  font-size: calc(var(--text) * 1.06);
+  font-weight: 600;
+  color: var(--ink);
+}
+
+/* A small clay tick in the gutter marks each subsection. */
+.prose h3::before {
+  content: "";
+  position: absolute;
+  left: -1.7rem;
+  top: 0.78em;
+  width: 0.85rem;
+  height: 1px;
+  background: var(--clay);
+}
+
+.sec-head + h3 {
+  margin-top: 0;
+}
+
+.prose h3 + .inline-pairs {
+  margin-top: 0.6rem;
+}
+
+.prose h3 + p,
+.prose h3 + ul,
+.prose h3 + ol,
+.prose h3 + .table {
+  margin-top: 0.45rem;
+}
+
+.prose ul,
+.prose ol {
+  padding: 0;
+  list-style: none;
+}
+
+.prose li {
+  position: relative;
+}
+
+.prose li + li {
+  margin-top: 0.45rem;
+}
+
+.prose ul > li::before {
+  content: "\2013";
+  position: absolute;
+  left: -1.15em;
+  color: var(--muted);
+}
+
+.prose ol {
+  counter-reset: step;
+}
+
+.prose ol > li {
+  counter-increment: step;
+}
+
+.prose ol > li::before {
+  content: counter(step, decimal-leading-zero);
+  position: absolute;
+  left: -2.1rem;
+  top: 0.3em;
+  font-family: var(--mono);
+  font-size: var(--tiny);
+  line-height: 1.4;
+  color: var(--clay-ink);
+}
+
+.prose strong {
+  font-weight: 600;
+  color: var(--ink);
+}
+
+code {
+  font-family: var(--mono);
+  font-size: 0.82em;
+  letter-spacing: 0;
+}
+
+.further {
+  margin-top: 1.75rem !important;
+  font-size: var(--small);
+}
+
+.principles > li,
+.themes > li {
+  color: var(--ink-soft);
+}
+
+.principles > li + li,
+.themes > li + li {
+  margin-top: 1.3rem;
+}
+
+.key {
+  margin-right: 0.6em;
+  font-size: var(--small);
+  font-style: italic;
+  color: var(--muted);
+}
+
+/* "Karşılığı: …" — the quiet cross-reference under a principle or theme. */
+.ref {
+  display: block;
+  margin-top: 0.3rem;
+  font-size: var(--small);
+}
+
+/* ------------------------------------------------------------------ work -- */
+
+.entry {
+  padding-block: 1.9rem 2.1rem;
+  border-top: 1px solid var(--rule);
+}
+
+.section-intro + .entry {
+  margin-top: 2.25rem;
+}
+
+.entry:last-child {
+  border-bottom: 1px solid var(--rule);
+}
+
+.entry h3 {
+  font-size: calc(var(--text) * 1.1);
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.entry h3 a {
+  color: var(--ink);
+  text-decoration-color: transparent;
+}
+
+.entry h3 a:hover {
+  text-decoration-color: color-mix(in srgb, currentColor 45%, transparent);
+}
+
+.entry .summary {
+  margin-top: 0.4rem;
+  color: var(--ink-soft);
+}
+
+.entry .decision {
+  margin-top: 0.6rem;
+  color: var(--ink);
+}
+
+.entry .stack {
+  margin-top: 1rem;
+  color: var(--muted);
+}
+
+.entry .more {
+  margin-top: 0.8rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.5rem;
+  font-size: var(--small);
+}
+
+/* The lead entry: the project to see first carries its figures on the home page. */
+.entry-lead h3 {
+  font-size: var(--h2);
+}
+
+/* On the home page the figures sit under the title, so they stay below it in size;
+   the full scale belongs to the project page, where they head a section. */
+.entry-lead .figures {
+  gap: 1rem 1.5rem;
+  margin-top: 1.2rem;
+}
+
+.entry-lead .figures > div {
+  padding-top: 0.6rem;
+}
+
+.entry-lead .figures dd {
+  font-size: var(--lede);
+  letter-spacing: -0.01em;
+}
+
+.entry-lead .figures dt {
+  margin-top: 0.3rem;
+  font-size: var(--tiny);
+}
+
+/* ------------------------------------------------------------------ deck -- */
+/* A project's screenshots, beside its title: one in front, two behind, the rest waiting. */
+
+.doc-head > .deck {
+  grid-column: main-end / full-end;
+  grid-row: 1;
+  align-self: start;
+  width: min(100% - var(--edge) - 2.5rem, 17rem);
+  margin-left: 2.5rem;
+}
+
+.deck-cards {
+  position: relative;
+  aspect-ratio: 5 / 3;
+}
+
+.deck .shot {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 76%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: var(--paper-shade);
+  border: 3px solid #f1ece2;
+  border-radius: 3px;
+  box-shadow: 0 1px 0 rgba(28, 33, 36, 0.05), 0 12px 24px -16px rgba(28, 33, 36, 0.55);
+  transform-origin: left bottom;
+  transition: transform 700ms var(--ease), filter 700ms var(--ease), opacity 700ms var(--ease);
+}
+
+.deck .shot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top left;
+}
+
+.deck .shot[data-pos="0"] {
+  z-index: 3;
+  cursor: zoom-in;
+}
+
+.deck .shot[data-pos="1"] {
+  z-index: 2;
+  transform: translate(15%, -15%) scale(0.9);
+  filter: blur(1.2px) saturate(0.7);
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+.deck .shot[data-pos="2"] {
+  z-index: 1;
+  transform: translate(28%, -28%) scale(0.8);
+  filter: blur(2.5px) saturate(0.5);
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+.deck .shot[data-pos="3"] {
+  z-index: 0;
+  transform: translate(38%, -38%) scale(0.72);
+  filter: blur(4px);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.deck .shot[data-pos="0"]:hover,
+.deck .shot[data-pos="0"]:focus-visible {
+  transform: translateY(-2px);
+}
+
+/* The film: a play mark on its card. */
+.deck .shot-film::before {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  left: 50%;
+  width: 2.6rem;
+  height: 2.6rem;
+  margin: -1.3rem 0 0 -1.3rem;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--paper) 92%, transparent);
+  box-shadow: 0 4px 18px -6px rgba(0, 0, 0, 0.6);
+  transition: transform 300ms var(--ease);
+}
+
+.deck .shot-film::after {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  left: 50%;
+  margin: -0.45rem 0 0 -0.22rem;
+  border-style: solid;
+  border-width: 0.45rem 0 0.45rem 0.72rem;
+  border-color: transparent transparent transparent var(--ink);
+}
+
+.deck .shot-film:hover::before {
+  transform: scale(1.1);
+}
+
+.deck .shot-film:not([data-pos="0"])::before,
+.deck .shot-film:not([data-pos="0"])::after {
+  opacity: 0;
+}
+
+.deck .shot:focus-visible {
+  outline: 2px solid var(--link);
+  outline-offset: 2px;
+}
+
+.deck-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 0.7rem 0 0;
+  font-family: var(--mono);
+  font-size: var(--tiny);
+  color: var(--muted);
+}
+
+.deck-bar button {
+  font: inherit;
+  line-height: 1;
+  color: var(--ink-soft);
+  background: none;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  padding: 0.3rem 0.6rem;
+  cursor: pointer;
+}
+
+.deck-bar button:hover,
+.deck-bar button:focus-visible {
+  border-color: var(--horizon);
+  color: var(--ink);
+}
+
+.deck-count {
+  min-width: 3.2em;
+  text-align: center;
+}
+
+/* Too narrow for the margin: the deck comes under the standfirst. */
+@media (max-width: 73.99rem) {
+  .doc-head > .deck {
+    grid-column: main;
+    grid-row: auto;
+    width: min(100%, 17rem);
+    margin: 1.8rem 0 0;
+  }
+}
+
+/* ------------------------------------------------------------- viewer -- */
+
+.viewer {
+  width: 100vw;
+  max-width: none;
+  height: 100dvh;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: rgba(20, 25, 28, 0.94);
+  color: var(--sea-ink);
+  overscroll-behavior: contain;
+}
+
+.viewer::backdrop {
+  background: transparent;
+}
+
+.viewer[open] {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+}
+
+.viewer-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.9rem var(--edge);
+  font-family: var(--mono);
+  font-size: var(--tiny);
+  color: var(--sea-muted);
+}
+
+.viewer-stage {
+  display: grid;
+  place-items: center;
+  min-height: 0;
+  overflow: hidden;
+  padding: 0 clamp(0.5rem, 4vw, 4.5rem);
+}
+
+.viewer-stage img,
+.viewer-stage video {
+  max-width: 100%;
+  max-height: calc(100dvh - 9rem);
+  object-fit: contain;
+  border-radius: 3px;
+  box-shadow: 0 20px 60px -20px rgba(0, 0, 0, 0.7);
+  background: #111;
+}
+
+.viewer-caption {
+  margin: 0 auto;
+  padding: 0.9rem var(--edge) 1.3rem;
+  max-width: 48rem;
+  min-height: 1.5em;
+  text-align: center;
+  font-size: var(--small);
+  color: var(--sea-ink);
+}
+
+.viewer button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 1px solid var(--sea-rule);
+  border-radius: 999px;
+  padding: 0.35rem 0.9rem;
+  cursor: pointer;
+}
+
+.viewer button:hover,
+.viewer button:focus-visible {
+  border-color: var(--sea-muted);
+  color: var(--sea-ink);
+}
+
+.viewer-nav {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.viewer-nav[hidden] {
+  display: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .viewer[open] .viewer-stage > * {
+    animation: viewer-in 260ms var(--ease);
+  }
+}
+
+@keyframes viewer-in {
+  from {
+    opacity: 0;
+    transform: scale(0.985);
+  }
+}
+
+/* Status: running systems breathe, a paused one keeps still. */
+.status {
+  display: flex;
+  align-items: baseline;
+  gap: 0.55em;
+}
+
+.state {
+  flex: none;
+  width: 0.5em;
+  height: 0.5em;
+  border-radius: 50%;
+  transform: translateY(-0.05em);
+}
+
+.state.run {
+  background: var(--cypress);
+}
+
+.state.pause {
+  border: 1px solid var(--muted);
+}
+
+.state.early {
+  background: var(--horizon);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .state.run {
+    animation: breathe 3.4s ease-in-out infinite;
+  }
+}
+
+@keyframes breathe {
+  0%,
+  100% {
+    opacity: 1;
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--cypress) 45%, transparent);
+  }
+  50% {
+    opacity: 0.55;
+    box-shadow: 0 0 0 0.3em color-mix(in srgb, var(--cypress) 0%, transparent);
+  }
+}
+
+/* --------------------------------------------------------------- glyphs -- */
+
+/* A small drawing of how each system is built, from its own documentation. */
+.glyph {
+  display: block;
+  width: 100%;
+  max-width: 8.75rem;
+  height: auto;
+  margin-top: 1.15rem;
+  overflow: visible;
+}
+
+.glyph .ln {
+  fill: none;
+  stroke: var(--horizon);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+
+.glyph .ln.faint {
+  stroke-dasharray: 2 3;
+}
+
+.glyph .nd {
+  fill: var(--paper);
+  stroke: var(--ink-soft);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+
+.glyph .nd.solid {
+  fill: var(--ink-soft);
+}
+
+.glyph .pk {
+  fill: var(--clay);
+}
+
+.glyph .win {
+  fill: none;
+  stroke: var(--ink-soft);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+
+.glyph-caption {
+  margin-top: 0.45rem;
+  font-size: 0.78rem;
+  line-height: 1.4;
+  font-style: italic;
+  color: var(--muted);
+}
+
+/* ----------------------------------------------------------------- pairs -- */
+
+/* Plain two-column lists: a term in the margin, its value on the measure. */
+.pairs {
+  display: grid;
+  grid-template-columns: subgrid;
+  grid-column: label-start / main-end;
+  row-gap: 0.55rem;
+  align-items: baseline;
+}
+
+.pairs dt {
+  grid-column: label;
+  font-size: var(--small);
+  font-style: italic;
+  color: var(--muted);
+}
+
+.pairs dd {
+  grid-column: main;
+  margin: 0;
+}
+
+.pairs dd.mono {
+  line-height: 1.9;
+}
+
+.pairs dd.source {
+  font-size: var(--small);
+  color: var(--muted);
+}
+
+.head-meta .glyph {
+  max-width: 9.5rem;
+  margin-top: 1.5rem;
+}
+
+.inline-pairs {
+  display: grid;
+  grid-template-columns: 8.5rem minmax(0, 1fr);
+  gap: 0.65rem 1.5rem;
+  align-items: baseline;
+}
+
+.inline-pairs dt {
+  font-size: var(--small);
+  font-style: italic;
+  color: var(--muted);
+}
+
+.inline-pairs dd {
+  margin: 0;
+}
+
+/* ------------------------------------------------------------- documents -- */
+
+.doc-head {
+  padding-top: clamp(3rem, 1.6rem + 4.5vw, 5.75rem);
+}
+
+.doc-head h1 {
+  font-size: var(--title);
+  font-weight: 450;
+  line-height: 1.18;
+  letter-spacing: -0.012em;
+  text-wrap: balance;
+}
+
+.doc-head .standfirst {
+  margin-top: 1rem;
+  font-size: var(--lede);
+  line-height: 1.45;
+  font-weight: 400;
+  color: var(--ink-soft);
+  text-wrap: pretty;
+}
+
+.doc-facts {
+  margin-top: var(--space-l);
+}
+
+.doc > section {
+  margin-top: var(--space-xl);
+}
+
+/* The brief: a recess in the stone, four questions answered in four lines. */
+.brief > .slab {
+  position: relative;
+  isolation: isolate;
+  padding-block: 2.25rem;
+}
+
+.brief > .slab::before {
+  content: "";
+  position: absolute;
+  inset: 0 -2.25rem;
+  z-index: -1;
+  background: var(--paper-shade) var(--grain);
+  border-radius: 2px;
+}
+
+.brief .pairs {
+  row-gap: 1.35rem;
+}
+
+.brief .pairs dt {
+  color: var(--ink-soft);
+}
+
+.prose .meta-line {
+  margin-top: 0.15rem;
+  font-size: var(--small);
+  color: var(--muted);
+}
+
+/* A thesis line that opens a section: the lede's size, the text's voice. */
+.prose .pull {
+  font-size: var(--lede);
+  line-height: 1.42;
+  color: var(--ink);
+  text-wrap: balance;
+}
+
+.prose .pull + p {
+  margin-top: 1.25rem;
+}
+
+/* "Yakından": the project told as a story, each chapter's kicker in the margin. */
+.chapter {
+  margin-top: 2.9rem;
+}
+
+.chapter > .label {
+  padding-right: 1rem;
+}
+
+.prose .chapter > h3 {
+  margin-top: 0;
+}
+
+/* Measured numbers: few, large enough to find, each drawn in on its own rule. */
+.figures {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(8.5rem, 1fr));
+  gap: 1.4rem 1.75rem;
+  margin: 1.6rem 0 0;
+}
+
+.prose h3 + .figures {
+  margin-top: 1.1rem;
+}
+
+.prose .figures + p {
+  margin-top: 1.6rem;
+}
+
+.figures > div {
+  position: relative;
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: flex-end;
+  padding-top: 0.8rem;
+}
+
+.figures > div::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--clay);
+  opacity: 0.55;
+  transform-origin: left center;
+}
+
+.figures dd {
+  margin: 0;
+  font-size: calc(var(--h2) * 1.2);
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+  font-variant-numeric: lining-nums;
+  color: var(--sea);
+}
+
+.figures .unit {
+  margin-left: 0.14em;
+  font-size: 0.58em;
+  letter-spacing: 0;
+  color: var(--muted);
+}
+
+.figures dt {
+  margin-top: 0.45rem;
+  font-size: var(--small);
+  font-style: italic;
+  line-height: 1.4;
+  color: var(--muted);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .js .figures > div::before {
+    transform: scaleX(0);
+    transition: transform 1.1s var(--ease);
+  }
+
+  .js .figures.is-in > div::before {
+    transform: scaleX(1);
+  }
+
+  .js .figures > div:nth-child(2)::before {
+    transition-delay: 160ms;
+  }
+
+  .js .figures > div:nth-child(3)::before {
+    transition-delay: 320ms;
+  }
+}
+
+/* The threshold between the story and the architecture: a band of shade, full width. */
+.part-note-row {
+  margin-top: var(--space-xl);
+  padding-block: 1.45rem 1.55rem;
+  background: var(--paper-shade) var(--grain);
+}
+
+.part-note-row > .label {
+  font-family: var(--mono);
+  font-size: var(--tiny);
+  font-style: normal;
+  letter-spacing: 0.06em;
+  color: var(--clay-ink);
+}
+
+.part-note {
+  font-size: var(--small);
+  font-style: italic;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+
+.doc > .part-note-row + section {
+  margin-top: var(--space-l);
+}
+
+/* Lists whose items open on a bold phrase need air between them. */
+.prose .leads > li + li {
+  margin-top: 0.95rem;
+}
+
+/* CV: four projects, each a name, its stack in mono, a sentence or two, two links. */
+.cv-projects > li + li {
+  margin-top: 1.5rem;
+}
+
+.cv-projects strong {
+  display: block;
+}
+
+.cv-stack {
+  display: block;
+  margin: 0.2rem 0 0.35rem;
+  font-family: var(--mono);
+  font-size: var(--tiny);
+  color: var(--muted);
+}
+
+.cv-links {
+  display: block;
+  margin-top: 0.4rem;
+  font-size: var(--small);
+}
+
+/* Dates and hyphenated names break badly at their hyphen. */
+.nw {
+  white-space: nowrap;
+}
+
+.doc-next {
+  margin-top: var(--space-xl);
+  font-size: var(--small);
+}
+
+.doc-next .more {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.5rem 2rem;
+  padding-top: 1.1rem;
+  border-top: 1px solid var(--rule);
+}
+
+/* Figures and tables may leave the measure and lean into the open right margin. */
+.row > .wide {
+  grid-column: main-start / full-end;
+  max-width: 52rem;
+  padding-right: var(--edge);
+}
+
+.prose figure,
+.prose .table {
+  margin-top: 1.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.prose figure + p,
+.prose .table + p,
+.prose figure + h3,
+.prose .table + h3,
+.prose figure + ul,
+.prose .table + ul,
+.prose .table + .table {
+  margin-top: 1.75rem;
+}
+
+figure pre {
+  margin: 0;
+  padding: 1.35rem 1.5rem;
+  overflow-x: auto;
+  /* System monospace here: its box-drawing glyphs share one cell width, so diagrams line up. */
+  font-family: ui-monospace, "SF Mono", Menlo, "Cascadia Mono", Consolas, "DejaVu Sans Mono", monospace;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  background: var(--paper-shade);
+  border-radius: 2px;
+  tab-size: 2;
+}
+
+figcaption {
+  margin-top: 0.6rem;
+  font-size: var(--small);
+  font-style: italic;
+  color: var(--muted);
+}
+
+.table {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--small);
+  line-height: 1.5;
+  font-variant-numeric: tabular-nums;
+}
+
+caption {
+  padding-bottom: 0.6rem;
+  text-align: left;
+  font-style: italic;
+  color: var(--ink-soft);
+}
+
+th {
+  padding: 0 1.25rem 0.55rem 0;
+  text-align: left;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--muted);
+  border-bottom: 1px solid var(--horizon);
+  vertical-align: bottom;
+}
+
+td {
+  padding: 0.6rem 1.25rem 0.6rem 0;
+  border-bottom: 1px solid var(--rule);
+  vertical-align: top;
+}
+
+th:last-child,
+td:last-child {
+  padding-right: 0;
+}
+
+tbody th {
+  padding-top: 0.6rem;
+  font-style: normal;
+  color: var(--ink);
+  border-bottom-color: var(--rule);
+  vertical-align: top;
+}
+
+tbody tr:last-child > td,
+tbody tr:last-child > th {
+  border-bottom: 0;
+}
+
+blockquote {
+  padding-left: 1.25rem;
+  border-left: 1px solid var(--clay);
+  font-style: italic;
+  color: var(--ink-soft);
+}
+
+/* ------------------------------------------------------------------ arch -- */
+/* How a system works: the system drawn once, and a few real scenarios played
+   over it. A clay dot carries a request, a sea-blue one the answer; a part lights
+   when something reaches it and its small line says what happened there. Without
+   scripting it is a still drawing and a numbered list. */
+
+.arch {
+  container-type: inline-size;
+  --lit: #ede7dc;
+}
+
+.prose .sec-head + .arch {
+  margin-top: 0;
+}
+
+.arch-body {
+  display: grid;
+  gap: 1.75rem;
+}
+
+.arch-map {
+  display: block;
+  width: 100%;
+  max-width: 26.25rem;
+  height: auto;
+  margin-inline: auto;
+  overflow: visible;
+}
+
+.arch-map text {
+  font-family: var(--serif);
+  fill: var(--ink);
+}
+
+.arch-map .nm {
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.arch-map .sub {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  fill: var(--muted);
+  transition: fill 400ms ease;
+}
+
+.arch-map .sub.is-state {
+  fill: var(--clay-ink);
+}
+
+.arch-map .zone {
+  fill: var(--paper-shade);
+}
+
+.arch-map .border {
+  fill: none;
+  stroke: var(--horizon);
+  stroke-width: 1;
+  stroke-dasharray: 3 4;
+}
+
+.arch-map .zone-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  fill: var(--clay-ink);
+}
+
+.arch-map .edge {
+  fill: none;
+  stroke: var(--horizon);
+  stroke-opacity: 0.55;
+  stroke-width: 1;
+}
+
+.arch-map .edge.ghost {
+  stroke: var(--clay);
+  stroke-opacity: 0.7;
+  stroke-dasharray: 2 4;
+  opacity: 0;
+  transition: opacity 500ms ease;
+}
+
+.arch-map .edge.ghost.is-shown {
+  opacity: 1;
+}
+
+.arch-map .edge-label {
+  font-family: var(--mono);
+  font-size: 9.5px;
+  fill: var(--muted);
+}
+
+.arch-map .box,
+.arch-map .person {
+  fill: var(--lit);
+  stroke: var(--horizon);
+  stroke-width: 1;
+  transition: stroke 500ms ease, fill 500ms ease;
+}
+
+.arch-map .person {
+  stroke: var(--ink-soft);
+}
+
+.arch-map .is-seen .box {
+  stroke: var(--ink-soft);
+}
+
+.arch-map .is-now .box,
+.arch-map .is-now .person {
+  stroke: var(--ink);
+  fill: color-mix(in srgb, var(--clay) 9%, var(--lit));
+}
+
+.arch-map .halo {
+  fill: none;
+  stroke: var(--clay);
+  stroke-width: 1;
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.arch-map .trail {
+  fill: none;
+  stroke: var(--ink-soft);
+  stroke-width: 1.5;
+  transition: stroke-opacity 900ms ease;
+}
+
+.arch-map .trail.reply {
+  stroke: var(--sea);
+}
+
+.arch-map .trail.old {
+  stroke-opacity: 0.45;
+}
+
+.arch-map .no {
+  fill: none;
+  stroke: var(--clay-ink);
+  stroke-width: 1.75;
+  stroke-linecap: round;
+}
+
+.arch-map .pk {
+  opacity: 0;
+  transition: opacity 250ms ease;
+}
+
+.arch-map .pk circle {
+  fill: var(--clay);
+}
+
+.arch-map .pk circle:first-child {
+  fill-opacity: 0.2;
+}
+
+.arch-map .pk.reply circle {
+  fill: var(--sea);
+}
+
+.arch-map .arch-trails,
+.arch-map .arch-marks {
+  transition: opacity 450ms ease;
+}
+
+.arch-map.is-clearing .arch-trails,
+.arch-map.is-clearing .arch-marks {
+  opacity: 0;
+}
+
+/* The panel: scenario names, the steps of the one playing, and its controls. */
+.arch-panel {
+  font-size: var(--small);
+  line-height: 1.5;
+}
+
+.arch-scene-name {
+  margin: 1.25rem 0 0.4rem;
+  font-style: italic;
+  color: var(--muted);
+}
+
+.arch-scene:first-child .arch-scene-name {
+  margin-top: 0;
+}
+
+.js .arch-scene-name {
+  display: none;
+}
+
+.prose .arch-steps > li {
+  position: relative;
+  padding: 0.5rem 0 0.6rem 2.1rem;
+  border-top: 1px solid var(--rule);
+  color: var(--ink-soft);
+  transition: color 400ms ease;
+}
+
+.prose .arch-steps > li + li {
+  margin-top: 0;
+}
+
+.prose .arch-steps > li::before {
+  left: 0;
+  top: 0.78rem;
+  transition: color 400ms ease;
+}
+
+/* The step playing fills a hairline as it is read. */
+.arch-steps > li::after {
+  content: "";
+  position: absolute;
+  left: 2.1rem;
+  right: 0;
+  bottom: -1px;
+  z-index: 1;
+  height: 1px;
+  background: var(--clay);
+  transform: scaleX(var(--p, 0));
+  transform-origin: left center;
+  opacity: 0;
+}
+
+.js .prose .arch-steps > li {
+  color: var(--muted);
+}
+
+.js .prose .arch-steps > li.is-done {
+  color: var(--ink-soft);
+}
+
+.js .prose .arch-steps > li.is-on {
+  color: var(--ink);
+}
+
+.js .arch-steps > li.is-on::after {
+  opacity: 0.75;
+}
+
+/* Numbered by the script: a counter would skip the steps hidden on narrow screens. */
+.js .prose .arch-steps > li::before {
+  content: attr(data-n);
+}
+
+.js .prose .arch-steps > li:not(.is-on)::before {
+  color: var(--muted);
+}
+
+.arch-step {
+  display: block;
+  width: 100%;
+  padding: 0;
+  font: inherit;
+  line-height: inherit;
+  text-align: left;
+  color: inherit;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+.arch-step:focus-visible {
+  outline: 1px solid var(--link);
+  outline-offset: 3px;
+}
+
+.arch-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-bottom: 1rem;
+}
+
+.arch-tabs button,
+.arch-controls button {
+  font-family: var(--mono);
+  font-size: var(--tiny);
+  line-height: 1;
+  color: var(--ink-soft);
+  background: none;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  padding: 0.4rem 0.75rem;
+  cursor: pointer;
+  transition: border-color 200ms ease, color 200ms ease, background-color 200ms ease;
+}
+
+.arch-tabs button:hover,
+.arch-tabs button:focus-visible,
+.arch-controls button:hover,
+.arch-controls button:focus-visible {
+  border-color: var(--horizon);
+  color: var(--ink);
+}
+
+.arch-tabs button[aria-pressed="true"] {
+  border-color: var(--ink-soft);
+  color: var(--ink);
+  background: var(--lit);
+}
+
+.arch-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 1rem;
+  font-family: var(--mono);
+  font-size: var(--tiny);
+  color: var(--muted);
+}
+
+.arch-controls [data-act="toggle"] {
+  min-width: 5.6rem;
+}
+
+.arch-controls button:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.arch-controls button[hidden] {
+  display: none;
+}
+
+.arch-count {
+  min-width: 3.2em;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.arch-key {
+  display: inline-block;
+  width: 0.5em;
+  height: 0.5em;
+  margin: 0 0.35em 0 0.15em;
+  border-radius: 50%;
+  background: var(--clay);
+  vertical-align: 0.08em;
+}
+
+.arch-key.reply {
+  background: var(--sea);
+}
+
+/* Room for both: the drawing on the left, its story beside it. */
+@container (min-width: 46rem) {
+  .arch-body {
+    grid-template-columns: 26.25rem minmax(0, 1fr);
+    gap: 2.75rem;
+    align-items: start;
+  }
+}
+
+/* No room: one step at a time, under the drawing. */
+@container (max-width: 45.99rem) {
+  .arch-map {
+    margin-inline: 0;
+  }
+
+  .arch-panel {
+    max-width: 30rem;
+  }
+
+  .js .prose .arch-steps > li:not(.is-on) {
+    display: none;
+  }
+
+  .js .prose .arch-steps > li {
+    min-height: 5.6rem;
+  }
+}
+
+/* A phone draws the system smaller; its small lines grow to stay readable. */
+@container (max-width: 30rem) {
+  .arch-map .sub {
+    font-size: 11.5px;
+  }
+
+  .arch-map .zone-label,
+  .arch-map .edge-label {
+    font-size: 11px;
+  }
+}
+
+/* ------------------------------------------------------------------- sea -- */
+
+/* Every page ends at the water. Light moves on it, slowly. */
+.sea {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  margin-top: var(--space-xl);
+  background: var(--sea) var(--grain);
+  color: var(--sea-ink);
+  min-height: min(40rem, 72svh);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--space-l);
+  padding-top: var(--space-l);
+  padding-bottom: 1.75rem;
+}
+
+.caustics {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 2s ease;
+}
+
+.caustics.on {
+  opacity: 1;
+}
+
+.sea a {
+  color: var(--sea-ink);
+  text-decoration-color: color-mix(in srgb, currentColor 35%, transparent);
+}
+
+.sea a:hover {
+  text-decoration-color: currentColor;
+}
+
+.sea .label,
+.sea .muted {
+  color: var(--sea-muted);
+}
+
+.sea .lede {
+  color: var(--sea-ink);
+}
+
+.sea-note {
+  margin-top: 1.1rem;
+  color: var(--sea-muted);
+}
+
+.contact {
+  margin-top: var(--space-m);
+}
+
+.sea .pairs dt {
+  color: var(--sea-muted);
+}
+
+.colophon {
+  font-size: var(--tiny);
+  line-height: 1.5;
+  color: var(--sea-muted);
+}
+
+.colophon-line {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.25rem 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--sea-rule);
+}
+
+/* ---------------------------------------------------------------- narrow -- */
+
+@media (max-width: 55.99rem) {
+  :root {
+    --space-l: 3.75rem;
+    --space-xl: 5rem;
+  }
+
+  .row {
+    grid-template-columns:
+      [full-start] var(--edge)
+      [label-start main-start] minmax(0, 1fr) [label-end main-end]
+      var(--edge) [full-end];
+  }
+
+  .row > .label,
+  .span > .label {
+    margin-bottom: 0.6rem;
+  }
+
+  .row > .sec-head {
+    margin-bottom: 1.5rem;
+  }
+
+  .sec-head > .num {
+    margin-bottom: 0.35rem;
+  }
+
+  .masthead-line {
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .shade {
+    width: 88vw;
+  }
+
+  .shade .leaf-a {
+    opacity: 0.1;
+  }
+
+  .pairs {
+    row-gap: 0;
+  }
+
+  .pairs dd + dt {
+    margin-top: 0.8rem;
+  }
+
+  .pairs dt {
+    margin-bottom: 0.1rem;
+  }
+
+  .brief .pairs dd + dt {
+    margin-top: 1.4rem;
+  }
+
+  .brief > .slab::before {
+    inset: 0 -1rem;
+  }
+
+  .inline-pairs {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+  }
+
+  .inline-pairs dd + dt {
+    margin-top: 0.8rem;
+  }
+
+  .prose ol > li {
+    padding-left: 2rem;
+  }
+
+  .prose ol > li::before {
+    left: 0;
+  }
+
+  .prose h3::before {
+    left: -1.1rem;
+    width: 0.6rem;
+  }
+
+  .glyph {
+    max-width: 8rem;
+    margin-top: 0.8rem;
+  }
+
+  .row > .head-meta {
+    margin-bottom: 1.6rem;
+  }
+
+  .wide table {
+    min-width: 34rem;
+  }
+
+  /* Two figures to a row; an odd last one takes the whole row. */
+  .figures {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .figures > div:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+  }
+}
+
+@media print {
+  html,
+  .sea {
+    background: none;
+    color: #000;
+  }
+
+  .shade,
+  .caustics,
+  .nav,
+  .skip {
+    display: none;
+  }
+
+  .sea a,
+  .sea .label,
+  .sea .muted,
+  .colophon {
+    color: #000;
+  }
+}

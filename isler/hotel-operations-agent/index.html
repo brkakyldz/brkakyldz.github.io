@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hotel Operations Agent — Berke Akyıldız</title>
+  <meta name="description" content="Hotel Operations Agent: otel misafirlerinin taleplerini sohbetten alıp otelin kayıtlarına işleyen bir AI agent. Kuralı kod uyguluyor, onayı yönetici veriyor.">
+  <meta name="theme-color" content="#e7e0d3">
+  <link rel="canonical" href="https://brkakyldz.github.io/isler/hotel-operations-agent/">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:title" content="Hotel Operations Agent — Berke Akyıldız">
+  <meta property="og:description" content="Hotel Operations Agent: otel misafirlerinin taleplerini sohbetten alıp otelin kayıtlarına işleyen bir AI agent. Kuralı kod uyguluyor, onayı yönetici veriyor.">
+  <meta property="og:url" content="https://brkakyldz.github.io/isler/hotel-operations-agent/">
+  <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400&family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..700&display=swap">
+  <link rel="stylesheet" href="../../assets/site.css">
+  <script>document.documentElement.classList.add("js")</script>
+  <script src="../../assets/site.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#icerik">İçeriğe geç</a>
+  <div class="shade" aria-hidden="true"><img class="leaf-b" src="../../assets/leaves-b.svg" alt=""><img class="leaf-a" src="../../assets/leaves-a.svg" alt=""></div>
+
+  <header class="row masthead">
+    <p class="label name"><a href="../../">Berke Akyıldız</a></p>
+    <div class="masthead-line">
+      <nav class="nav" aria-label="Site">
+        <a href="../../#isler">İşler</a>
+        <a href="../../hakkimda/">Hakkımda</a>
+        <a href="#iletisim">İletişim</a>
+      </nav>
+    </div>
+    <div class="horizon" aria-hidden="true"></div>
+  </header>
+
+  <main id="icerik" class="doc">
+    <header class="row doc-head">
+      <div class="label head-meta">
+        <p><a href="../../#isler">İşler</a> · 1 / 4</p>
+        <svg class="glyph" viewBox="0 0 132 48" role="img" aria-label="Misafirin talebi agent’tan geçip kurala, oradan otelin kaydına ulaşıyor; bir kolu yönetici onayına ayrılıyor; otelde bir şey değiştiğinde haber misafire geri dönüyor">
+            <path class="ln" d="M6 30H120"/>
+            <path class="ln" d="M76 30C76 40 80 44 90 44H100"/>
+            <path class="ln faint" d="M124 26C112 6 18 6 8 26"/>
+            <circle class="nd" cx="6" cy="30" r="2.6"/>
+            <circle class="nd" cx="38" cy="30" r="3.8"/>
+            <rect class="nd solid" x="72" y="26" width="8" height="8"/>
+            <circle class="nd" cx="102" cy="44" r="2.6"/>
+            <rect class="nd" x="120" y="26" width="8" height="8"/>
+            <circle class="pk" r="2.3" opacity="0">
+              <animateMotion dur="8s" repeatCount="indefinite" calcMode="linear" keyTimes="0;.18;.26;.42;1" keyPoints="0;.3;.3;1;1" path="M6 30H120"/>
+              <animate attributeName="opacity" dur="8s" repeatCount="indefinite" values="0;1;1;0;0" keyTimes="0;.02;.4;.44;1"/>
+            </circle>
+            <circle class="pk" r="2.3" opacity="0">
+              <animateMotion dur="8s" begin="4s" repeatCount="indefinite" calcMode="linear" keyTimes="0;.36;1" keyPoints="0;1;1" path="M124 26C112 6 18 6 8 26"/>
+              <animate attributeName="opacity" dur="8s" begin="4s" repeatCount="indefinite" values="0;1;1;0;0" keyTimes="0;.03;.34;.38;1"/>
+            </circle>
+          </svg>
+        <p class="glyph-caption">Talep agent’tan kurala, oradan kayda; bir kolu yöneticiye, dönüşü misafire.</p>
+      </div>
+      <div class="head-main">
+        <h1>Hotel Operations Agent</h1>
+        <p class="standfirst">Bir otelin misafir asistanı ve yönetici ekranı. Misafir sohbetten havlu istiyor, arıza bildiriyor, geç çıkış soruyor; agent bunları otelin kayıtlarına işliyor, onay gereken talebi yöneticiye bırakıyor. Otel ve misafirler kurgusal; agent ve yaptığı her iş gerçek.</p>
+      </div>
+      <div class="deck" aria-label="Hotel Operations Agent ekran görüntüleri">
+        <div class="deck-cards shots">
+          <a class="shot shot-film" data-pos="0" data-kind="video" href="../../assets/shots/hotel-operations-agent/film.mp4" data-poster="../../assets/shots/hotel-operations-agent/film-poster.jpg" data-caption="Agent iş başında: geç çıkış talebi, yönetici onayı, otelin misafire kendiliğinden yazması, Türkçe arıza bildirimi ve bir yetki denemesi. Cevaplar gerçek modelden." aria-label="Videoyu oynat: Agent iş başında: geç çıkış talebi, yönetici onayı, otelin misafire kendiliğinden yazması, Türkçe arıza bildirimi ve bir yetki denemesi. Cevaplar gerçek modelden."><img src="../../assets/shots/hotel-operations-agent/film-thumb.webp" width="560" height="350" alt="Hotel Operations Agent çalışırken: sohbet, yönetici paneli ve otel panosu" loading="lazy" decoding="async"></a>
+          <a class="shot" data-pos="1" href="../../assets/shots/hotel-operations-agent/review.webp" data-caption="Emma 15:00’te çıkmak istiyor. Kural yönetici onayı istediği için agent bir onay talebi açıyor; çıkış saati 12:00’de kalıyor."><img src="../../assets/shots/hotel-operations-agent/review-thumb.webp" width="560" height="277" alt="Emma 15:00’te çıkmak istiyor. Kural yönetici onayı istediği için agent bir onay talebi açıyor; çıkış saati 12:00’de kalıyor." loading="lazy" decoding="async"></a>
+          <a class="shot" data-pos="2" href="../../assets/shots/hotel-operations-agent/board-waiting.webp" data-caption="Otelin anlık durumu: Emma’nın talebi yöneticiyi bekliyor."><img src="../../assets/shots/hotel-operations-agent/board-waiting-thumb.webp" width="560" height="224" alt="Otelin anlık durumu: Emma’nın talebi yöneticiyi bekliyor." loading="lazy" decoding="async"></a>
+          <a class="shot" data-pos="3" href="../../assets/shots/hotel-operations-agent/hotel-update.webp" data-caption="Yönetici onaylıyor; çıkış 15:00’e alınıyor ve agent Emma’ya, o sormadan haber veriyor."><img src="../../assets/shots/hotel-operations-agent/hotel-update-thumb.webp" width="560" height="277" alt="Yönetici onaylıyor; çıkış 15:00’e alınıyor ve agent Emma’ya, o sormadan haber veriyor." loading="lazy" decoding="async"></a>
+          <a class="shot" data-pos="3" href="../../assets/shots/hotel-operations-agent/board-approved.webp" data-caption="Onaydan sonra: Emma’nın çıkışı 12:00’den 15:00’e geçti, misafire haber verildi."><img src="../../assets/shots/hotel-operations-agent/board-approved-thumb.webp" width="560" height="224" alt="Onaydan sonra: Emma’nın çıkışı 12:00’den 15:00’e geçti, misafire haber verildi." loading="lazy" decoding="async"></a>
+          <a class="shot" data-pos="3" href="../../assets/shots/hotel-operations-agent/turkish.webp" data-caption="Daniel Türkçe yazıyor: arıza bir bakım talebi olarak kaydediliyor, cevap Türkçe geliyor."><img src="../../assets/shots/hotel-operations-agent/turkish-thumb.webp" width="560" height="277" alt="Daniel Türkçe yazıyor: arıza bir bakım talebi olarak kaydediliyor, cevap Türkçe geliyor." loading="lazy" decoding="async"></a>
+          <a class="shot" data-pos="3" href="../../assets/shots/hotel-operations-agent/authority.webp" data-caption="Kendini yönetici olarak tanıtan misafir onay veremiyor ve başka bir misafirin rezervasyonunu göremiyor."><img src="../../assets/shots/hotel-operations-agent/authority-thumb.webp" width="560" height="277" alt="Kendini yönetici olarak tanıtan misafir onay veremiyor ve başka bir misafirin rezervasyonunu göremiyor." loading="lazy" decoding="async"></a>
+        </div>
+        <p class="deck-bar"><button type="button" data-deck="-1" aria-label="Önceki görüntü">←</button><span class="deck-count">1 / 7</span><button type="button" data-deck="1" aria-label="Sonraki görüntü">→</button></p>
+      </div>
+    </header>
+
+    <div class="row doc-facts">
+      <dl class="pairs">
+        <dt>Durum</dt>
+        <dd>Geliştirme sürüyor</dd>
+        <dt>Ne</dt>
+        <dd>Otel misafirleri için AI asistan ve yönetici ekranı: tek agent, kurgusal bir otel simülatörü</dd>
+        <dt>Yığın</dt>
+        <dd class="mono">Python · OpenAI Agents SDK · Responses API · FastAPI · SQLAlchemy · Alembic · SQLite · React · TypeScript · Playwright</dd>
+        <dt>Kod</dt>
+        <dd>Yakında GitHub’da açık</dd>
+      </dl>
+    </div>
+
+    <section class="row brief" aria-labelledby="kisaca">
+      <header class="sec-head">
+        <p class="label num">01</p>
+        <h2 id="kisaca">Kısaca</h2>
+      </header>
+      <dl class="pairs slab">
+        <dt>Problem</dt>
+        <dd>Misafir taleplerinin çoğu bir kurala bağlı. Geç çıkışın verilip verilmeyeceği, odanın bir sonraki misafire hazır olup olamayacağına bağlı; bazı saatler de yönetici onayı istiyor. Bir sohbet asistanının “tamam” demesi kolay. Asıl iş, o “tamam” dendiğinde otelin kayıtlarında da gerçekten bir şeyin değişmiş olması.</dd>
+        <dt>Kullanıcı için değişen</dt>
+        <dd>Misafir kendi dilinde yazıyor ve talebi doğrudan otelin kayıtlarına işleniyor. Her cevabın altında, o cevapla neyin yapıldığını gösteren bir makbuz var. Onay gereken talep yöneticinin ekranına gidiyor. Yönetici karar verdiğinde ya da otelde misafirin odasını ilgilendiren bir şey değiştiğinde, misafir sormasına gerek kalmadan haberdar ediliyor.</dd>
+        <dt>Bunu mümkün kılan karar</dt>
+        <dd>Model yalnızca öneriyor; kararı kod veriyor. Kurallar, kaydı yazan işlemin içinde çalışıyor; misafir ne kadar ısrar ederse etsin agent onları konuşarak aşamıyor. Agent’ın hiçbir tool’u bir talebi onaylayamıyor: onay, yalnızca yöneticinin verebildiği kalıcı bir kayıt.</dd>
+        <dt>Kanıt</dt>
+        <dd>İngilizce ve Türkçe 75 vakalık canlı eval’de 75/75. Hiçbir vakada yasak bir iş değişikliği ya da yetkisiz bir yazma denemesi olmadı. Eval cevabın metnini değil; hangi tool’un hangi argümanla çağrıldığını ve sonunda veritabanında gerçekten neyin değiştiğini kontrol ediyor.</dd>
+      </dl>
+    </section>
+
+    <section class="row prose story" aria-labelledby="yakindan">
+      <header class="sec-head">
+        <p class="label num">02</p>
+        <h2 id="yakindan">Yakından</h2>
+      </header>
+      <p class="pull">Bu projede asıl uğraştığım şey, agent’ın misafire söyledikleriyle otelin kayıtlarının her zaman aynı olmasıydı.</p>
+      <div class="span chapter">
+        <p class="label kicker">Problem</p>
+        <h3>Agent bir iş yaptığını söylüyorsa, o iş gerçekten yapılmış olmalı.</h3>
+        <p>Bir misafir “15:00’te çıkabilir miyim?” diye sorduğunda cevap sadece nazik bir cümleden ibaret olamıyor. Arkasında birkaç soru var: istenen saat kaç, odaya bir sonraki misafir ne zaman geliyor, temizlik ekibi arada odayı hazırlayabilir mi. Agent burada yanlışlıkla “tamam” derse iki şeyden biri oluyor: ya misafir aslında onaylanmamış bir çıkış saatine güveniyor ya da bir sonraki misafir geldiğinde oda hazır olmuyor.</p>
+        <p>Bu yüzden projeye tek bir kuralla başladım: agent’ın yaptım dediği her işin otelin kayıtlarında bir karşılığı olmalı. Kayda bir şey yazılmadıysa agent “yaptım” demiyor.</p>
+      </div>
+      <div class="span chapter">
+        <p class="label kicker">Kurallar</p>
+        <h3>Otelin kurallarını modelin insafına bırakmadım.</h3>
+        <p>Geç çıkış kuralı şöyle: 14:00’e kadar otomatik veriliyor, 14:00 ile 16:00 arası yönetici onayı gerekiyor, oda bir sonraki misafire yetişmeyecekse hiç verilmiyor. Bunu prompt’a yazıp modelin uymasını ummak yerine, kayda yazan işlemin içinde çalışan bir fonksiyon olarak yazdım. Model ne söylerse söylesin, kaydı değiştirmenin tek yolu bu fonksiyondan geçiyor. Kendini yönetici olarak tanıtan bir misafir bile en fazla bir onay talebi açabiliyor; onayı vermek yine gerçek yöneticiye kalıyor.</p>
+        <p>Hangi misafirin verisinin okunacağına da model karar vermiyor. Misafir seçildiği anda session o misafirin rezervasyonuna bağlanıyor. Biri sohbette başka bir misafirin rezervasyonunu isterse, agent’ın o kayda ulaşmasını sağlayacak bir tool zaten yok.</p>
+      </div>
+      <div class="span chapter">
+        <p class="label kicker">Yönetici onayı</p>
+        <h3>Onay gereken talepler yöneticinin ekranına düşüyor.</h3>
+        <p>Onay gereken bir talep geldiğinde agent kendi başına karar vermiyor; talep kalıcı bir kayıt olarak yöneticiye gidiyor. Bu arada otel durmuyor: bir sonraki misafir erken gelebiliyor, bir rezervasyon iptal olabiliyor, bir oda arızalanabiliyor. Bu yüzden yönetici onay verdiği anda kural, otelin o anki kayıtlarıyla bir kez daha kontrol ediliyor. Talep açıldığından beri oda bir sonraki misafir için gerekli hâle geldiyse, yöneticinin kararı kaydediliyor ama çıkış saati değişmiyor.</p>
+        <p>Kimse karar vermezse talep, istenen saat geldiğinde kendiliğinden düşüyor. Böylece zamanı geçmiş bir onay sonradan uygulanamıyor.</p>
+      </div>
+      <div class="span chapter">
+        <p class="label kicker">Misafire haber</p>
+        <h3>Bir şey değiştiğinde misafir, sormasına gerek kalmadan haber alıyor.</h3>
+        <p>Yönetici bir talebi sonuçlandırdığında, personel bir işi bitirdiğinde ya da otelde misafiri ilgilendiren bir şey değiştiğinde misafire mesaj gidiyor. Mesajın gönderilip gönderilmeyeceğine kod karar veriyor; metnini agent yazıyor.</p>
+        <p>Bu mesajları yazarken agent’ın elinde sadece okuma tool’ları oluyor. Misafire bir sonraki adımı önerebiliyor, ama misafir “evet” demeden hiçbir şey yapmıyor.</p>
+      </div>
+      <div class="span chapter">
+        <p class="label kicker">Ölçüm</p>
+        <h3>Eval’de agent’ın cevabını değil, kayıtlarda neyin değiştiğini ölçtüm.</h3>
+        <dl class="figures reveal">
+          <div><dt>canlı eval · 75 vaka</dt><dd>75/75</dd></div>
+          <div><dt>yasak iş değişikliği · yetkisiz yazma</dt><dd>0</dd></div>
+          <div><dt>otomatik test · ağa çıkmadan</dt><dd>386</dd></div>
+        </dl>
+        <p>Her vaka temiz bir otelle başlıyor ve gerçek model, gerçek veritabanı üzerinde çalışıyor. Bir vakanın geçip geçmediğine agent’ın cevabını okuyarak değil, veritabanında gerçekten ne değiştiğine bakarak karar veriyorum. 75 vakanın hepsi geçti ve hiçbirinde yasak bir iş değişikliği ya da yetkisiz bir yazma olmadı.</p>
+      </div>
+    </section>
+
+    <p class="row part-note-row" id="teknik"><span class="label">Teknik derinlik</span><span class="part-note">Buradan sonrası mimari ayrıntı: bileşenler, kararlar ve sayılar. Yukarıdaki kısım tek başına okunduğunda proje anlaşılır.</span></p>
+
+    <section class="row prose" aria-labelledby="nasil-calisir">
+      <header class="sec-head">
+        <p class="label num">03</p>
+        <h2 id="nasil-calisir">Nasıl çalışır</h2>
+      </header>
+      <figure class="wide arch">
+        <div class="arch-body">
+          <svg class="arch-map" viewBox="0 0 420 440" role="img" aria-labelledby="arch-hotel-t arch-hotel-d">
+            <title id="arch-hotel-t">Hotel Operations Agent’ın mimarisi</title>
+            <desc id="arch-hotel-d">Misafirin mesajı tek bir agent’a gidiyor. Agent’ın tool önerisi model ile kod arasındaki sınırı yalnızca tool kapısından geçiyor; kapıdan servislere, oradan otelin kaydına ulaşıyor. Yönetici servislere modelsiz komutlarla bağlı; agent’tan bu komutlara giden bir yol yok. Otelde misafiri ilgilendiren bir değişiklik olduğunda outbox, agent’a sadece okuma yetkisiyle bir tur açıyor ve misafire haber veriliyor.</desc>
+            <g class="arch-zones">
+              <rect class="zone" x="0" y="64" width="420" height="104" rx="2"/>
+              <path class="border" d="M0 168H420"/>
+              <text class="zone-label" x="212" y="160">model · öneriyor</text>
+              <text class="zone-label" x="212" y="185">kod · karar veriyor</text>
+            </g>
+            <g class="arch-edges">
+              <path class="edge" data-edge="guest agent" d="M200 28V116"/>
+              <path class="edge" data-edge="agent gate" d="M200 116V220"/>
+              <path class="edge" data-edge="gate service" d="M200 220V308"/>
+              <path class="edge" data-edge="service db" d="M200 308V402"/>
+              <path class="edge" data-edge="manager cmd" d="M360 404V308"/>
+              <path class="edge" data-edge="cmd service" d="M360 308H200"/>
+              <path class="edge" data-edge="db outbox" d="M200 402H56Q44 402 44 390V308"/>
+              <path class="edge" data-edge="outbox agent" d="M44 308V128Q44 116 56 116H200"/>
+              <path class="edge ghost" data-edge="agent cmd" d="M200 116H348Q360 116 360 128V308"/>
+              <text class="edge-label" x="208" y="62">mesaj</text>
+              <text class="edge-label" x="192" y="160" text-anchor="end">tool önerisi</text>
+              <text class="edge-label" transform="translate(36 226) rotate(-90)" text-anchor="middle">sadece okuma</text>
+            </g>
+            <g class="arch-nodes">
+              <g data-node="guest">
+                <circle class="person" cx="200" cy="28" r="5.5"/>
+                <text class="nm" x="213" y="33">Misafir</text>
+              </g>
+              <g data-node="agent">
+                <rect class="box" x="125" y="92" width="150" height="48" rx="3"/>
+                <text class="nm" x="200" y="112" text-anchor="middle">Agent</text>
+                <text class="sub" x="200" y="129" text-anchor="middle">tek agent · 9 tool</text>
+              </g>
+              <g data-node="gate">
+                <rect class="box" x="125" y="196" width="150" height="48" rx="3"/>
+                <text class="nm" x="200" y="216" text-anchor="middle">Tool kapısı</text>
+                <text class="sub" x="200" y="233" text-anchor="middle">şema · kapsam · süre</text>
+              </g>
+              <g data-node="service">
+                <rect class="box" x="125" y="284" width="150" height="48" rx="3"/>
+                <text class="nm" x="200" y="304" text-anchor="middle">Servisler</text>
+                <text class="sub" x="200" y="321" text-anchor="middle">kural işlemin içinde</text>
+              </g>
+              <g data-node="db">
+                <path class="box" d="M125 379V425A75 7 0 0 0 275 425V379"/>
+                <ellipse class="box" cx="200" cy="379" rx="75" ry="7"/>
+                <text class="nm" x="200" y="405" text-anchor="middle">Otel kaydı</text>
+                <text class="sub" x="200" y="421" text-anchor="middle">iş · makbuz · audit</text>
+              </g>
+              <g data-node="cmd">
+                <rect class="box" x="312" y="284" width="96" height="48" rx="3"/>
+                <text class="nm" x="360" y="304" text-anchor="middle">Komutlar</text>
+                <text class="sub" x="360" y="321" text-anchor="middle">model yok</text>
+              </g>
+              <g data-node="manager">
+                <circle class="person" cx="360" cy="404" r="5.5"/>
+                <text class="nm" x="360" y="429" text-anchor="middle">Yönetici</text>
+              </g>
+              <g data-node="outbox">
+                <rect class="box" x="8" y="284" width="72" height="48" rx="3"/>
+                <text class="nm" x="44" y="304" text-anchor="middle">Outbox</text>
+                <text class="sub" x="44" y="321" text-anchor="middle">haber</text>
+              </g>
+            </g>
+          </svg>
+          <div class="arch-panel">
+            <div class="arch-scene">
+              <p class="arch-scene-name">Havlu</p>
+              <ol class="arch-steps">
+                <li data-route="guest agent">Misafir iki havlu daha istiyor.</li>
+                <li data-route="agent gate">Agent bir tool öneriyor. Öneri doğrudan çalışmıyor; önce kapı şemayı, kapsamı ve süreyi kontrol ediyor.</li>
+                <li data-route="gate service" data-state="service: sınır içinde">Servis kuralı yazma işleminin içinde uyguluyor: bu konaklamanın havlu sınırı aşılmamış.</li>
+                <li data-route="service db" data-state="db: yeni iş · makbuz">İş, makbuzu ve audit kaydı birlikte yazılıyor; ya hepsi ya hiçbiri.</li>
+                <li data-route="db service gate agent guest" data-tone="reply">Cevap misafire makbuzuyla dönüyor. Agent “tamam” dediyse, kayıt değişmiştir.</li>
+              </ol>
+            </div>
+            <div class="arch-scene">
+              <p class="arch-scene-name">Geç çıkış</p>
+              <ol class="arch-steps">
+                <li data-route="guest agent">Emma 15:00’te çıkmak istiyor.</li>
+                <li data-route="agent gate service" data-state="service: 15:00 · onay gerekli">Kural kodda: 14:00’e kadar otomatik, 16:00’ya kadar yönetici onayıyla.</li>
+                <li data-route="service db" data-state="db: onay talebi · 12:00">Talep değişmez bir kayda dönüşüyor. Çıkış saati 12:00’de kalıyor.</li>
+                <li data-route="db service gate agent guest" data-tone="reply">Run burada bitiyor; onay bekleyen bir run askıda tutulmuyor. Emma talebinin yöneticide olduğunu öğreniyor.</li>
+                <li data-route="manager cmd service" data-state="cmd: onay">Yönetici onaylıyor. Bu komutta model yok.</li>
+                <li data-route="service db" data-state="service: yeniden kontrol | db: çıkış 15:00">Kural, otelin o anki kayıtlarıyla yeniden kontrol ediliyor. Çıkış 15:00’e alınıyor.</li>
+                <li data-route="db outbox" data-state="outbox: 1 satır">Aynı işlemin içinde outbox’a tek satır yazılıyor.</li>
+                <li data-route="outbox agent guest" data-tone="reply">Agent’a sadece okuma tool’larıyla bir tur açılıyor. Emma sormadan haber alıyor.</li>
+              </ol>
+            </div>
+            <div class="arch-scene">
+              <p class="arch-scene-name">Yetki denemesi</p>
+              <ol class="arch-steps">
+                <li data-route="guest agent">Bir misafir kendini yönetici olarak tanıtıyor ve onay istiyor.</li>
+                <li data-route="agent cmd" data-stop="0.6">Agent’tan yöneticinin komutlarına giden bir yol yok. Onay veren bir tool da yok.</li>
+                <li data-route="agent gate service db" data-state="db: onay talebi">En fazla bir onay talebi açabiliyor. Karar yine yöneticinin.</li>
+                <li data-route="guest agent gate service db" data-state="db: yalnız kendi kaydı">Başka bir misafirin rezervasyonunu istiyor. Kapsamı model seçmiyor; session sadece kendi rezervasyonuna bağlı.</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+        <figcaption>Gölgeli alanda model öneriyor, kesikli çizginin altında kod karar veriyor. <span class="arch-key" aria-hidden="true"></span>talep, <span class="arch-key reply" aria-hidden="true"></span>cevap.</figcaption>
+      </figure>
+      <p>Misafirin mesajı bir run olarak kaydediliyor; arayüz run’ın ilerlemesini canlı izliyor. Agent bir tool önerdiğinde öneri doğrudan çalışmıyor, önce tool kapısından geçiyor. Kapı şemayı, session’ın kapsamını ve süreyi kontrol edip işi ilgili servise veriyor. Servis kuralı yazma işleminin içinde uyguluyor; sonuç sohbette bir makbuz olarak görünüyor.</p>
+      <p>Yöneticinin tarafında model yok. Onay, görev takibi, otel olayları ve otel saati düz komutlar; agent’ın bu komutlara ulaşan tek bir tool’u yok.</p>
+    </section>
+
+    <section class="row prose" aria-labelledby="kurucu-kararlar">
+      <header class="sec-head">
+        <p class="label num">04</p>
+        <h2 id="kurucu-kararlar">Kurucu kararlar</h2>
+      </header>
+
+      <h3>Tek agent yeter.</h3>
+      <p>Rezervasyon, housekeeping ve bakım için ayrı agent’lar yok; iş alanlarını tool’lar ve arkalarındaki servisler ayırıyor. Dokuz tool’un beşi okuyor, dördü yazıyor. Birden fazla agent bu işe bir şey katmadan koordinasyon yükü eklerdi.</p>
+
+      <h3>Yetki prompt’ta değil, tool katmanında.</h3>
+      <p>Prompt bir güvenlik önlemi değil. Tool’ların şeması sıkı, kapsamı sunucudan geliyor ve her yazmanın tekrar gönderime karşı bir anahtarı var: aynı istek iki kez gelirse ikinci bir kayıt açılmıyor. Tool’dan dönen metin agent için veri; içindeki cümleler talimat sayılmıyor.</p>
+
+      <h3>Otelin doğrusu tek yerde.</h3>
+      <p>İş kayıtları ve sohbet geçmişi iki ayrı veritabanında. Modelin hatırladığı bayat olabilir; bu yüzden tool’lar her seferinde güncel kaydı okuyor ve yazmadan hemen önce kuralı yeniden kontrol ediyor. Bir iş, makbuzu ve audit kaydı ya birlikte yazılıyor ya hiç yazılmıyor.</p>
+
+      <h3>Onay bekleyen run askıda tutulmuyor.</h3>
+      <p>Onay için agent’ın run’ını durdurup beklemek, otelin iş akışını modelin geçmişine bağlardı. Onun yerine talep değişmez bir kayda dönüşüyor. Yöneticinin kararı ayrı ve modelsiz bir komutla, aynı işlemin içinde yeniden kontrol edilerek uygulanıyor.</p>
+
+      <h3>Otelin mesajı bir kuyruktan doğuyor.</h3>
+      <p>Misafiri ilgilendiren bir değişiklik, aynı işlemin içinde bir outbox tablosuna tek satır olarak yazılıyor. İşlem tamamlanınca agent’a sadece okuma tool’ları verilerek tek bir tur açılıyor. Arka planda sürekli kontrol eden bir süreç yok.</p>
+
+      <h3>Her run’ın sınırı kodda.</h3>
+      <p>Bir run en fazla 6 tur ve 8 tool çağrısı kullanabiliyor, 90 saniyede bitmek zorunda; session başına tek aktif run var. Sınıra takılan run bir hata koduyla kapanıyor ve yarım kalan geçmişi geri alınıyor.</p>
+    </section>
+
+    <section class="row prose" aria-labelledby="sayilar">
+      <header class="sec-head">
+        <p class="label num">05</p>
+        <h2 id="sayilar">Sayılar</h2>
+      </header>
+      <div class="table">
+        <table>
+          <caption>Ölçülenler</caption>
+          <thead>
+            <tr><th scope="col">Ne</th><th scope="col">Değer</th></tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row">Canlı eval · <code>gpt-6-luna</code>, 75 vaka</th><td><strong>75/75</strong> · yasak değişiklik 0 · yetkisiz yazma 0 · ortalama 4,2 sn</td></tr>
+            <tr><th scope="row">Canlı eval · <code>gpt-5.4-mini</code>, 40 vaka</th><td><strong>40/40</strong>, iki ayrı turda · İngilizce 32/32, Türkçe 8/8</td></tr>
+            <tr><th scope="row">Rehberli senaryolar, canlı</th><td>4 hikâye, 17/17 adım</td></tr>
+            <tr><th scope="row">Test</th><td>386 Python testi, ağa çıkmadan · 65 web unit testi · 34 Playwright senaryosu</td></tr>
+            <tr><th scope="row">Hata senaryosu</th><td>20, her biri bir testle tekrar üretiliyor</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Üstteki sayılar sistem çalıştırılarak çıktı; alttakiler kodda öyle yazdığı için doğru.</p>
+      <div class="table">
+        <table>
+          <caption>Tasarım sabitleri</caption>
+          <thead>
+            <tr><th scope="col">Ne</th><th scope="col">Değer</th></tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row">Agent · tool</th><td>1 agent · 9 tool (5 okuma, 4 yazma)</td></tr>
+            <tr><th scope="row">Run sınırı</th><td>6 tur · 8 tool çağrısı · 90 sn</td></tr>
+            <tr><th scope="row">Aktif run</th><td>session başına 1</td></tr>
+            <tr><th scope="row">Mimari karar</th><td>14, her biri gerekçesiyle</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <nav class="row doc-next" aria-label="İşler arasında">
+      <p class="more"><a href="../../#isler">← Tüm işler</a><a href="../ai-digest/">Sonraki: AI Digest<span class="go">→</span></a></p>
+    </nav>
+  </main>
+
+  <footer class="sea" id="iletisim">
+    <canvas class="caustics" aria-hidden="true"></canvas>
+    <div class="row">
+      <h2 class="label">İletişim</h2>
+      <p class="lede">Birlikte çalışmak ya da tanışmak isterseniz bana yazabilirsiniz.</p>
+      <dl class="pairs contact">
+        <dt>E-posta</dt>
+        <dd><a href="mailto:berkeakyildz@gmail.com">berkeakyildz@gmail.com</a></dd>
+        <dt>GitHub</dt>
+        <dd><a href="https://github.com/brkakyldz">github.com/brkakyldz</a></dd>
+        <dt>LinkedIn</dt>
+        <dd><a href="https://www.linkedin.com/in/berkeakyildiz/">linkedin.com/in/berkeakyildiz</a></dd>
+        <dt>Konum</dt>
+        <dd>Antalya, Türkiye · GMT+3</dd>
+      </dl>
+    </div>
+    <div class="row colophon">
+      <p class="colophon-line"><span>Berke Akyıldız · 2026</span><span>36°53′ K, 30°42′ D</span></p>
+    </div>
+  </footer>
+</body>
+</html>
