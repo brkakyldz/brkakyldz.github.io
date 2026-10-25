@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en" data-lang="en" data-title-tr="AI News Digest — Berke Akyıldız">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI News Digest — Berke Akyıldız</title>
+  <script>(function(r){var q=/[?&]lang=(en|tr)\b/.exec(location.search),l=q?q[1]:null;try{if(q)localStorage.setItem("lang",l);else l=localStorage.getItem("lang")}catch(e){}r.dataset.lang=l==="tr"?"tr":"en";r.lang=r.dataset.lang;r.classList.add("js")})(document.documentElement)</script>
+  <meta name="description" content="AI News Digest: the day's AI news from sixteen feeds, deduplicated, summarised and ranked into one bulletin in English and Turkish. LangGraph, FastAPI, HTMX and SQLite.">
+  <meta name="theme-color" content="#e9e3d7">
+  <link rel="canonical" href="https://brkakyldz.github.io/isler/ai-digest/">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="AI News Digest — Berke Akyıldız">
+  <meta property="og:description" content="Sixteen feeds in, one ranked bulletin out, in English and Turkish.">
+  <meta property="og:url" content="https://brkakyldz.github.io/isler/ai-digest/">
+  <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400&family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..700&display=swap">
+  <link rel="stylesheet" href="../../assets/site.css">
+  <script src="../../assets/site.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#icerik"><span data-l="en">Skip to content</span><span data-l="tr">İçeriğe geç</span></a>
+  <div class="shade" aria-hidden="true"><img class="leaf-b" src="../../assets/leaves-b.svg" alt=""><img class="leaf-a" src="../../assets/leaves-a.svg" alt=""></div>
+
+  <header class="row masthead">
+    <p class="label name"><a href="../../">Berke Akyıldız</a></p>
+    <div class="masthead-line">
+      <nav class="nav" aria-label="Site">
+        <a href="../../#isler"><span data-l="en">Work</span><span data-l="tr">İşler</span></a>
+        <a href="../../hakkimda/"><span data-l="en">About</span><span data-l="tr">Hakkımda</span></a>
+        <a href="#iletisim"><span data-l="en">Contact</span><span data-l="tr">İletişim</span></a>
+      </nav>
+      <button class="lang" type="button" aria-label="Türkçe’ye geç" data-en-label="Türkçe’ye geç" data-tr-label="Switch to English"><span data-v="en">EN</span><span aria-hidden="true">/</span><span data-v="tr">TR</span></button>
+    </div>
+    <div class="horizon" aria-hidden="true"></div>
+  </header>
+
+  <main id="icerik" class="doc">
+    <header class="row doc-head">
+      <div class="label head-meta">
+        <p><a href="../../#isler"><span data-l="en">Work</span><span data-l="tr">İşler</span></a> · 4 / 4</p>
+        <p class="status"><span class="state run" aria-hidden="true"></span><span data-l="en">Complete, running</span><span data-l="tr">Tamamlandı, çalışıyor</span></p>
+      </div>
+      <div>
+        <h1>AI News Digest</h1>
+        <p class="standfirst"><span data-l="en">The day’s AI news from sixteen feeds, deduplicated, summarised and ranked into one bulletin you read in English or Turkish. Every run records each step’s time, tokens and cost, and checks what it just published.</span><span data-l="tr">On altı kaynaktan günün AI haberleri: tekrarlar ayıklanıyor, haberler özetlenip sıralanıyor ve İngilizce ya da Türkçe okunan tek bir bülten çıkıyor. Her çalıştırma her adımın süresini, token’ını ve maliyetini kaydediyor ve yayımladığı şeyi kontrol ediyor.</span></p>
+        <p class="doc-links"><a href="https://github.com/brkakyldz/ai-news-digest"><span data-l="en">Code</span><span data-l="tr">Kaynak kodu</span><span class="go up">↗</span></a></p>
+      </div>
+    </header>
+
+    <div class="row doc-show">
+      <div class="wide gallery" style="--ratio: 1280 / 830">
+        <div class="gallery-slides">
+          <figure class="slide" data-thumb="../../assets/shots/ai-digest/preview-thumb.webp">
+            <div class="frame dark"><video src="../../assets/shots/ai-digest/preview.mp4" poster="../../assets/shots/ai-digest/preview-poster.jpg" width="1280" height="830" controls muted loop playsinline preload="none"></video></div>
+            <figcaption><span data-l="en">Today’s bulletin, the same stories in Turkish, the light theme, search, and one run node by node.</span><span data-l="tr">Günün bülteni, aynı haberlerin Türkçesi, açık tema, arama ve bir çalıştırmanın adım adım dökümü.</span></figcaption>
+          </figure>
+          <figure class="slide" data-thumb="../../assets/shots/ai-digest/pipeline-thumb.webp">
+            <div class="frame dark"><video src="../../assets/shots/ai-digest/pipeline.mp4" poster="../../assets/shots/ai-digest/pipeline-poster.jpg" width="1280" height="600" controls muted loop playsinline preload="none"></video></div>
+            <figcaption><span data-l="en">One real press, node by node: 2,601 items seen, 111 new, 110 summaries, 11 chosen and translated, one bulletin for $0.062.</span><span data-l="tr">Gerçek bir çalıştırma, adım adım: 2.601 öğe görüldü, 111’i yeni, 110 özet, 11 haber seçilip çevrildi; tek bülten 0,062 $.</span></figcaption>
+          </figure>
+          <figure class="slide" data-thumb="../../assets/shots/ai-digest/bulletin-thumb.webp">
+            <a class="frame" href="../../assets/shots/ai-digest/bulletin.webp"><img src="../../assets/shots/ai-digest/bulletin.webp" width="1600" height="1212" loading="lazy" decoding="async" alt="Today’s bulletin in the light theme" data-en-alt="Today’s bulletin in the light theme" data-tr-alt="Günün bülteni, açık temada"></a>
+            <figcaption><span data-l="en">The bulletin: headline size follows importance, and every story says why it matters and links to its source.</span><span data-l="tr">Bülten: başlık boyutu önemine göre değişiyor; her haber neden önemli olduğunu söylüyor ve kaynağına bağlanıyor.</span></figcaption>
+          </figure>
+          <figure class="slide" data-thumb="../../assets/shots/ai-digest/run-thumb.webp">
+            <a class="frame" href="../../assets/shots/ai-digest/run.webp"><img src="../../assets/shots/ai-digest/run.webp" width="1600" height="1334" loading="lazy" decoding="async" alt="One run, node by node" data-en-alt="One run, node by node" data-tr-alt="Bir çalıştırma, adım adım"></a>
+            <figcaption><span data-l="en">One run: time, tokens and cost per step, and the free checks run on what it published.</span><span data-l="tr">Bir çalıştırma: her adımın süresi, token’ı ve maliyeti, yayımlananlar üzerinde çalışan ücretsiz kontroller.</span></figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+
+    <div class="row doc-facts">
+      <dl class="pairs">
+        <dt><span data-l="en">Status</span><span data-l="tr">Durum</span></dt>
+        <dd><span data-l="en">Complete and running; a demo with three recorded days needs no API key</span><span data-l="tr">Tamamlandı ve çalışıyor; kayıtlı üç günlük demo API anahtarı istemiyor</span></dd>
+        <dt><span data-l="en">Stack</span><span data-l="tr">Yığın</span></dt>
+        <dd class="mono">Python · LangGraph · FastAPI · Jinja · HTMX · SQLite (WAL, FTS5) · SQLAlchemy · Alembic · OpenAI · Docker</dd>
+        <dt><span data-l="en">Code</span><span data-l="tr">Kod</span></dt>
+        <dd><a href="https://github.com/brkakyldz/ai-news-digest">github.com/brkakyldz/ai-news-digest</a></dd>
+      </dl>
+    </div>
+
+    <section class="row brief" aria-labelledby="kisaca">
+      <header class="sec-head">
+        <p class="label num">01</p>
+        <h2 id="kisaca"><span data-l="en">In short</span><span data-l="tr">Kısaca</span></h2>
+      </header>
+      <dl class="pairs slab">
+        <dt>Problem</dt>
+        <dd><span data-l="en">AI news arrives from many sources every day, and the same launch is written up five times. Feed readers list everything; newsletters choose but don’t show why.</span><span data-l="tr">AI haberleri her gün birçok kaynaktan geliyor ve aynı haber beş kez yazılıyor. Haber okuyucular her şeyi listeliyor; bültenler seçiyor ama neden seçtiğini göstermiyor.</span></dd>
+        <dt><span data-l="en">What it does</span><span data-l="tr">Ne yapıyor</span></dt>
+        <dd><span data-l="en">One page a day: duplicates merged, each story summarised with why it matters and a link to its source, in the same order in English and Turkish.</span><span data-l="tr">Günde tek sayfa: tekrarlar birleşmiş, her haber neden önemli olduğuyla ve kaynağının bağlantısıyla özetlenmiş; İngilizce ve Türkçe’de aynı sırayla.</span></dd>
+        <dt><span data-l="en">Key decision</span><span data-l="tr">Temel karar</span></dt>
+        <dd><span data-l="en">Nothing that costs money runs on its own. Feed polling is scheduled and free; a bulletin waits for someone to press Run, and the confirmation shows the stories and models before anything is spent.</span><span data-l="tr">Para harcayan hiçbir şey kendiliğinden çalışmıyor. Kaynak taraması zamanlanmış ve ücretsiz; bülten birinin Run’a basmasını bekliyor ve onay ekranı, bir şey harcanmadan önce haberleri ve modelleri gösteriyor.</span></dd>
+      </dl>
+    </section>
+
+    <section class="row prose" aria-labelledby="nasil-calisir">
+      <header class="sec-head">
+        <p class="label num">02</p>
+        <h2 id="nasil-calisir"><span data-l="en">How it works</span><span data-l="tr">Nasıl çalışır</span></h2>
+      </header>
+      <figure class="wide arch">
+        <div class="arch-body">
+          <svg class="arch-map" viewBox="0 0 420 628" role="img" aria-labelledby="arch-ad-t arch-ad-d">
+            <title id="arch-ad-t">AI News Digest’s architecture</title>
+            <desc id="arch-ad-d">At the top, a scheduler polls sixteen feeds every three hours and stores only new items; this part is free. Below the dashed line everything waits for a reader to press Run: duplicates are merged, thin items are enriched, each story is summarised in its own branch, the day is ranked three times and merged, the chosen stories are translated into Turkish, and one bulletin is published in both languages. Models work only in the shaded band.</desc>
+            <g class="arch-zones">
+              <path class="border" d="M0 160H420"/>
+              <text class="zone-label" x="8" y="152"><tspan data-l="en">on its own · free</tspan><tspan data-l="tr">kendiliğinden · ücretsiz</tspan></text>
+              <text class="zone-label" x="8" y="177"><tspan data-l="en">only on Run · cost shown first</tspan><tspan data-l="tr">yalnızca Run ile · önce maliyet</tspan></text>
+              <rect class="zone" x="0" y="336" width="420" height="220" rx="2"/>
+              <text class="zone-label" x="8" y="550"><tspan data-l="en">models work here</tspan><tspan data-l="tr">modeller burada</tspan></text>
+            </g>
+            <g class="arch-edges">
+              <path class="edge" data-edge="collect src" d="M200 104V30"/>
+              <path class="edge" data-edge="collect db" d="M200 104H360"/>
+              <path class="edge" data-edge="db btn" d="M360 107V212"/>
+              <path class="edge" data-edge="btn dedupe" d="M360 212H200"/>
+              <path class="edge" data-edge="dedupe enrich" d="M200 212V288"/>
+              <path class="edge" data-edge="enrich s1" d="M200 288C200 330 148 326 148 372"/>
+              <path class="edge" data-edge="enrich s2" d="M200 288V372"/>
+              <path class="edge" data-edge="enrich s3" d="M200 288C200 330 252 326 252 372"/>
+              <path class="edge" data-edge="s1 rank" d="M148 372C148 408 200 400 200 440"/>
+              <path class="edge" data-edge="s2 rank" d="M200 372V440"/>
+              <path class="edge" data-edge="s3 rank" d="M252 372C252 408 200 400 200 440"/>
+              <path class="edge" data-edge="rank translate" d="M200 440V514"/>
+              <path class="edge" data-edge="translate bulletin" d="M200 514V598"/>
+              <path class="edge" data-edge="bulletin reader" d="M200 598H392"/>
+              <path class="edge" data-edge="reader btn" d="M392 598V212"/>
+            </g>
+            <g class="arch-nodes">
+              <g data-node="src">
+                <rect class="box" x="125" y="6" width="150" height="48" rx="3"/>
+                <text class="nm" x="200" y="26" text-anchor="middle"><tspan data-l="en">Feeds</tspan><tspan data-l="tr">Kaynaklar</tspan></text>
+                <text class="sub" x="200" y="43" text-anchor="middle"><tspan data-l="en">16 · RSS</tspan><tspan data-l="tr">16 · RSS</tspan></text>
+              </g>
+              <g data-node="collect">
+                <rect class="box" x="125" y="80" width="150" height="48" rx="3"/>
+                <text class="nm" x="200" y="100" text-anchor="middle">Collect</text>
+                <text class="sub" x="200" y="117" text-anchor="middle"><tspan data-l="en">every 3 h</tspan><tspan data-l="tr">3 saatte bir</tspan></text>
+              </g>
+              <g data-node="db">
+                <path class="box" d="M312 88V126A48 6 0 0 0 408 126V88"/>
+                <ellipse class="box" cx="360" cy="88" rx="48" ry="6"/>
+                <text class="nm" x="360" y="110" text-anchor="middle"><tspan data-l="en">Store</tspan><tspan data-l="tr">Kayıt</tspan></text>
+                <text class="sub" x="360" y="125" text-anchor="middle">SQLite</text>
+              </g>
+              <g data-node="dedupe">
+                <rect class="box" x="125" y="188" width="150" height="48" rx="3"/>
+                <text class="nm" x="200" y="208" text-anchor="middle">Dedupe</text>
+                <text class="sub" x="200" y="225" text-anchor="middle"><tspan data-l="en">one story, once</tspan><tspan data-l="tr">bir haber, bir kez</tspan></text>
+              </g>
+              <g data-node="btn">
+                <rect class="box" x="312" y="188" width="96" height="48" rx="3"/>
+                <text class="nm" x="360" y="208" text-anchor="middle">Run</text>
+                <text class="sub" x="360" y="225" text-anchor="middle"><tspan data-l="en">cost first</tspan><tspan data-l="tr">önce maliyet</tspan></text>
+              </g>
+              <g data-node="enrich">
+                <rect class="box" x="125" y="264" width="150" height="48" rx="3"/>
+                <text class="nm" x="200" y="284" text-anchor="middle">Enrich</text>
+                <text class="sub" x="200" y="301" text-anchor="middle"><tspan data-l="en">feed → page → search</tspan><tspan data-l="tr">kaynak → sayfa → arama</tspan></text>
+              </g>
+              <g data-node="s1">
+                <rect class="box" x="126" y="356" width="44" height="32" rx="3"/>
+                <text class="sub" x="148" y="376" text-anchor="middle"><tspan data-l="en">sum.</tspan><tspan data-l="tr">özet</tspan></text>
+              </g>
+              <g data-node="s2">
+                <rect class="box" x="178" y="356" width="44" height="32" rx="3"/>
+                <text class="sub" x="200" y="376" text-anchor="middle"><tspan data-l="en">sum.</tspan><tspan data-l="tr">özet</tspan></text>
+              </g>
+              <g data-node="s3">
+                <rect class="box" x="230" y="356" width="44" height="32" rx="3"/>
+                <text class="sub" x="252" y="376" text-anchor="middle"><tspan data-l="en">sum.</tspan><tspan data-l="tr">özet</tspan></text>
+              </g>
+              <g data-node="rank">
+                <rect class="box" x="125" y="416" width="150" height="48" rx="3"/>
+                <text class="nm" x="200" y="436" text-anchor="middle">Rank ×3</text>
+                <text class="sub" x="200" y="453" text-anchor="middle"><tspan data-l="en">shuffled · Borda</tspan><tspan data-l="tr">karışık · Borda</tspan></text>
+              </g>
+              <g data-node="translate">
+                <rect class="box" x="125" y="490" width="150" height="48" rx="3"/>
+                <text class="nm" x="200" y="510" text-anchor="middle">Translate</text>
+                <text class="sub" x="200" y="527" text-anchor="middle">EN → TR</text>
+              </g>
+              <g data-node="bulletin">
+                <path class="box" d="M125 580V616A75 7 0 0 0 275 616V580"/>
+                <ellipse class="box" cx="200" cy="580" rx="75" ry="7"/>
+                <text class="nm" x="200" y="601" text-anchor="middle"><tspan data-l="en">Bulletin</tspan><tspan data-l="tr">Bülten</tspan></text>
+                <text class="sub" x="200" y="615" text-anchor="middle">EN · TR</text>
+              </g>
+              <g data-node="reader">
+                <circle class="person" cx="392" cy="598" r="5.5"/>
+                <text class="nm" x="392" y="624" text-anchor="middle"><tspan data-l="en">Reader</tspan><tspan data-l="tr">Okur</tspan></text>
+              </g>
+            </g>
+          </svg>
+          <div class="arch-panel">
+            <div class="arch-scene">
+              <p class="arch-scene-name"><span data-l="en">Polling</span><span data-l="tr">Tarama</span></p>
+              <ol class="arch-steps">
+                <li data-route="collect src"><span data-l="en">Every three hours a scheduler polls the sixteen feeds. It is the only thing on a clock.</span><span data-l="tr">Bir zamanlayıcı üç saatte bir on altı kaynağı tarıyor. Saate bağlı tek adım bu.</span></li>
+                <li data-route="src collect" data-tone="reply" data-state="src: 304 · unchanged" data-state-tr="src: 304 · değişmedi"><span data-l="en">A feed that has not changed answers 304, so polling costs nothing.</span><span data-l="tr">Değişmeyen bir kaynak 304 dönüyor; bu yüzden tarama hiçbir şeye mal olmuyor.</span></li>
+                <li data-route="collect db" data-state="db: 111 new" data-state-tr="db: 111 yeni"><span data-l="en">Only new items are stored. Nothing that calls a model runs on its own.</span><span data-l="tr">Yalnızca yeni öğeler kaydediliyor. Model çağıran hiçbir şey kendiliğinden çalışmıyor.</span></li>
+              </ol>
+            </div>
+            <div class="arch-scene">
+              <p class="arch-scene-name"><span data-l="en">A bulletin</span><span data-l="tr">Bir bülten</span></p>
+              <ol class="arch-steps">
+                <li data-route="reader btn"><span data-l="en">Someone presses Run. The confirmation shows how many stories are waiting and which models will be used.</span><span data-l="tr">Biri Run’a basıyor. Onay ekranı kaç haberin beklediğini ve hangi modellerin kullanılacağını gösteriyor.</span></li>
+                <li data-route="db btn dedupe" data-state="dedupe: 110 kept" data-state-tr="dedupe: 110 kaldı"><span data-l="en">Syndicated copies and write-ups of the same story are matched; each story is kept once.</span><span data-l="tr">Aynı haberin kopyaları ve farklı yazımları eşleştiriliyor; her haber bir kez tutuluyor.</span></li>
+                <li data-route="dedupe enrich" data-state="enrich: feed → page" data-state-tr="enrich: kaynak → sayfa"><span data-l="en">Thin items get a body from the cheapest source that works: the feed’s own text, then the page, then one capped search.</span><span data-l="tr">Metni kısa kalan haberler işe yarayan en ucuz kaynaktan tamamlanıyor: önce kaynağın metni, sonra sayfa, en son sınırlı bir arama.</span></li>
+                <li data-route="enrich s1 | enrich s2 | enrich s3"><span data-l="en">One branch per story, in parallel; each returns a validated summary and saves its own row.</span><span data-l="tr">Her habere bir dal, paralel; her dal doğrulanmış bir özet döndürüyor ve kendi satırını kaydediyor.</span></li>
+                <li data-route="s1 rank | s2 rank | s3 rank" data-state="rank: 3 readings agree" data-state-tr="rank: 3 okuma uyumlu"><span data-l="en">The whole day is read three times, shuffled, and the readings are merged by Borda count. Their agreement is stored with the bulletin.</span><span data-l="tr">Günün tamamı karıştırılarak üç kez okunuyor ve okumalar Borda sayımıyla birleştiriliyor. Okumaların uyumu bültenle birlikte saklanıyor.</span></li>
+                <li data-route="rank translate" data-state="translate: 11 stories" data-state-tr="translate: 11 haber"><span data-l="en">The chosen stories and the editor’s note are written in Turkish too, reusing any translation already made.</span><span data-l="tr">Seçilen haberler ve editör notu Türkçe olarak da yazılıyor; daha önce yapılmış çeviriler yeniden kullanılıyor.</span></li>
+                <li data-route="translate bulletin reader" data-tone="reply" data-state="bulletin: $0.062" data-state-tr="bulletin: 0,062 $"><span data-l="en">One bulletin in two languages, checked for free on the way out. That press cost $0.062.</span><span data-l="tr">İki dilde tek bülten, çıkarken ücretsiz kontrollerden geçiyor. O çalıştırma 0,062 $ tuttu.</span></li>
+              </ol>
+            </div>
+            <div class="arch-scene">
+              <p class="arch-scene-name"><span data-l="en">A failed press</span><span data-l="tr">Yarıda kalan çalıştırma</span></p>
+              <ol class="arch-steps">
+                <li data-route="enrich s1 | enrich s2 | enrich s3"><span data-l="en">Three stories are being summarised at once.</span><span data-l="tr">Üç haber aynı anda özetleniyor.</span></li>
+                <li data-route="s3" data-state="s1: saved | s2: saved | s3: stopped" data-state-tr="s1: kayıtlı | s2: kayıtlı | s3: durdu"><span data-l="en">The press fails half-way. The summaries it already paid for are kept.</span><span data-l="tr">Çalıştırma yarıda kalıyor. Parası ödenmiş özetler saklanıyor.</span></li>
+                <li data-route="reader btn dedupe enrich s3" data-state="s3: done" data-state-tr="s3: bitti"><span data-l="en">The next press starts from them and pays only for what is missing.</span><span data-l="tr">Bir sonraki çalıştırma onlardan başlıyor ve yalnızca eksik olanın parasını ödüyor.</span></li>
+                <li data-route="s1 rank | s2 rank | s3 rank"><span data-l="en">The whole day is ranked again.</span><span data-l="tr">Günün tamamı yeniden sıralanıyor.</span></li>
+                <li data-route="rank translate bulletin reader" data-tone="reply" data-state="bulletin: version 2" data-state-tr="bulletin: 2. sürüm"><span data-l="en">Version 2 of the same day’s bulletin is published.</span><span data-l="tr">Aynı günün bülteninin 2. sürümü yayımlanıyor.</span></li>
+              </ol>
+            </div>
+          </div>
+        </div>
+        <figcaption><span data-l="en">Above the dashed line it runs on its own and costs nothing; below it, only after Run. Models work only in the shaded band.</span><span data-l="tr">Kesikli çizginin üstü kendiliğinden ve ücretsiz çalışıyor; altı yalnızca Run’dan sonra. Modeller yalnızca gölgeli alanda çalışıyor.</span> <span class="arch-key" aria-hidden="true"></span><span data-l="en">flow,</span><span data-l="tr">akış,</span> <span class="arch-key reply" aria-hidden="true"></span><span data-l="en">return.</span><span data-l="tr">dönüş.</span></figcaption>
+      </figure>
+    </section>
+
+    <nav class="row doc-next" aria-label="Work" data-en-label="Work" data-tr-label="İşler">
+      <p class="more"><a href="../hotel-operations-agent/">← Hotel Operations Agent</a><a href="../../#isler"><span data-l="en">All work</span><span data-l="tr">Tüm işler</span><span class="go">→</span></a></p>
+    </nav>
+  </main>
+
+  <footer class="sea" id="iletisim">
+    <canvas class="caustics" aria-hidden="true"></canvas>
+    <div class="row">
+      <h2 class="label"><span data-l="en">Contact</span><span data-l="tr">İletişim</span></h2>
+      <p class="say"><span data-l="en">Want to work together? <em>Write to me.</em></span><span data-l="tr">Birlikte çalışmak ister misiniz? <em>Bana yazın.</em></span></p>
+      <dl class="pairs contact">
+        <dt><span data-l="en">Email</span><span data-l="tr">E-posta</span></dt>
+        <dd><a href="mailto:berkeakyildz@gmail.com">berkeakyildz@gmail.com</a></dd>
+        <dt>GitHub</dt>
+        <dd><a href="https://github.com/brkakyldz">github.com/brkakyldz</a></dd>
+        <dt>LinkedIn</dt>
+        <dd><a href="https://www.linkedin.com/in/berkeakyildiz/">linkedin.com/in/berkeakyildiz</a></dd>
+      </dl>
+    </div>
+    <div class="row colophon">
+      <p class="colophon-line"><span>Berke Akyıldız · 2026</span></p>
+    </div>
+  </footer>
+</body>
+</html>

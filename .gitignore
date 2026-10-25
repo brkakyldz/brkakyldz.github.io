@@ -1,0 +1,4 @@
+# This repository holds only the published site; nothing is generated here.
+# Operating system leftovers only.
+Thumbs.db
+.DS_Store

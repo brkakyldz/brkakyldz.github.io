@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en" data-lang="en" data-title-tr="IssuePilot — Berke Akyıldız">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>IssuePilot — Berke Akyıldız</title>
+  <script>(function(r){var q=/[?&]lang=(en|tr)\b/.exec(location.search),l=q?q[1]:null;try{if(q)localStorage.setItem("lang",l);else l=localStorage.getItem("lang")}catch(e){}r.dataset.lang=l==="tr"?"tr":"en";r.lang=r.dataset.lang;r.classList.add("js")})(document.documentElement)</script>
+  <meta name="description" content="IssuePilot investigates every new GitHub issue with Claude Code and posts one comment: the likely cause, where it is, a suggested fix and what it could not verify, checked against the code before it is posted.">
+  <meta name="theme-color" content="#e9e3d7">
+  <link rel="canonical" href="https://brkakyldz.github.io/isler/issuepilot/">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="IssuePilot — Berke Akyıldız">
+  <meta property="og:description" content="Every new GitHub issue gets one investigated comment, checked against the code before it is posted.">
+  <meta property="og:url" content="https://brkakyldz.github.io/isler/issuepilot/">
+  <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400&family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..700&display=swap">
+  <link rel="stylesheet" href="../../assets/site.css">
+  <script src="../../assets/site.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#icerik"><span data-l="en">Skip to content</span><span data-l="tr">İçeriğe geç</span></a>
+  <div class="shade" aria-hidden="true"><img class="leaf-b" src="../../assets/leaves-b.svg" alt=""><img class="leaf-a" src="../../assets/leaves-a.svg" alt=""></div>
+
+  <header class="row masthead">
+    <p class="label name"><a href="../../">Berke Akyıldız</a></p>
+    <div class="masthead-line">
+      <nav class="nav" aria-label="Site">
+        <a href="../../#isler"><span data-l="en">Work</span><span data-l="tr">İşler</span></a>
+        <a href="../../hakkimda/"><span data-l="en">About</span><span data-l="tr">Hakkımda</span></a>
+        <a href="#iletisim"><span data-l="en">Contact</span><span data-l="tr">İletişim</span></a>
+      </nav>
+      <button class="lang" type="button" aria-label="Türkçe’ye geç" data-en-label="Türkçe’ye geç" data-tr-label="Switch to English"><span data-v="en">EN</span><span aria-hidden="true">/</span><span data-v="tr">TR</span></button>
+    </div>
+    <div class="horizon" aria-hidden="true"></div>
+  </header>
+
+  <main id="icerik" class="doc">
+    <header class="row doc-head">
+      <div class="label head-meta">
+        <p><a href="../../#isler"><span data-l="en">Work</span><span data-l="tr">İşler</span></a> · 1 / 4</p>
+        <p class="status"><span class="state run" aria-hidden="true"></span><span data-l="en">v1.3 · released</span><span data-l="tr">v1.3 · yayında</span></p>
+      </div>
+      <div>
+        <h1>IssuePilot</h1>
+        <p class="standfirst"><span data-l="en">Every new GitHub issue gets one investigated comment: the likely cause, where it is in the code, a suggested fix and what could not be verified. It runs Claude Code in GitHub Actions on your own Claude subscription, and every file, line and quote it cites is checked against the code before anything is posted.</span><span data-l="tr">Her yeni GitHub issue’su incelenmiş tek bir yorum alıyor: olası neden, kodda nerede olduğu, bir çözüm önerisi ve doğrulanamayan noktalar. Claude Code’u GitHub Actions içinde, kendi Claude aboneliğinle çalıştırıyor; yorumda geçen her dosya, satır ve alıntı paylaşılmadan önce koda karşı kontrol ediliyor.</span></p>
+        <p class="doc-links"><a href="https://github.com/brkakyldz/IssuePilot"><span data-l="en">Code</span><span data-l="tr">Kaynak kodu</span><span class="go up">↗</span></a><a href="https://github.com/brkakyldz/issuepilot-demo/issues/1"><span data-l="en">A real comment on the demo repo</span><span data-l="tr">Demo reposunda gerçek bir yorum</span><span class="go up">↗</span></a></p>
+      </div>
+    </header>
+
+    <div class="row doc-show">
+      <div class="wide gallery" style="--ratio: 16 / 9">
+        <div class="gallery-slides">
+          <figure class="slide" data-thumb="../../assets/shots/issuepilot/demo-thumb.webp">
+            <div class="frame dark"><video src="../../assets/shots/issuepilot/demo.mp4" poster="../../assets/shots/issuepilot/demo-poster.jpg" width="1600" height="900" controls playsinline preload="none"></video></div>
+            <figcaption><span data-l="en">One real run on the demo repository in 46 seconds: the bug, the issue, the three jobs in GitHub Actions, Claude Code’s real tool calls, the check and the comment.</span><span data-l="tr">Demo reposundaki gerçek bir çalıştırma, 46 saniyede: hata, issue, GitHub Actions’taki üç job, Claude Code’un gerçek araç çağrıları, kontrol ve yorum.</span></figcaption>
+          </figure>
+          <figure class="slide" data-thumb="../../assets/shots/issuepilot/comment-thumb.webp">
+            <a class="frame" href="../../assets/shots/issuepilot/comment.webp"><img src="../../assets/shots/issuepilot/comment.webp" width="1600" height="1302" loading="lazy" decoding="async" alt="IssuePilot’s comment on a Hono bug" data-en-alt="IssuePilot’s comment on a Hono bug" data-tr-alt="IssuePilot’un bir Hono hatasına yazdığı yorum"></a>
+            <figcaption><span data-l="en">Its real comment on a closed Hono bug, run at the commit just before the fix. The fix that was merged reuses the cached FormData, as suggested.</span><span data-l="tr">Kapanmış bir Hono hatasına, düzeltmeden hemen önceki commit’te yazdığı gerçek yorum. Birleştirilen düzeltme, önerildiği gibi önbellekteki FormData’yı kullanıyor.</span></figcaption>
+          </figure>
+          <figure class="slide" data-thumb="../../assets/shots/issuepilot/architecture-thumb.webp">
+            <a class="frame" href="../../assets/shots/issuepilot/architecture.webp"><img src="../../assets/shots/issuepilot/architecture.webp" width="1800" height="1126" loading="lazy" decoding="async" alt="IssuePilot’s architecture" data-en-alt="IssuePilot’s architecture" data-tr-alt="IssuePilot’un mimarisi"></a>
+            <figcaption><span data-l="en">A read-only Claude Code job returns JSON; a second job without AI verifies it, scans it for secrets and posts one comment.</span><span data-l="tr">Salt okunur bir Claude Code job’u JSON döndürüyor; AI’sız ikinci bir job onu doğruluyor, sır taramasından geçiriyor ve tek bir yorum bırakıyor.</span></figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+
+    <div class="row doc-facts">
+      <dl class="pairs">
+        <dt><span data-l="en">Status</span><span data-l="tr">Durum</span></dt>
+        <dd><span data-l="en">v1.3, released; MIT licence</span><span data-l="tr">v1.3 yayında; MIT lisansı</span></dd>
+        <dt><span data-l="en">Stack</span><span data-l="tr">Yığın</span></dt>
+        <dd class="mono">Claude Code · GitHub Actions · Python · JSON Schema · pytest · actionlint</dd>
+        <dt><span data-l="en">Code</span><span data-l="tr">Kod</span></dt>
+        <dd><a href="https://github.com/brkakyldz/IssuePilot">github.com/brkakyldz/IssuePilot</a></dd>
+      </dl>
+    </div>
+
+    <section class="row brief" aria-labelledby="kisaca">
+      <header class="sec-head">
+        <p class="label num">01</p>
+        <h2 id="kisaca"><span data-l="en">In short</span><span data-l="tr">Kısaca</span></h2>
+      </header>
+      <dl class="pairs slab">
+        <dt>Problem</dt>
+        <dd><span data-l="en">Before anyone writes a fix, a new issue usually means finding the relevant code, tracing the cause and deciding where to start.</span><span data-l="tr">Bir düzeltme yazılmadan önce yeni bir issue çoğu zaman ilgili kodu bulmayı, nedenin izini sürmeyi ve nereden başlanacağına karar vermeyi gerektiriyor.</span></dd>
+        <dt><span data-l="en">What it does</span><span data-l="tr">Ne yapıyor</span></dt>
+        <dd><span data-l="en">Within a minute or two the issue gets one comment with the cause, links to the lines, a fix and what it is unsure of. Copy one workflow file and add a token: there is no server.</span><span data-l="tr">Bir iki dakika içinde issue’ya nedeni, satırların bağlantılarını, bir çözümü ve emin olunmayan noktaları içeren tek bir yorum geliyor. Kurulum tek bir workflow dosyası ve bir token; sunucu yok.</span></dd>
+        <dt><span data-l="en">Key decision</span><span data-l="tr">Temel karar</span></dt>
+        <dd><span data-l="en">The model never posts. Claude Code investigates with a read-only token and no tool that writes; a second job with no AI checks every citation on a fresh checkout and scans for secrets before publishing.</span><span data-l="tr">Model hiçbir şey paylaşmıyor. Claude Code salt okunur bir token’la ve yazan hiçbir araç olmadan inceliyor; AI’sız ikinci bir job her alıntıyı temiz bir checkout üzerinde kontrol ediyor ve yayımlamadan önce sır taraması yapıyor.</span></dd>
+      </dl>
+    </section>
+
+    <section class="row prose" aria-labelledby="nasil-calisir">
+      <header class="sec-head">
+        <p class="label num">02</p>
+        <h2 id="nasil-calisir"><span data-l="en">How it works</span><span data-l="tr">Nasıl çalışır</span></h2>
+      </header>
+      <figure class="wide arch">
+        <div class="arch-body">
+          <svg class="arch-map" viewBox="0 0 420 548" role="img" aria-labelledby="arch-ip-t arch-ip-d">
+            <title id="arch-ip-t">IssuePilot’s architecture</title>
+            <desc id="arch-ip-d">A new issue passes a gate without AI, which skips bots and feature requests. Claude Code then investigates the repository with read-only tools inside the shaded band, where the model works. Below the dashed line there is no model: a job checks every citation against a fresh checkout of the repository, scans the analysis for secrets and posts one comment back to the reporter. The investigation has no path that posts anything.</desc>
+            <g class="arch-zones">
+              <rect class="zone" x="0" y="204" width="420" height="96" rx="2"/>
+              <path class="border" d="M0 300H420"/>
+              <text class="zone-label" x="24" y="292"><tspan data-l="en">model · reads only</tspan><tspan data-l="tr">model · yalnızca okur</tspan></text>
+              <text class="zone-label" x="24" y="317"><tspan data-l="en">code · checks, then posts</tspan><tspan data-l="tr">kod · kontrol eder, paylaşır</tspan></text>
+            </g>
+            <g class="arch-edges">
+              <path class="edge" data-edge="reporter issue" d="M200 22V80"/>
+              <path class="edge" data-edge="issue gate" d="M200 80V160"/>
+              <path class="edge" data-edge="gate skip" d="M200 160H64"/>
+              <path class="edge" data-edge="gate investigate" d="M200 160V252"/>
+              <path class="edge" data-edge="investigate repo" d="M200 252H360V300"/>
+              <path class="edge" data-edge="investigate verify" d="M200 252V348"/>
+              <path class="edge" data-edge="verify repo" d="M200 348H360V300"/>
+              <path class="edge" data-edge="verify scan" d="M200 348V428"/>
+              <path class="edge" data-edge="scan comment" d="M200 428V508"/>
+              <path class="edge" data-edge="comment reporter" d="M200 508H20Q8 508 8 496V34Q8 22 20 22H200"/>
+              <path class="edge ghost" data-edge="investigate comment" d="M200 252H288Q300 252 300 264V496Q300 508 288 508H200"/>
+              <text class="edge-label" x="208" y="314">JSON</text>
+            </g>
+            <g class="arch-nodes">
+              <g data-node="reporter">
+                <circle class="person" cx="200" cy="22" r="5.5"/>
+                <text class="nm" x="213" y="27"><tspan data-l="en">Reporter</tspan><tspan data-l="tr">Bildiren</tspan></text>
+              </g>
+              <g data-node="issue">
+                <rect class="box" x="125" y="56" width="150" height="48" rx="3"/>
+                <text class="nm" x="200" y="76" text-anchor="middle">Issue</text>
+                <text class="sub" x="200" y="93" text-anchor="middle"><tspan data-l="en">opened</tspan><tspan data-l="tr">açıldı</tspan></text>
+              </g>
+              <g data-node="gate">
+                <rect class="box" x="125" y="136" width="150" height="48" rx="3"/>
+                <text class="nm" x="200" y="156" text-anchor="middle"><tspan data-l="en">Gate</tspan><tspan data-l="tr">Kapı</tspan></text>
+                <text class="sub" x="200" y="173" text-anchor="middle"><tspan data-l="en">no AI · no token</tspan><tspan data-l="tr">AI yok · token yok</tspan></text>
+              </g>
+              <g data-node="skip">
+                <rect class="box" x="18" y="136" width="92" height="48" rx="3"/>
+                <text class="nm" x="64" y="156" text-anchor="middle"><tspan data-l="en">Skip</tspan><tspan data-l="tr">Atla</tspan></text>
+                <text class="sub" x="64" y="173" text-anchor="middle"><tspan data-l="en">bot · feature</tspan><tspan data-l="tr">bot · özellik</tspan></text>
+              </g>
+              <g data-node="investigate">
+                <rect class="box" x="125" y="228" width="150" height="48" rx="3"/>
+                <text class="nm" x="200" y="248" text-anchor="middle"><tspan data-l="en">Investigate</tspan><tspan data-l="tr">İnceleme</tspan></text>
+                <text class="sub" x="200" y="265" text-anchor="middle">Claude Code · read-only</text>
+              </g>
+              <g data-node="repo">
+                <path class="box" d="M312 286V318A48 6 0 0 0 408 318V286"/>
+                <ellipse class="box" cx="360" cy="286" rx="48" ry="6"/>
+                <text class="nm" x="360" y="307" text-anchor="middle"><tspan data-l="en">Repo</tspan><tspan data-l="tr">Repo</tspan></text>
+                <text class="sub" x="360" y="321" text-anchor="middle"><tspan data-l="en">your code</tspan><tspan data-l="tr">senin kodun</tspan></text>
+              </g>
+              <g data-node="verify">
+                <rect class="box" x="125" y="324" width="150" height="48" rx="3"/>
+                <text class="nm" x="200" y="344" text-anchor="middle"><tspan data-l="en">Verify</tspan><tspan data-l="tr">Doğrulama</tspan></text>
+                <text class="sub" x="200" y="361" text-anchor="middle"><tspan data-l="en">fresh checkout</tspan><tspan data-l="tr">temiz checkout</tspan></text>
+              </g>
+              <g data-node="scan">
+                <rect class="box" x="125" y="404" width="150" height="48" rx="3"/>
+                <text class="nm" x="200" y="424" text-anchor="middle"><tspan data-l="en">Leak scan</tspan><tspan data-l="tr">Sızıntı taraması</tspan></text>
+                <text class="sub" x="200" y="441" text-anchor="middle"><tspan data-l="en">credential shapes</tspan><tspan data-l="tr">kimlik bilgisi kalıbı</tspan></text>
+              </g>
+              <g data-node="comment">
+                <rect class="box" x="125" y="484" width="150" height="48" rx="3"/>
+                <text class="nm" x="200" y="504" text-anchor="middle"><tspan data-l="en">Comment</tspan><tspan data-l="tr">Yorum</tspan></text>
+                <text class="sub" x="200" y="521" text-anchor="middle"><tspan data-l="en">one per issue</tspan><tspan data-l="tr">issue başına bir</tspan></text>
+              </g>
+            </g>
+          </svg>
+          <div class="arch-panel">
+            <div class="arch-scene">
+              <p class="arch-scene-name"><span data-l="en">A bug report</span><span data-l="tr">Hata bildirimi</span></p>
+              <ol class="arch-steps">
+                <li data-route="reporter issue"><span data-l="en">Someone opens an issue: page 2 of a list starts with the last book of page 1.</span><span data-l="tr">Biri bir issue açıyor: listenin 2. sayfası, 1. sayfanın son kitabıyla başlıyor.</span></li>
+                <li data-route="issue gate" data-state="gate: pass" data-state-tr="gate: geçti"><span data-l="en">The gate runs no AI and holds no token. Not a bot, not a feature request: the issue goes through.</span><span data-l="tr">Kapıda ne AI ne token var. Bot değil, özellik isteği değil: issue geçiyor.</span></li>
+                <li data-route="gate investigate" data-state="investigate: reading" data-state-tr="investigate: okuyor"><span data-l="en">Claude Code reads the issue as data and explores the repository with read-only tools: git grep, git log, git blame.</span><span data-l="tr">Claude Code issue’yu veri olarak okuyor ve repoyu salt okunur araçlarla geziyor: git grep, git log, git blame.</span></li>
+                <li data-route="investigate repo" data-state="repo: git show f516257"><span data-l="en">It finds the commit that added a + 1 at the page boundary.</span><span data-l="tr">Sayfa sınırına + 1 ekleyen commit’i buluyor.</span></li>
+                <li data-route="investigate verify" data-state="verify: quotes match" data-state-tr="verify: alıntılar tutuyor"><span data-l="en">Its answer is JSON that must match a schema. A job with no AI checks every cited path, line range and quote on a fresh checkout.</span><span data-l="tr">Cevabı bir şemaya uyması gereken bir JSON. AI’sız bir job, alıntılanan her dosyayı, satır aralığını ve alıntıyı temiz bir checkout üzerinde kontrol ediyor.</span></li>
+                <li data-route="verify scan" data-state="scan: clean" data-state-tr="scan: temiz"><span data-l="en">The whole analysis is scanned for credential shapes before anything is posted.</span><span data-l="tr">Bir şey paylaşılmadan önce analizin tamamı kimlik bilgisi kalıplarına karşı taranıyor.</span></li>
+                <li data-route="scan comment reporter" data-tone="reply"><span data-l="en">One comment: the cause, the lines, a suggested fix and what it is not sure about.</span><span data-l="tr">Tek bir yorum: neden, satırlar, bir çözüm önerisi ve emin olmadığı noktalar.</span></li>
+              </ol>
+            </div>
+            <div class="arch-scene">
+              <p class="arch-scene-name"><span data-l="en">Feature request</span><span data-l="tr">Özellik isteği</span></p>
+              <ol class="arch-steps">
+                <li data-route="reporter issue"><span data-l="en">An issue labelled enhancement is opened.</span><span data-l="tr">enhancement etiketli bir issue açılıyor.</span></li>
+                <li data-route="issue gate skip" data-state="skip: enhancement"><span data-l="en">The gate leaves it alone before any AI runs. Nothing is spent.</span><span data-l="tr">Kapı, AI çalışmadan onu kenara bırakıyor. Hiçbir şey harcanmıyor.</span></li>
+              </ol>
+            </div>
+            <div class="arch-scene">
+              <p class="arch-scene-name"><span data-l="en">A citation fails</span><span data-l="tr">Tutmayan alıntı</span></p>
+              <ol class="arch-steps">
+                <li data-route="gate investigate"><span data-l="en">The investigation cites two line ranges and quotes them.</span><span data-l="tr">İnceleme iki satır aralığını gösteriyor ve alıntılıyor.</span></li>
+                <li data-route="investigate comment" data-stop="0.6"><span data-l="en">It cannot post anything itself: its token can only read, and it has no tool that writes.</span><span data-l="tr">Kendisi hiçbir şey paylaşamıyor: token’ı yalnızca okuyabiliyor ve yazan bir aracı yok.</span></li>
+                <li data-route="investigate verify" data-state="verify: line moved" data-state-tr="verify: satır kaymış"><span data-l="en">One quote is found a few lines lower. The line numbers are corrected.</span><span data-l="tr">Alıntılardan biri birkaç satır aşağıda bulunuyor. Satır numaraları düzeltiliyor.</span></li>
+                <li data-route="verify" data-state="verify: 1 set aside" data-state-tr="verify: 1 ayıklandı"><span data-l="en">The other is not in the file at all. That citation is set aside and the stated confidence goes down.</span><span data-l="tr">Diğeri dosyada hiç yok. O alıntı ayıklanıyor ve belirtilen güven düşürülüyor.</span></li>
+                <li data-route="verify scan comment reporter" data-tone="reply" data-state="comment: confidence lowered" data-state-tr="comment: güven düşük"><span data-l="en">Only what held up is published.</span><span data-l="tr">Yalnızca doğrulanan kısım yayımlanıyor.</span></li>
+              </ol>
+            </div>
+          </div>
+        </div>
+        <figcaption><span data-l="en">The model works only in the shaded band; below the dashed line, code checks and posts.</span><span data-l="tr">Model yalnızca gölgeli alanda çalışıyor; kesikli çizginin altında kod kontrol ediyor ve paylaşıyor.</span> <span class="arch-key" aria-hidden="true"></span><span data-l="en">request,</span><span data-l="tr">talep,</span> <span class="arch-key reply" aria-hidden="true"></span><span data-l="en">answer.</span><span data-l="tr">cevap.</span></figcaption>
+      </figure>
+    </section>
+
+    <nav class="row doc-next" aria-label="Work" data-en-label="Work" data-tr-label="İşler">
+      <p class="more"><a href="../../#isler">← <span data-l="en">All work</span><span data-l="tr">Tüm işler</span></a><a href="../second-brain-os/"><span data-l="en">Next: Second Brain OS</span><span data-l="tr">Sonraki: Second Brain OS</span><span class="go">→</span></a></p>
+    </nav>
+  </main>
+
+  <footer class="sea" id="iletisim">
+    <canvas class="caustics" aria-hidden="true"></canvas>
+    <div class="row">
+      <h2 class="label"><span data-l="en">Contact</span><span data-l="tr">İletişim</span></h2>
+      <p class="say"><span data-l="en">Want to work together? <em>Write to me.</em></span><span data-l="tr">Birlikte çalışmak ister misiniz? <em>Bana yazın.</em></span></p>
+      <dl class="pairs contact">
+        <dt><span data-l="en">Email</span><span data-l="tr">E-posta</span></dt>
+        <dd><a href="mailto:berkeakyildz@gmail.com">berkeakyildz@gmail.com</a></dd>
+        <dt>GitHub</dt>
+        <dd><a href="https://github.com/brkakyldz">github.com/brkakyldz</a></dd>
+        <dt>LinkedIn</dt>
+        <dd><a href="https://www.linkedin.com/in/berkeakyildiz/">linkedin.com/in/berkeakyildiz</a></dd>
+      </dl>
+    </div>
+    <div class="row colophon">
+      <p class="colophon-line"><span>Berke Akyıldız · 2026</span></p>
+    </div>
+  </footer>
+</body>
+</html>

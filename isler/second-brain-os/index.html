@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en" data-lang="en" data-title-tr="Second Brain OS — Berke Akyıldız">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Second Brain OS — Berke Akyıldız</title>
+  <script>(function(r){var q=/[?&]lang=(en|tr)\b/.exec(location.search),l=q?q[1]:null;try{if(q)localStorage.setItem("lang",l);else l=localStorage.getItem("lang")}catch(e){}r.dataset.lang=l==="tr"?"tr":"en";r.lang=r.dataset.lang;r.classList.add("js")})(document.documentElement)</script>
+  <meta name="description" content="Second Brain OS: a memory for coding agents you can read, correct and undo. An Obsidian vault and a Git repository at once, shared by Claude Code and Codex.">
+  <meta name="theme-color" content="#e9e3d7">
+  <link rel="canonical" href="https://brkakyldz.github.io/isler/second-brain-os/">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Second Brain OS — Berke Akyıldız">
+  <meta property="og:description" content="A memory for coding agents you can read, correct and undo. Plain Markdown; Git is the only database.">
+  <meta property="og:url" content="https://brkakyldz.github.io/isler/second-brain-os/">
+  <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400&family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..700&display=swap">
+  <link rel="stylesheet" href="../../assets/site.css">
+  <script src="../../assets/site.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#icerik"><span data-l="en">Skip to content</span><span data-l="tr">İçeriğe geç</span></a>
+  <div class="shade" aria-hidden="true"><img class="leaf-b" src="../../assets/leaves-b.svg" alt=""><img class="leaf-a" src="../../assets/leaves-a.svg" alt=""></div>
+
+  <header class="row masthead">
+    <p class="label name"><a href="../../">Berke Akyıldız</a></p>
+    <div class="masthead-line">
+      <nav class="nav" aria-label="Site">
+        <a href="../../#isler"><span data-l="en">Work</span><span data-l="tr">İşler</span></a>
+        <a href="../../hakkimda/"><span data-l="en">About</span><span data-l="tr">Hakkımda</span></a>
+        <a href="#iletisim"><span data-l="en">Contact</span><span data-l="tr">İletişim</span></a>
+      </nav>
+      <button class="lang" type="button" aria-label="Türkçe’ye geç" data-en-label="Türkçe’ye geç" data-tr-label="Switch to English"><span data-v="en">EN</span><span aria-hidden="true">/</span><span data-v="tr">TR</span></button>
+    </div>
+    <div class="horizon" aria-hidden="true"></div>
+  </header>
+
+  <main id="icerik" class="doc">
+    <header class="row doc-head">
+      <div class="label head-meta">
+        <p><a href="../../#isler"><span data-l="en">Work</span><span data-l="tr">İşler</span></a> · 2 / 4</p>
+        <p class="status"><span class="state run" aria-hidden="true"></span><span data-l="en">v1.1 · in daily use</span><span data-l="tr">v1.1 · her gün kullanımda</span></p>
+      </div>
+      <div>
+        <h1>Second Brain OS</h1>
+        <p class="standfirst"><span data-l="en">A memory for coding agents that you can read, correct and undo. It is an Obsidian vault and a Git repository at once, shared by Claude Code and Codex as equals. A session knows who you are and what you are working on the moment it starts, and writes down what it learned as ordinary files you commit.</span><span data-l="tr">Kodlama agent’ları için okuyabildiğin, düzeltebildiğin ve geri alabildiğin bir bellek. Aynı anda hem bir Obsidian vault’u hem bir Git reposu; Claude Code ve Codex eşit olarak kullanıyor. Bir session açıldığı anda kim olduğunu ve ne üzerinde çalıştığını biliyor, öğrendiklerini de commit edeceğin sıradan dosyalar olarak yazıyor.</span></p>
+        <p class="doc-links"><a href="https://github.com/brkakyldz/second-brain-os"><span data-l="en">Code</span><span data-l="tr">Kaynak kodu</span><span class="go up">↗</span></a></p>
+      </div>
+    </header>
+
+    <div class="row doc-show">
+      <figure class="wide stage">
+        <div class="screen">
+          <div class="term">
+            <p class="term-title" aria-hidden="true">~/vault</p>
+            <ol>
+              <li class="t-cmd">claude</li>
+              <li class="t-sys">◆ SessionStart hook · pull the vault · up to date</li>
+              <li class="t-sys">◆ core/ injected · IDENTITY.md  USER.md  MEMORY.md</li>
+              <li class="t-ask">Where does a project’s status live?</li>
+              <li class="t-tool">Read INDEX.md</li>
+              <li class="t-tool">Read docs/decisions/0045-project-execution-state-lives-in-the-repo.md</li>
+              <li class="t-say">In the project’s own repo: docs/CURRENT_STATE.md is the only file that states it.</li>
+              <li class="t-ask">Note that I review every plan before a build starts.</li>
+              <li class="t-tool">Write notes/plans-reviewed-before-build.md</li>
+              <li class="t-tool">git commit -- notes/plans-reviewed-before-build.md</li>
+            </ol>
+          </div>
+          <button class="screen-ctl" type="button"><i aria-hidden="true"></i><span>Pause</span></button>
+        </div>
+        <figcaption class="stage-caption"><span data-l="en">An illustrative session: the core is loaded at start, the rest is read only when a question needs it, and what is worth keeping is committed as a note.</span><span data-l="tr">Örnek bir session: çekirdek açılışta yükleniyor, gerisi yalnızca bir soru gerektirdiğinde okunuyor, saklamaya değer olan bir not olarak commit ediliyor.</span></figcaption>
+      </figure>
+    </div>
+
+    <div class="row doc-facts">
+      <dl class="pairs">
+        <dt><span data-l="en">Status</span><span data-l="tr">Durum</span></dt>
+        <dd><span data-l="en">v1.1, open template; the vault behind it has been in daily use since 18 August 2026</span><span data-l="tr">v1.1, açık şablon; arkasındaki vault 18 Ağustos 2026’dan beri her gün kullanımda</span></dd>
+        <dt><span data-l="en">Stack</span><span data-l="tr">Yığın</span></dt>
+        <dd class="mono">Markdown · YAML frontmatter · [[wikilinks]] · Git · Node.js · Claude Code · Codex · Obsidian</dd>
+        <dt><span data-l="en">Code</span><span data-l="tr">Kod</span></dt>
+        <dd><a href="https://github.com/brkakyldz/second-brain-os">github.com/brkakyldz/second-brain-os</a></dd>
+      </dl>
+    </div>
+
+    <section class="row brief" aria-labelledby="kisaca">
+      <header class="sec-head">
+        <p class="label num">01</p>
+        <h2 id="kisaca"><span data-l="en">In short</span><span data-l="tr">Kısaca</span></h2>
+      </header>
+      <dl class="pairs slab">
+        <dt>Problem</dt>
+        <dd><span data-l="en">Every new AI session starts from zero: the project’s context, past decisions and preferences have to be explained again, and an agent without them gives answers that sound right and are wrong for this project.</span><span data-l="tr">Her yeni AI session’ı sıfırdan başlıyor: projenin bağlamını, verilmiş kararları ve tercihleri yeniden anlatmak gerekiyor; bunlar olmadan agent makul görünen ama bu proje için yanlış cevaplar veriyor.</span></dd>
+        <dt><span data-l="en">What it does</span><span data-l="tr">Ne yapıyor</span></dt>
+        <dd><span data-l="en">Who you are and the facts that matter are loaded at every start; everything else is read when a question needs it. What the agent learns becomes a note on the spot, and you can open, fix or revert any of it.</span><span data-l="tr">Kim olduğun ve önemli bilgiler her açılışta yükleniyor; gerisi bir soru gerektirdiğinde okunuyor. Agent’ın öğrendiği şey hemen bir not oluyor; herhangi birini açabilir, düzeltebilir ya da geri alabilirsin.</span></dd>
+        <dt><span data-l="en">Key decision</span><span data-l="tr">Temel karar</span></dt>
+        <dd><span data-l="en">No database, vector store or server. Memory is plain Markdown in Git, and a project’s status lives in its own repo, committed with the code, not in the vault.</span><span data-l="tr">Veritabanı, vector store ya da sunucu yok. Bellek Git’teki düz Markdown dosyaları; bir projenin durumu ise vault’ta değil, kodla birlikte commit edilen kendi reposunda duruyor.</span></dd>
+      </dl>
+    </section>
+
+    <section class="row prose" aria-labelledby="nasil-calisir">
+      <header class="sec-head">
+        <p class="label num">02</p>
+        <h2 id="nasil-calisir"><span data-l="en">How it works</span><span data-l="tr">Nasıl çalışır</span></h2>
+      </header>
+      <figure class="wide arch">
+        <div class="arch-body">
+          <svg class="arch-map" viewBox="0 0 420 430" role="img" aria-labelledby="arch-sb-t arch-sb-d">
+            <title id="arch-sb-t">Second Brain OS’s architecture</title>
+            <desc id="arch-sb-d">At the top, inside the shaded band, a session in Claude Code or Codex reads and decides. Below the dashed line there is no model, only files, Node and Git. A SessionStart hook pulls the vault and injects core/ at every start. Notes are read on demand through INDEX.md and logs are searched last. The session writes notes directly; sources in raw/ become notes through /ingest; each task commits its own files to Git. A project’s status lives in the project’s own repository.</desc>
+            <g class="arch-zones">
+              <rect class="zone" x="0" y="0" width="420" height="96" rx="2"/>
+              <path class="border" d="M0 96H420"/>
+              <text class="zone-label" x="72" y="88"><tspan data-l="en">model · decides</tspan><tspan data-l="tr">model · karar verir</tspan></text>
+              <text class="zone-label" x="72" y="114"><tspan data-l="en">files · Git</tspan><tspan data-l="tr">dosyalar · Git</tspan></text>
+            </g>
+            <g class="arch-edges">
+              <path class="edge" data-edge="session hook" d="M210 48V152"/>
+              <path class="edge" data-edge="hook core" d="M210 152V228"/>
+              <path class="edge" data-edge="core notes" d="M210 228V308"/>
+              <path class="edge" data-edge="notes logs" d="M210 308V388"/>
+              <path class="edge" data-edge="session notes" d="M60 48V296Q60 308 72 308H210"/>
+              <path class="edge" data-edge="raw notes" d="M60 388V320Q60 308 72 308H210"/>
+              <path class="edge" data-edge="notes git" d="M210 308H358V388"/>
+              <path class="edge" data-edge="session repo" d="M358 48V228"/>
+              <text class="edge-label" x="218" y="273">INDEX.md</text>
+              <text class="edge-label" x="68" y="352">/ingest</text>
+              <text class="edge-label" x="296" y="302">commit</text>
+            </g>
+            <g class="arch-nodes">
+              <g data-node="session">
+                <rect class="box" x="40" y="24" width="340" height="48" rx="3"/>
+                <text class="nm" x="210" y="44" text-anchor="middle">Session</text>
+                <text class="sub" x="210" y="61" text-anchor="middle">Claude Code · Codex</text>
+              </g>
+              <g data-node="hook">
+                <rect class="box" x="135" y="128" width="150" height="48" rx="3"/>
+                <text class="nm" x="210" y="148" text-anchor="middle">Hook</text>
+                <text class="sub" x="210" y="165" text-anchor="middle">SessionStart · pull</text>
+              </g>
+              <g data-node="core">
+                <rect class="box" x="135" y="204" width="150" height="48" rx="3"/>
+                <text class="nm" x="210" y="224" text-anchor="middle">core/</text>
+                <text class="sub" x="210" y="241" text-anchor="middle"><tspan data-l="en">every start</tspan><tspan data-l="tr">her açılışta</tspan></text>
+              </g>
+              <g data-node="repo">
+                <rect class="box" x="300" y="204" width="116" height="48" rx="3"/>
+                <text class="nm" x="358" y="224" text-anchor="middle"><tspan data-l="en">Project repo</tspan><tspan data-l="tr">Proje reposu</tspan></text>
+                <text class="sub" x="358" y="241" text-anchor="middle">CURRENT_STATE.md</text>
+              </g>
+              <g data-node="notes">
+                <rect class="box" x="135" y="284" width="150" height="48" rx="3"/>
+                <text class="nm" x="210" y="304" text-anchor="middle">notes/</text>
+                <text class="sub" x="210" y="321" text-anchor="middle"><tspan data-l="en">on demand</tspan><tspan data-l="tr">gerektiğinde</tspan></text>
+              </g>
+              <g data-node="logs">
+                <rect class="box" x="135" y="364" width="150" height="48" rx="3"/>
+                <text class="nm" x="210" y="384" text-anchor="middle">logs/</text>
+                <text class="sub" x="210" y="401" text-anchor="middle"><tspan data-l="en">searched last</tspan><tspan data-l="tr">en son aranır</tspan></text>
+              </g>
+              <g data-node="raw">
+                <rect class="box" x="16" y="364" width="88" height="48" rx="3"/>
+                <text class="nm" x="60" y="384" text-anchor="middle">raw/</text>
+                <text class="sub" x="60" y="401" text-anchor="middle"><tspan data-l="en">your sources</tspan><tspan data-l="tr">kaynakların</tspan></text>
+              </g>
+              <g data-node="git">
+                <path class="box" d="M304 370V408A54 6 0 0 0 412 408V370"/>
+                <ellipse class="box" cx="358" cy="370" rx="54" ry="6"/>
+                <text class="nm" x="358" y="391" text-anchor="middle">Git</text>
+                <text class="sub" x="358" y="405" text-anchor="middle"><tspan data-l="en">only database</tspan><tspan data-l="tr">tek veritabanı</tspan></text>
+              </g>
+            </g>
+          </svg>
+          <div class="arch-panel">
+            <div class="arch-scene">
+              <p class="arch-scene-name"><span data-l="en">Start</span><span data-l="tr">Açılış</span></p>
+              <ol class="arch-steps">
+                <li data-route="session hook"><span data-l="en">A session starts in Claude Code or Codex. Both run the same SessionStart hook.</span><span data-l="tr">Claude Code ya da Codex’te bir session açılıyor. İkisi de aynı SessionStart hook’unu çalıştırıyor.</span></li>
+                <li data-route="hook core" data-state="core: injected" data-state-tr="core: yüklendi"><span data-l="en">The hook pulls the vault and injects core/: who you are, how to work with you and the facts that matter. It never commits.</span><span data-l="tr">Hook vault’u çekiyor ve core/ katmanını yüklüyor: kim olduğun, seninle nasıl çalışılacağı ve önemli bilgiler. Hiç commit atmıyor.</span></li>
+                <li data-route="core hook session" data-tone="reply"><span data-l="en">The session starts already knowing who you are and what you are working on.</span><span data-l="tr">Session, kim olduğunu ve ne üzerinde çalıştığını bilerek başlıyor.</span></li>
+              </ol>
+            </div>
+            <div class="arch-scene">
+              <p class="arch-scene-name"><span data-l="en">A question</span><span data-l="tr">Bir soru</span></p>
+              <ol class="arch-steps">
+                <li data-route="session notes" data-state="notes: 2 pages" data-state-tr="notes: 2 sayfa"><span data-l="en">A question needs more than the core. The agent reads INDEX.md and opens only the pages it points at.</span><span data-l="tr">Bir soru çekirdekten fazlasını gerektiriyor. Agent INDEX.md’yi okuyor ve yalnızca gösterdiği sayfaları açıyor.</span></li>
+                <li data-route="notes logs" data-state="logs: full-text search" data-state-tr="logs: tam metin arama"><span data-l="en">Only when the notes do not answer are the session logs searched.</span><span data-l="tr">Ancak notlar cevap vermezse session kayıtları aranıyor.</span></li>
+                <li data-route="logs notes session" data-tone="reply"><span data-l="en">The answer comes from plain Markdown files. No vector store, no database.</span><span data-l="tr">Cevap düz Markdown dosyalarından geliyor. Vector store yok, veritabanı yok.</span></li>
+              </ol>
+            </div>
+            <div class="arch-scene">
+              <p class="arch-scene-name"><span data-l="en">Writing</span><span data-l="tr">Yazma</span></p>
+              <ol class="arch-steps">
+                <li data-route="session notes" data-state="notes: new note" data-state-tr="notes: yeni not"><span data-l="en">Something worth keeping comes up while you talk. It becomes a note on the spot; nothing waits in a queue.</span><span data-l="tr">Konuşurken saklamaya değer bir şey çıkıyor. Hemen bir not oluyor; hiçbir şey kuyrukta beklemiyor.</span></li>
+                <li data-route="raw notes" data-state="raw: 1 source" data-state-tr="raw: 1 kaynak"><span data-l="en">A source you drop in raw/ becomes notes through /ingest. The agent reads raw/ but never writes there.</span><span data-l="tr">raw/ klasörüne bıraktığın bir kaynak /ingest ile notlara dönüşüyor. Agent raw/’u okuyor ama oraya hiç yazmıyor.</span></li>
+                <li data-route="notes git" data-state="git: 1 commit"><span data-l="en">The task commits exactly the files it wrote, by name, so two sessions can share one checkout.</span><span data-l="tr">Görev yalnızca yazdığı dosyaları adlarıyla commit ediyor; böylece iki session aynı checkout’u paylaşabiliyor.</span></li>
+                <li data-route="git" data-state="git: revert"><span data-l="en">git log is the audit trail; a wrong write is undone with git revert.</span><span data-l="tr">git log denetim kaydı; yanlış bir yazma git revert ile geri alınıyor.</span></li>
+              </ol>
+            </div>
+            <div class="arch-scene">
+              <p class="arch-scene-name"><span data-l="en">A project</span><span data-l="tr">Bir proje</span></p>
+              <ol class="arch-steps">
+                <li data-route="session repo" data-state="repo: read" data-state-tr="repo: okundu"><span data-l="en">In a project, the session reads that repo’s AGENTS.md and docs/CURRENT_STATE.md before planning.</span><span data-l="tr">Bir projede session, plan yapmadan önce o reponun AGENTS.md ve docs/CURRENT_STATE.md dosyalarını okuyor.</span></li>
+                <li data-route="session repo" data-state="repo: state updated" data-state-tr="repo: durum güncel"><span data-l="en">At the end, /closeout brings the state file up to date and commits only the task’s files. Status is never copied into the vault.</span><span data-l="tr">Sonunda /closeout durum dosyasını güncelliyor ve yalnızca görevin dosyalarını commit ediyor. Durum vault’a hiç kopyalanmıyor.</span></li>
+                <li data-route="session notes" data-state="notes: project card" data-state-tr="notes: proje kartı"><span data-l="en">The vault keeps what outlives the project: one thin card per project, and the lessons it taught.</span><span data-l="tr">Vault projeden uzun yaşayanı tutuyor: her proje için ince bir kart ve projenin öğrettikleri.</span></li>
+              </ol>
+            </div>
+          </div>
+        </div>
+        <figcaption><span data-l="en">A model works only in the shaded band; below the dashed line there are only plain files, Node and Git.</span><span data-l="tr">Model yalnızca gölgeli alanda çalışıyor; kesikli çizginin altında yalnızca düz dosyalar, Node ve Git var.</span> <span class="arch-key" aria-hidden="true"></span><span data-l="en">request,</span><span data-l="tr">istek,</span> <span class="arch-key reply" aria-hidden="true"></span><span data-l="en">answer.</span><span data-l="tr">cevap.</span></figcaption>
+      </figure>
+    </section>
+
+    <nav class="row doc-next" aria-label="Work" data-en-label="Work" data-tr-label="İşler">
+      <p class="more"><a href="../issuepilot/">← IssuePilot</a><a href="../hotel-operations-agent/"><span data-l="en">Next: Hotel Operations Agent</span><span data-l="tr">Sonraki: Hotel Operations Agent</span><span class="go">→</span></a></p>
+    </nav>
+  </main>
+
+  <footer class="sea" id="iletisim">
+    <canvas class="caustics" aria-hidden="true"></canvas>
+    <div class="row">
+      <h2 class="label"><span data-l="en">Contact</span><span data-l="tr">İletişim</span></h2>
+      <p class="say"><span data-l="en">Want to work together? <em>Write to me.</em></span><span data-l="tr">Birlikte çalışmak ister misiniz? <em>Bana yazın.</em></span></p>
+      <dl class="pairs contact">
+        <dt><span data-l="en">Email</span><span data-l="tr">E-posta</span></dt>
+        <dd><a href="mailto:berkeakyildz@gmail.com">berkeakyildz@gmail.com</a></dd>
+        <dt>GitHub</dt>
+        <dd><a href="https://github.com/brkakyldz">github.com/brkakyldz</a></dd>
+        <dt>LinkedIn</dt>
+        <dd><a href="https://www.linkedin.com/in/berkeakyildiz/">linkedin.com/in/berkeakyildiz</a></dd>
+      </dl>
+    </div>
+    <div class="row colophon">
+      <p class="colophon-line"><span>Berke Akyıldız · 2026</span></p>
+    </div>
+  </footer>
+</body>
+</html>

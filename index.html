@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en" data-lang="en" data-title-tr="Berke Akyıldız — AI agent’ları ve etraflarındaki sistemler">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Berke Akyıldız — AI agents and the systems around them</title>
+  <script>(function(r){var q=/[?&]lang=(en|tr)\b/.exec(location.search),l=q?q[1]:null;try{if(q)localStorage.setItem("lang",l);else l=localStorage.getItem("lang")}catch(e){}r.dataset.lang=l==="tr"?"tr":"en";r.lang=r.dataset.lang;r.classList.add("js")})(document.documentElement)</script>
+  <meta name="description" content="Berke Akyıldız builds AI agents and the systems around them: tool use, memory, evaluation and tracing. Projects: IssuePilot, Second Brain OS, Hotel Operations Agent, AI News Digest.">
+  <meta name="theme-color" content="#e9e3d7">
+  <link rel="canonical" href="https://brkakyldz.github.io/">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="tr_TR">
+  <meta property="og:title" content="Berke Akyıldız — AI agents and the systems around them">
+  <meta property="og:description" content="Tool use, memory, evaluation and tracing, from a first prototype to something that runs and can be tested.">
+  <meta property="og:url" content="https://brkakyldz.github.io/">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400&family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..700&display=swap">
+  <link rel="stylesheet" href="assets/site.css">
+  <script src="assets/site.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#icerik"><span data-l="en">Skip to content</span><span data-l="tr">İçeriğe geç</span></a>
+  <div class="shade" aria-hidden="true"><img class="leaf-b" src="assets/leaves-b.svg" alt=""><img class="leaf-a" src="assets/leaves-a.svg" alt=""></div>
+
+  <header class="row masthead">
+    <p class="label name"><a href="./" aria-current="page">Berke Akyıldız</a></p>
+    <div class="masthead-line">
+      <nav class="nav" aria-label="Site">
+        <a href="#isler"><span data-l="en">Work</span><span data-l="tr">İşler</span></a>
+        <a href="hakkimda/"><span data-l="en">About</span><span data-l="tr">Hakkımda</span></a>
+        <a href="#iletisim"><span data-l="en">Contact</span><span data-l="tr">İletişim</span></a>
+      </nav>
+      <button class="lang" type="button" aria-label="Türkçe’ye geç" data-en-label="Türkçe’ye geç" data-tr-label="Switch to English"><span data-v="en">EN</span><span aria-hidden="true">/</span><span data-v="tr">TR</span></button>
+    </div>
+    <div class="horizon" aria-hidden="true"></div>
+  </header>
+
+  <main id="icerik">
+    <section class="row opening" aria-label="Intro" data-en-label="Intro" data-tr-label="Giriş">
+      <h1 class="intro-name">Berke Akyıldız</h1>
+      <p class="role"><span data-l="en">AI agents · LLM evals · observability</span><span data-l="tr">AI agent’ları · LLM değerlendirme · izlenebilirlik</span></p>
+      <p class="lead"><span data-l="en">I build LLM agents and the software around them: the tools a model gets, the state it keeps, and how it is evaluated and traced.</span><span data-l="tr">LLM agent’larını ve etraflarındaki yazılımı kuruyorum: modelin kullandığı araçlar, tuttuğu durum, nasıl değerlendirilip izlendiği.</span></p>
+      <p class="intro-links"><a href="https://github.com/brkakyldz">GitHub<span class="go up">↗</span></a><a href="https://www.linkedin.com/in/berkeakyildiz/">LinkedIn<span class="go up">↗</span></a><a href="mailto:berkeakyildz@gmail.com"><span data-l="en">Email</span><span data-l="tr">E-posta</span></a></p>
+    </section>
+
+    <section class="row" id="isler" aria-labelledby="isler-baslik">
+      <header class="sec-head">
+        <p class="label num">01</p>
+        <h2 id="isler-baslik"><span data-l="en">Work</span><span data-l="tr">İşler</span></h2>
+      </header>
+
+      <!-- IssuePilot -->
+      <article class="span work" id="issuepilot">
+        <div class="label work-label">
+          <p class="status"><span class="state run" aria-hidden="true"></span><span data-l="en">v1.3 · released</span><span data-l="tr">v1.3 · yayında</span></p>
+        </div>
+        <div>
+          <h3><a href="isler/issuepilot/">IssuePilot</a></h3>
+          <p class="summary"><span data-l="en">Investigates every new GitHub issue with Claude Code and posts one comment: the likely cause, where it is in the code, a suggested fix and what it could not verify. Every file, line and quote it cites is checked against the code before anything is posted.</span><span data-l="tr">Her yeni GitHub issue’sunu Claude Code ile inceliyor ve tek bir yorum bırakıyor: olası neden, kodda nerede olduğu, bir çözüm önerisi ve doğrulayamadığı şeyler. Yorumda geçen her dosya, satır ve alıntı, paylaşılmadan önce koda karşı kontrol ediliyor.</span></p>
+          <p class="more"><a href="isler/issuepilot/"><span data-l="en">How it works</span><span data-l="tr">Nasıl çalışıyor</span><span class="go">→</span></a><a href="https://github.com/brkakyldz/IssuePilot"><span data-l="en">Code</span><span data-l="tr">Kaynak kodu</span><span class="go up">↗</span></a></p>
+        </div>
+        <figure class="wide stage reveal">
+          <div class="screen">
+            <video src="assets/shots/issuepilot/preview.mp4" poster="assets/shots/issuepilot/preview-poster.jpg" width="1280" height="720" muted loop playsinline preload="none" aria-label="IssuePilot at work on a real issue" data-en-label="IssuePilot at work on a real issue" data-tr-label="IssuePilot gerçek bir issue üzerinde çalışırken"></video>
+            <span class="screen-time" aria-hidden="true"></span>
+            <button class="screen-ctl" type="button"><i aria-hidden="true"></i><span>Pause</span></button>
+          </div>
+          <figcaption class="stage-caption"><span data-l="en">A real run on the demo repository: an issue is opened, investigated, checked and answered.</span><span data-l="tr">Demo reposunda gerçek bir çalıştırma: issue açılıyor, inceleniyor, kontrol ediliyor ve cevaplanıyor.</span></figcaption>
+        </figure>
+      </article>
+
+      <!-- Second Brain OS -->
+      <article class="span work" id="second-brain-os">
+        <div class="label work-label">
+          <p class="status"><span class="state run" aria-hidden="true"></span><span data-l="en">v1.1 · in daily use</span><span data-l="tr">v1.1 · her gün kullanımda</span></p>
+        </div>
+        <div>
+          <h3><a href="isler/second-brain-os/">Second Brain OS</a></h3>
+          <p class="summary"><span data-l="en">A memory for coding agents that you can read, correct and undo. It is an Obsidian vault and a Git repository at once, shared by Claude Code and Codex: plain Markdown, and Git is the only database.</span><span data-l="tr">Kodlama agent’ları için okuyabildiğin, düzeltebildiğin ve geri alabildiğin bir bellek. Aynı anda hem bir Obsidian vault’u hem bir Git reposu; Claude Code ve Codex ortak kullanıyor. İçerik düz Markdown, tek veritabanı Git.</span></p>
+          <p class="more"><a href="isler/second-brain-os/"><span data-l="en">How it works</span><span data-l="tr">Nasıl çalışıyor</span><span class="go">→</span></a><a href="https://github.com/brkakyldz/second-brain-os"><span data-l="en">Code</span><span data-l="tr">Kaynak kodu</span><span class="go up">↗</span></a></p>
+        </div>
+        <figure class="wide stage reveal">
+          <div class="screen">
+            <div class="term">
+              <p class="term-title" aria-hidden="true">~/vault</p>
+              <ol>
+                <li class="t-cmd">claude</li>
+                <li class="t-sys">◆ SessionStart hook · pull the vault · up to date</li>
+                <li class="t-sys">◆ core/ injected · IDENTITY.md  USER.md  MEMORY.md</li>
+                <li class="t-ask">Where does a project’s status live?</li>
+                <li class="t-tool">Read INDEX.md</li>
+                <li class="t-tool">Read docs/decisions/0045-project-execution-state-lives-in-the-repo.md</li>
+                <li class="t-say">In the project’s own repo: docs/CURRENT_STATE.md is the only file that states it.</li>
+                <li class="t-ask">Note that I review every plan before a build starts.</li>
+                <li class="t-tool">Write notes/plans-reviewed-before-build.md</li>
+                <li class="t-tool">git commit -- notes/plans-reviewed-before-build.md</li>
+              </ol>
+            </div>
+            <button class="screen-ctl" type="button"><i aria-hidden="true"></i><span>Pause</span></button>
+          </div>
+          <figcaption class="stage-caption"><span data-l="en">An illustrative session: the core is loaded at start, the rest is read only when a question needs it, and what is worth keeping is committed as a note.</span><span data-l="tr">Örnek bir session: çekirdek açılışta yükleniyor, gerisi yalnızca bir soru gerektirdiğinde okunuyor, saklamaya değer olan bir not olarak commit ediliyor.</span></figcaption>
+        </figure>
+      </article>
+
+      <!-- Hotel Operations Agent -->
+      <article class="span work" id="hotel-operations-agent">
+        <div class="label work-label">
+          <p class="status"><span class="state run" aria-hidden="true"></span><span data-l="en">In development</span><span data-l="tr">Geliştirme sürüyor</span></p>
+        </div>
+        <div>
+          <h3><a href="isler/hotel-operations-agent/">Hotel Operations Agent</a></h3>
+          <p class="summary"><span data-l="en">An AI concierge for a simulated hotel. Guests write in any language, the agent turns requests into real records, the hotel’s rules run in code, and anything that needs a manager waits for one. When the hotel changes, the guest is told without asking.</span><span data-l="tr">Kurgusal bir otel için AI concierge. Misafir istediği dilde yazıyor, agent talebi otelin kayıtlarına işliyor, otelin kuralları kodda çalışıyor, yönetici onayı gereken iş yöneticiyi bekliyor. Otelde bir şey değiştiğinde misafir sormadan haber alıyor.</span></p>
+          <p class="more"><a href="isler/hotel-operations-agent/"><span data-l="en">How it works</span><span data-l="tr">Nasıl çalışıyor</span><span class="go">→</span></a><a href="https://github.com/brkakyldz/Hotel_Operations_Agent"><span data-l="en">Code</span><span data-l="tr">Kaynak kodu</span><span class="go up">↗</span></a></p>
+        </div>
+        <figure class="wide stage reveal">
+          <div class="screen">
+            <video src="assets/shots/hotel-operations-agent/preview.mp4" poster="assets/shots/hotel-operations-agent/preview-poster.jpg" width="1280" height="800" muted loop playsinline preload="none" aria-label="The hotel agent at work" data-en-label="The hotel agent at work" data-tr-label="Otel agent’ı iş başında"></video>
+            <span class="screen-time" aria-hidden="true"></span>
+            <button class="screen-ctl" type="button"><i aria-hidden="true"></i><span>Pause</span></button>
+          </div>
+          <figcaption class="stage-caption"><span data-l="en">A late checkout request, the manager’s approval and the hotel writing to the guest first. Replies come from the real model; shown at 1.5× speed.</span><span data-l="tr">Bir geç çıkış talebi, yöneticinin onayı ve otelin misafire ilk yazması. Cevaplar gerçek modelden; 1,5 kat hızda.</span></figcaption>
+        </figure>
+      </article>
+
+      <!-- AI News Digest -->
+      <article class="span work" id="ai-news-digest">
+        <div class="label work-label">
+          <p class="status"><span class="state run" aria-hidden="true"></span><span data-l="en">Complete, running</span><span data-l="tr">Tamamlandı, çalışıyor</span></p>
+        </div>
+        <div>
+          <h3><a href="isler/ai-digest/">AI News Digest</a></h3>
+          <p class="summary"><span data-l="en">The day’s AI news from sixteen feeds, deduplicated, summarised and ranked into one bulletin in English and Turkish. Polling the feeds is free; a bulletin costs money, so it waits for someone to press Run.</span><span data-l="tr">On altı kaynaktan günün AI haberleri: tekrarlar ayıklanıyor, haberler özetlenip sıralanıyor ve İngilizce ile Türkçe tek bir bülten çıkıyor. Kaynak taraması ücretsiz; bülten para harcadığı için birinin Run’a basmasını bekliyor.</span></p>
+          <p class="more"><a href="isler/ai-digest/"><span data-l="en">How it works</span><span data-l="tr">Nasıl çalışıyor</span><span class="go">→</span></a><a href="https://github.com/brkakyldz/ai-news-digest"><span data-l="en">Code</span><span data-l="tr">Kaynak kodu</span><span class="go up">↗</span></a></p>
+        </div>
+        <figure class="wide stage reveal">
+          <div class="screen">
+            <video src="assets/shots/ai-digest/preview.mp4" poster="assets/shots/ai-digest/preview-poster.jpg" width="1280" height="830" muted loop playsinline preload="none" aria-label="A tour of AI News Digest" data-en-label="A tour of AI News Digest" data-tr-label="AI News Digest’te kısa bir tur"></video>
+            <span class="screen-time" aria-hidden="true"></span>
+            <button class="screen-ctl" type="button"><i aria-hidden="true"></i><span>Pause</span></button>
+          </div>
+          <figcaption class="stage-caption"><span data-l="en">Today’s bulletin, the same stories in Turkish, the light theme, search, and one run node by node.</span><span data-l="tr">Günün bülteni, aynı haberlerin Türkçesi, açık tema, arama ve bir çalıştırmanın adım adım dökümü.</span></figcaption>
+        </figure>
+      </article>
+    </section>
+
+    <section class="row prose" id="hakkimda" aria-labelledby="hakkimda-baslik">
+      <header class="sec-head">
+        <p class="label num">02</p>
+        <h2 id="hakkimda-baslik"><span data-l="en">About</span><span data-l="tr">Hakkımda</span></h2>
+      </header>
+      <p><span data-l="en">I build agent systems end to end in Python, with the OpenAI Agents SDK, LangGraph and the OpenAI and Anthropic APIs. I keep the model’s part small and the rules in code, and I don’t call a system done until an evaluation says so. Every project here is open source.</span><span data-l="tr">Agent sistemlerini Python’la, OpenAI Agents SDK, LangGraph ve OpenAI ile Anthropic API’leriyle uçtan uca kuruyorum. Modelin payını küçük, kuralları kodda tutuyorum; bir değerlendirme göstermeden bir sisteme “bitti” demiyorum. Buradaki projelerin hepsinin kodu açık.</span></p>
+      <p class="further"><a href="hakkimda/"><span data-l="en">About and CV</span><span data-l="tr">Hakkımda ve özgeçmiş</span><span class="go">→</span></a></p>
+    </section>
+  </main>
+
+  <footer class="sea" id="iletisim">
+    <canvas class="caustics" aria-hidden="true"></canvas>
+    <div class="row">
+      <h2 class="label"><span data-l="en">Contact</span><span data-l="tr">İletişim</span></h2>
+      <p class="say"><span data-l="en">Want to work together? <em>Write to me.</em></span><span data-l="tr">Birlikte çalışmak ister misiniz? <em>Bana yazın.</em></span></p>
+      <dl class="pairs contact">
+        <dt><span data-l="en">Email</span><span data-l="tr">E-posta</span></dt>
+        <dd><a href="mailto:berkeakyildz@gmail.com">berkeakyildz@gmail.com</a></dd>
+        <dt>GitHub</dt>
+        <dd><a href="https://github.com/brkakyldz">github.com/brkakyldz</a></dd>
+        <dt>LinkedIn</dt>
+        <dd><a href="https://www.linkedin.com/in/berkeakyildiz/">linkedin.com/in/berkeakyildiz</a></dd>
+      </dl>
+    </div>
+    <div class="row colophon">
+      <p class="colophon-line"><span>Berke Akyıldız · 2026</span></p>
+    </div>
+  </footer>
+</body>
+</html>

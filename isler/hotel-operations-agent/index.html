@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en" data-lang="en" data-title-tr="Hotel Operations Agent — Berke Akyıldız">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hotel Operations Agent — Berke Akyıldız</title>
+  <script>(function(r){var q=/[?&]lang=(en|tr)\b/.exec(location.search),l=q?q[1]:null;try{if(q)localStorage.setItem("lang",l);else l=localStorage.getItem("lang")}catch(e){}r.dataset.lang=l==="tr"?"tr":"en";r.lang=r.dataset.lang;r.classList.add("js")})(document.documentElement)</script>
+  <meta name="description" content="Hotel Operations Agent: an AI concierge for a simulated hotel on the OpenAI Agents SDK, with typed tools, rules in code and durable manager approvals.">
+  <meta name="theme-color" content="#e9e3d7">
+  <link rel="canonical" href="https://brkakyldz.github.io/isler/hotel-operations-agent/">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Hotel Operations Agent — Berke Akyıldız">
+  <meta property="og:description" content="A fictional hotel with a real agent runtime: the model proposes, code decides, and the manager approves.">
+  <meta property="og:url" content="https://brkakyldz.github.io/isler/hotel-operations-agent/">
+  <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400&family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..700&display=swap">
+  <link rel="stylesheet" href="../../assets/site.css">
+  <script src="../../assets/site.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#icerik"><span data-l="en">Skip to content</span><span data-l="tr">İçeriğe geç</span></a>
+  <div class="shade" aria-hidden="true"><img class="leaf-b" src="../../assets/leaves-b.svg" alt=""><img class="leaf-a" src="../../assets/leaves-a.svg" alt=""></div>
+
+  <header class="row masthead">
+    <p class="label name"><a href="../../">Berke Akyıldız</a></p>
+    <div class="masthead-line">
+      <nav class="nav" aria-label="Site">
+        <a href="../../#isler"><span data-l="en">Work</span><span data-l="tr">İşler</span></a>
+        <a href="../../hakkimda/"><span data-l="en">About</span><span data-l="tr">Hakkımda</span></a>
+        <a href="#iletisim"><span data-l="en">Contact</span><span data-l="tr">İletişim</span></a>
+      </nav>
+      <button class="lang" type="button" aria-label="Türkçe’ye geç" data-en-label="Türkçe’ye geç" data-tr-label="Switch to English"><span data-v="en">EN</span><span aria-hidden="true">/</span><span data-v="tr">TR</span></button>
+    </div>
+    <div class="horizon" aria-hidden="true"></div>
+  </header>
+
+  <main id="icerik" class="doc">
+    <header class="row doc-head">
+      <div class="label head-meta">
+        <p><a href="../../#isler"><span data-l="en">Work</span><span data-l="tr">İşler</span></a> · 3 / 4</p>
+        <p class="status"><span class="state run" aria-hidden="true"></span><span data-l="en">In development</span><span data-l="tr">Geliştirme sürüyor</span></p>
+      </div>
+      <div>
+        <h1>Hotel Operations Agent</h1>
+        <p class="standfirst"><span data-l="en">A fictional hotel with a real agent runtime. Guests chat with an AI concierge in any language; it turns their requests into the hotel’s records, the rules run in code, and anything that needs a manager waits for one. The guests and the hotel are made up; the agent and everything it does are real.</span><span data-l="tr">Kurgusal bir otel, gerçek bir agent çalışma ortamı. Misafirler istedikleri dilde bir AI concierge ile yazışıyor; o da talepleri otelin kayıtlarına işliyor, kurallar kodda çalışıyor, yönetici onayı gereken iş yöneticiyi bekliyor. Misafirler ve otel kurgusal; agent ve yaptığı her iş gerçek.</span></p>
+        <p class="doc-links"><a href="https://github.com/brkakyldz/Hotel_Operations_Agent"><span data-l="en">Code</span><span data-l="tr">Kaynak kodu</span><span class="go up">↗</span></a></p>
+      </div>
+    </header>
+
+    <div class="row doc-show">
+      <div class="wide gallery">
+        <div class="gallery-slides">
+          <figure class="slide" data-thumb="../../assets/shots/hotel-operations-agent/film-thumb.webp">
+            <div class="frame dark"><video src="../../assets/shots/hotel-operations-agent/film.mp4" poster="../../assets/shots/hotel-operations-agent/film-poster.jpg" width="1920" height="1200" controls playsinline preload="none"></video></div>
+            <figcaption><span data-l="en">The agent at work: a late checkout request, the manager’s approval, the hotel writing to the guest first, a repair reported in Turkish and an attempt to claim authority. Replies come from the real model.</span><span data-l="tr">Agent iş başında: geç çıkış talebi, yönetici onayı, otelin misafire kendiliğinden yazması, Türkçe bir arıza bildirimi ve bir yetki denemesi. Cevaplar gerçek modelden.</span></figcaption>
+          </figure>
+          <figure class="slide" data-thumb="../../assets/shots/hotel-operations-agent/review-thumb.webp">
+            <a class="frame dark" href="../../assets/shots/hotel-operations-agent/review.webp"><img src="../../assets/shots/hotel-operations-agent/review.webp" width="2576" height="1272" loading="lazy" decoding="async" alt="A late checkout becomes a manager review" data-en-alt="A late checkout becomes a manager review" data-tr-alt="Geç çıkış bir yönetici onayına dönüşüyor"></a>
+            <figcaption><span data-l="en">Emma asks to leave at 15:00. The rule needs a manager, so the agent files a review and her checkout stays at 12:00.</span><span data-l="tr">Emma 15:00’te çıkmak istiyor. Kural yönetici onayı istediği için agent bir onay talebi açıyor; çıkış saati 12:00’de kalıyor.</span></figcaption>
+          </figure>
+          <figure class="slide" data-thumb="../../assets/shots/hotel-operations-agent/hotel-update-thumb.webp">
+            <a class="frame dark" href="../../assets/shots/hotel-operations-agent/hotel-update.webp"><img src="../../assets/shots/hotel-operations-agent/hotel-update.webp" width="2576" height="1272" loading="lazy" decoding="async" alt="The hotel tells the guest first" data-en-alt="The hotel tells the guest first" data-tr-alt="Otel misafire ilk o yazıyor"></a>
+            <figcaption><span data-l="en">The manager approves; checkout moves to 15:00 and the agent tells Emma before she asks.</span><span data-l="tr">Yönetici onaylıyor; çıkış 15:00’e alınıyor ve agent Emma’ya o sormadan haber veriyor.</span></figcaption>
+          </figure>
+          <figure class="slide" data-thumb="../../assets/shots/hotel-operations-agent/board-waiting-thumb.webp">
+            <a class="frame dark" href="../../assets/shots/hotel-operations-agent/board-waiting.webp"><img src="../../assets/shots/hotel-operations-agent/board-waiting.webp" width="2568" height="1028" loading="lazy" decoding="async" alt="The hotel board" data-en-alt="The hotel board" data-tr-alt="Otel panosu"></a>
+            <figcaption><span data-l="en">The hotel board shows each room as the rules see it right now; Emma’s request is waiting for the manager.</span><span data-l="tr">Otel panosu her odayı kuralların o anki gözüyle gösteriyor; Emma’nın talebi yöneticiyi bekliyor.</span></figcaption>
+          </figure>
+          <figure class="slide" data-thumb="../../assets/shots/hotel-operations-agent/turkish-thumb.webp">
+            <a class="frame dark" href="../../assets/shots/hotel-operations-agent/turkish.webp"><img src="../../assets/shots/hotel-operations-agent/turkish.webp" width="2576" height="1272" loading="lazy" decoding="async" alt="A repair reported in Turkish" data-en-alt="A repair reported in Turkish" data-tr-alt="Türkçe bildirilen bir arıza"></a>
+            <figcaption><span data-l="en">Daniel writes in Turkish: the leak is filed as a maintenance task and the reply comes in Turkish.</span><span data-l="tr">Daniel Türkçe yazıyor: arıza bir bakım talebi olarak kaydediliyor, cevap Türkçe geliyor.</span></figcaption>
+          </figure>
+          <figure class="slide" data-thumb="../../assets/shots/hotel-operations-agent/authority-thumb.webp">
+            <a class="frame dark" href="../../assets/shots/hotel-operations-agent/authority.webp"><img src="../../assets/shots/hotel-operations-agent/authority.webp" width="2576" height="1272" loading="lazy" decoding="async" alt="A guest claims to be the manager" data-en-alt="A guest claims to be the manager" data-tr-alt="Bir misafir kendini yönetici olarak tanıtıyor"></a>
+            <figcaption><span data-l="en">A guest who claims to be the manager cannot approve anything and cannot see another guest’s booking.</span><span data-l="tr">Kendini yönetici olarak tanıtan misafir hiçbir şeyi onaylayamıyor ve başka bir misafirin rezervasyonunu göremiyor.</span></figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+
+    <div class="row doc-facts">
+      <dl class="pairs">
+        <dt><span data-l="en">Status</span><span data-l="tr">Durum</span></dt>
+        <dd><span data-l="en">In development; runs on your machine with your own OpenAI key</span><span data-l="tr">Geliştirme sürüyor; kendi OpenAI anahtarınla kendi bilgisayarında çalışıyor</span></dd>
+        <dt><span data-l="en">Stack</span><span data-l="tr">Yığın</span></dt>
+        <dd class="mono">Python · OpenAI Agents SDK · Responses API · FastAPI · SQLAlchemy · Alembic · SQLite · React · TypeScript · Playwright</dd>
+        <dt><span data-l="en">Code</span><span data-l="tr">Kod</span></dt>
+        <dd><a href="https://github.com/brkakyldz/Hotel_Operations_Agent">github.com/brkakyldz/Hotel_Operations_Agent</a></dd>
+      </dl>
+    </div>
+
+    <section class="row brief" aria-labelledby="kisaca">
+      <header class="sec-head">
+        <p class="label num">01</p>
+        <h2 id="kisaca"><span data-l="en">In short</span><span data-l="tr">Kısaca</span></h2>
+      </header>
+      <dl class="pairs slab">
+        <dt>Problem</dt>
+        <dd><span data-l="en">Most guest requests depend on a rule, and some need a manager. Saying “done” in a chat is easy; the work is making sure the hotel’s records really changed.</span><span data-l="tr">Misafir taleplerinin çoğu bir kurala bağlı, bazıları yönetici onayı istiyor. Sohbette “tamam” demek kolay; asıl iş, otelin kayıtlarında gerçekten bir şeyin değişmiş olması.</span></dd>
+        <dt><span data-l="en">What it does</span><span data-l="tr">Ne yapıyor</span></dt>
+        <dd><span data-l="en">Guests write in their own language and each reply carries a receipt for what was done. Requests that need approval go to the manager, and when the hotel changes, the guest hears about it without asking.</span><span data-l="tr">Misafir kendi dilinde yazıyor ve her cevabın altında yapılan işin makbuzu var. Onay gereken talep yöneticiye gidiyor; otelde bir şey değiştiğinde misafir sormadan haber alıyor.</span></dd>
+        <dt><span data-l="en">Key decision</span><span data-l="tr">Temel karar</span></dt>
+        <dd><span data-l="en">The model proposes, code decides. Rules run inside the write transaction, scope comes from the session, and no tool can approve: approval is a record only the manager can create.</span><span data-l="tr">Model öneriyor, kod karar veriyor. Kurallar yazma işleminin içinde çalışıyor, kapsam session’dan geliyor ve hiçbir tool onay veremiyor: onay, yalnızca yöneticinin oluşturabildiği bir kayıt.</span></dd>
+      </dl>
+    </section>
+
+    <section class="row prose" aria-labelledby="nasil-calisir">
+      <header class="sec-head">
+        <p class="label num">02</p>
+        <h2 id="nasil-calisir"><span data-l="en">How it works</span><span data-l="tr">Nasıl çalışır</span></h2>
+      </header>
+      <figure class="wide arch">
+        <div class="arch-body">
+          <svg class="arch-map" viewBox="0 0 420 440" role="img" aria-labelledby="arch-hotel-t arch-hotel-d">
+            <title id="arch-hotel-t">Hotel Operations Agent’s architecture</title>
+            <desc id="arch-hotel-d">A guest’s message goes to a single agent. The agent’s tool proposal crosses from the model to code only through the tool gate, which hands it to the services and from there to the hotel’s record. The manager reaches the services through commands with no model; there is no path from the agent to those commands. When something changes for a guest, the outbox opens a turn for the agent with read-only tools and the guest is told.</desc>
+            <g class="arch-zones">
+              <rect class="zone" x="0" y="64" width="420" height="104" rx="2"/>
+              <path class="border" d="M0 168H420"/>
+              <text class="zone-label" x="212" y="160"><tspan data-l="en">model · proposes</tspan><tspan data-l="tr">model · öneriyor</tspan></text>
+              <text class="zone-label" x="212" y="185"><tspan data-l="en">code · decides</tspan><tspan data-l="tr">kod · karar veriyor</tspan></text>
+            </g>
+            <g class="arch-edges">
+              <path class="edge" data-edge="guest agent" d="M200 28V116"/>
+              <path class="edge" data-edge="agent gate" d="M200 116V220"/>
+              <path class="edge" data-edge="gate service" d="M200 220V308"/>
+              <path class="edge" data-edge="service db" d="M200 308V402"/>
+              <path class="edge" data-edge="manager cmd" d="M360 404V308"/>
+              <path class="edge" data-edge="cmd service" d="M360 308H200"/>
+              <path class="edge" data-edge="db outbox" d="M200 402H56Q44 402 44 390V308"/>
+              <path class="edge" data-edge="outbox agent" d="M44 308V128Q44 116 56 116H200"/>
+              <path class="edge ghost" data-edge="agent cmd" d="M200 116H348Q360 116 360 128V308"/>
+              <text class="edge-label" x="208" y="62"><tspan data-l="en">message</tspan><tspan data-l="tr">mesaj</tspan></text>
+              <text class="edge-label" x="192" y="160" text-anchor="end"><tspan data-l="en">tool proposal</tspan><tspan data-l="tr">tool önerisi</tspan></text>
+              <text class="edge-label" transform="translate(36 226) rotate(-90)" text-anchor="middle"><tspan data-l="en">read only</tspan><tspan data-l="tr">sadece okuma</tspan></text>
+            </g>
+            <g class="arch-nodes">
+              <g data-node="guest">
+                <circle class="person" cx="200" cy="28" r="5.5"/>
+                <text class="nm" x="213" y="33"><tspan data-l="en">Guest</tspan><tspan data-l="tr">Misafir</tspan></text>
+              </g>
+              <g data-node="agent">
+                <rect class="box" x="125" y="92" width="150" height="48" rx="3"/>
+                <text class="nm" x="200" y="112" text-anchor="middle">Agent</text>
+                <text class="sub" x="200" y="129" text-anchor="middle"><tspan data-l="en">one agent · 9 tools</tspan><tspan data-l="tr">tek agent · 9 tool</tspan></text>
+              </g>
+              <g data-node="gate">
+                <rect class="box" x="125" y="196" width="150" height="48" rx="3"/>
+                <text class="nm" x="200" y="216" text-anchor="middle"><tspan data-l="en">Tool gate</tspan><tspan data-l="tr">Tool kapısı</tspan></text>
+                <text class="sub" x="200" y="233" text-anchor="middle"><tspan data-l="en">schema · scope · time</tspan><tspan data-l="tr">şema · kapsam · süre</tspan></text>
+              </g>
+              <g data-node="service">
+                <rect class="box" x="125" y="284" width="150" height="48" rx="3"/>
+                <text class="nm" x="200" y="304" text-anchor="middle"><tspan data-l="en">Services</tspan><tspan data-l="tr">Servisler</tspan></text>
+                <text class="sub" x="200" y="321" text-anchor="middle"><tspan data-l="en">rule in the write</tspan><tspan data-l="tr">kural işlemin içinde</tspan></text>
+              </g>
+              <g data-node="db">
+                <path class="box" d="M125 379V425A75 7 0 0 0 275 425V379"/>
+                <ellipse class="box" cx="200" cy="379" rx="75" ry="7"/>
+                <text class="nm" x="200" y="405" text-anchor="middle"><tspan data-l="en">Hotel record</tspan><tspan data-l="tr">Otel kaydı</tspan></text>
+                <text class="sub" x="200" y="421" text-anchor="middle"><tspan data-l="en">task · receipt · audit</tspan><tspan data-l="tr">iş · makbuz · audit</tspan></text>
+              </g>
+              <g data-node="cmd">
+                <rect class="box" x="312" y="284" width="96" height="48" rx="3"/>
+                <text class="nm" x="360" y="304" text-anchor="middle"><tspan data-l="en">Commands</tspan><tspan data-l="tr">Komutlar</tspan></text>
+                <text class="sub" x="360" y="321" text-anchor="middle"><tspan data-l="en">no model</tspan><tspan data-l="tr">model yok</tspan></text>
+              </g>
+              <g data-node="manager">
+                <circle class="person" cx="360" cy="404" r="5.5"/>
+                <text class="nm" x="360" y="429" text-anchor="middle"><tspan data-l="en">Manager</tspan><tspan data-l="tr">Yönetici</tspan></text>
+              </g>
+              <g data-node="outbox">
+                <rect class="box" x="8" y="284" width="72" height="48" rx="3"/>
+                <text class="nm" x="44" y="304" text-anchor="middle">Outbox</text>
+                <text class="sub" x="44" y="321" text-anchor="middle"><tspan data-l="en">notice</tspan><tspan data-l="tr">haber</tspan></text>
+              </g>
+            </g>
+          </svg>
+          <div class="arch-panel">
+            <div class="arch-scene">
+              <p class="arch-scene-name"><span data-l="en">Towels</span><span data-l="tr">Havlu</span></p>
+              <ol class="arch-steps">
+                <li data-route="guest agent"><span data-l="en">A guest asks for two more towels.</span><span data-l="tr">Misafir iki havlu daha istiyor.</span></li>
+                <li data-route="agent gate"><span data-l="en">The agent proposes a tool. The proposal does not run directly; the gate first checks the schema, the scope and the time.</span><span data-l="tr">Agent bir tool öneriyor. Öneri doğrudan çalışmıyor; önce kapı şemayı, kapsamı ve süreyi kontrol ediyor.</span></li>
+                <li data-route="gate service" data-state="service: within limit" data-state-tr="service: sınır içinde"><span data-l="en">The service applies the rule inside the write: this stay has not reached its towel limit.</span><span data-l="tr">Servis kuralı yazma işleminin içinde uyguluyor: bu konaklamanın havlu sınırı aşılmamış.</span></li>
+                <li data-route="service db" data-state="db: new task · receipt" data-state-tr="db: yeni iş · makbuz"><span data-l="en">The task, its receipt and an audit event are written together: all or nothing.</span><span data-l="tr">İş, makbuzu ve audit kaydı birlikte yazılıyor; ya hepsi ya hiçbiri.</span></li>
+                <li data-route="db service gate agent guest" data-tone="reply"><span data-l="en">The reply goes back with its receipt. If the agent says “done”, the record has changed.</span><span data-l="tr">Cevap misafire makbuzuyla dönüyor. Agent “tamam” dediyse kayıt değişmiştir.</span></li>
+              </ol>
+            </div>
+            <div class="arch-scene">
+              <p class="arch-scene-name"><span data-l="en">Late checkout</span><span data-l="tr">Geç çıkış</span></p>
+              <ol class="arch-steps">
+                <li data-route="guest agent"><span data-l="en">Emma wants to check out at 15:00.</span><span data-l="tr">Emma 15:00’te çıkmak istiyor.</span></li>
+                <li data-route="agent gate service" data-state="service: 15:00 · needs approval" data-state-tr="service: 15:00 · onay gerekli"><span data-l="en">The rule is in code: automatic until 14:00, with a manager until 16:00.</span><span data-l="tr">Kural kodda: 14:00’e kadar otomatik, 16:00’ya kadar yönetici onayıyla.</span></li>
+                <li data-route="service db" data-state="db: review · 12:00" data-state-tr="db: onay talebi · 12:00"><span data-l="en">The request becomes a durable record. Checkout stays at 12:00.</span><span data-l="tr">Talep kalıcı bir kayda dönüşüyor. Çıkış saati 12:00’de kalıyor.</span></li>
+                <li data-route="db service gate agent guest" data-tone="reply"><span data-l="en">The run ends here; nothing is left waiting. Emma learns her request is with the manager.</span><span data-l="tr">Run burada bitiyor; askıda bekleyen bir şey yok. Emma talebinin yöneticide olduğunu öğreniyor.</span></li>
+                <li data-route="manager cmd service" data-state="cmd: approve" data-state-tr="cmd: onay"><span data-l="en">The manager approves. There is no model in this command.</span><span data-l="tr">Yönetici onaylıyor. Bu komutta model yok.</span></li>
+                <li data-route="service db" data-state="service: re-checked | db: checkout 15:00" data-state-tr="service: yeniden kontrol | db: çıkış 15:00"><span data-l="en">The rule is checked again against the hotel as it is now. Checkout moves to 15:00.</span><span data-l="tr">Kural, otelin o anki kayıtlarıyla yeniden kontrol ediliyor. Çıkış 15:00’e alınıyor.</span></li>
+                <li data-route="db outbox" data-state="outbox: 1 row" data-state-tr="outbox: 1 satır"><span data-l="en">In the same transaction, one row is written to the outbox.</span><span data-l="tr">Aynı işlemin içinde outbox’a tek satır yazılıyor.</span></li>
+                <li data-route="outbox agent guest" data-tone="reply"><span data-l="en">The agent gets one turn with read-only tools. Emma hears without asking.</span><span data-l="tr">Agent’a yalnızca okuma tool’larıyla bir tur açılıyor. Emma sormadan haber alıyor.</span></li>
+              </ol>
+            </div>
+            <div class="arch-scene">
+              <p class="arch-scene-name"><span data-l="en">Claimed authority</span><span data-l="tr">Yetki denemesi</span></p>
+              <ol class="arch-steps">
+                <li data-route="guest agent"><span data-l="en">A guest claims to be the manager and asks for approval.</span><span data-l="tr">Bir misafir kendini yönetici olarak tanıtıyor ve onay istiyor.</span></li>
+                <li data-route="agent cmd" data-stop="0.6"><span data-l="en">There is no path from the agent to the manager’s commands, and no tool that approves.</span><span data-l="tr">Agent’tan yöneticinin komutlarına giden bir yol yok; onay veren bir tool da yok.</span></li>
+                <li data-route="agent gate service db" data-state="db: review filed" data-state-tr="db: onay talebi"><span data-l="en">At most it can file a review. The decision is still the manager’s.</span><span data-l="tr">En fazla bir onay talebi açabiliyor. Karar yine yöneticinin.</span></li>
+                <li data-route="guest agent gate service db" data-state="db: own booking only" data-state-tr="db: yalnız kendi kaydı"><span data-l="en">It asks for another guest’s booking. The model does not choose the scope; the session is bound to the guest’s own reservation.</span><span data-l="tr">Başka bir misafirin rezervasyonunu istiyor. Kapsamı model seçmiyor; session yalnızca kendi rezervasyonuna bağlı.</span></li>
+              </ol>
+            </div>
+          </div>
+        </div>
+        <figcaption><span data-l="en">In the shaded band the model proposes; below the dashed line, code decides.</span><span data-l="tr">Gölgeli alanda model öneriyor; kesikli çizginin altında kod karar veriyor.</span> <span class="arch-key" aria-hidden="true"></span><span data-l="en">request,</span><span data-l="tr">talep,</span> <span class="arch-key reply" aria-hidden="true"></span><span data-l="en">answer.</span><span data-l="tr">cevap.</span></figcaption>
+      </figure>
+    </section>
+
+    <nav class="row doc-next" aria-label="Work" data-en-label="Work" data-tr-label="İşler">
+      <p class="more"><a href="../second-brain-os/">← Second Brain OS</a><a href="../ai-digest/"><span data-l="en">Next: AI News Digest</span><span data-l="tr">Sonraki: AI News Digest</span><span class="go">→</span></a></p>
+    </nav>
+  </main>
+
+  <footer class="sea" id="iletisim">
+    <canvas class="caustics" aria-hidden="true"></canvas>
+    <div class="row">
+      <h2 class="label"><span data-l="en">Contact</span><span data-l="tr">İletişim</span></h2>
+      <p class="say"><span data-l="en">Want to work together? <em>Write to me.</em></span><span data-l="tr">Birlikte çalışmak ister misiniz? <em>Bana yazın.</em></span></p>
+      <dl class="pairs contact">
+        <dt><span data-l="en">Email</span><span data-l="tr">E-posta</span></dt>
+        <dd><a href="mailto:berkeakyildz@gmail.com">berkeakyildz@gmail.com</a></dd>
+        <dt>GitHub</dt>
+        <dd><a href="https://github.com/brkakyldz">github.com/brkakyldz</a></dd>
+        <dt>LinkedIn</dt>
+        <dd><a href="https://www.linkedin.com/in/berkeakyildiz/">linkedin.com/in/berkeakyildiz</a></dd>
+      </dl>
+    </div>
+    <div class="row colophon">
+      <p class="colophon-line"><span>Berke Akyıldız · 2026</span></p>
+    </div>
+  </footer>
+</body>
+</html>

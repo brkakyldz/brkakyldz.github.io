@@ -1,0 +1,2130 @@
+/* --------------------------------------------------------------------------
+   Berke Akyıldız — portfolio
+   Limestone in shade, dark ink, and a field of deep Riviera blue at the end
+   of every page. Headlines are set large and light; sections are numbered and
+   ruled; labels hang in a left margin. Every page carries English and Turkish
+   side by side and shows one of them (data-l, switched on <html data-lang>).
+   -------------------------------------------------------------------------- */
+
+:root {
+  color-scheme: light;
+
+  /* Palette — sun-faded, never pure white. */
+  --paper: #e9e3d7;
+  --paper-shade: #ded7c8;
+  --paper-lift: #f1ece3;
+  --ink: #1b2124;
+  --ink-soft: #394044;
+  --muted: #5c5950;
+  --rule: #cdc4b3;
+  --horizon: #978d7b;
+  --link: #1f4a78;
+  --sea: #1d4673;
+  --sea-deep: #163756;
+  --sea-ink: #eee8dc;
+  --sea-muted: #b0c0cd;
+  --sea-rule: rgba(238, 232, 220, 0.18);
+  --clay: #b0573a;
+  --clay-ink: #994930;
+  --cypress: #5b7150;
+  --selection: #c3d3d6;
+
+  /* Limestone: a faint, still grain so the paper is not a flat screen colour. */
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .3 0 0 0 0 .25 0 0 0 0 .18 0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+
+  --serif: "Newsreader", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  --mono: "IBM Plex Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+
+  /* A short scale, and one display size for the few large lines. */
+  --text: clamp(1.0625rem, 0.99rem + 0.3vw, 1.1875rem);
+  --small: 0.9375rem;
+  --tiny: 0.8125rem;
+  --lede: clamp(1.25rem, 1.1rem + 0.6vw, 1.5rem);
+  --h2: clamp(1.375rem, 1.18rem + 0.75vw, 1.75rem);
+  --title: clamp(2.25rem, 1.6rem + 2.6vw, 3.75rem);
+  --display: clamp(2.25rem, 1.45rem + 3.9vw, 4.75rem);
+  --leading: 1.62;
+
+  /* Columns: a hanging margin for labels, one reading measure. */
+  --edge: 1.375rem;
+  --measure: 37rem;
+  --wide: 54rem;
+
+  --space-m: 3rem;
+  --space-l: 5rem;
+  --space-xl: 7rem;
+
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+/* ------------------------------------------------------------ languages -- */
+
+:root[data-lang="en"] [data-l="tr"]:not(.lp > *),
+:root[data-lang="tr"] [data-l="en"]:not(.lp > *) {
+  display: none !important;
+}
+
+/* site.js wraps each pair in .lp: both languages share one grid cell and the box keeps
+   the size of the longer one, so switching never moves the page; the new one fades in. */
+.lp {
+  display: inline-grid;
+}
+
+.lp.block {
+  display: grid;
+}
+
+/* In the menu the reserved width is shared on both sides, so the gaps stay even. */
+.nav .lp {
+  justify-items: center;
+}
+
+.lp > [data-l] {
+  grid-area: 1 / 1;
+  transition: opacity 320ms ease, visibility 0s;
+}
+
+:root[data-lang="en"] .lp > [data-l="tr"],
+:root[data-lang="tr"] .lp > [data-l="en"] {
+  visibility: hidden;
+  opacity: 0;
+  transition: none;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--paper) var(--grain);
+  color: var(--ink);
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+body {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: var(--text);
+  line-height: var(--leading);
+  font-optical-sizing: auto;
+  font-kerning: normal;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: clip;
+}
+
+::selection {
+  background: var(--selection);
+  color: var(--ink);
+}
+
+p,
+ul,
+ol,
+dl,
+figure,
+blockquote {
+  margin: 0;
+}
+
+p,
+li,
+dd {
+  text-wrap: pretty;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+  font-weight: 600;
+  font-size: inherit;
+  line-height: 1.35;
+}
+
+img,
+video {
+  display: block;
+  max-width: 100%;
+}
+
+/* Links: ink-blue, a hairline underline that firms up on hover. */
+a {
+  color: var(--link);
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+  text-decoration-color: color-mix(in srgb, currentColor 32%, transparent);
+  transition: text-decoration-color 180ms ease, color 180ms ease;
+}
+
+a:hover {
+  text-decoration-color: currentColor;
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 1px solid currentColor;
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* An arrow that leans forward when its link is pointed at. */
+.go {
+  display: inline-block;
+  margin-left: 0.3em;
+  transition: transform 220ms var(--ease);
+}
+
+a:hover .go {
+  transform: translateX(3px);
+}
+
+a:hover .go.up {
+  transform: translate(2px, -2px);
+}
+
+.skip {
+  position: absolute;
+  left: var(--edge);
+  top: -3rem;
+  padding: 0.4rem 0.75rem;
+  background: var(--paper);
+  font-size: var(--small);
+  z-index: 5;
+}
+
+.skip:focus {
+  top: 0.75rem;
+}
+
+.mono {
+  font-family: var(--mono);
+  font-size: var(--tiny);
+  letter-spacing: 0.005em;
+  font-weight: 400;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.vh {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* ---------------------------------------------------------------- shade -- */
+
+/* Olive leaves between the sun and the wall: a soft shadow in the top corner. */
+.shade {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: min(48vw, 640px);
+  aspect-ratio: 600 / 440;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.shade::before {
+  content: "";
+  position: absolute;
+  inset: -20% -20% 0 0;
+  background: radial-gradient(closest-side at 78% 22%, rgba(255, 246, 226, 0.6), rgba(255, 246, 226, 0));
+}
+
+.shade img {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: auto;
+  mix-blend-mode: multiply;
+  transform-origin: 100% 0;
+}
+
+.shade .leaf-a {
+  opacity: 0.13;
+  filter: blur(5px);
+}
+
+.shade .leaf-b {
+  opacity: 0.09;
+  filter: blur(9px);
+  transform: translate(-6%, 10%) scale(0.8);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .shade .leaf-a {
+    animation: sway-a 11s ease-in-out infinite alternate;
+  }
+
+  .shade .leaf-b {
+    animation: sway-b 7.5s ease-in-out -3s infinite alternate;
+  }
+}
+
+@keyframes sway-a {
+  from {
+    transform: rotate(-1.6deg);
+  }
+  to {
+    transform: rotate(1.3deg) translate(-5px, 3px);
+  }
+}
+
+@keyframes sway-b {
+  from {
+    transform: translate(-6%, 10%) scale(0.8) rotate(1.4deg);
+  }
+  to {
+    transform: translate(-5%, 11%) scale(0.8) rotate(-2deg);
+  }
+}
+
+/* ---------------------------------------------------------------- grid -- */
+
+/* One centred column for reading; recordings and diagrams take a wider centred band. */
+.row {
+  --side: calc((var(--wide) - var(--measure)) / 2);
+  display: grid;
+  grid-template-columns:
+    [full-start] minmax(var(--edge), 1fr)
+    [wide-start] minmax(0, var(--side))
+    [main-start] minmax(0, var(--measure)) [main-end]
+    minmax(0, var(--side)) [wide-end]
+    minmax(var(--edge), 1fr) [full-end];
+}
+
+.row > * {
+  grid-column: main;
+}
+
+.row > .span {
+  grid-column: wide;
+  display: grid;
+  grid-template-columns: subgrid;
+}
+
+.span > * {
+  grid-column: main;
+}
+
+.row > .wide,
+.span > .wide {
+  grid-column: wide;
+  width: 100%;
+}
+
+/* Margin labels: small, italic, quiet. */
+.label {
+  margin: 0;
+  font-size: var(--small);
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.45;
+  color: var(--muted);
+}
+
+/* ------------------------------------------------------------ masthead -- */
+
+.masthead {
+  padding-top: clamp(1.75rem, 1rem + 2.5vw, 3rem);
+}
+
+.masthead > .name {
+  grid-column: wide-start / main-end;
+  grid-row: 1;
+}
+
+.masthead > .masthead-line {
+  grid-column: main-start / wide-end;
+  grid-row: 1;
+}
+
+.masthead .name {
+  font-style: normal;
+  font-size: var(--text);
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.masthead .name a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.masthead-line {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: flex-end;
+  gap: 0.5rem 2rem;
+}
+
+.nav {
+  display: flex;
+  gap: 1.5rem;
+  font-size: var(--small);
+}
+
+.nav a {
+  color: var(--ink-soft);
+  text-decoration-color: transparent;
+}
+
+.nav a:hover,
+.nav a[aria-current="page"] {
+  color: var(--ink);
+  text-decoration-color: color-mix(in srgb, currentColor 45%, transparent);
+}
+
+/* EN · TR: the language in use is set dark, the other waits beside it. */
+.lang {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.15rem;
+  padding: 0.2rem 0.15rem;
+  font-family: var(--mono);
+  font-size: var(--tiny);
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+.lang span {
+  padding: 0.12rem 0.4rem;
+  border-radius: 999px;
+  transition: color 200ms ease, background-color 200ms ease;
+}
+
+.lang span[aria-hidden="true"] {
+  padding: 0;
+  opacity: 0.6;
+}
+
+:root[data-lang="en"] .lang [data-v="en"],
+:root[data-lang="tr"] .lang [data-v="tr"] {
+  color: var(--paper-lift);
+  background: var(--sea);
+}
+
+.lang:hover span:not([aria-hidden]) {
+  color: var(--ink);
+}
+
+:root[data-lang="en"] .lang:hover [data-v="en"],
+:root[data-lang="tr"] .lang:hover [data-v="tr"] {
+  color: var(--paper-lift);
+}
+
+/* The horizon: from the margin to the edge of the screen. */
+.horizon {
+  grid-column: wide !important;
+  height: 1px;
+  margin-top: 1.1rem;
+  background: var(--horizon);
+  opacity: 0.7;
+  transform-origin: left center;
+}
+
+.js .horizon {
+  animation: draw 1.6s var(--ease) both;
+}
+
+@keyframes draw {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* ---------------------------------------------------------------- opening -- */
+
+.opening {
+  padding-top: clamp(3.5rem, 1.6rem + 6vw, 7.5rem);
+}
+
+/* The one large line of the site: light, tight, its second half in italic. */
+.opening .display {
+  grid-column: wide;
+  max-width: 15.5em;
+  font-size: var(--display);
+  font-weight: 330;
+  line-height: 1.04;
+  letter-spacing: -0.028em;
+  color: var(--ink);
+  text-wrap: balance;
+}
+
+.display em {
+  font-style: italic;
+  font-weight: 300;
+  color: var(--sea);
+}
+
+.opening .intro-name {
+  font-size: clamp(2rem, 1.6rem + 1.3vw, 2.6rem);
+  font-weight: 450;
+  line-height: 1.12;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+}
+
+.opening .role {
+  margin-top: 0.45rem;
+  font-size: var(--lede);
+  font-style: italic;
+  line-height: 1.4;
+  color: var(--sea);
+}
+
+.opening .lead {
+  margin-top: 1.6rem;
+  font-size: calc(var(--text) * 1.08);
+  color: var(--ink-soft);
+}
+
+.intro-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.5rem;
+  margin-top: 1.6rem;
+  font-size: var(--small);
+}
+
+.opening-more {
+  margin-top: 2rem;
+  font-size: var(--lede);
+  line-height: 1.45;
+  color: var(--ink-soft);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .js .opening > * {
+    animation: rise 1.1s var(--ease) both;
+  }
+
+  .js .opening > :nth-child(2) {
+    animation-delay: 140ms;
+  }
+
+  .js .opening > :nth-child(3) {
+    animation-delay: 260ms;
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+}
+
+/* ------------------------------------------------------- section heads -- */
+
+main > section {
+  margin-top: var(--space-xl);
+}
+
+/* Every section opens on its own horizon: a number in clay, a plain heading. */
+.row > .sec-head {
+  grid-column: wide;
+  display: grid;
+  grid-template-columns: subgrid;
+  align-items: baseline;
+  position: relative;
+  padding-top: 1.35rem;
+  margin-bottom: 2.25rem;
+}
+
+.sec-head::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--horizon);
+  opacity: 0.7;
+  transform-origin: left center;
+}
+
+.sec-head > .num {
+  grid-column: main;
+  grid-row: 1;
+  font-family: var(--mono);
+  font-size: var(--tiny);
+  font-style: normal;
+  letter-spacing: 0.06em;
+  color: var(--clay-ink);
+}
+
+.sec-head > h2 {
+  grid-column: main;
+  grid-row: 1;
+  padding-left: 2.6rem;
+  font-size: var(--h2);
+  font-weight: 450;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
+.section-intro {
+  color: var(--ink-soft);
+}
+
+/* Things that arrive as you read. Only when scripting is on; never for reduced motion. */
+@media (prefers-reduced-motion: no-preference) {
+  .js .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 1s var(--ease), transform 1s var(--ease);
+  }
+
+  .js .reveal.is-in {
+    opacity: 1;
+    transform: none;
+  }
+
+  .js .sec-head::before {
+    transform: scaleX(0);
+    transition: transform 1.4s var(--ease);
+  }
+
+  .js .sec-head.is-in::before {
+    transform: scaleX(1);
+  }
+}
+
+/* ------------------------------------------------------------------ prose -- */
+
+.prose p + p,
+.prose p + ul,
+.prose p + ol,
+.prose ul + p,
+.prose ol + p {
+  margin-top: 1em;
+}
+
+.prose h3 {
+  position: relative;
+  margin-top: 2.75rem;
+  font-size: calc(var(--text) * 1.06);
+  font-weight: 600;
+  color: var(--ink);
+}
+
+/* A small clay tick in the gutter marks each subsection. */
+.prose h3::before {
+  content: "";
+  position: absolute;
+  left: -1.7rem;
+  top: 0.78em;
+  width: 0.85rem;
+  height: 1px;
+  background: var(--clay);
+}
+
+.sec-head + h3 {
+  margin-top: 0;
+}
+
+.prose h3 + .inline-pairs {
+  margin-top: 0.6rem;
+}
+
+.prose h3 + p,
+.prose h3 + ul,
+.prose h3 + ol,
+.prose h3 + .table {
+  margin-top: 0.45rem;
+}
+
+.prose ul,
+.prose ol {
+  padding: 0;
+  list-style: none;
+}
+
+.prose li {
+  position: relative;
+}
+
+.prose li + li {
+  margin-top: 0.45rem;
+}
+
+.prose ul > li::before {
+  content: "\2013";
+  position: absolute;
+  left: -1.15em;
+  color: var(--muted);
+}
+
+.prose ol {
+  counter-reset: step;
+}
+
+.prose ol > li {
+  counter-increment: step;
+}
+
+.prose ol > li::before {
+  content: counter(step, decimal-leading-zero);
+  position: absolute;
+  left: -2.1rem;
+  top: 0.3em;
+  font-family: var(--mono);
+  font-size: var(--tiny);
+  line-height: 1.4;
+  color: var(--clay-ink);
+}
+
+.prose strong {
+  font-weight: 600;
+  color: var(--ink);
+}
+
+code {
+  font-family: var(--mono);
+  font-size: 0.82em;
+  letter-spacing: 0;
+}
+
+.further {
+  margin-top: 1.75rem !important;
+  font-size: var(--small);
+}
+
+.prose .meta-line {
+  margin-top: 0.15rem;
+  font-size: var(--small);
+  color: var(--muted);
+}
+
+/* ------------------------------------------------------------------ work -- */
+/* One project: its name large, a sentence or two, then the thing itself at work,
+   then how it is built, then what was measured. */
+
+.work {
+  padding-top: 2.4rem;
+  border-top: 1px solid var(--rule);
+}
+
+.work + .work {
+  margin-top: var(--space-l);
+}
+
+.work-label {
+  margin-bottom: 0.7rem;
+}
+
+.work-label .num {
+  font-family: var(--mono);
+  font-size: var(--tiny);
+  font-style: normal;
+  letter-spacing: 0.06em;
+  color: var(--clay-ink);
+}
+
+.work h3 {
+  font-size: var(--title);
+  font-weight: 380;
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+}
+
+.work h3 a {
+  color: var(--ink);
+  text-decoration-color: transparent;
+}
+
+.work h3 a:hover {
+  text-decoration-color: color-mix(in srgb, currentColor 35%, transparent);
+  text-decoration-thickness: 1px;
+}
+
+.work .summary {
+  margin-top: 1rem;
+  color: var(--ink-soft);
+}
+
+.work .more,
+.doc-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.5rem;
+  margin-top: 1rem;
+  font-size: var(--small);
+}
+
+.work .stage {
+  margin-top: 2.25rem;
+}
+
+/* Status: running systems breathe, a paused one keeps still. */
+.status {
+  display: flex;
+  align-items: baseline;
+  gap: 0.55em;
+}
+
+.state {
+  flex: none;
+  width: 0.5em;
+  height: 0.5em;
+  border-radius: 50%;
+  transform: translateY(-0.05em);
+}
+
+.state.run {
+  background: var(--cypress);
+}
+
+.state.pause {
+  border: 1px solid var(--muted);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .state.run {
+    animation: breathe 3.4s ease-in-out infinite;
+  }
+}
+
+@keyframes breathe {
+  0%,
+  100% {
+    opacity: 1;
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--cypress) 45%, transparent);
+  }
+  50% {
+    opacity: 0.55;
+    box-shadow: 0 0 0 0.3em color-mix(in srgb, var(--cypress) 0%, transparent);
+  }
+}
+
+/* --------------------------------------------------------------- stage -- */
+/* The project at work: a real recording in a quiet frame. It plays muted while
+   on screen and stops off screen; the small button stops it for good. */
+
+.stage {
+  position: relative;
+}
+
+.screen {
+  position: relative;
+  overflow: hidden;
+  background: #11161a;
+  border-radius: 10px;
+  box-shadow:
+    0 0 0 1px rgba(27, 33, 36, 0.08),
+    0 2px 4px -2px rgba(27, 33, 36, 0.2),
+    0 28px 56px -28px rgba(22, 40, 60, 0.55);
+  transition: transform 700ms var(--ease), box-shadow 700ms var(--ease);
+}
+
+.screen.light {
+  background: var(--paper-lift);
+}
+
+.screen video,
+.screen img {
+  width: 100%;
+  height: auto;
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .stage:hover .screen {
+    transform: translateY(-4px);
+    box-shadow:
+      0 0 0 1px rgba(27, 33, 36, 0.1),
+      0 4px 8px -4px rgba(27, 33, 36, 0.2),
+      0 40px 70px -32px rgba(22, 40, 60, 0.6);
+  }
+}
+
+/* A video's own small controls: pause, and the time it has left in its loop. */
+.screen-ctl {
+  position: absolute;
+  right: 0.75rem;
+  bottom: 0.75rem;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.38rem 0.7rem 0.38rem 0.55rem;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  line-height: 1;
+  color: var(--sea-ink);
+  background: rgba(17, 22, 26, 0.62);
+  border: 1px solid rgba(238, 232, 220, 0.2);
+  border-radius: 999px;
+  backdrop-filter: blur(6px);
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 300ms ease, background-color 200ms ease;
+}
+
+.stage:hover .screen-ctl,
+.screen-ctl:focus-visible,
+.screen.is-paused .screen-ctl {
+  opacity: 1;
+}
+
+.screen-ctl:hover {
+  background: rgba(17, 22, 26, 0.85);
+}
+
+.screen-ctl i {
+  position: relative;
+  width: 0.6rem;
+  height: 0.6rem;
+}
+
+/* Two bars while playing, a triangle while paused. */
+.screen-ctl i::before,
+.screen-ctl i::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 0.2rem;
+  height: 100%;
+  background: currentColor;
+}
+
+.screen-ctl i::before {
+  left: 0.05rem;
+}
+
+.screen-ctl i::after {
+  right: 0.05rem;
+}
+
+.screen.is-paused .screen-ctl i::before {
+  left: 0.08rem;
+  width: 0;
+  height: 0;
+  background: none;
+  border-style: solid;
+  border-width: 0.3rem 0 0.3rem 0.52rem;
+  border-color: transparent transparent transparent currentColor;
+}
+
+.screen.is-paused .screen-ctl i::after {
+  display: none;
+}
+
+/* The loop's progress: a hairline along the foot of the frame. */
+.screen-time {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  height: 2px;
+  background: var(--clay);
+  transform: scaleX(var(--t, 0));
+  transform-origin: left center;
+  opacity: 0.85;
+}
+
+.stage-caption {
+  margin-top: 0.9rem;
+  font-size: var(--small);
+  font-style: italic;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+/* ------------------------------------------------------------ terminal -- */
+/* An illustrative session, typed out line by line while it is on screen. */
+
+.term {
+  position: relative;
+  min-height: 21rem;
+  padding: 2.6rem 1.5rem 1.6rem;
+  overflow: hidden;
+  font-family: var(--mono);
+  font-size: 0.8125rem;
+  line-height: 1.75;
+  color: #d9d4c9;
+  background:
+    radial-gradient(120% 90% at 85% 0%, rgba(55, 95, 140, 0.35), rgba(55, 95, 140, 0) 60%),
+    #121a21;
+}
+
+.term::before {
+  content: "";
+  position: absolute;
+  top: 1rem;
+  left: 1.2rem;
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 50%;
+  background: rgba(238, 232, 220, 0.18);
+  box-shadow: 0.95rem 0 0 rgba(238, 232, 220, 0.18), 1.9rem 0 0 rgba(238, 232, 220, 0.18);
+}
+
+.term-title {
+  position: absolute;
+  top: 0.7rem;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 0.72rem;
+  color: rgba(238, 232, 220, 0.45);
+}
+
+.term ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.term li {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  min-height: 1.75em;
+}
+
+.term .t-cmd {
+  color: #f1ece3;
+}
+
+.term .t-cmd::before {
+  content: "$ ";
+  color: #d98a6c;
+}
+
+.term .t-ask {
+  margin-top: 0.7rem;
+  color: #f1ece3;
+}
+
+.term .t-ask::before {
+  content: "› ";
+  color: #d98a6c;
+}
+
+.term .t-sys {
+  color: #8fb0c9;
+}
+
+.term .t-tool {
+  padding-left: 1.2em;
+  color: rgba(217, 212, 201, 0.62);
+}
+
+.term .t-say {
+  padding-left: 1.2em;
+  color: #e8e2d6;
+}
+
+.term .t-say::before {
+  content: "● ";
+  margin-left: -1.2em;
+  color: #9fc29b;
+}
+
+.js .term li.is-hidden {
+  visibility: hidden;
+}
+
+.term .caret {
+  display: inline-block;
+  width: 0.55em;
+  height: 1.05em;
+  margin-left: 1px;
+  vertical-align: -0.18em;
+  background: #d98a6c;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .term .caret {
+    animation: blink 1s steps(1) infinite;
+  }
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+/* ----------------------------------------------------------------- pairs -- */
+
+/* Plain two-column lists: a term in the margin, its value on the measure. */
+.pairs {
+  display: grid;
+  grid-template-columns: 8.5rem minmax(0, 1fr);
+  column-gap: 1.5rem;
+  row-gap: 0.55rem;
+  align-items: baseline;
+}
+
+.pairs dt {
+  grid-column: 1;
+  font-size: var(--small);
+  font-style: italic;
+  color: var(--muted);
+}
+
+.pairs dd {
+  grid-column: 2;
+  margin: 0;
+}
+
+.pairs dd.mono {
+  line-height: 1.9;
+}
+
+.inline-pairs {
+  display: grid;
+  grid-template-columns: 11rem minmax(0, 1fr);
+  gap: 0.65rem 1.5rem;
+  align-items: baseline;
+}
+
+.inline-pairs dt {
+  font-size: var(--small);
+  font-style: italic;
+  color: var(--muted);
+}
+
+.inline-pairs dd {
+  margin: 0;
+}
+
+/* ------------------------------------------------------------- documents -- */
+
+.doc-head {
+  padding-top: clamp(3rem, 1.6rem + 4.5vw, 5.75rem);
+}
+
+.doc-head > .label {
+  margin-bottom: 1rem;
+}
+
+.head-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.5rem;
+}
+
+.doc-head h1 {
+  font-size: var(--title);
+  font-weight: 360;
+  line-height: 1.06;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+}
+
+.doc-head .standfirst {
+  margin-top: 1.2rem;
+  font-size: var(--lede);
+  line-height: 1.45;
+  font-weight: 400;
+  color: var(--ink-soft);
+  text-wrap: pretty;
+}
+
+.doc-head .doc-links {
+  margin-top: 1.4rem;
+}
+
+.doc-show {
+  margin-top: var(--space-m);
+}
+
+.doc-facts {
+  margin-top: var(--space-l);
+}
+
+.doc > section {
+  margin-top: var(--space-xl);
+}
+
+/* The brief: a recess in the stone, four questions answered in four lines. */
+.brief > .slab {
+  position: relative;
+  isolation: isolate;
+  padding-block: 2.25rem;
+}
+
+.brief > .slab::before {
+  content: "";
+  position: absolute;
+  inset: 0 -2.25rem;
+  z-index: -1;
+  background: var(--paper-shade) var(--grain);
+  border-radius: 4px;
+}
+
+.brief .pairs {
+  row-gap: 1.35rem;
+}
+
+.brief .pairs dt {
+  color: var(--ink-soft);
+}
+
+/* CV: projects, each a name, a sentence and its links. */
+.cv-projects > li + li {
+  margin-top: 1.1rem;
+}
+
+.cv-projects strong {
+  display: block;
+}
+
+.cv-links {
+  display: block;
+  margin-top: 0.2rem;
+  font-size: var(--small);
+}
+
+.nw {
+  white-space: nowrap;
+}
+
+.doc-next {
+  margin-top: var(--space-xl);
+  font-size: var(--small);
+}
+
+.doc-next .more {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.5rem 2rem;
+  padding-top: 1.1rem;
+  border-top: 1px solid var(--rule);
+}
+
+.prose figure,
+.prose .table {
+  margin-top: 1.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.prose .sec-head + figure,
+.prose .sec-head + .table {
+  margin-top: 0;
+}
+
+.prose figure + p,
+.prose .table + p {
+  margin-top: 1.75rem;
+}
+
+figcaption {
+  margin-top: 0.6rem;
+  font-size: var(--small);
+  font-style: italic;
+  color: var(--muted);
+}
+
+.table {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--small);
+  line-height: 1.5;
+  font-variant-numeric: tabular-nums;
+}
+
+caption {
+  padding-bottom: 0.6rem;
+  text-align: left;
+  font-style: italic;
+  color: var(--ink-soft);
+}
+
+th {
+  padding: 0 1.25rem 0.55rem 0;
+  text-align: left;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--muted);
+  border-bottom: 1px solid var(--horizon);
+  vertical-align: bottom;
+}
+
+td {
+  padding: 0.6rem 1.25rem 0.6rem 0;
+  border-bottom: 1px solid var(--rule);
+  vertical-align: top;
+}
+
+th:last-child,
+td:last-child {
+  padding-right: 0;
+}
+
+tbody th {
+  padding-top: 0.6rem;
+  font-style: normal;
+  color: var(--ink);
+  border-bottom-color: var(--rule);
+  vertical-align: top;
+}
+
+tbody tr:last-child > td,
+tbody tr:last-child > th {
+  border-bottom: 0;
+}
+
+/* -------------------------------------------------------------- gallery -- */
+/* A project's recordings and screens: one large, the rest in a strip under it.
+   Without scripting every slide is shown, one under the other. */
+
+.gallery-slides {
+  display: grid;
+  gap: 2rem;
+}
+
+.slide figcaption {
+  margin-top: 0.75rem;
+}
+
+.slide .frame {
+  position: relative;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  aspect-ratio: var(--ratio, 16 / 10);
+  background: var(--paper-lift);
+  border-radius: 10px;
+  box-shadow:
+    0 0 0 1px rgba(27, 33, 36, 0.08),
+    0 28px 56px -30px rgba(22, 40, 60, 0.5);
+}
+
+.slide .frame.dark {
+  background: #11161a;
+}
+
+.slide .frame img,
+.slide .frame video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.slide a.frame {
+  cursor: zoom-in;
+}
+
+.js .gallery-slides {
+  gap: 0;
+}
+
+.js .gallery-slides > .slide {
+  grid-area: 1 / 1;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 500ms ease, visibility 0s linear 500ms;
+}
+
+.js .gallery-slides > .slide.is-on {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 500ms ease, visibility 0s;
+}
+
+.gallery-thumbs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 1.1rem;
+}
+
+.gallery-thumbs button {
+  position: relative;
+  width: 6.5rem;
+  aspect-ratio: 16 / 10;
+  padding: 0;
+  overflow: hidden;
+  background: var(--paper-shade);
+  border: 0;
+  border-radius: 6px;
+  cursor: pointer;
+  opacity: 0.6;
+  box-shadow: 0 0 0 1px rgba(27, 33, 36, 0.1);
+  transition: opacity 250ms ease, box-shadow 250ms ease, transform 300ms var(--ease);
+}
+
+.gallery-thumbs button img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top left;
+}
+
+.gallery-thumbs button:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+
+.gallery-thumbs button[aria-current="true"] {
+  opacity: 1;
+  box-shadow: 0 0 0 2px var(--sea);
+}
+
+.gallery-thumbs button[data-kind="video"]::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin: -0.4rem 0 0 -0.25rem;
+  border-style: solid;
+  border-width: 0.4rem 0 0.4rem 0.65rem;
+  border-color: transparent transparent transparent #fff;
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.6));
+}
+
+/* ------------------------------------------------------------- viewer -- */
+
+.viewer {
+  width: 100vw;
+  max-width: none;
+  height: 100dvh;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: rgba(17, 24, 30, 0.95);
+  color: var(--sea-ink);
+  overscroll-behavior: contain;
+}
+
+.viewer::backdrop {
+  background: transparent;
+}
+
+.viewer[open] {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+}
+
+.viewer-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.9rem var(--edge);
+  font-family: var(--mono);
+  font-size: var(--tiny);
+  color: var(--sea-muted);
+}
+
+.viewer-stage {
+  display: grid;
+  place-items: center;
+  min-height: 0;
+  overflow: hidden;
+  padding: 0 clamp(0.5rem, 4vw, 4.5rem);
+}
+
+.viewer-stage img {
+  max-width: 100%;
+  max-height: calc(100dvh - 9rem);
+  object-fit: contain;
+  border-radius: 6px;
+  box-shadow: 0 20px 60px -20px rgba(0, 0, 0, 0.7);
+  background: #111;
+}
+
+.viewer-caption {
+  margin: 0 auto;
+  padding: 0.9rem var(--edge) 1.3rem;
+  max-width: 48rem;
+  min-height: 1.5em;
+  text-align: center;
+  font-size: var(--small);
+  color: var(--sea-ink);
+}
+
+.viewer button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 1px solid var(--sea-rule);
+  border-radius: 999px;
+  padding: 0.35rem 0.9rem;
+  cursor: pointer;
+}
+
+.viewer button:hover,
+.viewer button:focus-visible {
+  border-color: var(--sea-muted);
+  color: var(--sea-ink);
+}
+
+.viewer-nav {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.viewer-nav[hidden] {
+  display: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .viewer[open] .viewer-stage > * {
+    animation: viewer-in 260ms var(--ease);
+  }
+}
+
+@keyframes viewer-in {
+  from {
+    opacity: 0;
+    transform: scale(0.985);
+  }
+}
+
+/* ------------------------------------------------------------------ arch -- */
+/* How a system works: the system drawn once, and a few real scenarios played
+   over it. A clay dot carries a request, a sea-blue one the answer; a part lights
+   when something reaches it and its small line says what happened there. Without
+   scripting it is a still drawing and a numbered list. */
+
+.arch {
+  container-type: inline-size;
+  --lit: #efe9df;
+}
+
+.arch-body {
+  display: grid;
+  gap: 1.75rem;
+}
+
+.arch-map {
+  display: block;
+  width: 100%;
+  max-width: 26.25rem;
+  height: auto;
+  margin-inline: auto;
+  overflow: visible;
+}
+
+.arch-map text {
+  font-family: var(--serif);
+  fill: var(--ink);
+}
+
+.arch-map .nm {
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.arch-map .sub {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  fill: var(--muted);
+  transition: fill 400ms ease;
+}
+
+.arch-map .sub.is-state {
+  fill: var(--clay-ink);
+}
+
+.arch-map .zone {
+  fill: color-mix(in srgb, var(--sea) 8%, var(--paper-shade));
+}
+
+.arch-map .border {
+  fill: none;
+  stroke: var(--horizon);
+  stroke-width: 1;
+  stroke-dasharray: 3 4;
+}
+
+.arch-map .zone-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  fill: var(--clay-ink);
+}
+
+.arch-map .edge {
+  fill: none;
+  stroke: var(--horizon);
+  stroke-opacity: 0.55;
+  stroke-width: 1;
+}
+
+.arch-map .edge.ghost {
+  stroke: var(--clay);
+  stroke-opacity: 0.7;
+  stroke-dasharray: 2 4;
+  opacity: 0;
+  transition: opacity 500ms ease;
+}
+
+.arch-map .edge.ghost.is-shown {
+  opacity: 1;
+}
+
+.arch-map .edge-label {
+  font-family: var(--mono);
+  font-size: 9.5px;
+  fill: var(--muted);
+}
+
+.arch-map .box,
+.arch-map .person {
+  fill: var(--lit);
+  stroke: var(--horizon);
+  stroke-width: 1;
+  transition: stroke 500ms ease, fill 500ms ease;
+}
+
+.arch-map .person {
+  stroke: var(--ink-soft);
+}
+
+.arch-map .is-seen .box {
+  stroke: var(--ink-soft);
+}
+
+.arch-map .is-now .box,
+.arch-map .is-now .person {
+  stroke: var(--ink);
+  fill: color-mix(in srgb, var(--clay) 9%, var(--lit));
+}
+
+.arch-map .halo {
+  fill: none;
+  stroke: var(--clay);
+  stroke-width: 1;
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.arch-map .trail {
+  fill: none;
+  stroke: var(--ink-soft);
+  stroke-width: 1.5;
+  transition: stroke-opacity 900ms ease;
+}
+
+.arch-map .trail.reply {
+  stroke: var(--sea);
+}
+
+.arch-map .trail.old {
+  stroke-opacity: 0.45;
+}
+
+.arch-map .no {
+  fill: none;
+  stroke: var(--clay-ink);
+  stroke-width: 1.75;
+  stroke-linecap: round;
+}
+
+.arch-map .pk {
+  opacity: 0;
+  transition: opacity 250ms ease;
+}
+
+.arch-map .pk circle {
+  fill: var(--clay);
+}
+
+.arch-map .pk circle:first-child {
+  fill-opacity: 0.2;
+}
+
+.arch-map .pk.reply circle {
+  fill: var(--sea);
+}
+
+.arch-map .arch-trails,
+.arch-map .arch-marks {
+  transition: opacity 450ms ease;
+}
+
+.arch-map.is-clearing .arch-trails,
+.arch-map.is-clearing .arch-marks {
+  opacity: 0;
+}
+
+/* The panel: scenario names, the steps of the one playing, and its controls. */
+.arch-panel {
+  font-size: var(--small);
+  line-height: 1.5;
+}
+
+.arch-scene-name {
+  margin: 1.25rem 0 0.4rem;
+  font-style: italic;
+  color: var(--muted);
+}
+
+.arch-scene:first-child .arch-scene-name {
+  margin-top: 0;
+}
+
+.js .arch-scene-name {
+  display: none;
+}
+
+.prose .arch-steps > li {
+  position: relative;
+  padding: 0.5rem 0 0.6rem 2.1rem;
+  border-top: 1px solid var(--rule);
+  color: var(--ink-soft);
+  transition: color 400ms ease;
+}
+
+.prose .arch-steps > li + li {
+  margin-top: 0;
+}
+
+.prose .arch-steps > li::before {
+  left: 0;
+  top: 0.78rem;
+  transition: color 400ms ease;
+}
+
+/* The step playing fills a hairline as it is read. */
+.arch-steps > li::after {
+  content: "";
+  position: absolute;
+  left: 2.1rem;
+  right: 0;
+  bottom: -1px;
+  z-index: 1;
+  height: 1px;
+  background: var(--clay);
+  transform: scaleX(var(--p, 0));
+  transform-origin: left center;
+  opacity: 0;
+}
+
+.js .prose .arch-steps > li {
+  color: var(--muted);
+}
+
+.js .prose .arch-steps > li.is-done {
+  color: var(--ink-soft);
+}
+
+.js .prose .arch-steps > li.is-on {
+  color: var(--ink);
+}
+
+.js .arch-steps > li.is-on::after {
+  opacity: 0.75;
+}
+
+/* Numbered by the script: a counter would skip the steps hidden on narrow screens. */
+.js .prose .arch-steps > li::before {
+  content: attr(data-n);
+}
+
+.js .prose .arch-steps > li:not(.is-on)::before {
+  color: var(--muted);
+}
+
+.arch-step {
+  display: block;
+  width: 100%;
+  padding: 0;
+  font: inherit;
+  line-height: inherit;
+  text-align: left;
+  color: inherit;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+.arch-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-bottom: 1rem;
+}
+
+.arch-tabs button,
+.arch-controls button {
+  font-family: var(--mono);
+  font-size: var(--tiny);
+  line-height: 1;
+  color: var(--ink-soft);
+  background: none;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  padding: 0.4rem 0.75rem;
+  cursor: pointer;
+  transition: border-color 200ms ease, color 200ms ease, background-color 200ms ease;
+}
+
+.arch-tabs button:hover,
+.arch-tabs button:focus-visible,
+.arch-controls button:hover,
+.arch-controls button:focus-visible {
+  border-color: var(--horizon);
+  color: var(--ink);
+}
+
+.arch-tabs button[aria-pressed="true"] {
+  border-color: var(--sea);
+  color: var(--paper-lift);
+  background: var(--sea);
+}
+
+.arch-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 1rem;
+  font-family: var(--mono);
+  font-size: var(--tiny);
+  color: var(--muted);
+}
+
+.arch-controls [data-act="toggle"] {
+  min-width: 5.6rem;
+}
+
+.arch-controls button:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.arch-controls button[hidden] {
+  display: none;
+}
+
+.arch-count {
+  min-width: 3.2em;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.arch-key {
+  display: inline-block;
+  width: 0.5em;
+  height: 0.5em;
+  margin: 0 0.35em 0 0.15em;
+  border-radius: 50%;
+  background: var(--clay);
+  vertical-align: 0.08em;
+}
+
+.arch-key.reply {
+  background: var(--sea);
+}
+
+/* Room for both: the drawing on the left, its story beside it. */
+@container (min-width: 46rem) {
+  .arch-body {
+    grid-template-columns: 26.25rem minmax(0, 1fr);
+    gap: 2.75rem;
+    align-items: start;
+  }
+}
+
+/* No room: one step at a time, under the drawing. */
+@container (max-width: 45.99rem) {
+  .arch-map {
+    margin-inline: 0;
+  }
+
+  .arch-panel {
+    max-width: 30rem;
+  }
+
+  .js .prose .arch-steps > li:not(.is-on) {
+    display: none;
+  }
+
+  .js .prose .arch-steps > li {
+    min-height: 5.6rem;
+  }
+}
+
+/* A phone draws the system smaller; its small lines grow to stay readable. */
+@container (max-width: 30rem) {
+  .arch-map .sub {
+    font-size: 11.5px;
+  }
+
+  .arch-map .zone-label,
+  .arch-map .edge-label {
+    font-size: 11px;
+  }
+}
+
+/* ------------------------------------------------------------------- sea -- */
+
+/* Every page ends at the water. Light moves on it, slowly. */
+.sea {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  margin-top: var(--space-xl);
+  background: linear-gradient(180deg, var(--sea) 0%, var(--sea-deep) 100%);
+  color: var(--sea-ink);
+  min-height: min(38rem, 70svh);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--space-l);
+  padding-top: var(--space-l);
+  padding-bottom: 1.75rem;
+}
+
+.sea::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background: var(--grain);
+  opacity: 0.8;
+}
+
+.caustics {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 2s ease;
+}
+
+.caustics.on {
+  opacity: 1;
+}
+
+.sea a {
+  color: var(--sea-ink);
+  text-decoration-color: color-mix(in srgb, currentColor 35%, transparent);
+}
+
+.sea a:hover {
+  text-decoration-color: currentColor;
+}
+
+.sea .label {
+  color: var(--sea-muted);
+}
+
+.sea .label {
+  margin-bottom: 1rem;
+}
+
+.sea .say {
+  max-width: 14em;
+  font-size: clamp(2rem, 1.4rem + 2.6vw, 3.5rem);
+  font-weight: 330;
+  line-height: 1.08;
+  letter-spacing: -0.022em;
+  color: var(--sea-ink);
+  text-wrap: balance;
+}
+
+.sea .say em {
+  font-weight: 300;
+}
+
+.contact {
+  margin-top: var(--space-m);
+}
+
+.sea .pairs dt {
+  color: var(--sea-muted);
+}
+
+.colophon {
+  font-size: var(--tiny);
+  line-height: 1.5;
+  color: var(--sea-muted);
+}
+
+.colophon {
+  grid-column: wide;
+}
+
+.colophon-line {
+  grid-column: wide;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.25rem 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--sea-rule);
+}
+
+/* ---------------------------------------------------------------- narrow -- */
+
+@media (max-width: 55.99rem) {
+  :root {
+    --space-l: 3.75rem;
+    --space-xl: 5rem;
+  }
+
+  .row {
+    grid-template-columns:
+      [full-start] var(--edge)
+      [wide-start main-start] minmax(0, 1fr) [main-end wide-end]
+      var(--edge) [full-end];
+  }
+
+  .masthead > .name,
+  .masthead > .masthead-line {
+    grid-column: main;
+    grid-row: auto;
+  }
+
+  .masthead-line {
+    justify-content: flex-start;
+    margin-top: 0.5rem;
+  }
+
+  .row > .sec-head {
+    margin-bottom: 1.5rem;
+  }
+
+  .shade {
+    width: 88vw;
+  }
+
+  .shade .leaf-a {
+    opacity: 0.1;
+  }
+
+  .pairs {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 0;
+  }
+
+  .pairs dt,
+  .pairs dd {
+    grid-column: 1;
+  }
+
+  .pairs dd + dt {
+    margin-top: 0.8rem;
+  }
+
+  .pairs dt {
+    margin-bottom: 0.1rem;
+  }
+
+  .brief .pairs dd + dt {
+    margin-top: 1.4rem;
+  }
+
+  .brief > .slab::before {
+    inset: 0 -1rem;
+  }
+
+  .inline-pairs {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+  }
+
+  .inline-pairs dd + dt {
+    margin-top: 0.8rem;
+  }
+
+  .prose ol > li {
+    padding-left: 2rem;
+  }
+
+  .prose ol > li::before {
+    left: 0;
+  }
+
+  .prose h3::before {
+    left: -1.1rem;
+    width: 0.6rem;
+  }
+
+  .table table {
+    min-width: 32rem;
+  }
+
+  .term {
+    min-height: 0;
+    padding-inline: 1.1rem;
+    font-size: 0.75rem;
+  }
+
+  .screen-ctl {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 30rem) {
+  .masthead-line {
+    gap: 0.5rem 1.1rem;
+  }
+
+  .nav {
+    gap: 1.1rem;
+  }
+
+  .gallery-thumbs button {
+    width: 5rem;
+  }
+}
+
+@media print {
+  html,
+  .sea {
+    background: none;
+    color: #000;
+  }
+
+  .shade,
+  .caustics,
+  .nav,
+  .lang,
+  .skip,
+  .screen-ctl {
+    display: none;
+  }
+
+  .sea a,
+  .sea .label,
+  .sea .say,
+  .colophon {
+    color: #000;
+  }
+}
