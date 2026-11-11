@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Berke Akyıldız — AI agents and the systems around them</title>
   <script>(function(r){var q=/[?&]lang=(en|tr)\b/.exec(location.search),l=q?q[1]:null;try{if(q)localStorage.setItem("lang",l);else l=localStorage.getItem("lang")}catch(e){}r.dataset.lang=l==="tr"?"tr":"en";r.lang=r.dataset.lang;r.classList.add("js")})(document.documentElement)</script>
-  <meta name="description" content="Berke Akyıldız builds AI agents and the systems around them: tool use, memory, evaluation and tracing. Projects: IssuePilot, Second Brain OS, Hotel Operations Agent, AI News Digest.">
+  <meta name="description" content="Berke Akyıldız builds AI agents and the systems around them: tool use, memory, evaluation and tracing. Projects: cro-lens, IssuePilot, ArchDrawer, memcellar, Hotel Operations Agent, AI News Digest.">
   <meta name="theme-color" content="#e9e3d7">
   <link rel="canonical" href="https://brkakyldz.github.io/">
   <meta property="og:type" content="website">
@@ -52,6 +52,39 @@
         <h2 id="isler-baslik"><span data-l="en">Work</span><span data-l="tr">İşler</span></h2>
       </header>
 
+      <!-- cro-lens -->
+      <article class="span work" id="cro-lens">
+        <div class="label work-label">
+          <p class="status"><span class="state run" aria-hidden="true"></span><span data-l="en">v0.2 · new</span><span data-l="tr">v0.2 · yeni</span></p>
+        </div>
+        <div>
+          <h3><a href="isler/cro-lens/">cro-lens</a></h3>
+          <p class="summary"><span data-l="en">Give it one landing page and it returns a ranked backlog of A/B tests. Every finding quotes the page, code checks each quote against the captured page before a skeptical second pass reads it, and the next audit learns from the findings you mark right or wrong.</span><span data-l="tr">Bir landing page veriyorsun, sıralanmış bir A/B test listesi dönüyor. Her bulgu sayfadan alıntı yapıyor; şüpheci ikinci okuma başlamadan önce kod her alıntıyı yakalanan sayfaya karşı kontrol ediyor. Doğru ya da yanlış diye işaretlediğin bulgulardan bir sonraki analiz öğreniyor.</span></p>
+          <p class="more"><a href="isler/cro-lens/"><span data-l="en">How it works</span><span data-l="tr">Nasıl çalışıyor</span><span class="go">→</span></a><a href="https://github.com/brkakyldz/cro-lens"><span data-l="en">Code</span><span data-l="tr">Kaynak kodu</span><span class="go up">↗</span></a></p>
+        </div>
+        <figure class="wide stage reveal">
+          <div class="screen">
+            <div class="term">
+              <p class="term-title" aria-hidden="true">~/cro-lens</p>
+              <ol>
+                <li class="t-cmd">uv run cro-lens https://calendly.com</li>
+                <li class="t-sys">✓ robots       robots.txt allows this path</li>
+                <li class="t-sys">✓ capture      desktop 242 blocks · mobile 238 blocks</li>
+                <li class="t-sys">✓ understand   audience: small-to-mid teams whose work runs on meetings</li>
+                <li class="t-sys">✓ analyse      8 findings</li>
+                <li class="t-sys">✓ check        kept 2 · flagged 4 · dropped 2</li>
+                <li class="t-sys">✓ hypotheses   6 experiments</li>
+                <li class="t-sys">✓ report       report.md · report.json</li>
+                <li class="t-tool">cost: $0.410 API-equivalent (4 model calls)</li>
+                <li class="t-say">Top test: move customer proof from seven screens down to just under the sign-up buttons.</li>
+              </ol>
+            </div>
+            <button class="screen-ctl" type="button"><i aria-hidden="true"></i><span>Pause</span></button>
+          </div>
+          <figcaption class="stage-caption"><span data-l="en">A real audit of calendly.com, shortened: seven steps, four model calls and a report with six experiments.</span><span data-l="tr">calendly.com’un gerçek bir analizi, kısaltılmış: yedi adım, dört model çağrısı ve altı deneyli bir rapor.</span></figcaption>
+        </figure>
+      </article>
+
       <!-- IssuePilot -->
       <article class="span work" id="issuepilot">
         <div class="label work-label">
@@ -72,15 +105,33 @@
         </figure>
       </article>
 
-      <!-- Second Brain OS -->
-      <article class="span work" id="second-brain-os">
+      <!-- ArchDrawer -->
+      <article class="span work" id="archdrawer">
         <div class="label work-label">
-          <p class="status"><span class="state run" aria-hidden="true"></span><span data-l="en">v1.1 · in daily use</span><span data-l="tr">v1.1 · her gün kullanımda</span></p>
+          <p class="status"><span class="state run" aria-hidden="true"></span><span data-l="en">Pre-release</span><span data-l="tr">Ön sürüm</span></p>
         </div>
         <div>
-          <h3><a href="isler/second-brain-os/">Second Brain OS</a></h3>
-          <p class="summary"><span data-l="en">A memory for coding agents that you can read, correct and undo. It is an Obsidian vault and a Git repository at once, shared by Claude Code and Codex: plain Markdown, and Git is the only database.</span><span data-l="tr">Kodlama agent’ları için okuyabildiğin, düzeltebildiğin ve geri alabildiğin bir bellek. Aynı anda hem bir Obsidian vault’u hem bir Git reposu; Claude Code ve Codex ortak kullanıyor. İçerik düz Markdown, tek veritabanı Git.</span></p>
-          <p class="more"><a href="isler/second-brain-os/"><span data-l="en">How it works</span><span data-l="tr">Nasıl çalışıyor</span><span class="go">→</span></a><a href="https://github.com/brkakyldz/second-brain-os"><span data-l="en">Code</span><span data-l="tr">Kaynak kodu</span><span class="go up">↗</span></a></p>
+          <h3><a href="isler/archdrawer/">ArchDrawer</a></h3>
+          <p class="summary"><span data-l="en">Your own Claude Code or Codex reads a repository and ArchDrawer draws its architecture. Every part names the files behind it, and code checks they exist before anything is drawn. Edit it by hand or in plain words, then export it for a README, a slide or a LinkedIn post.</span><span data-l="tr">Kendi Claude Code’un ya da Codex’in bir repoyu okuyor, ArchDrawer da mimarisini çiziyor. Her parça arkasındaki dosyaları gösteriyor; bir şey çizilmeden önce kod bu dosyaların var olduğunu kontrol ediyor. Elle ya da düz cümlelerle düzenleyip bir README, bir sunum ya da bir LinkedIn postu için dışa aktarıyorsun.</span></p>
+          <p class="more"><a href="isler/archdrawer/"><span data-l="en">How it works</span><span data-l="tr">Nasıl çalışıyor</span><span class="go">→</span></a><a href="https://github.com/brkakyldz/ArchDrawer"><span data-l="en">Code</span><span data-l="tr">Kaynak kodu</span><span class="go up">↗</span></a></p>
+        </div>
+        <figure class="wide stage reveal">
+          <div class="screen light">
+            <img src="assets/shots/archdrawer/editor.webp" width="2000" height="1352" loading="lazy" decoding="async" alt="The ArchDrawer editor with a ticket-triage agent" data-en-alt="The ArchDrawer editor with a ticket-triage agent" data-tr-alt="ArchDrawer editöründe bir ticket triage agent’ı">
+          </div>
+          <figcaption class="stage-caption"><span data-l="en">A ticket-triage agent, drawn by Claude Code from its source and open in the editor.</span><span data-l="tr">Claude Code’un kaynak kodundan çizdiği bir ticket triage agent’ı, editörde açık.</span></figcaption>
+        </figure>
+      </article>
+
+      <!-- memcellar -->
+      <article class="span work" id="memcellar">
+        <div class="label work-label">
+          <p class="status"><span class="state run" aria-hidden="true"></span><span data-l="en">v2.0 · released</span><span data-l="tr">v2.0 · yayında</span></p>
+        </div>
+        <div>
+          <h3><a href="isler/memcellar/">memcellar</a></h3>
+          <p class="summary"><span data-l="en">A memory for coding agents that you can read, correct and undo. It is an Obsidian vault and a Git repository at once, shared by Claude Code and Codex: plain Markdown, and Git is the only database. Formerly Second Brain OS.</span><span data-l="tr">Kodlama agent’ları için okuyabildiğin, düzeltebildiğin ve geri alabildiğin bir bellek. Aynı anda hem bir Obsidian vault’u hem bir Git reposu; Claude Code ve Codex ortak kullanıyor. İçerik düz Markdown, tek veritabanı Git. Eski adı Second Brain OS.</span></p>
+          <p class="more"><a href="isler/memcellar/"><span data-l="en">How it works</span><span data-l="tr">Nasıl çalışıyor</span><span class="go">→</span></a><a href="https://github.com/brkakyldz/memcellar"><span data-l="en">Code</span><span data-l="tr">Kaynak kodu</span><span class="go up">↗</span></a></p>
         </div>
         <figure class="wide stage reveal">
           <div class="screen">

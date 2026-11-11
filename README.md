@@ -4,7 +4,7 @@ Static site. No build step, no dependencies: open `index.html` through any stati
 server (`python -m http.server`) or publish the folder to GitHub Pages as is.
 
 ```
-index.html                  home: opening, four projects, a short about
+index.html                  home: opening, six projects, a short about
 hakkimda/index.html         about and CV (#ozgecmis)
 isler/<project>/index.html  one short page per project: recordings, brief, how it works, numbers
 cv/index.html               redirect to hakkimda/#ozgecmis (keeps the old /cv/ link alive)
@@ -42,8 +42,9 @@ English is the default; the EN / TR button switches, the choice is kept in
   (`.stage .screen`, with a pause button and a progress hairline), a `.flow`
   strip (the system's parts left to right, a pulse running through them, a
   caption saying what happens at each; parts with `data-model` are where a model
-  works), then three measured figures. Second Brain OS has no recording, so its
-  stage is an illustrative terminal session (`.term`), typed out line by line.
+  works), then three measured figures. cro-lens and memcellar have no recording, so their
+  stages are terminal sessions (`.term`), typed out line by line; ArchDrawer's
+  is a still screenshot.
 - Project pages: a `.gallery` (one slide large, thumbnails from each slide's
   `data-thumb`; stills open full size), a four-line brief, the *How it works*
   figure, numbers.

@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en" data-lang="en" data-title-tr="ArchDrawer — Berke Akyıldız">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ArchDrawer — Berke Akyıldız</title>
+  <script>(function(r){var q=/[?&]lang=(en|tr)\b/.exec(location.search),l=q?q[1]:null;try{if(q)localStorage.setItem("lang",l);else l=localStorage.getItem("lang")}catch(e){}r.dataset.lang=l==="tr"?"tr":"en";r.lang=r.dataset.lang;r.classList.add("js")})(document.documentElement)</script>
+  <meta name="description" content="ArchDrawer: your repository’s architecture, read from the code by your own Claude Code or Codex, then drawn, edited and exported for a README or a LinkedIn post.">
+  <meta name="theme-color" content="#e9e3d7">
+  <link rel="canonical" href="https://brkakyldz.github.io/isler/archdrawer/">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="ArchDrawer — Berke Akyıldız">
+  <meta property="og:description" content="An architecture drawing read from the code, every part pointing back to real files, sized for where it is going.">
+  <meta property="og:url" content="https://brkakyldz.github.io/isler/archdrawer/">
+  <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400&family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..700&display=swap">
+  <link rel="stylesheet" href="../../assets/site.css">
+  <script src="../../assets/site.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#icerik"><span data-l="en">Skip to content</span><span data-l="tr">İçeriğe geç</span></a>
+  <div class="shade" aria-hidden="true"><img class="leaf-b" src="../../assets/leaves-b.svg" alt=""><img class="leaf-a" src="../../assets/leaves-a.svg" alt=""></div>
+
+  <header class="row masthead">
+    <p class="label name"><a href="../../">Berke Akyıldız</a></p>
+    <div class="masthead-line">
+      <nav class="nav" aria-label="Site">
+        <a href="../../#isler"><span data-l="en">Work</span><span data-l="tr">İşler</span></a>
+        <a href="../../hakkimda/"><span data-l="en">About</span><span data-l="tr">Hakkımda</span></a>
+        <a href="#iletisim"><span data-l="en">Contact</span><span data-l="tr">İletişim</span></a>
+      </nav>
+      <button class="lang" type="button" aria-label="Türkçe’ye geç" data-en-label="Türkçe’ye geç" data-tr-label="Switch to English"><span data-v="en">EN</span><span aria-hidden="true">/</span><span data-v="tr">TR</span></button>
+    </div>
+    <div class="horizon" aria-hidden="true"></div>
+  </header>
+
+  <main id="icerik" class="doc">
+    <header class="row doc-head">
+      <div class="label head-meta">
+        <p><a href="../../#isler"><span data-l="en">Work</span><span data-l="tr">İşler</span></a> · 3 / 6</p>
+        <p class="status"><span class="state run" aria-hidden="true"></span><span data-l="en">Pre-release · in development</span><span data-l="tr">Ön sürüm · geliştirme sürüyor</span></p>
+      </div>
+      <div>
+        <h1>ArchDrawer</h1>
+        <p class="standfirst"><span data-l="en">Your repository’s architecture, read from the code by your own Claude Code or Codex. Every part it draws names the files behind it, and you can edit the drawing by hand or in plain words, then export it sized for a README, a slide or a LinkedIn post.</span><span data-l="tr">Reponun mimarisi, kendi Claude Code’un ya da Codex’in koddan okuduğu haliyle. Çizdiği her parça arkasındaki dosyaları gösteriyor; çizimi elle ya da düz cümlelerle düzenleyip bir README, bir sunum ya da bir LinkedIn postu için doğru boyutta dışa aktarabiliyorsun.</span></p>
+        <p class="doc-links"><a href="https://github.com/brkakyldz/ArchDrawer"><span data-l="en">Code</span><span data-l="tr">Kaynak kodu</span><span class="go up">↗</span></a></p>
+      </div>
+    </header>
+
+    <div class="row doc-show">
+      <div class="wide gallery" style="--ratio: 3 / 2">
+        <div class="gallery-slides">
+          <figure class="slide" data-thumb="../../assets/shots/archdrawer/editor-thumb.webp">
+            <a class="frame" href="../../assets/shots/archdrawer/editor.webp"><img src="../../assets/shots/archdrawer/editor.webp" width="2000" height="1352" loading="lazy" decoding="async" alt="The ArchDrawer editor with a ticket-triage agent" data-en-alt="The ArchDrawer editor with a ticket-triage agent" data-tr-alt="ArchDrawer editöründe bir ticket triage agent’ı"></a>
+            <figcaption><span data-l="en">A ticket-triage agent, drawn by Claude Code from its source: the agent loop, the approval gate and the tools, open in the LinkedIn channel.</span><span data-l="tr">Claude Code’un kaynak kodundan çizdiği bir ticket triage agent’ı: agent döngüsü, onay kapısı ve araçlar, LinkedIn kanalında açık.</span></figcaption>
+          </figure>
+          <figure class="slide" data-thumb="../../assets/shots/archdrawer/choose-thumb.webp">
+            <a class="frame" href="../../assets/shots/archdrawer/choose.webp"><img src="../../assets/shots/archdrawer/choose.webp" width="2000" height="2668" loading="lazy" decoding="async" alt="Choosing what to draw after a scan" data-en-alt="Choosing what to draw after a scan" data-tr-alt="Taramadan sonra neyin çizileceğini seçmek"></a>
+            <figcaption><span data-l="en">After a scan of about a minute: the whole system, its sections and its flows, each with the files behind it. Tick what to draw and where it is going.</span><span data-l="tr">Yaklaşık bir dakikalık taramadan sonra: sistemin tamamı, bölümleri ve akışları, her biri arkasındaki dosyalarla. Neyin çizileceğini ve nereye gideceğini seçiyorsun.</span></figcaption>
+          </figure>
+          <figure class="slide" data-thumb="../../assets/shots/archdrawer/ai-thumb.webp">
+            <a class="frame" href="../../assets/shots/archdrawer/ai.webp"><img src="../../assets/shots/archdrawer/ai.webp" width="2000" height="1336" loading="lazy" decoding="async" alt="Editing the drawing in plain words" data-en-alt="Editing the drawing in plain words" data-tr-alt="Çizimi düz cümlelerle düzenlemek"></a>
+            <figcaption><span data-l="en">A change asked for in plain words. It arrives as a preview with the changed parts highlighted, to accept or undo.</span><span data-l="tr">Düz cümleyle istenen bir değişiklik. Değişen parçalar vurgulanmış bir önizleme olarak geliyor; kabul edebilir ya da geri alabilirsin.</span></figcaption>
+          </figure>
+          <figure class="slide" data-thumb="../../assets/shots/archdrawer/share-thumb.webp">
+            <a class="frame" href="../../assets/shots/archdrawer/share.webp"><img src="../../assets/shots/archdrawer/share.webp" width="2000" height="1336" loading="lazy" decoding="async" alt="The share dialog" data-en-alt="The share dialog" data-tr-alt="Paylaşma penceresi"></a>
+            <figcaption><span data-l="en">Four sizes, light and dark, and a readability check that warns before the text gets too small to read on a phone.</span><span data-l="tr">Dört boyut, açık ve koyu tema ve yazı telefonda okunamayacak kadar küçülmeden önce uyaran bir okunabilirlik kontrolü.</span></figcaption>
+          </figure>
+          <figure class="slide" data-thumb="../../assets/shots/archdrawer/linkedin-thumb.webp">
+            <a class="frame" href="../../assets/shots/archdrawer/linkedin.webp"><img src="../../assets/shots/archdrawer/linkedin.webp" width="2000" height="2500" loading="lazy" decoding="async" alt="An exported LinkedIn image" data-en-alt="An exported LinkedIn image" data-tr-alt="Dışa aktarılmış bir LinkedIn görseli"></a>
+            <figcaption><span data-l="en">Exported for LinkedIn, 1080 × 1350: about a dozen parts and one plain sentence, readable on a phone.</span><span data-l="tr">LinkedIn için dışa aktarıldı, 1080 × 1350: yaklaşık bir düzine parça ve tek bir sade cümle, telefonda okunuyor.</span></figcaption>
+          </figure>
+          <figure class="slide" data-thumb="../../assets/shots/archdrawer/readme-thumb.webp">
+            <a class="frame" href="../../assets/shots/archdrawer/readme.webp"><img src="../../assets/shots/archdrawer/readme.webp" width="2000" height="1125" loading="lazy" decoding="async" alt="An exported README drawing" data-en-alt="An exported README drawing" data-tr-alt="Dışa aktarılmış bir README çizimi"></a>
+            <figcaption><span data-l="en">The README size, 1600 × 900, from the same facts: more detail and a line on what each part does.</span><span data-l="tr">Aynı bilgilerden README boyutu, 1600 × 900: daha fazla ayrıntı ve her parçanın ne yaptığına dair bir satır.</span></figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+
+    <div class="row doc-facts">
+      <dl class="pairs">
+        <dt><span data-l="en">Status</span><span data-l="tr">Durum</span></dt>
+        <dd><span data-l="en">Works end to end, no tagged release yet; MIT licence</span><span data-l="tr">Uçtan uca çalışıyor, henüz etiketli sürüm yok; MIT lisansı</span></dd>
+        <dt><span data-l="en">Stack</span><span data-l="tr">Yığın</span></dt>
+        <dd class="mono">TypeScript · Node.js · Hono · React · Vite · Claude Code · Codex · Vitest · Playwright</dd>
+        <dt><span data-l="en">Code</span><span data-l="tr">Kod</span></dt>
+        <dd><a href="https://github.com/brkakyldz/ArchDrawer">github.com/brkakyldz/ArchDrawer</a></dd>
+      </dl>
+    </div>
+
+    <section class="row brief" aria-labelledby="kisaca">
+      <header class="sec-head">
+        <p class="label num">01</p>
+        <h2 id="kisaca"><span data-l="en">In short</span><span data-l="tr">Kısaca</span></h2>
+      </header>
+      <dl class="pairs slab">
+        <dt>Problem</dt>
+        <dd><span data-l="en">A diagram drawn by hand is out of date by the next refactor, and one a chatbot draws from your description is only as right as the description.</span><span data-l="tr">Elle çizilen bir diyagram bir sonraki refactor’da eskiyor; bir sohbet botunun senin anlatımından çizdiği ise ancak o anlatım kadar doğru.</span></dd>
+        <dt><span data-l="en">What it does</span><span data-l="tr">Ne yapıyor</span></dt>
+        <dd><span data-l="en">Your own coding agent reads the repository, keeps what it finds as facts that point back to real files and lays them out as a drawing you can edit. One drawing file holds the facts once and a layout per channel, so a README drawing and a LinkedIn image never disagree.</span><span data-l="tr">Kendi kodlama agent’ın repoyu okuyor, bulduklarını gerçek dosyalara işaret eden bilgiler olarak saklıyor ve düzenleyebileceğin bir çizime döküyor. Tek bir çizim dosyası bilgileri bir kez, her kanal için ayrı bir yerleşimle tutuyor; böylece README çizimi ile LinkedIn görseli hiçbir zaman çelişmiyor.</span></dd>
+        <dt><span data-l="en">Key decision</span><span data-l="tr">Temel karar</span></dt>
+        <dd><span data-l="en">No model API and no key. It runs on the Claude Code or Codex subscription you already have, the engines get read-only tools, and code checks that every file they name exists before anything is drawn.</span><span data-l="tr">Model API’si de anahtar da yok. Zaten sahip olduğun Claude Code ya da Codex aboneliğiyle çalışıyor; motorlar yalnızca okuyabilen araçlar alıyor ve bir şey çizilmeden önce kod, adı geçen her dosyanın var olduğunu kontrol ediyor.</span></dd>
+      </dl>
+    </section>
+
+    <section class="row prose" aria-labelledby="nasil-calisir">
+      <header class="sec-head">
+        <p class="label num">02</p>
+        <h2 id="nasil-calisir"><span data-l="en">How it works</span><span data-l="tr">Nasıl çalışır</span></h2>
+      </header>
+      <figure class="wide arch">
+        <div class="arch-body">
+          <svg class="arch-map" viewBox="0 0 420 616" role="img" aria-labelledby="arch-ad-t arch-ad-d">
+            <title id="arch-ad-t">ArchDrawer’s architecture</title>
+            <desc id="arch-ad-d">You ask for a drawing. Inside the shaded band your own Claude Code or Codex scans the repository and then reads each chosen part in depth, with read-only tools. Below the dashed line there is no model: code checks that every file named exists and drops what does not, writes the facts to one drawing file in the repository and lays out one drawing per channel. The editor runs on your machine; a change asked for in plain words goes to the engine again and comes back as a preview. Export sends the image back to you. A read has no path to the drawing that skips the file check.</desc>
+            <g class="arch-zones">
+              <rect class="zone" x="0" y="40" width="420" height="168" rx="2"/>
+              <rect class="zone" x="300" y="456" width="120" height="72" rx="2"/>
+              <path class="border" d="M0 208H420"/>
+              <text class="zone-label" x="24" y="200"><tspan data-l="en">model · reads only</tspan><tspan data-l="tr">model · yalnızca okur</tspan></text>
+              <text class="zone-label" x="24" y="225"><tspan data-l="en">code · checks, draws, exports</tspan><tspan data-l="tr">kod · kontrol eder, çizer, aktarır</tspan></text>
+            </g>
+            <g class="arch-edges">
+              <path class="edge" data-edge="you scan" d="M200 22V80"/>
+              <path class="edge" data-edge="scan repo" d="M200 80H360V120"/>
+              <path class="edge" data-edge="scan read" d="M200 80V160"/>
+              <path class="edge" data-edge="read repo" d="M200 160H360V120"/>
+              <path class="edge" data-edge="read check" d="M200 160V252"/>
+              <path class="edge" data-edge="check dropped" d="M200 252H64"/>
+              <path class="edge" data-edge="check facts" d="M200 252V332"/>
+              <path class="edge" data-edge="facts layout" d="M200 332V412"/>
+              <path class="edge" data-edge="layout editor" d="M200 412V492"/>
+              <path class="edge" data-edge="editor aiedit" d="M200 492H360"/>
+              <path class="edge" data-edge="aiedit facts" d="M360 492V332H200"/>
+              <path class="edge" data-edge="editor export" d="M200 492V572"/>
+              <path class="edge" data-edge="export you" d="M200 572H20Q8 572 8 560V34Q8 22 20 22H200"/>
+              <path class="edge ghost" data-edge="read layout" d="M200 160H288Q300 160 300 172V400Q300 412 288 412H200"/>
+            </g>
+            <g class="arch-nodes">
+              <g data-node="you">
+                <circle class="person" cx="200" cy="22" r="5.5"/>
+                <text class="nm" x="213" y="27"><tspan data-l="en">You</tspan><tspan data-l="tr">Sen</tspan></text>
+              </g>
+              <g data-node="scan">
+                <rect class="box" x="125" y="56" width="150" height="48" rx="3"/>
+                <text class="nm" x="200" y="76" text-anchor="middle"><tspan data-l="en">Scan</tspan><tspan data-l="tr">Tarama</tspan></text>
+                <text class="sub" x="200" y="93" text-anchor="middle"><tspan data-l="en">sections · flows</tspan><tspan data-l="tr">bölümler · akışlar</tspan></text>
+              </g>
+              <g data-node="read">
+                <rect class="box" x="125" y="136" width="150" height="48" rx="3"/>
+                <text class="nm" x="200" y="156" text-anchor="middle"><tspan data-l="en">Focused read</tspan><tspan data-l="tr">Odaklı okuma</tspan></text>
+                <text class="sub" x="200" y="173" text-anchor="middle">Claude Code · Codex</text>
+              </g>
+              <g data-node="repo">
+                <path class="box" d="M312 106V138A48 6 0 0 0 408 138V106"/>
+                <ellipse class="box" cx="360" cy="106" rx="48" ry="6"/>
+                <text class="nm" x="360" y="127" text-anchor="middle">Repo</text>
+                <text class="sub" x="360" y="141" text-anchor="middle"><tspan data-l="en">your code</tspan><tspan data-l="tr">senin kodun</tspan></text>
+              </g>
+              <g data-node="check">
+                <rect class="box" x="125" y="228" width="150" height="48" rx="3"/>
+                <text class="nm" x="200" y="248" text-anchor="middle"><tspan data-l="en">File check</tspan><tspan data-l="tr">Dosya kontrolü</tspan></text>
+                <text class="sub" x="200" y="265" text-anchor="middle"><tspan data-l="en">does it exist?</tspan><tspan data-l="tr">var mı?</tspan></text>
+              </g>
+              <g data-node="dropped">
+                <rect class="box" x="18" y="228" width="92" height="48" rx="3"/>
+                <text class="nm" x="64" y="248" text-anchor="middle"><tspan data-l="en">Dropped</tspan><tspan data-l="tr">Atıldı</tspan></text>
+                <text class="sub" x="64" y="265" text-anchor="middle"><tspan data-l="en">shown to you</tspan><tspan data-l="tr">sana gösterilir</tspan></text>
+              </g>
+              <g data-node="facts">
+                <rect class="box" x="125" y="308" width="150" height="48" rx="3"/>
+                <text class="nm" x="200" y="328" text-anchor="middle"><tspan data-l="en">Drawing file</tspan><tspan data-l="tr">Çizim dosyası</tspan></text>
+                <text class="sub" x="200" y="345" text-anchor="middle"><tspan data-l="en">facts · in your repo</tspan><tspan data-l="tr">bilgiler · repoda</tspan></text>
+              </g>
+              <g data-node="layout">
+                <rect class="box" x="125" y="388" width="150" height="48" rx="3"/>
+                <text class="nm" x="200" y="408" text-anchor="middle"><tspan data-l="en">Layout</tspan><tspan data-l="tr">Yerleşim</tspan></text>
+                <text class="sub" x="200" y="425" text-anchor="middle"><tspan data-l="en">one per channel</tspan><tspan data-l="tr">kanal başına bir</tspan></text>
+              </g>
+              <g data-node="editor">
+                <rect class="box" x="125" y="468" width="150" height="48" rx="3"/>
+                <text class="nm" x="200" y="488" text-anchor="middle"><tspan data-l="en">Editor</tspan><tspan data-l="tr">Editör</tspan></text>
+                <text class="sub" x="200" y="505" text-anchor="middle">127.0.0.1</text>
+              </g>
+              <g data-node="aiedit">
+                <rect class="box" x="312" y="468" width="96" height="48" rx="3"/>
+                <text class="nm" x="360" y="488" text-anchor="middle"><tspan data-l="en">AI edit</tspan><tspan data-l="tr">AI düzenleme</tspan></text>
+                <text class="sub" x="360" y="505" text-anchor="middle"><tspan data-l="en">a preview</tspan><tspan data-l="tr">önizleme</tspan></text>
+              </g>
+              <g data-node="export">
+                <rect class="box" x="125" y="548" width="150" height="48" rx="3"/>
+                <text class="nm" x="200" y="568" text-anchor="middle"><tspan data-l="en">Export</tspan><tspan data-l="tr">Dışa aktarma</tspan></text>
+                <text class="sub" x="200" y="585" text-anchor="middle">PNG · SVG</text>
+              </g>
+            </g>
+          </svg>
+          <div class="arch-panel">
+            <div class="arch-scene">
+              <p class="arch-scene-name"><span data-l="en">Draw a repository</span><span data-l="tr">Bir repoyu çiz</span></p>
+              <ol class="arch-steps">
+                <li data-route="you scan"><span data-l="en">In a Claude Code or Codex session you ask: draw the architecture of this repository.</span><span data-l="tr">Bir Claude Code ya da Codex session’ında istiyorsun: bu reponun mimarisini çiz.</span></li>
+                <li data-route="scan repo" data-state="scan: 4 sections · 3 flows" data-state-tr="scan: 4 bölüm · 3 akış"><span data-l="en">A scan of about a minute reads the README, the folder tree, dependencies and entry points, and proposes sections and flows, each backed by files.</span><span data-l="tr">Yaklaşık bir dakikalık tarama README’yi, klasör ağacını, bağımlılıkları ve giriş noktalarını okuyor; her biri dosyalara dayanan bölümler ve akışlar öneriyor.</span></li>
+                <li data-route="scan read repo" data-state="read: up to 3 at once" data-state-tr="read: aynı anda 3’e kadar"><span data-l="en">Each part you pick gets its own focused read with read-only tools, side by side.</span><span data-l="tr">Seçtiğin her parça, yalnızca okuyan araçlarla kendi odaklı okumasını alıyor; hepsi yan yana.</span></li>
+                <li data-route="read check" data-state="check: every file found" data-state-tr="check: tüm dosyalar var"><span data-l="en">Code checks that every file the engine named exists.</span><span data-l="tr">Kod, motorun adını verdiği her dosyanın var olduğunu kontrol ediyor.</span></li>
+                <li data-route="check facts" data-state="facts: architecture.archdraw.json"><span data-l="en">The facts go to one JSON file in your repository, committed next to the code.</span><span data-l="tr">Bilgiler reponda, kodun yanında commit edilen tek bir JSON dosyasına yazılıyor.</span></li>
+                <li data-route="facts layout editor" data-state="layout: LinkedIn · README"><span data-l="en">A layout per channel is drawn from the same facts and opens in the editor on your machine.</span><span data-l="tr">Aynı bilgilerden her kanal için bir yerleşim çiziliyor ve senin makinendeki editörde açılıyor.</span></li>
+                <li data-route="editor export you" data-tone="reply" data-state="export: 1080 × 1350"><span data-l="en">An image sized for where it is going, in light or dark.</span><span data-l="tr">Gideceği yere göre boyutlanmış, açık ya da koyu bir görsel.</span></li>
+              </ol>
+            </div>
+            <div class="arch-scene">
+              <p class="arch-scene-name"><span data-l="en">A file that isn’t there</span><span data-l="tr">Olmayan bir dosya</span></p>
+              <ol class="arch-steps">
+                <li data-route="scan read"><span data-l="en">A read says a queue worker lives in src/queue/worker.ts.</span><span data-l="tr">Bir okuma, kuyruk worker’ının src/queue/worker.ts içinde olduğunu söylüyor.</span></li>
+                <li data-route="read layout" data-stop="0.6"><span data-l="en">It cannot go straight to the drawing: nothing is drawn before the check.</span><span data-l="tr">Doğrudan çizime gidemiyor: kontrolden önce hiçbir şey çizilmiyor.</span></li>
+                <li data-route="read check" data-state="check: 1 file missing" data-state-tr="check: 1 dosya yok"><span data-l="en">That file does not exist.</span><span data-l="tr">O dosya yok.</span></li>
+                <li data-route="check dropped" data-state="dropped: shown as a warning" data-state-tr="dropped: uyarı olarak"><span data-l="en">The claim is dropped, and every automatic repair of an engine’s answer is shown to you as a warning.</span><span data-l="tr">O iddia atılıyor; motorun cevabına yapılan her otomatik düzeltme sana uyarı olarak gösteriliyor.</span></li>
+              </ol>
+            </div>
+            <div class="arch-scene">
+              <p class="arch-scene-name"><span data-l="en">Change it in plain words</span><span data-l="tr">Düz cümleyle değiştir</span></p>
+              <ol class="arch-steps">
+                <li data-route="editor"><span data-l="en">In the editor you type: merge the two queue workers into one part.</span><span data-l="tr">Editöre yazıyorsun: iki kuyruk worker’ını tek bir parçada birleştir.</span></li>
+                <li data-route="editor aiedit" data-state="aiedit: 2 parts changed" data-state-tr="aiedit: 2 parça değişti"><span data-l="en">The engine you pick proposes the change. It arrives as a preview with the changed parts highlighted.</span><span data-l="tr">Seçtiğin motor değişikliği öneriyor. Değişen parçalar vurgulanmış bir önizleme olarak geliyor.</span></li>
+                <li data-route="aiedit facts" data-state="facts: saved" data-state-tr="facts: kaydedildi"><span data-l="en">You accept it, and it is saved to the drawing file.</span><span data-l="tr">Kabul ediyorsun ve çizim dosyasına kaydediliyor.</span></li>
+                <li data-route="facts layout editor" data-state="layout: positions kept" data-state-tr="layout: yerler korundu"><span data-l="en">Every channel that shows those parts is updated; the positions you gave them stay.</span><span data-l="tr">O parçaları gösteren her kanal güncelleniyor; onlara verdiğin konumlar korunuyor.</span></li>
+                <li data-route="editor export you" data-tone="reply"><span data-l="en">The next export has the change in every size.</span><span data-l="tr">Bir sonraki dışa aktarmada değişiklik her boyutta var.</span></li>
+              </ol>
+            </div>
+          </div>
+        </div>
+        <figcaption><span data-l="en">The model works only in the shaded areas; everything else is code on your machine.</span><span data-l="tr">Model yalnızca gölgeli alanlarda çalışıyor; geri kalan her şey senin makinende çalışan kod.</span> <span class="arch-key" aria-hidden="true"></span><span data-l="en">request,</span><span data-l="tr">talep,</span> <span class="arch-key reply" aria-hidden="true"></span><span data-l="en">answer.</span><span data-l="tr">cevap.</span></figcaption>
+      </figure>
+    </section>
+
+    <nav class="row doc-next" aria-label="Work" data-en-label="Work" data-tr-label="İşler">
+      <p class="more"><a href="../issuepilot/">← IssuePilot</a><a href="../memcellar/"><span data-l="en">Next: memcellar</span><span data-l="tr">Sonraki: memcellar</span><span class="go">→</span></a></p>
+    </nav>
+  </main>
+
+  <footer class="sea" id="iletisim">
+    <canvas class="caustics" aria-hidden="true"></canvas>
+    <div class="row">
+      <h2 class="label"><span data-l="en">Contact</span><span data-l="tr">İletişim</span></h2>
+      <p class="say"><span data-l="en">Want to work together? <em>Write to me.</em></span><span data-l="tr">Birlikte çalışmak ister misiniz? <em>Bana yazın.</em></span></p>
+      <dl class="pairs contact">
+        <dt><span data-l="en">Email</span><span data-l="tr">E-posta</span></dt>
+        <dd><a href="mailto:berkeakyildz@gmail.com">berkeakyildz@gmail.com</a></dd>
+        <dt>GitHub</dt>
+        <dd><a href="https://github.com/brkakyldz">github.com/brkakyldz</a></dd>
+        <dt>LinkedIn</dt>
+        <dd><a href="https://www.linkedin.com/in/berkeakyildiz/">linkedin.com/in/berkeakyildiz</a></dd>
+      </dl>
+    </div>
+    <div class="row colophon">
+      <p class="colophon-line"><span>Berke Akyıldız · 2026</span></p>
+    </div>
+  </footer>
+</body>
+</html>
